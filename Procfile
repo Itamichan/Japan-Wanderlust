@@ -1,1 +1,1 @@
-web: gunicorn -w 2 run
+web: gunicorn -w 2 src.run
