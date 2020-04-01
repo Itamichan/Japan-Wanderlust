@@ -18,11 +18,11 @@ sql_dir_name = "./src/sql"
 sql_files = os.listdir("./src/sql")
 
 for sql_file in sql_files:
-    print(sql_file)
     join_file_path = os.path.join(sql_dir_name, sql_file)
 
     with open(join_file_path, "r") as file:
         sql = file.read()
+        print(sql)
 
     with conn.cursor() as cursor:
         cursor.execute(sql)
