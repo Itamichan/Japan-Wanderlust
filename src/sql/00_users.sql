@@ -1,5 +1,4 @@
-create table users
-(
+CREATE TABLE users(
 	id serial not null
 		constraint users_pkey
 			primary key,
