@@ -1,4 +1,5 @@
-CREATE TABLE users(
+
+CREATE TABLE users (
 	id serial not null
 		constraint users_pkey
 			primary key,
@@ -7,4 +8,15 @@ CREATE TABLE users(
 	lastname text,
 	password text,
 	email text
+);
+
+CREATE TABLE trip_list (
+	id serial not null
+		constraint trip_list_pkey
+			primary key,
+	user_id INTEGER REFERENCES users (id),
+	max_trip_days integer,
+	is_guided boolean,
+	in_group boolean,
+	max_price money
 );
