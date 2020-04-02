@@ -22,14 +22,14 @@ class Database:
 
     def create_user(self, username, firstname, lastname, email, password):
         with self.connection.cursor() as cursor:
-            cursor.execute('INSERT INTO users (username, firstname, lastname, email, password) VALUES (%s, %s, %s, %s, %s);',
-                           (username, firstname, lastname, email, password))
+            sql = 'INSERT INTO users (username, firstname, lastname, email, password) VALUES (%s, %s, %s, %s, %s)'
+            cursor.execute(sql, (username, firstname, lastname, email, password,))
             self.connection.commit()
 
     def get_user_by_name(self, username):
         with self.connection.cursor() as cursor:
-            sql = 'SELECT id, username, email, FROM users WHERE username=%s;'
-            cursor.execute(sql, username)
+            sql = 'SELECT id, username, email FROM users WHERE username = %s'
+            cursor.execute(sql, (username,))
             result = cursor.fetchone()
             if result is not None:
                 return User(id=result[0], username=username, email=result[2])

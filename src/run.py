@@ -66,7 +66,6 @@ def register():
         db_instance = Database()
         user = db_instance.get_user_by_name(username)
 
-        # password should be at least 8 characters long
         if re.search(password_match, password) is None:
             raise AssertionError('invalid password')
 
