@@ -2,9 +2,6 @@ import os
 import re
 
 from flask import Flask, request, jsonify
-
-
-
 from database import Database, User
 
 application = Flask("japan-wanderlust")
@@ -17,11 +14,11 @@ def register():
         @apiVersion 1.0.0
 
         @apiDescription
-            password should have at least 8 characters can contain any char except white space
-            username should have at least 2 characters and maximum 25, can contain any char except white space
-            firstname should have at least 1 character and maximum 25, can contain any capital or small letter
-            lastname should have at least 1 character and maximum 25, can contain any capital or small letter
-            email should have an "@" sign and a email domain name with a domain ending of at least 2 characters
+        <p><b>password</b> should have at least 8 characters and can contain any char except white space.</p>
+        <p><b>username</b> should have at least 2 characters and maximum 25, it can contain any char except white space.</p>
+        <p><b>firstname</b> should have at least 1 character and maximum 25, it can contain any capital or small letter.</p>
+        <p><b>lastname</b> should have at least 1 character and maximum 25, it can contain any capital or small letter.</p>
+        <p><b>email</b> should have an "@" sign and a email domain name with a domain ending of at least 2 characters.</p>
 
         @apiName PostUsers
         @apiGroup Authentication
@@ -35,7 +32,6 @@ def register():
         @apiSuccess {String} welcomeMessage Personalised welcome message
 
         @apiSuccessExample {json} Success-Response:
-        HTTP/1.1 200 OK
         {}
 
         @apiError (Unauthorized 401) {Object} InvalidPassword
@@ -90,7 +86,7 @@ def register():
             raise AssertionError('invalid email format')
 
         db_instance.create_user(username, firstname, lastname, email, password)
-        response = jsonify({}).status_code = 200
+        response = jsonify({})
         return response
 
     except AssertionError as a:
