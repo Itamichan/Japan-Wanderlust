@@ -34,7 +34,7 @@ class Database:
 
     def get_user_by_name(self, username):
         with self.connection.cursor() as cursor:
-            sql = 'SELECT id, username, email, password FROM users WHERE username = %s'
+            sql = 'SELECT id, username, email, password, salt FROM users WHERE username = %s'
             cursor.execute(sql, (username,))
             result = cursor.fetchone()
             if result is not None:

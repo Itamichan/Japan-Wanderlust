@@ -1,3 +1,4 @@
+import hashlib
 import os
 import re
 
@@ -128,11 +129,12 @@ def login():
         database_instance = Database()
         user = database_instance.get_user_by_name(username)
 
-        salt =
-        hash_provided_password =
+        # hash the input password
+        salt = user.salt
+        hash_provided_password = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
 
-        if user and user.password == password:
-            token = jwt.encode({'user': username, 'id': user.id}, SECRET_KEY, algorithm='HS256')
+        if user and user.password == hash_provided_password:
+            token = jwt.encode({'id': user.id}, SECRET_KEY, algorithm='HS256')
             return jsonify({'token': token.decode('ascii')})
         else:
             response = jsonify({'error': 'InvalidLogin', 'description': 'username or password incorrect'})
