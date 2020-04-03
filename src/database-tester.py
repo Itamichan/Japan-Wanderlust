@@ -2,7 +2,7 @@ import requests
 import json
 
 response = requests.post('http://localhost:5000/api/v1/users', data=json.dumps({
-    'username': 'testtest',
+    'username': 'testtest5',
     'firstname': 'test',
     'lastname': 'test',
     'password': 'testtest',

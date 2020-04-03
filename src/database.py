@@ -24,13 +24,13 @@ class Database:
     def create_user(self, username, firstname, lastname, email, password):
         with self.connection.cursor() as cursor:
             sql = 'INSERT INTO users (username, firstname, lastname, email, password) VALUES (%s, %s, %s, %s, %s)'
+            # hashing the user's password, adding salt and iterations
 
             def hash_password(user_password):
                 salt = os.urandom(32)
                 hashed_password = hashlib.pbkdf2_hmac('sha256', user_password.encode('utf-8'), salt, 100000)
                 return hashed_password
 
-            print(hash_password(password))
             cursor.execute(sql, (username, firstname, lastname, email, hash_password(password),))
             self.connection.commit()
 

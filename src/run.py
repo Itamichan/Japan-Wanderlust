@@ -31,13 +31,13 @@ def register():
 
         @apiSuccessExample {json} Success-Response:
         {}
-        # todo change the error code to 400 or 412-look into it
-        @apiError (Unauthorized 401) {Object} InvalidPassword
-        @apiError (Unauthorized 401) {Object} InvalidFirstname
-        @apiError (Unauthorized 401) {Object} InvalidLastname
-        @apiError (Unauthorized 401) {Object} InvalidUsername
-        @apiError (Unauthorized 401) {Object} UnavailableUsername
-        @apiError (Unauthorized 401) {Object} InvalidEmailFormat
+
+        @apiError (Unauthorized 400) {Object} InvalidPassword
+        @apiError (Unauthorized 400) {Object} InvalidFirstname
+        @apiError (Unauthorized 400) {Object} InvalidLastname
+        @apiError (Unauthorized 400) {Object} InvalidUsername
+        @apiError (Unauthorized 400) {Object} UnavailableUsername
+        @apiError (Unauthorized 400) {Object} InvalidEmailFormat
         @apiError (InternalServerError 500) {Object} InternalServerError
 
     """
@@ -50,32 +50,26 @@ def register():
         password = request.json.get('password', '')
         email = request.json.get('email', '')
 
-        # todo put directly in the if statements
-        password_match = r"^[\S]{8,}$"
-        username_match = r'^[\S]{2,25}$'
-        firstname_match = r'[a-zA-Z]{1,25}$'
-        lastname_match = r'[a-zA-Z]{1,25}$'
-        email_match = r'([\w\.\-]+)@([\w]+)\.([\w]+){2,}'
-
+        # checking if we already have such a username in our database
         db_instance = Database()
         user = db_instance.get_user_by_name(username)
 
-        if not re.match(password_match, password):
+        if not re.match(r"^[\S]{8,}$", password):
             raise AssertionError('invalid password')
 
-        if not re.match(username_match, username):
+        if not re.match(r'^[\S]{2,25}$', username):
             raise AssertionError('invalid username')
 
-        if not re.match(firstname_match, firstname):
+        if not re.match(r'[a-zA-Z]{1,25}$', firstname):
             raise AssertionError('invalid firstname')
 
-        if not re.match(lastname_match, lastname):
+        if not re.match(r'[a-zA-Z]{1,25}$', lastname):
             raise AssertionError('invalid lastname')
 
         if user:
             raise AssertionError('username already taken')
 
-        if not email or not re.fullmatch(email_match, email):
+        if not email or not re.fullmatch(r'([\w\.\-]+)@([\w]+)\.([\w]+){2,}', email):
             raise AssertionError('invalid email format')
 
         db_instance.create_user(username, firstname, lastname, email, password)
@@ -87,7 +81,7 @@ def register():
             'error': 'Unauthorized',
             'description': str(a)
         })
-        response.status_code = 401
+        response.status_code = 400
         return response
 
     except Exception as e:
