@@ -11,7 +11,7 @@ DB_NAME = os.environ.get('DB_NAME')
 
 conn = psycopg2.connect(host=DB_HOST, database=DB_NAME, user=DB_USER, password=DB_PASSWORD)
 
-User = namedtuple('User', 'id username email')
+User = namedtuple('User', 'id username email password salt')
 
 
 class Database:
@@ -23,24 +23,22 @@ class Database:
 
     def create_user(self, username, firstname, lastname, email, password):
         with self.connection.cursor() as cursor:
-            sql = 'INSERT INTO users (username, firstname, lastname, email, password) VALUES (%s, %s, %s, %s, %s)'
+            sql = 'INSERT INTO users (username, firstname, lastname, email, password, salt) VALUES (%s, %s, %s, %s, %s, %s)'
+
             # hashing the user's password, adding salt and iterations
+            salt = os.urandom(32)
+            hash_password = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
 
-            def hash_password(user_password):
-                salt = os.urandom(32)
-                hashed_password = hashlib.pbkdf2_hmac('sha256', user_password.encode('utf-8'), salt, 100000)
-                return hashed_password
-
-            cursor.execute(sql, (username, firstname, lastname, email, hash_password(password),))
+            cursor.execute(sql, (username, firstname, lastname, email, hash_password, salt,))
             self.connection.commit()
 
     def get_user_by_name(self, username):
         with self.connection.cursor() as cursor:
-            sql = 'SELECT id, username, email FROM users WHERE username = %s'
+            sql = 'SELECT id, username, email, password FROM users WHERE username = %s'
             cursor.execute(sql, (username,))
             result = cursor.fetchone()
             if result is not None:
-                return User(id=result[0], username=username, email=result[2])
+                return User(id=result[0], username=username, email=result[2], password=result[3], salt=result[4])
 
 # testing if the class functions are correctly executed
 if __name__ == '__main__':
