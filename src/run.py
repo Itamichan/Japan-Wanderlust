@@ -1,10 +1,15 @@
 import os
 import re
 
+import jwt
 from flask import Flask, request, jsonify
 from database import Database, User
 
 application = Flask("japan-wanderlust")
+
+# gets the value for our secret key which we will use for jwt
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
 
 @application.route('/api/v1/users', methods=['POST'])
 def register():
@@ -90,11 +95,66 @@ def register():
         response.status_code = 500
         return response
 
+
+@application.route('/api/v1/token', methods=['POST'])
+def login():
     """
-    delete /api/v1/users delete a user
+        @api {POST} /api/v1/token/ User login
+        @apiVersion 1.0.0
+
+        @apiName PostToken
+        @apiGroup Authentication
+
+        @apiParam {String} username User's username.
+        @apiParam {String} password User's password.
+
+        @apiSuccess {String} token User's jwt.
+
+        @apiSuccessExample {json} Success-Response:
+        HTTP/1.1 200 OK
+        {
+            "token": "eyJ0eXA..."
+        }
+
+       @apiError (Unauthorized 401 ) {Object} InvalidLogin Username or password is incorrect.
+
+        """
+
+    try:
+        # tries to get the value if none provided returns an emtpy string
+        username = request.json.get('username', '')
+        password = request.json.get('password', '')
+
+        database_instance = Database()
+        user = database_instance.get_user_by_name(username)
+
+        salt =
+        hash_provided_password =
+
+        if user and user.password == password:
+            token = jwt.encode({'user': username, 'id': user.id}, SECRET_KEY, algorithm='HS256')
+            return jsonify({'token': token.decode('ascii')})
+        else:
+            response = jsonify({'error': 'InvalidLogin', 'description': 'username or password incorrect'})
+            response.status_code = 401
+            return response
+
+    except Exception as e:
+        print(e)
+        response = jsonify({'error': 'unknown error', 'description': 'internal server error'})
+        response.status_code = 500
+        return response
+
+
+
+
+    """
     
-    post /api/v1/token login with username and password/ get the token back
+    
+
     post /api/v1/token/verify checks that the token is still valid
+    
+    delete /api/v1/users delete a user
     
     post /api/v1/trips creation of a trip list
     get /api/v1/trips/<id> get trips info
@@ -112,6 +172,7 @@ def register():
     delete /api/v1/trips/<id>/attractions/<id>
     
     """
+
 
 if __name__ == '__main__':
     application.run(os.getenv('IP', "0.0.0.0"),
