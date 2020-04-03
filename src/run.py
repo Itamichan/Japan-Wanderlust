@@ -133,7 +133,9 @@ def login():
         salt = user.salt
         hash_provided_password = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
 
-        if user and user.password == hash_provided_password:
+
+        if user and user.password== hash_provided_password:
+
             token = jwt.encode({'id': user.id}, SECRET_KEY, algorithm='HS256')
             return jsonify({'token': token.decode('ascii')})
         else:

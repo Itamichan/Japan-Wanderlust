@@ -6,8 +6,8 @@ CREATE TABLE users (
 	username text,
 	firstname text,
 	lastname text,
-	password text,
-	salt bytea,
+	password varchar,
+	salt varchar,
 	email text
 );
 
