@@ -29,11 +29,9 @@ def register():
         @apiParam {String{8..}} password User's password.
         @apiParam {String} email User's email.
 
-        @apiSuccess {String} welcomeMessage Personalised welcome message
-
         @apiSuccessExample {json} Success-Response:
         {}
-
+        # todo change the error code to 400 or 412-look into it
         @apiError (Unauthorized 401) {Object} InvalidPassword
         @apiError (Unauthorized 401) {Object} InvalidFirstname
         @apiError (Unauthorized 401) {Object} InvalidLastname
@@ -43,20 +41,16 @@ def register():
         @apiError (InternalServerError 500) {Object} InternalServerError
 
     """
-    username = request.json['username']
-    firstname = request.json['firstname']
-    lastname = request.json['lastname']
-    password = request.json['password']
-    email = request.json['email']
+
     try:
-        """
-        password should have at least 8 characters can contain any char except white space
-        username should have at least 2 characters and maximum 25, can contain any char except white space
-        firstname should have at least 1 character and maximum 25, can contain any capital or small letter
-        lastname should have at least 1 character and maximum 25, can contain any capital or small letter
-        email should have an "@" sign and a email domain name with a domain ending of at least 2 characters
-        
-        """
+        # tries to get the value if none provided returns an emtpy string
+        username = request.json.get('username', '')
+        firstname = request.json.get('firstname', '')
+        lastname = request.json.get('lastname', '')
+        password = request.json.get('password', '')
+        email = request.json.get('email', '')
+
+        # todo put directly in the if statements
         password_match = r"^[\S]{8,}$"
         username_match = r'^[\S]{2,25}$'
         firstname_match = r'[a-zA-Z]{1,25}$'
@@ -66,16 +60,16 @@ def register():
         db_instance = Database()
         user = db_instance.get_user_by_name(username)
 
-        if re.search(password_match, password) is None:
+        if not re.match(password_match, password):
             raise AssertionError('invalid password')
 
-        if re.search(username_match, username) is None:
+        if not re.match(username_match, username):
             raise AssertionError('invalid username')
 
-        if re.search(firstname_match, firstname) is None:
+        if not re.match(firstname_match, firstname):
             raise AssertionError('invalid firstname')
 
-        if re.search(lastname_match, lastname) is None:
+        if not re.match(lastname_match, lastname):
             raise AssertionError('invalid lastname')
 
         if user:
