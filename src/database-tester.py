@@ -13,7 +13,7 @@ import json
 # assert response.status_code == 200, 'Endpoint does not respond with 200'
 
 response = requests.post('http://localhost:5000/api/v1/token', data=json.dumps({
-    'username': 'testtest1',
+    'username': 'testtest2',
     'password': 'testtest,'
 }), headers={'Content-Type': 'application/json'}, timeout=1)
 
