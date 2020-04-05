@@ -17,3 +17,6 @@ def response_401(message):
 
 def response_400(error, message):
     return json_response(400, error, message)
+
+def response_404(error, message):
+    return json_response(404, error, message)

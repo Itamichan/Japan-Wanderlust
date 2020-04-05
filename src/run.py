@@ -2,7 +2,8 @@ import os
 
 from flask import Flask
 
-import authentication
+from views import authentication
+from views.trips import TripsView
 
 application = Flask("japan-wanderlust")
 
@@ -14,19 +15,11 @@ application.add_url_rule('/api/v1/users', methods=['POST'], view_func=authentica
 application.add_url_rule('/api/v1/token', methods=['POST'], view_func=authentication.login)
 application.add_url_rule('/api/v1/token/verify', methods=['POST'], view_func=authentication.verify_token)
 
+application.add_url_rule('/api/v1/trips/<trip_id>', view_func=TripsView.as_view('TripsView'))
+application.add_url_rule('/api/v1/trips', view_func=TripsView.as_view('TripsView'))
+
 """
 
-
-
-post /api/v1/token/verify checks that the token is still valid
-
-delete /api/v1/users delete a user
-
-post /api/v1/trips creation of a trip list
-get /api/v1/trips/<id> get trips info
-get /api/v1/trips get all user's trips
-patch /api/v1/trips/<id> updates a trip list
-delete /api/v1/trips/<id> delete a trip list
 
 get /api/v1/attractions get attractions info
 
