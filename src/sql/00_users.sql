@@ -4,9 +4,9 @@ CREATE TABLE users (
 		constraint users_pkey
 			primary key,
 	username text unique,
-	password text,
-	salt text,
-	email text
+	password text not null,
+	salt text not null,
+	email text not null
 );
 
 CREATE TABLE trip_list (
@@ -15,8 +15,8 @@ CREATE TABLE trip_list (
 			primary key,
 			name text,
 	user_id integer REFERENCES users (id),
-	max_trip_days integer,
-	is_guided boolean,
-	in_group boolean,
-	max_price integer
+	max_trip_days integer not null,
+	is_guided boolean not null,
+	in_group boolean not null,
+	max_price integer not null
 );

@@ -2,25 +2,25 @@ CREATE TABLE attraction_type (
 	id serial not null
 		constraint attraction_type_pkey
 			primary key,
-	name text
+	name text unique not null
 );
 
 CREATE TABLE cities(
 	id serial not null
 		constraint cities_pkey
 			primary key,
-	name text
+	name text unique not null
 );
 
 CREATE TABLE attractions (
 	id serial not null
 		constraint attractions_pkey
 			primary key,
-	name text,
-	opening_time text,
-	price integer,
+	name text not null,
+	description text not null,
+	price integer, --price in YEN
 	web_link text,
-	picture_link text,
+	picture_url text not null,
 	city_id integer REFERENCES cities (id)
 );
 
