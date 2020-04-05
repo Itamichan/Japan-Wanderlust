@@ -6,7 +6,7 @@ import jwt
 from flask import request, jsonify
 from psycopg2._psycopg import IntegrityError
 
-from database import Database
+from database.users_database import Database, UserDatabase
 from errors import response_500, response_401, response_400
 
 # gets the value for our secret key which we will use for jwt
@@ -55,8 +55,9 @@ def register():
             return response_400('InvalidEmailFormat',
                                 'Email should have an "@" sign and a email domain name with a domain ending of at least 2 characters.')
 
-        db_instance = Database()
+        db_instance = UserDatabase()
         db_instance.create_user(username, email, password)
+        db_instance.close_connection()
         response = jsonify({})
         return response
 
@@ -98,8 +99,9 @@ def login():
         username = request.json.get('username', '')
         password = request.json.get('password', '')
 
-        database_instance = Database()
-        user = database_instance.verify_user(username, password)
+        db_instance = UserDatabase()
+        user = db_instance.verify_user(username, password)
+        db_instance.close_connection()
 
         if not user:
             return response_401('username or password incorrect')
@@ -160,8 +162,9 @@ def verify_token():
         payload = jwt.decode(token, SECRET_KEY, verify=True)
         user_id = payload["id"]
 
-        database_instance = Database()
-        user = database_instance.get_user_by_id(user_id)
+        db_instance = UserDatabase()
+        user = db_instance.get_user_by_id(user_id)
+        db_instance.close_connection()
 
         if not user:
             return response_401('Please provide a valid token')
