@@ -1,17 +1,9 @@
 import hashlib
 import os
-from collections import namedtuple
-import base64
 from dataclasses import dataclass
 
-import psycopg2
+from database.database import Database
 
-DB_HOST = os.environ.get('DB_HOST')
-DB_USER = os.environ.get('DB_USER')
-DB_PASSWORD = os.environ.get('DB_PASSWORD')
-DB_NAME = os.environ.get('DB_NAME')
-
-conn = psycopg2.connect(host=DB_HOST, database=DB_NAME, user=DB_USER, password=DB_PASSWORD)
 
 @dataclass
 class User:
@@ -24,20 +16,14 @@ class User:
     def user_info(self) -> dict:
         return {
             "username": self.username,
-            "email": self.email
+            "email": self.email,
         }
 
 
-class Database:
-    def __init__(self):
-        self.connection = conn
-
-    def close_connection(self):
-        self.connection.close()
-
+class UserDatabase(Database):
     def create_user(self, username, email, password):
         with self.connection.cursor() as cursor:
-            sql = 'INSERT INTO users (username, email, password, salt) VALUES (%s, %s, %s, %s, %s, %s)'
+            sql = 'INSERT INTO users (username, email, password, salt) VALUES (%s, %s, %s, %s)'
 
             # hashing the user's password, adding salt and iterations
             salt = os.urandom(32)
@@ -72,10 +58,3 @@ class Database:
                 return User(id=user_id, username=result[0], email=result[1], password=result[2], salt=result[3])
 
 
-# testing if the class functions are correctly executed
-if __name__ == '__main__':
-    db_instance = Database()
-
-    db_instance.create_user('testtest4', 'test@gmail.com', 'testtest')
-    print(db_instance.verify_user('testtest4', 'testtest'))
-    db_instance.close_connection()
