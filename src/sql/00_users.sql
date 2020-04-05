@@ -3,11 +3,11 @@ CREATE TABLE users (
 	id serial not null
 		constraint users_pkey
 			primary key,
-	username text,
+	username text unique,
 	firstname text,
 	lastname text,
-	password varchar,
-	salt varchar,
+	password text,
+	salt text,
 	email text
 );
 
