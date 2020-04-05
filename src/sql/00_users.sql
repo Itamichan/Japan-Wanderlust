@@ -4,8 +4,6 @@ CREATE TABLE users (
 		constraint users_pkey
 			primary key,
 	username text unique,
-	firstname text,
-	lastname text,
 	password text,
 	salt text,
 	email text

@@ -12,6 +12,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # registration of handlers for register and login
 application.add_url_rule('/api/v1/users', methods=['POST'], view_func=authentication.register)
 application.add_url_rule('/api/v1/token', methods=['POST'], view_func=authentication.login)
+application.add_url_rule('/api/v1/token/verify', methods=['POST'], view_func=authentication.verify_token)
 
 """
 
