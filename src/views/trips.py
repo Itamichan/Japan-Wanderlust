@@ -40,9 +40,8 @@ class TripsView(MethodView):
     def post(self, name, max_trip_days, is_guided, in_group, max_price, user: User = None):
         # todo api docs
         try:
-            user_id = user.id
             db_instance = TripsDatabase()
-            new_trip = db_instance.trip_create(name, user_id, max_trip_days, is_guided, in_group, max_price)
+            new_trip = db_instance.trip_create(name, user.id, max_trip_days, is_guided, in_group, max_price)
             db_instance.close_connection()
             if not new_trip:
                 return response_400("BadRequest", "Invalid data entry")
@@ -58,7 +57,7 @@ class TripsView(MethodView):
             return self.list(user)
 
     @validate_token
-    def delete(self, user: User = None, trip_id: int = None):
+    def delete(self, trip_id: int, user: User = None):
         # todo api docs
         try:
             db_instance = TripsDatabase()

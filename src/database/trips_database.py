@@ -29,9 +29,11 @@ class TripsDatabase(Database):
 
     def trip_create(self, name, user_id, max_trip_days, is_guided, in_group, max_price):
         with self.connection.cursor() as cursor:
-            sql = 'INSERT INTO trip_list (name, user_id, max_trip_days, is_guided, in_group, max_price) VALUES (%s, %s, %s, %s, %s, %s)'
+            sql = 'INSERT INTO trip_list (name, user_id, max_trip_days, is_guided, in_group, max_price) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id'
             cursor.execute(sql, (name, user_id, max_trip_days, is_guided, in_group, max_price))
             self.connection.commit()
+            id_of_new_trip = cursor.fetchone()[0]
+            return id_of_new_trip
 
     def trip_info(self, user_id, trip_id):
         with self.connection.cursor() as cursor:
@@ -55,6 +57,11 @@ class TripsDatabase(Database):
             sql = 'DELETE from trip_list WHERE user_id = %s AND id = %s'
             cursor.execute(sql, (user_id, trip_id))
             self.connection.commit()
+            count_deleted_trip = cursor.rowcount
+            if count_deleted_trip != 1:
+                return "false"
+            else:
+                return "true"
 
-
+# todo patch
 # patch /api/v1/trips/<id> updates a trip list

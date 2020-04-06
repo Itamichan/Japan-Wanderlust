@@ -10,7 +10,7 @@ class Database:
         DB_PASSWORD = os.environ.get('DB_PASSWORD')
         DB_NAME = os.environ.get('DB_NAME')
 
-        self.connection =  psycopg2.connect(host=DB_HOST, database=DB_NAME, user=DB_USER, password=DB_PASSWORD)
+        self.connection = psycopg2.connect(host=DB_HOST, database=DB_NAME, user=DB_USER, password=DB_PASSWORD)
 
     def close_connection(self):
         self.connection.close()

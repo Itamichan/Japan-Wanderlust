@@ -15,10 +15,9 @@ application.add_url_rule('/api/v1/users', methods=['POST'], view_func=authentica
 application.add_url_rule('/api/v1/token', methods=['POST'], view_func=authentication.login)
 application.add_url_rule('/api/v1/token/verify', methods=['POST'], view_func=authentication.verify_token)
 
-application.add_url_rule('/api/v1/trips/<trip_id>', methods=['GET'], view_func=TripsView.as_view('TripInfo'))
-application.add_url_rule('/api/v1/trips', methods=['GET'], view_func=TripsView.as_view('TripsListInfo'))
-application.add_url_rule('/api/v1/trips', methods=['POST'], view_func=TripsView.as_view('TripCreation'))
-application.add_url_rule('/api/v1/trips/<trip_id>', methods=['DELETE'], view_func=TripsView.as_view('TripDeletion'))
+application.add_url_rule('/api/v1/trips/<trip_id>', methods=['GET', 'DELETE'], view_func=TripsView.as_view('TripInfo'))
+application.add_url_rule('/api/v1/trips', methods=['GET', 'POST'], view_func=TripsView.as_view('TripsListInfo'))
+
 
 """
 
