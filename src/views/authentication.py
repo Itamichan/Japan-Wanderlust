@@ -58,8 +58,7 @@ def register():
         db_instance = UserDatabase()
         db_instance.create_user(username, email, password)
         db_instance.close_connection()
-        response = jsonify({})
-        return response
+        return jsonify({})
 
     except IntegrityError as e:
         return response_400('UnavailableUsername', 'Username is unavailable.')
