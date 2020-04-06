@@ -17,7 +17,7 @@ class TripsView(MethodView):
             db_instance.close_connection()
 
             if not trip_info:
-                return response_404("NoSuchTrip", "Trip is doesn't exist")
+                return response_404("NoSuchTrip", "Such trip doesn't exist")
 
             return jsonify(trip_info.serialize())
         except:
@@ -45,7 +45,7 @@ class TripsView(MethodView):
             db_instance.close_connection()
             if not new_trip:
                 return response_400("BadRequest", "Invalid data entry")
-            return jsonify({})
+            return jsonify({'trip_id': new_trip})
         except:
             return response_500()
 
@@ -61,9 +61,12 @@ class TripsView(MethodView):
         # todo api docs
         try:
             db_instance = TripsDatabase()
-            db_instance.trip_delete(user.id, trip_id)
+            delete_trip = db_instance.trip_delete(user.id, trip_id)
             db_instance.close_connection()
-            return jsonify({})
+            if delete_trip == 'true':
+                return jsonify({})
+            else:
+                return response_404("NoSuchTrip", "Such trip doesn't exist")
         except:
             return response_500()
 
