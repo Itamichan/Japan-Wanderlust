@@ -57,6 +57,4 @@ class TripsDatabase(Database):
             self.connection.commit()
 
 
-# post /api/v1/trips creation of a trip list
 # patch /api/v1/trips/<id> updates a trip list
-# delete /api/v1/trips/<id> delete a trip list
