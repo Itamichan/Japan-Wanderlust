@@ -25,11 +25,7 @@ application.add_url_rule('/api/v1/trips', methods=['GET', 'POST'], view_func=Tri
 get /api/v1/attractions get attractions info
 
 
-get /api/v1/trips/<id>/attractions
 
-post /api/v1/trips/<id>/attractions/<id>
-
-delete /api/v1/trips/<id>/attractions/<id>
 
 """
 

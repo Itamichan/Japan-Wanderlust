@@ -27,11 +27,11 @@ class TripsView(MethodView):
         # todo api docs
         try:
             db_instance = TripsDatabase()
-            trip_list = db_instance.trip_list(user.id)
+            trips_list = db_instance.trips_list(user.id)
             db_instance.close_connection()
 
             return jsonify({
-                "trips": [e.serialize() for e in trip_list]
+                "trips": [e.serialize() for e in trips_list]
             })
         except:
             return response_500()
@@ -70,6 +70,6 @@ class TripsView(MethodView):
         except:
             return response_500()
 
-# post /api/v1/trips creation of a trip list
+
 # patch /api/v1/trips/<id> updates a trip list
-# delete /api/v1/trips/<id> delete a trip list
+
