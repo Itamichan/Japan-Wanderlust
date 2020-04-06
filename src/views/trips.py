@@ -23,7 +23,6 @@ class TripsView(MethodView):
         except:
             return response_500()
 
-
     def list(self, user):
         # todo api docs
         try:
