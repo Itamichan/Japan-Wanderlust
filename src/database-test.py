@@ -1,5 +1,6 @@
 
 # testing if the class functions are correctly executed
+from database.attractions_database import AttractionsDatabase
 from database.users_database import UserDatabase
 from database.trips_database import TripsDatabase
 
@@ -8,7 +9,7 @@ if __name__ == '__main__':
     trips_inst = TripsDatabase()
     trip_create = TripsDatabase()
     trip_delete = TripsDatabase()
-    attraction_list = TripsDatabase()
+    attraction_list = AttractionsDatabase()
 
     # create_user = db_instance.create_user('cristina23', 'cristina@gmail.com', 'testtest')
     user = db_instance.get_user_by_name('cristina23')
