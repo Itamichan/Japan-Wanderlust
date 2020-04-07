@@ -45,7 +45,7 @@ class TripsView(MethodView):
             db_instance.close_connection()
             if not new_trip:
                 return response_400("BadRequest", "Invalid data entry")
-            return jsonify({'trip_id': new_trip})
+            return jsonify({'trip_id': new_trip.id})
         except:
             return response_500()
 
@@ -61,15 +61,33 @@ class TripsView(MethodView):
         # todo api docs
         try:
             db_instance = TripsDatabase()
-            delete_trip = db_instance.trip_delete(user.id, trip_id)
+            deleted_trip = db_instance.trip_delete(user.id, trip_id)
             db_instance.close_connection()
-            if delete_trip == 'true':
-                return jsonify({})
-            else:
+
+            if not deleted_trip:
                 return response_404("NoSuchTrip", "Such trip doesn't exist")
+
+            return jsonify({})
         except:
             return response_500()
 
 
+    @validate_token
+    def post(self, name, max_trip_days, is_guided, in_group, max_price, user: User = None):
+        # todo api docs
+        try:
+            db_instance = TripsDatabase()
+            new_trip = db_instance.trip_create(name, user.id, max_trip_days, is_guided, in_group, max_price)
+            db_instance.close_connection()
+            if not new_trip:
+                return response_400("BadRequest", "Invalid data entry")
+            return jsonify({'trip_id': new_trip})
+        except:
+            return response_500()
+
 # patch /api/v1/trips/<id> updates a trip list
 
+# get /api/v1/trips/<id>/attractions
+
+# post /api/v1/trips/<id>/attractions/<id>
+# delete /api/v1/trips/<id>/attractions/<id>

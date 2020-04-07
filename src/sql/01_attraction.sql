@@ -28,15 +28,15 @@ CREATE TABLE attraction_type_match (
     id serial not null
 		constraint attraction_type_match_pkey
 			primary key,
-	attraction_type_id integer REFERENCES attraction_type (id),
-	attraction_id integer REFERENCES attractions (id)
+	attraction_type_id integer not null REFERENCES attraction_type (id),
+	attraction_id integer not null REFERENCES attractions (id)
 );
 
 CREATE TABLE trip_list_attraction_match (
     id serial not null
 		constraint trip_list_attraction_match_pkey
 			primary key,
-	trip_list_id integer REFERENCES trip_list (id),
-	attraction_id integer REFERENCES attractions (id)
+	trip_list_id integer not null REFERENCES trip_list (id),
+	attraction_id integer not null REFERENCES attractions (id)
 );
 
