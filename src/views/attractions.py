@@ -36,11 +36,11 @@ class AttractionsView(MethodView):
             return response_500()
 
     @validate_token
-    def delete(self, trip_list_id, trip_attraction_match_id, user: User = None):
+    def delete(self, trip_list_id, attraction_id, user: User = None):
         # todo api docs
         try:
             db_instance = AttractionsDatabase()
-            deleted_attraction = db_instance.remove_attraction_from_trip(trip_list_id, trip_attraction_match_id)
+            deleted_attraction = db_instance.remove_attraction_from_trip(trip_list_id, attraction_id)
             db_instance.close_connection()
 
             if not deleted_attraction:

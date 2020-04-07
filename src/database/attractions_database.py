@@ -50,11 +50,11 @@ class AttractionsDatabase(Database):
                                city_id=result[6])
                     for result in results]
 
-    def remove_attraction_from_trip(self, trip_list_id, trip_attraction_match_id):
+    def remove_attraction_from_trip(self, trip_list_id, attraction_id):
         # check that user is authorized-in the view
         with self.connection.cursor() as cursor:
-            sql = 'DELETE from trip_list_attraction_match WHERE trip_list_id = %s AND id = %s'
-            cursor.execute(sql, (trip_list_id, trip_attraction_match_id))
+            sql = 'DELETE from trip_list_attraction_match WHERE trip_list_id = %s AND attraction_id = %s'
+            cursor.execute(sql, (trip_list_id, attraction_id))
             self.connection.commit()
             count_deleted_attraction = cursor.rowcount
             return count_deleted_attraction == 1
