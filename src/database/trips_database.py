@@ -7,6 +7,7 @@ from database.database import Database
 class Trip:
     id: int
     name: str
+    user_id: int
     max_trip_days: int
     is_guided: bool
     in_group: bool
@@ -16,6 +17,7 @@ class Trip:
         return {
             "id": self.id,
             "name": self.name,
+            "user_id": self.user_id,
             "max_trip_days": self.max_trip_days,
             "is_guided": self.is_guided,
             "in_group": self.in_group,
@@ -32,7 +34,7 @@ class TripsDatabase(Database):
             cursor.execute(sql, (name, user_id, max_trip_days, is_guided, in_group, max_price))
             self.connection.commit()
             id_of_new_trip = cursor.fetchone()[0]
-            return Trip(id=id_of_new_trip, name=name, max_trip_days=max_trip_days, is_guided=is_guided,
+            return Trip(id=id_of_new_trip, name=name, user_id=user_id, max_trip_days=max_trip_days, is_guided=is_guided,
                         in_group=in_group, max_price=max_price)
 
     def trip_info(self, user_id, trip_id):
@@ -42,16 +44,17 @@ class TripsDatabase(Database):
             cursor.execute(sql, (user_id, trip_id))
             result = cursor.fetchone()
             if result is not None:
-                return Trip(id=trip_id, name=result[1], max_trip_days=result[2], is_guided=result[3],
-                            in_group=result[4], max_price=result[5])
+                return Trip(id=trip_id, name=result[1], user_id=user_id, max_trip_days=result[3], is_guided=result[4],
+                            in_group=result[5], max_price=result[6])
 
     def trips_list(self, user_id):
         with self.connection.cursor() as cursor:
-            sql = 'SELECT id, name, max_trip_days, is_guided, in_group, max_price FROM trip_list WHERE user_id = %s'
+            sql = 'SELECT id, name, user_id, max_trip_days, is_guided, in_group, max_price FROM trip_list ' \
+                  'WHERE user_id = %s'
             cursor.execute(sql, (user_id,))
             results = cursor.fetchall()
-            return [Trip(id=result[0], name=result[1], max_trip_days=result[2], is_guided=result[3], in_group=result[4],
-                         max_price=result[5]) for result in results]
+            return [Trip(id=result[0], name=result[1], user_id=user_id, max_trip_days=result[3], is_guided=result[4],
+                         in_group=result[5], max_price=result[6]) for result in results]
 
     def trip_delete(self, user_id, trip_id):
         with self.connection.cursor() as cursor:
@@ -60,7 +63,6 @@ class TripsDatabase(Database):
             self.connection.commit()
             count_deleted_trip = cursor.rowcount
             return count_deleted_trip == 1
-
 
 # todo patch
 # patch /api/v1/trips/<id> updates a trip list

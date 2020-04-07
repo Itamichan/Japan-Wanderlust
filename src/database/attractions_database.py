@@ -13,6 +13,17 @@ class Attraction:
     picture_url: str
     city_id: int
 
+    def serialize(self) -> dict:
+        return {
+            "id": self.id,
+            "attraction_name": self.attraction_name,
+            "description": self.description,
+            "price": self.price,
+            "web_link": self.web_link,
+            "picture_url": self.picture_url,
+            "city_id": self.city_id,
+        }
+
 
 class AttractionsDatabase(Database):
 
@@ -24,10 +35,10 @@ class AttractionsDatabase(Database):
             self.connection.commit()
             # can raise an integrity error
             # the combination of trip_list_id, attraction_id should be unique
-            id_of_new_attraction = cursor.fetchone()[0]
-            return id_of_new_attraction
+            id_of_added_attraction = cursor.fetchone()[0]
+            return id_of_added_attraction
 
-    def attractions_in_trip(self, trip_list_id, attraction_id):
+    def get_attractions_from_trip(self, trip_list_id, attraction_id):
         with self.connection.cursor() as cursor:
             # check that this user is authorized to get the attraction list-in the view
             sql = 'SELECT attr.* from trip_list_attraction_match tlm JOIN attractions attr ON ' \
@@ -52,7 +63,3 @@ class AttractionsDatabase(Database):
 
 # post /api/v1/trips/<id>/attractions/<id>
 # delete /api/v1/trips/<id>/attractions/<id>
-
-
-# todo patch
-# patch /api/v1/trips/<id> updates a trip list

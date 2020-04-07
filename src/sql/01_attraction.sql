@@ -36,7 +36,7 @@ CREATE TABLE trip_list_attraction_match (
     id serial not null
 		constraint trip_list_attraction_match_pkey
 			primary key,
-	trip_list_id integer not null REFERENCES trip_list (id),
+	trip_list_id integer not null REFERENCES trip_list (id) ON DELETE CASCADE,
 	attraction_id integer not null REFERENCES attractions (id)
 );
 
