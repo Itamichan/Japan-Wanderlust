@@ -1,7 +1,5 @@
 import os
-
 from flask import Flask
-
 from views import authentication
 from views.attractions import AttractionsView
 from views.trips import TripsView
@@ -29,9 +27,6 @@ application.add_url_rule('/api/v1/trips/<trip_id>/attractions/<attraction_id>', 
 
 
 get /api/v1/attractions get attractions info
-
-
-
 
 """
 

@@ -29,7 +29,8 @@ CREATE TABLE attraction_type_match (
 		constraint attraction_type_match_pkey
 			primary key,
 	attraction_type_id integer not null REFERENCES attraction_type (id),
-	attraction_id integer not null REFERENCES attractions (id)
+	attraction_id integer not null REFERENCES attractions (id),
+	UNIQUE (attraction_type_id, attraction_id)
 );
 
 CREATE TABLE trip_list_attraction_match (
@@ -37,6 +38,7 @@ CREATE TABLE trip_list_attraction_match (
 		constraint trip_list_attraction_match_pkey
 			primary key,
 	trip_list_id integer not null REFERENCES trip_list (id) ON DELETE CASCADE,
-	attraction_id integer not null REFERENCES attractions (id)
+	attraction_id integer not null REFERENCES attractions (id),
+	UNIQUE (trip_list_id, attraction_id)
 );
 

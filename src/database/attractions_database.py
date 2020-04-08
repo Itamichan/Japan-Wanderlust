@@ -33,10 +33,6 @@ class AttractionsDatabase(Database):
             sql = 'INSERT INTO trip_list_attraction_match (trip_list_id, attraction_id) VALUES (%s, %s) RETURNING id'
             cursor.execute(sql, (trip_list_id, attraction_id))
             self.connection.commit()
-            # can raise an integrity error
-            # the combination of trip_list_id, attraction_id should be unique
-            id_of_added_attraction = cursor.fetchone()[0]
-            return id_of_added_attraction
 
     def get_attractions_from_trip(self, trip_list_id, attraction_id):
         with self.connection.cursor() as cursor:

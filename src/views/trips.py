@@ -1,6 +1,5 @@
-from flask import jsonify
+from flask import jsonify, request
 from flask.views import MethodView
-
 from database.trips_database import TripsDatabase
 from database.users_database import User
 from decorators import validate_token
@@ -37,15 +36,30 @@ class TripsView(MethodView):
             return response_500()
 
     @validate_token
-    def post(self, name, max_trip_days, is_guided, in_group, max_price, user: User = None):
+    def patch(self, trip_id, user: User = None):
         # todo api docs
         try:
+            changed_fields = {}
+            # todo check that the values are legal
+
+            for key in ["name", "is_guided", "max_trip_days", "in_group", "max_price"]:
+                value = request.json.get(key, None)
+
+                if value is not None:
+                    changed_fields[key] = value
+
+            if len(changed_fields) == 0:
+                return response_400("NoParameter", "Please provide a parameter")
+
+            if "name" in changed_fields and len(changed_fields["name"]) < 1 or len(changed_fields["name"]) > 15:
+                return response_400("InvalidName", "Please provide a valid name")
+            # todo check for the validity of the rest parametres
+
             db_instance = TripsDatabase()
-            new_trip = db_instance.trip_create(name, user.id, max_trip_days, is_guided, in_group, max_price)
+            db_instance.update_trip(trip_id, user.id, changed_fields)
             db_instance.close_connection()
-            if not new_trip:
-                return response_400("BadRequest", "Invalid data entry")
-            return jsonify({'trip_id': new_trip.id})
+            return jsonify({})
+        # todo return noSuchTrip if the trip was not updated like in the delete method
         except:
             return response_500()
 
@@ -73,15 +87,26 @@ class TripsView(MethodView):
 
 
     @validate_token
-    def post(self, name, max_trip_days, is_guided, in_group, max_price, user: User = None):
+    def post(self, user: User = None):
         # todo api docs
         try:
+            # tries to get the value if none provided returns an emtpy string
+            # todo check that the entries are correct like word length, minim,max nr
+
+            name = request.json['name']
+            max_trip_days = int(request.json['max_trip_days'])
+            is_guided = bool(request.json['is_guided'])
+            in_group = bool(request.json['in_group'])
+            max_price = int(request.json['max_price'])
+
             db_instance = TripsDatabase()
             new_trip = db_instance.trip_create(name, user.id, max_trip_days, is_guided, in_group, max_price)
             db_instance.close_connection()
             if not new_trip:
                 return response_400("BadRequest", "Invalid data entry")
             return jsonify({'trip_id': new_trip})
+        except KeyError:
+            return response_400("ParameterError", "Please provide all the parameters")
         except:
             return response_500()
 

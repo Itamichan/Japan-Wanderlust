@@ -64,5 +64,11 @@ class TripsDatabase(Database):
             count_deleted_trip = cursor.rowcount
             return count_deleted_trip == 1
 
+    def update_trip(self, trip_id, user_id, changed_fields):
+        with self.connection.cursor() as cursor:
+            fields = [f"{key} = %s" for key in changed_fields.keys()]
+            sql = f"UPDATE trip_list SET {' '.join(fields)} WHERE user_id = %s AND id = %s "
+            cursor.execute(sql, (*changed_fields.values(), user_id, trip_id))
+            self.connection.commit()
 # todo patch
-# patch /api/v1/trips/<id> updates a trip list
+# patch /api/v1/trips/<id> updates a trip
