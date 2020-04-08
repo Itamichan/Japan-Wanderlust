@@ -29,7 +29,7 @@ class TripsDatabase(Database):
 
     def trip_create(self, name, user_id, max_trip_days, is_guided, in_group, max_price):
         with self.connection.cursor() as cursor:
-            sql = 'INSERT INTO trip_list (name, user_id, max_trip_days, is_guided, in_group, max_price) ' \
+            sql = 'INSERT INTO trips (name, user_id, max_trip_days, is_guided, in_group, max_price) ' \
                   'VALUES (%s, %s, %s, %s, %s, %s) RETURNING id'
             cursor.execute(sql, (name, user_id, max_trip_days, is_guided, in_group, max_price))
             self.connection.commit()
@@ -39,7 +39,7 @@ class TripsDatabase(Database):
 
     def trip_info(self, user_id, trip_id):
         with self.connection.cursor() as cursor:
-            sql = 'SELECT  name, max_trip_days, is_guided, in_group, max_price FROM trip_list WHERE user_id = %s ' \
+            sql = 'SELECT  name, max_trip_days, is_guided, in_group, max_price FROM trips WHERE user_id = %s ' \
                   'AND id = %s'
             cursor.execute(sql, (user_id, trip_id))
             result = cursor.fetchone()
@@ -49,7 +49,7 @@ class TripsDatabase(Database):
 
     def trips_list(self, user_id):
         with self.connection.cursor() as cursor:
-            sql = 'SELECT id, name, user_id, max_trip_days, is_guided, in_group, max_price FROM trip_list ' \
+            sql = 'SELECT id, name, user_id, max_trip_days, is_guided, in_group, max_price FROM trips ' \
                   'WHERE user_id = %s'
             cursor.execute(sql, (user_id,))
             results = cursor.fetchall()
@@ -58,7 +58,7 @@ class TripsDatabase(Database):
 
     def trip_delete(self, user_id, trip_id):
         with self.connection.cursor() as cursor:
-            sql = 'DELETE from trip_list WHERE user_id = %s AND id = %s'
+            sql = 'DELETE from trips WHERE user_id = %s AND id = %s'
             cursor.execute(sql, (user_id, trip_id))
             self.connection.commit()
             count_deleted_trip = cursor.rowcount
@@ -67,7 +67,7 @@ class TripsDatabase(Database):
     def update_trip(self, trip_id, user_id, changed_fields):
         with self.connection.cursor() as cursor:
             fields = [f"{key} = %s" for key in changed_fields.keys()]
-            sql = f"UPDATE trip_list SET {' '.join(fields)} WHERE user_id = %s AND id = %s "
+            sql = f"UPDATE trips SET {' '.join(fields)} WHERE user_id = %s AND id = %s "
             cursor.execute(sql, (*changed_fields.values(), user_id, trip_id))
             self.connection.commit()
 # todo patch

@@ -6,7 +6,7 @@ import jwt
 from flask import request, jsonify
 from psycopg2._psycopg import IntegrityError
 
-from database.users_database import Database, UserDatabase
+from database.users_database import UserDatabase
 from errors import response_500, response_401, response_400
 
 # gets the value for our secret key which we will use for jwt

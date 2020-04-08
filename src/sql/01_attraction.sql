@@ -33,12 +33,12 @@ CREATE TABLE attraction_type_match (
 	UNIQUE (attraction_type_id, attraction_id)
 );
 
-CREATE TABLE trip_list_attraction_match (
+CREATE TABLE trip_attraction_match (
     id serial not null
-		constraint trip_list_attraction_match_pkey
+		constraint trip_attraction_match_pkey
 			primary key,
-	trip_list_id integer not null REFERENCES trip_list (id) ON DELETE CASCADE,
+	trip_id integer not null REFERENCES trips (id) ON DELETE CASCADE,
 	attraction_id integer not null REFERENCES attractions (id),
-	UNIQUE (trip_list_id, attraction_id)
+	UNIQUE (trip_id, attraction_id)
 );
 

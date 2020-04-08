@@ -9,9 +9,9 @@ CREATE TABLE users (
 	email text not null
 );
 
-CREATE TABLE trip_list (
+CREATE TABLE trips (
 	id serial not null
-		constraint trip_list_pkey
+		constraint trips_pkey
 			primary key,
 	name text,
 	user_id integer REFERENCES users (id),

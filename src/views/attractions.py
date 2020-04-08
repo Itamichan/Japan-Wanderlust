@@ -2,7 +2,6 @@ from flask import jsonify
 from flask.views import MethodView
 from psycopg2._psycopg import IntegrityError
 from psycopg2.errorcodes import UNIQUE_VIOLATION
-
 from database.attractions_database import AttractionsDatabase
 from database.trips_database import TripsDatabase
 from database.users_database import User
@@ -13,16 +12,17 @@ from errors import response_500, response_404, response_400
 class AttractionsView(MethodView):
 
     @validate_token
-    def post(self, trip_list_id, attraction_id, user: User = None):
+    def post(self, trip_id, attraction_id, user: User = None):
         # todo api docs
         try:
+            # verification that the user has such a trip
             trips_db_instance = TripsDatabase()
-            trip = trips_db_instance.trip_info(user.id, trip_list_id)
+            trip = trips_db_instance.trip_info(user.id, trip_id)
             if not trip:
                 return response_404('NoSuchTrip', 'No such trip')
 
             attr_db_instance = AttractionsDatabase()
-            attr_db_instance.add_attraction_to_trip(trip_list_id, attraction_id)
+            attr_db_instance.add_attraction_to_trip(trip_id, attraction_id)
             attr_db_instance.close_connection()
             return jsonify({})
 
@@ -34,10 +34,10 @@ class AttractionsView(MethodView):
             return response_500()
 
     @validate_token
-    def get(self, trip_list_id, attraction_id, user: User = None):
+    def get(self, trip_id, attraction_id, user: User = None):
         try:
             db_instance = AttractionsDatabase()
-            attractions_list = db_instance.get_attractions_from_trip(trip_list_id, attraction_id)
+            attractions_list = db_instance.get_attractions_from_trip(trip_id, attraction_id)
             db_instance.close_connection()
 
             return jsonify({
@@ -47,11 +47,11 @@ class AttractionsView(MethodView):
             return response_500()
 
     @validate_token
-    def delete(self, trip_list_id, attraction_id, user: User = None):
+    def delete(self, trip_id, attraction_id, user: User = None):
         # todo api docs
         try:
             db_instance = AttractionsDatabase()
-            deleted_attraction = db_instance.remove_attraction_from_trip(trip_list_id, attraction_id)
+            deleted_attraction = db_instance.remove_attraction_from_trip(trip_id, attraction_id)
             db_instance.close_connection()
 
             if not deleted_attraction:
@@ -61,10 +61,3 @@ class AttractionsView(MethodView):
         except:
             return response_500()
 
-
-# patch /api/v1/trips/<id> updates a trip list
-
-# get /api/v1/trips/<id>/attractions
-
-# post /api/v1/trips/<id>/attractions/<id>
-# delete /api/v1/trips/<id>/attractions/<id>
