@@ -43,7 +43,7 @@ class TripsView(MethodView):
             "max_price": 10000,
          }
 
-        @apiError (BadRequest 404) {Object} NoSuchTrip
+        @apiError (NotFound 404) {Object} NoSuchTrip
         @apiError (InternalServerError 500) {Object} InternalServerError
 
         """
@@ -63,7 +63,7 @@ class TripsView(MethodView):
     def get_trips_list(self, user):
         """
 
-        @api {GET} /api/v1/trips/ List with trips information
+        @api {GET} /api/v1/trips/ Trips List
         @apiVersion 1.0.0
 
         @apiName TripsList
@@ -198,7 +198,7 @@ class TripsView(MethodView):
     def patch(self, trip_id, user: User = None):
         """
 
-        @api {PATCH} /api/v1/trips/trip_id/ Update trip information
+        @api {PATCH} /api/v1/trips/trip_id/ Trip update
         @apiVersion 1.0.0
 
         @apiName TripUpdate
