@@ -36,6 +36,12 @@ class AttractionsView(MethodView):
     @validate_token
     def get(self, trip_id, attraction_id, user: User = None):
         try:
+            # verification that the user has such a trip
+            trips_db_instance = TripsDatabase()
+            trip = trips_db_instance.trip_info(user.id, trip_id)
+            if not trip:
+                return response_404('NoSuchTrip', 'No such trip')
+
             db_instance = AttractionsDatabase()
             attractions_list = db_instance.get_attractions_from_trip(trip_id, attraction_id)
             db_instance.close_connection()
@@ -50,6 +56,12 @@ class AttractionsView(MethodView):
     def delete(self, trip_id, attraction_id, user: User = None):
         # todo api docs
         try:
+            # verification that the user has such a trip
+            trips_db_instance = TripsDatabase()
+            trip = trips_db_instance.trip_info(user.id, trip_id)
+            if not trip:
+                return response_404('NoSuchTrip', 'No such trip')
+
             db_instance = AttractionsDatabase()
             deleted_attraction = db_instance.remove_attraction_from_trip(trip_id, attraction_id)
             db_instance.close_connection()

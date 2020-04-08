@@ -47,14 +47,14 @@ class TripsDatabase(Database):
                 return Trip(id=trip_id, name=result[1], user_id=user_id, max_trip_days=result[3], is_guided=result[4],
                             in_group=result[5], max_price=result[6])
 
-    def trips_list(self, user_id):
+    def update_trip(self, trip_id, user_id, changed_fields):
         with self.connection.cursor() as cursor:
-            sql = 'SELECT id, name, user_id, max_trip_days, is_guided, in_group, max_price FROM trips ' \
-                  'WHERE user_id = %s'
-            cursor.execute(sql, (user_id,))
-            results = cursor.fetchall()
-            return [Trip(id=result[0], name=result[1], user_id=user_id, max_trip_days=result[3], is_guided=result[4],
-                         in_group=result[5], max_price=result[6]) for result in results]
+            # creates a list with the attributes which  should be updated
+            fields = [f"{key} = %s" for key in changed_fields.keys()]
+            sql = f"UPDATE trips SET {' '.join(fields)} WHERE user_id = %s AND id = %s "
+            # unwraps the values from the changed_fields dictionary directly in the tuple
+            cursor.execute(sql, (*changed_fields.values(), user_id, trip_id))
+            self.connection.commit()
 
     def trip_delete(self, user_id, trip_id):
         with self.connection.cursor() as cursor:
@@ -64,11 +64,13 @@ class TripsDatabase(Database):
             count_deleted_trip = cursor.rowcount
             return count_deleted_trip == 1
 
-    def update_trip(self, trip_id, user_id, changed_fields):
+    def trips_list(self, user_id):
         with self.connection.cursor() as cursor:
-            fields = [f"{key} = %s" for key in changed_fields.keys()]
-            sql = f"UPDATE trips SET {' '.join(fields)} WHERE user_id = %s AND id = %s "
-            cursor.execute(sql, (*changed_fields.values(), user_id, trip_id))
-            self.connection.commit()
-# todo patch
-# patch /api/v1/trips/<id> updates a trip
+            sql = 'SELECT id, name, user_id, max_trip_days, is_guided, in_group, max_price FROM trips ' \
+                  'WHERE user_id = %s'
+            cursor.execute(sql, (user_id,))
+            results = cursor.fetchall()
+            return [Trip(id=result[0], name=result[1], user_id=user_id, max_trip_days=result[3], is_guided=result[4],
+                         in_group=result[5], max_price=result[6]) for result in results]
+
+
