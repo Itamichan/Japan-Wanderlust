@@ -43,6 +43,7 @@ def register():
         password = request.json.get('password', '')
         email = request.json.get('email', '')
 
+        # checks that the passed values are valid
         if not re.match(r"^[\S]{8,}$", password):
             return response_400('InvalidPassword',
                                 'Password should have at least 8 characters and can contain any char except white space.')
