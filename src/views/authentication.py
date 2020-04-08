@@ -19,18 +19,18 @@ def register():
     @api {POST} /api/v1/users/ User registration
         @apiVersion 1.0.0
 
-        @apiName PostUsers
+        @apiName UserRegistration
         @apiGroup Authentication
 
-        @apiParam {String{2..25}="\w"} username User's username.
+        @apiParam {String{2..25}} username User's username.
         @apiParam {String{8..}} password User's password.
         @apiParam {String} email User's email.
 
         @apiSuccessExample {json} Success-Response:
         {}
 
+        @apiError (Bad Request 400) {Object} InvalidUsername        Username should have at least 2 characters and maximum 25, it can contain any char except white space.
         @apiError (Bad Request 400) {Object} InvalidPassword        Password should have at least 8 characters and can contain any char except white space.
-        @apiError (Bad Request 400) {Object} InvalidUsername        Ussername should have at least 2 characters and maximum 25, it can contain any char except white space.
         @apiError (Bad Request 400) {Object} UnavailableUsername    Username is unavailable.
         @apiError (Bad Request 400) {Object} InvalidEmailFormat     Email should have an "@" sign and a email domain name with a domain ending of at least 2 characters.
         @apiError (InternalServerError 500) {Object} InternalServerError
@@ -44,17 +44,20 @@ def register():
         email = request.json.get('email', '')
 
         # checks that the passed values are valid
-        if not re.match(r"^[\S]{8,}$", password):
-            return response_400('InvalidPassword',
-                                'Password should have at least 8 characters and can contain any char except white space.')
-
         if not re.match(r'^[\S]{2,25}$', username):
             return response_400('InvalidUsername',
-                                'Ussername should have at least 2 characters and maximum 25, it can contain any char except white space.')
+                                'Ussername should have at least 2 characters and maximum 25, it can contain any char '
+                                'except white space.')
+
+        if not re.match(r"^[\S]{8,}$", password):
+            return response_400('InvalidPassword',
+                                'Password should have at least 8 characters and can contain any char except '
+                                'white space.')
 
         if not email or not re.fullmatch(r'([\w\.\-]+)@([\w]+)\.([\w]+){2,}', email):
             return response_400('InvalidEmailFormat',
-                                'Email should have an "@" sign and a email domain name with a domain ending of at least 2 characters.')
+                                'Email should have an "@" sign and a email domain name with a domain ending of at'
+                                ' least 2 characters.')
 
         db_instance = UserDatabase()
         db_instance.create_user(username, email, password)
@@ -81,16 +84,23 @@ def login():
         @apiParam {String} password User's password.
 
         @apiSuccess {String} token User's jwt.
-        # todo provide all key-values
-        @apiSuccess {Object} user_info User's information.
+
+        @apiSuccess {Object} user_info              User's information.
+        @apiSuccess {String} user_info.username     User's username
+        @apiSuccess {String} user_info.email        User's email
 
         @apiSuccessExample {json} Success-Response:
         HTTP/1.1 200 OK
         {
-            "token": "eyJ0eXA..."
+            "token": "eyJ0eXA...",
+            "user_info": {
+                "username": "cristina23",
+                "email": "cristina23@gmail.com"
+            }
         }
 
-       @apiError (Unauthorized 401 ) {Object} InvalidLogin Username or password is incorrect.
+       @apiError (Unauthorized 401) {Object} InvalidLogin Username or password is incorrect.
+       @apiError (InternalServerError 500) {Object} InternalServerError
 
         """
 
@@ -134,25 +144,21 @@ def verify_token():
         @apiParam {String} token User's token.
 
         @apiSuccess {Object} user_info User's information
-         # todo add the correct key value pairs
-        @apiSuccess {String} user_info.first_name User's information
+        @apiSuccess {String} user_info.username User's username
+        @apiSuccess {String} user_info.email User's email
 
         @apiSuccessExample {json} Success-Response:
         HTTP/1.1 200 OK
          {
             "user_info": {
-                # todo add the correct key value pairs
                 "username": "cristina23",
-                "username": "cristina23",
-                "username": "cristina23",
-                "username": "cristina23",
-                "username": "cristina23",
-                "username": "cristina23",
+                "email": "cristina23@gmail.com"
             }
         }
 
        @apiError (Unauthorized 401 ) {Object} InvalidToken
-
+       @apiError (Unauthorized 401 ) {Object} ExpiredToken
+       @apiError (InternalServerError 500) {Object} InternalServerError
         """
 
     try:
@@ -172,7 +178,7 @@ def verify_token():
         return jsonify({'user_info': user.user_info()})
 
     except jwt.ExpiredSignatureError:
-        return response_401('Expired Token')
+        return response_401('ExpiredToken')
 
     except Exception as e:
         print(e)
