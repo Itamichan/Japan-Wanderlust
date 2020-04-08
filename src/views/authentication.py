@@ -17,23 +17,24 @@ def register():
     """
 
     @api {POST} /api/v1/users/ User registration
-        @apiVersion 1.0.0
+    @apiVersion 1.0.0
 
-        @apiName UserRegistration
-        @apiGroup Authentication
+    @apiName UserRegistration
+    @apiGroup Authentication
 
-        @apiParam {String{2..25}} username User's username.
-        @apiParam {String{8..}} password User's password.
-        @apiParam {String} email User's email.
+    @apiParam {String{2..25}} username User's username.
+    @apiParam {String{8..}} password User's password.
+    @apiParam {String} email User's email.
 
-        @apiSuccessExample {json} Success-Response:
-        {}
+    @apiSuccessExample {json} Success-Response:
+    HTTP/1.1 200 OK
+    {}
 
-        @apiError (Bad Request 400) {Object} InvalidUsername        Username should have at least 2 characters and maximum 25, it can contain any char except white space.
-        @apiError (Bad Request 400) {Object} InvalidPassword        Password should have at least 8 characters and can contain any char except white space.
-        @apiError (Bad Request 400) {Object} UnavailableUsername    Username is unavailable.
-        @apiError (Bad Request 400) {Object} InvalidEmailFormat     Email should have an "@" sign and a email domain name with a domain ending of at least 2 characters.
-        @apiError (InternalServerError 500) {Object} InternalServerError
+    @apiError (Bad Request 400) {Object} InvalidUsername        Username should have at least 2 characters and maximum 25, it can contain any char except white space.
+    @apiError (Bad Request 400) {Object} InvalidPassword        Password should have at least 8 characters and can contain any char except white space.
+    @apiError (Bad Request 400) {Object} UnavailableUsername    Username is unavailable.
+    @apiError (Bad Request 400) {Object} InvalidEmailFormat     Email should have an "@" sign and a email domain name with a domain ending of at least 2 characters.
+    @apiError (InternalServerError 500) {Object} InternalServerError
 
     """
 
@@ -74,35 +75,36 @@ def register():
 
 def login():
     """
-        @api {POST} /api/v1/token/ User login
-        @apiVersion 1.0.0
 
-        @apiName UserLogin
-        @apiGroup Authentication
+    @api {POST} /api/v1/token/ User login
+    @apiVersion 1.0.0
 
-        @apiParam {String} username User's username.
-        @apiParam {String} password User's password.
+    @apiName UserLogin
+    @apiGroup Authentication
 
-        @apiSuccess {String} token User's jwt.
+    @apiParam {String} username User's username.
+    @apiParam {String} password User's password.
 
-        @apiSuccess {Object} user_info              User's information.
-        @apiSuccess {String} user_info.username     User's username
-        @apiSuccess {String} user_info.email        User's email
+    @apiSuccess {String} token User's jwt.
 
-        @apiSuccessExample {json} Success-Response:
-        HTTP/1.1 200 OK
-        {
-            "token": "eyJ0eXA...",
-            "user_info": {
-                "username": "cristina23",
-                "email": "cristina23@gmail.com"
-            }
+    @apiSuccess {Object} user_info              User's information.
+    @apiSuccess {String} user_info.username     User's username
+    @apiSuccess {String} user_info.email        User's email
+
+    @apiSuccessExample {json} Success-Response:
+    HTTP/1.1 200 OK
+    {
+        "token": "eyJ0eXA...",
+        "user_info": {
+            "username": "cristina23",
+            "email": "cristina23@gmail.com"
         }
+    }
 
-       @apiError (Unauthorized 401) {Object} InvalidLogin Username or password is incorrect.
-       @apiError (InternalServerError 500) {Object} InternalServerError
+    @apiError (Unauthorized 401) {Object} InvalidLogin Username or password is incorrect.
+    @apiError (InternalServerError 500) {Object} InternalServerError
 
-        """
+    """
 
     try:
         # tries to get the value if none provided returns an emtpy string
@@ -135,31 +137,33 @@ def login():
 
 def verify_token():
     """
-        @api {POST} /api/v1/token/verify/ Token Verification
-        @apiVersion 1.0.0
 
-        @apiName VerifyToken
-        @apiGroup Authentication
+    @api {POST} /api/v1/token/verify/ Token Verification
+    @apiVersion 1.0.0
 
-        @apiParam {String} token User's token.
+    @apiName VerifyToken
+    @apiGroup Authentication
 
-        @apiSuccess {Object} user_info User's information
-        @apiSuccess {String} user_info.username User's username
-        @apiSuccess {String} user_info.email User's email
+    @apiParam {String} token User's token.
 
-        @apiSuccessExample {json} Success-Response:
-        HTTP/1.1 200 OK
-         {
-            "user_info": {
-                "username": "cristina23",
-                "email": "cristina23@gmail.com"
-            }
+    @apiSuccess {Object} user_info User's information
+    @apiSuccess {String} user_info.username User's username
+    @apiSuccess {String} user_info.email User's email
+
+    @apiSuccessExample {json} Success-Response:
+    HTTP/1.1 200 OK
+     {
+        "user_info": {
+            "username": "cristina23",
+            "email": "cristina23@gmail.com"
         }
+    }
 
-       @apiError (Unauthorized 401 ) {Object} InvalidToken
-       @apiError (Unauthorized 401 ) {Object} ExpiredToken
-       @apiError (InternalServerError 500) {Object} InternalServerError
-        """
+   @apiError (Unauthorized 401 ) {Object} InvalidToken
+   @apiError (Unauthorized 401 ) {Object} ExpiredToken
+   @apiError (InternalServerError 500) {Object} InternalServerError
+
+    """
 
     try:
         # tries to get the value if none provided returns an emtpy string

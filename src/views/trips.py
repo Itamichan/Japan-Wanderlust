@@ -11,7 +11,42 @@ from errors import response_500, response_404, response_400
 class TripsView(MethodView):
 
     def get_trip_info(self, user, trip_id):
-        # todo api docs
+        """
+
+        @api {GET} /api/v1/trips/<trip_id>/ Trip information
+        @apiVersion 1.0.0
+
+        @apiName TripInfo
+        @apiGroup Trips
+
+        @apiParam {Integer} user_id User's id.
+        @apiParam {Integer} trip_id Trip's id.
+
+        @apiSuccess {Object} trip_info                  Trip's information.
+        @apiSuccess {Integer} serialize.id              Trip's id
+        @apiSuccess {String} serialize.name             Trip's name
+        @apiSuccess {Integer} serialize.user_id         Trip's user_id
+        @apiSuccess {Integer} serialize.max_trip_days   Trip's max_trip_days
+        @apiSuccess {Boolean} serialize.is_guided       Trip's is_guided
+        @apiSuccess {Boolean} serialize.in_group        Trip's in_group
+        @apiSuccess {Integer} serialize.max_price       Trip's max_price
+
+        @apiSuccessExample {json} Success-Response:
+        HTTP/1.1 200 OK
+        {
+            "id": 1,
+            "name": "Short Travel",
+            "user_id": 1,
+            "max_trip_days": 20,
+            "is_guided": True,
+            "in_group": False,
+            "max_price": 10000,
+         }
+
+        @apiError (BadRequest 404) {Object} NoSuchTrip
+        @apiError (InternalServerError 500) {Object} InternalServerError
+
+        """
         try:
             db_instance = TripsDatabase()
             trip_info = db_instance.trip_info(user.id, trip_id)
@@ -26,14 +61,62 @@ class TripsView(MethodView):
             return response_500()
 
     def get_trips_list(self, user):
-        # todo api docs
+        """
+
+        @api {GET} /api/v1/trips/ List with trips information
+        @apiVersion 1.0.0
+
+        @apiName TripsList
+        @apiGroup Trips
+
+        @apiParam {Integer} user_id User's id.
+
+        @apiSuccess {Object} trips_list                 List with trips
+        @apiSuccess {List} trips                        Trip's information
+        @apiSuccess {Integer} serialize.id              Trip's id
+        @apiSuccess {String} serialize.name             Trip's name
+        @apiSuccess {Integer} serialize.user_id         Trip's user_id
+        @apiSuccess {Integer} serialize.max_trip_days   Trip's max_trip_days
+        @apiSuccess {Boolean} serialize.is_guided       Trip's is_guided
+        @apiSuccess {Boolean} serialize.in_group        Trip's in_group
+        @apiSuccess {Integer} serialize.max_price       Trip's max_price
+
+        @apiSuccessExample {json} Success-Response:
+        HTTP/1.1 200 OK
+        {
+            "trips":
+            [
+                {
+                    "id": 1,
+                    "name": "Short Travel",
+                    "user_id": 1,
+                    "max_trip_days": 20,
+                    "is_guided": True,
+                    "in_group": False,
+                    "max_price": 10 000,
+                },
+                {
+                    "id": 2,
+                    "name": "Dream Trip",
+                    "user_id": 1,
+                    "max_trip_days": 30,
+                    "is_guided": True,
+                    "in_group": True,
+                    "max_price": 200 000,
+                }
+            ]
+         }
+
+        @apiError (InternalServerError 500) {Object} InternalServerError
+
+        """
         try:
             db_instance = TripsDatabase()
             trips_list = db_instance.trips_list(user.id)
             db_instance.close_connection()
 
             return jsonify({
-                "trips": [e.serialize() for e in trips_list]
+                "trips": [trip.serialize() for trip in trips_list]
             })
 
         except:
@@ -41,7 +124,38 @@ class TripsView(MethodView):
 
     @validate_token
     def post(self, user: User = None):
-        # todo api docs
+        """
+
+        @api {POST} /api/v1/trips/ Trip creation
+        @apiVersion 1.0.0
+
+        @apiName CreateTrip
+        @apiGroup Trips
+
+        @apiParam {Integer} user_id             Trip's id
+
+        @apiParam {String} name                 Trip's name
+        @apiParam {Integer} max_trip_days       Trip's max_trip_days
+        @apiParam {Boolean} is_guided           Trip's is_guided
+        @apiParam {Boolean} in_group            Trip's in_group
+        @apiParam {Integer} max_price           Trip's max_price
+
+        @apiSuccess {Integer} trips_id Trip's id
+
+        @apiSuccessExample {json} Success-Response:
+        HTTP/1.1 200 OK
+        {
+           'trip_id': 1
+         }
+
+        @apiError (BadRequest 400) {Object} InvalidName                     Name should have at least 2 characters and maximum 25, it can contain any char except new line.
+        @apiError (BadRequest 400) {Object} InvalidDaysNumber               Please provide valid max_trip_days value.
+        @apiError (BadRequest 400) {Object} InvalidPriceNumber              Please provide a valid max_price value.
+        @apiError (BadRequest 400) {Object} InvalidDataEntry
+        @apiError (BadRequest 400) {Object} ParameterError                  Please provide all the parameters
+        @apiError (InternalServerError 500) {Object} InternalServerError
+
+        """
         try:
             name = request.json['name']
             max_trip_days = int(request.json['max_trip_days'])
@@ -50,15 +164,15 @@ class TripsView(MethodView):
             max_price = int(request.json['max_price'])
 
             # checks that the passed values are valid
-            if not re.match(r'^[\S]{2,25}$', name):
+            if not re.match(r'^[.]{2,25}$', name):
                 return response_400('InvalidName', 'Name should have at least 2 characters and maximum 25, '
-                                                   'it can contain any char except white space.')
+                                                   'it can contain any char except new line.')
 
             if max_trip_days < 1 or max_trip_days > 30:
-                return response_400("InvalidDaysNumber", "Please provide valid max_trip_days value")
+                return response_400("InvalidDaysNumber", "Please provide valid max_trip_days value.")
 
             if max_price < 1 or max_price > 1000000:
-                return response_400("InvalidPriceNumber", "Please provide a valid max_price value")
+                return response_400("InvalidPriceNumber", "Please provide a valid max_price value.")
 
             db_instance = TripsDatabase()
             new_trip = db_instance.trip_create(name, user.id, max_trip_days, is_guided, in_group, max_price)
@@ -82,7 +196,35 @@ class TripsView(MethodView):
 
     @validate_token
     def patch(self, trip_id, user: User = None):
-        # todo api docs
+        """
+
+        @api {PATCH} /api/v1/trips/trip_id/ Update trip information
+        @apiVersion 1.0.0
+
+        @apiName TripUpdate
+        @apiGroup Trips
+
+        @apiParam {Integer} user_id User's id.
+        @apiParam {Integer} trip_id Trip's id.
+
+        @apiParam {String} name                 Trip's name
+        @apiParam {Integer} max_trip_days       Trip's max_trip_days
+        @apiParam {Boolean} is_guided           Trip's is_guided
+        @apiParam {Boolean} in_group            Trip's in_group
+        @apiParam {Integer} max_price           Trip's max_price
+
+        @apiSuccessExample {json} Success-Response:
+        HTTP/1.1 200 OK
+        {}
+
+        @apiError (BadRequest 400) {Object} NoParameter                     Please provide a parameter.
+        @apiError (BadRequest 400) {Object} InvalidName                     Name should have at least 2 characters and maximum 25, it can contain any char except new line.
+        @apiError (BadRequest 400) {Object} InvalidDaysNumber               Please provide valid max_trip_days value.
+        @apiError (BadRequest 400) {Object} InvalidPriceNumber              Please provide a valid max_price value.
+        @apiError (NotFound 404) {Object} NoSuchTrip                        Such trip doesn't exist
+        @apiError (InternalServerError 500) {Object} InternalServerError
+
+        """
         try:
             changed_fields = {}
 
@@ -96,9 +238,9 @@ class TripsView(MethodView):
                 return response_400("NoParameter", "Please provide a parameter")
 
             # checks that the passed values are valid
-            if not re.match(r'^[\S]{2,25}$', changed_fields["name"]):
+            if not re.match(r'^[.]{2,25}$', changed_fields["name"]):
                 return response_400('InvalidName', 'Name should have at least 2 characters and maximum 25, it can '
-                                                   'contain any char except white space.')
+                                                   'contain any char except new line.')
 
             if "max_trip_days" in changed_fields and changed_fields["max_trip_days"] < 1 or changed_fields[
                 "max_trip_days"] > 30:
@@ -122,7 +264,25 @@ class TripsView(MethodView):
 
     @validate_token
     def delete(self, trip_id: int, user: User = None):
-        # todo api docs
+        """
+
+        @api {DELETE} /api/v1/trips/trip_id/ Trip deletion
+        @apiVersion 1.0.0
+
+        @apiName DeleteTrip
+        @apiGroup Trips
+
+        @apiParam {Integer} user_id             Trip's id
+        @apiParam {Integer} trip_id             Trip's id.
+
+        @apiSuccessExample {json} Success-Response:
+        HTTP/1.1 200 OK
+        {}
+
+        @apiError (NotFound 404) {Object} NoSuchTrip                        Such trip doesn't exist
+        @apiError (InternalServerError 500) {Object} InternalServerError
+
+        """
         try:
             db_instance = TripsDatabase()
             deleted_trip = db_instance.trip_delete(user.id, trip_id)

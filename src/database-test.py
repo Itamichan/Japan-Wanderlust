@@ -12,10 +12,10 @@ if __name__ == '__main__':
     attraction_list = AttractionsDatabase()
     trip_attraction_match = AttractionsDatabase()
 
-    # create_user = db_instance.create_user('cristina23', 'cristina@gmail.com', 'testtest')
-    # user = db_instance.get_user_by_name('cristina23')
+    # create_user = db_instance.create_user('cristina223', 'cristina@gmail.com', 'testtest')
+    user = db_instance.get_user_by_name('cristina23')
     # print(trip_create.trip_create('name2', user.id, 20, 'true', 'true', 500))
-    # print(trips_inst.trips_list(user.id))
+    print(trips_inst.trips_list(user.id))
     # print(attraction_list.get_attractions_from_trip(1, 1))
     # print(trip_attraction_match.add_attraction_to_trip(2, 1))
     print(trips_inst.update_trip(3, 1, {"name": "changed"}))
