@@ -40,7 +40,6 @@ class TripsView(MethodView):
         # todo api docs
         try:
             changed_fields = {}
-            # todo check that the values are legal
 
             for key in ["name", "is_guided", "max_trip_days", "in_group", "max_price"]:
                 value = request.json.get(key, None)
@@ -51,15 +50,26 @@ class TripsView(MethodView):
             if len(changed_fields) == 0:
                 return response_400("NoParameter", "Please provide a parameter")
 
+            # checks that the passed values are valid
             if "name" in changed_fields and len(changed_fields["name"]) < 1 or len(changed_fields["name"]) > 15:
                 return response_400("InvalidName", "Please provide a valid name")
-            # todo check for the validity of the rest parametres
+
+            if "max_trip_days" in changed_fields and changed_fields["max_trip_days"] < 1 or changed_fields[
+                "max_trip_days"] > 30:
+                return response_400("InvalidDaysNUmber", "Please provide valid max_trip_days value")
+
+            if "max_price" in changed_fields and changed_fields["max_price"] < 1 or changed_fields[
+                "max_price"] > 1000000:
+                return response_400("InvalidPriceNumber", "Please provide a valid max_price value")
 
             db_instance = TripsDatabase()
-            db_instance.update_trip(trip_id, user.id, changed_fields)
+            updated_trip = db_instance.update_trip(trip_id, user.id, changed_fields)
             db_instance.close_connection()
+
+            if not updated_trip:
+                return response_404("NoSuchTrip", "Such trip doesn't exist")
+
             return jsonify({})
-        # todo return noSuchTrip if the trip was not updated like in the delete method
         except:
             return response_500()
 
@@ -84,7 +94,6 @@ class TripsView(MethodView):
             return jsonify({})
         except:
             return response_500()
-
 
     @validate_token
     def post(self, user: User = None):

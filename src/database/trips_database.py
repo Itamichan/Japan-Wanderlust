@@ -55,6 +55,8 @@ class TripsDatabase(Database):
             # unwraps the values from the changed_fields dictionary directly in the tuple
             cursor.execute(sql, (*changed_fields.values(), user_id, trip_id))
             self.connection.commit()
+            count_updated_trip = cursor.rowcount
+            return count_updated_trip == 1
 
     def trip_delete(self, user_id, trip_id):
         with self.connection.cursor() as cursor:
