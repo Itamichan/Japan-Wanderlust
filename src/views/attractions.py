@@ -68,8 +68,8 @@ class AttractionsView(MethodView):
         @apiParam {Integer} attraction_id   Attraction's id.
         @apiParam {Integer} trip_id         Trip's id.
 
-        @apiSuccess {Object} attractions                    List with attractions
-        @apiSuccess {List} attractions                      Attraction's information
+        @apiSuccess {Object} attractions_list               List with attractions
+        @apiSuccess {List} attraction                       Attraction's information
         @apiSuccess {String} serialize.id                   Attraction's id
         @apiSuccess {String} serialize.attraction_name      Attraction's name
         @apiSuccess {String} serialize.description          Attraction's description
@@ -141,7 +141,6 @@ class AttractionsView(MethodView):
         @apiParam {Integer} trip_id         Trip's id.
 
         @apiSuccessExample {json} Success-Response:
-        # todo add proper url examples
         HTTP/1.1 200 OK
         {}
 

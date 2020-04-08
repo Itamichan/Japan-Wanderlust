@@ -72,7 +72,7 @@ class TripsView(MethodView):
         @apiParam {Integer} user_id User's id.
 
         @apiSuccess {Object} trips_list                 List with trips
-        @apiSuccess {List} trips                        Trip's information
+        @apiSuccess {List} trip                         Trip's information
         @apiSuccess {Integer} serialize.id              Trip's id
         @apiSuccess {String} serialize.name             Trip's name
         @apiSuccess {Integer} serialize.user_id         Trip's user_id
