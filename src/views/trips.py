@@ -65,16 +65,15 @@ class TripsView(MethodView):
 
         @apiName TripsList
         @apiGroup Trips
-        # todo correct here and in other places-have one correct ex.
-        @apiSuccess {Object} trips_list                 List with trips
-        @apiSuccess {List} trip                         Trip's information
-        @apiSuccess {Integer} serialize.id              Trip's id
-        @apiSuccess {String} serialize.name             Trip's name
-        @apiSuccess {Integer} serialize.user_id         Trip's user_id
-        @apiSuccess {Integer} serialize.max_trip_days   Trip's max_trip_days
-        @apiSuccess {Boolean} serialize.is_guided       Trip's is_guided
-        @apiSuccess {Boolean} serialize.in_group        Trip's in_group
-        @apiSuccess {Integer} serialize.max_price       Trip's max_price
+
+        @apiSuccess {Object[]} trips                    List with trips
+        @apiSuccess {Integer} trips.id              Trip's id
+        @apiSuccess {String} trips.name             Trip's name
+        @apiSuccess {Integer} trips.user_id         Trip's user_id
+        @apiSuccess {Integer} trips.max_trip_days   Trip's max_trip_days
+        @apiSuccess {Boolean} trips.is_guided       Trip's is_guided
+        @apiSuccess {Boolean} trips.in_group        Trip's in_group
+        @apiSuccess {Integer} trips.max_price       Trip's max_price
 
         @apiSuccessExample {json} Success-Response:
         HTTP/1.1 200 OK

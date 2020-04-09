@@ -61,7 +61,7 @@ def register():
                                 ' least 2 characters.')
 
         db_instance = UserDatabase()
-        db_instance.create_user(username, email, password)
+        db_instance.create_user(username, email.lower(), password)
         db_instance.close_connection()
         return jsonify({})
 

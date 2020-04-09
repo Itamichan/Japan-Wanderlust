@@ -15,7 +15,7 @@ class Attraction:
     def serialize(self) -> dict:
         return {
             "id": self.id,
-            "attraction_name": self.attraction_name,
+            "attraction_name": self.attraction_name.capitalize(),
             "description": self.description,
             "price": self.price,
             "web_link": self.web_link,
