@@ -32,11 +32,11 @@ class AttractionsDatabase(Database):
             cursor.execute(sql, (trip_id, attraction_id))
             self.connection.commit()
 
-    def get_attractions_from_trip(self, trip_id, attraction_id):
+    def get_attractions_from_trip(self, trip_id):
         with self.connection.cursor() as cursor:
             sql = 'SELECT attr.* from trip_attraction_match tam JOIN attractions attr ON ' \
-                  'tam.attraction_id = attr.id WHERE tam.attraction_id = %s AND tam.trip_list_id = %s'
-            cursor.execute(sql, (attraction_id, trip_id))
+                  'tam.attraction_id = attr.id WHERE tam.trip_id = %s'
+            cursor.execute(sql, (trip_id,))
             results = cursor.fetchall()
             return [Attraction(id=result[0], attraction_name=result[1], description=result[2],
                                price=result[3], web_link=result[4], picture_url=result[5],
@@ -84,23 +84,12 @@ class AttractionsDatabase(Database):
                                city_id=result[6])
                     for result in results]
 
-    def get_type(self, type_id):
+    def get_attraction_types(self):
         with self.connection.cursor() as cursor:
-            sql = "SELECT name from attraction_type WHERE id = %s "
-            cursor.execute(sql, (type_id,))
-            result = cursor.fetchone()
-            if result is not None:
-                return result[0]
-
-    def get_attractions_from_type(self, type_id, attraction_id):
-        with self.connection.cursor() as cursor:
-            sql = 'SELECT attr.* from attraction_type_match atm JOIN attractions attr ON ' \
-                  'atm.attraction_id = attr.id WHERE atm.attraction_id = %s AND atm.attraction_type_id = %s'
-            cursor.execute(sql, (attraction_id, type_id))
+            sql = "SELECT id, name from attraction_type"
+            cursor.execute(sql)
             results = cursor.fetchall()
-            return [Attraction(id=result[0], attraction_name=result[1], description=result[2],
-                               price=result[3], web_link=result[4], picture_url=result[5],
-                               city_id=result[6])
-                    for result in results]
+            return [{"type_id": result[0], "type_name": result[1]} for result in results]
+
 
 
