@@ -52,10 +52,10 @@ class TripAttractionsView(MethodView):
             return response_500()
 
     @validate_token
-    def get(self, trip_id, attraction_id, user: User = None):
+    def get(self, trip_id, user: User = None):
         """
 
-        @api {GET} /api/v1/trips/<trip_id>/attractions/<attraction_id> Attractions Information
+        @api {GET} /api/v1/trips/<trip_id>/attractions/ Attractions Information
         @apiVersion 1.0.0
 
         @apiName AttractionsInfo
@@ -109,7 +109,7 @@ class TripAttractionsView(MethodView):
                 return response_404('NoSuchTrip', 'No such trip')
 
             db_instance = AttractionsDatabase()
-            attractions_list = db_instance.get_attractions_from_trip(trip_id, attraction_id)
+            attractions_list = db_instance.get_attractions_from_trip(trip_id)
             db_instance.close_connection()
 
             return jsonify({
