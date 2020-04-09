@@ -1,12 +1,8 @@
 from flask import jsonify, request
 from flask.views import MethodView
-from psycopg2._psycopg import IntegrityError
-from psycopg2.errorcodes import UNIQUE_VIOLATION
+
 from database.attractions_database import AttractionsDatabase
-from database.trips_database import TripsDatabase
-from database.users_database import User
-from decorators import validate_token
-from errors import response_500, response_404, response_400
+from errors import response_500
 
 
 class AttractionsView(MethodView):
