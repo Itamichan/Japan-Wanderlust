@@ -19,9 +19,6 @@ class TripsView(MethodView):
         @apiName TripInfo
         @apiGroup Trips
 
-        @apiParam {Integer} user_id User's id.
-        @apiParam {Integer} trip_id Trip's id.
-
         @apiSuccess {Object} trip_info                  Trip's information.
         @apiSuccess {Integer} serialize.id              Trip's id
         @apiSuccess {String} serialize.name             Trip's name
@@ -68,9 +65,7 @@ class TripsView(MethodView):
 
         @apiName TripsList
         @apiGroup Trips
-
-        @apiParam {Integer} user_id User's id.
-
+        # todo correct here and in other places-have one correct ex.
         @apiSuccess {Object} trips_list                 List with trips
         @apiSuccess {List} trip                         Trip's information
         @apiSuccess {Integer} serialize.id              Trip's id
@@ -132,15 +127,13 @@ class TripsView(MethodView):
         @apiName CreateTrip
         @apiGroup Trips
 
-        @apiParam {Integer} user_id             Trip's id
-
         @apiParam {String} name                 Trip's name
         @apiParam {Integer} max_trip_days       Trip's max_trip_days
         @apiParam {Boolean} is_guided           Trip's is_guided
         @apiParam {Boolean} in_group            Trip's in_group
         @apiParam {Integer} max_price           Trip's max_price
 
-        @apiSuccess {Integer} trips_id Trip's id
+        @apiSuccess {Integer} trip_id           The id of the created trip
 
         @apiSuccessExample {json} Success-Response:
         HTTP/1.1 200 OK
@@ -204,14 +197,11 @@ class TripsView(MethodView):
         @apiName TripUpdate
         @apiGroup Trips
 
-        @apiParam {Integer} user_id User's id.
-        @apiParam {Integer} trip_id Trip's id.
-
-        @apiParam {String} name                 Trip's name
-        @apiParam {Integer} max_trip_days       Trip's max_trip_days
-        @apiParam {Boolean} is_guided           Trip's is_guided
-        @apiParam {Boolean} in_group            Trip's in_group
-        @apiParam {Integer} max_price           Trip's max_price
+        @apiParam {String} [name]                 Trip's name
+        @apiParam {Integer} [max_trip_days]       Trip's max_trip_days
+        @apiParam {Boolean} [is_guided]           Trip's is_guided
+        @apiParam {Boolean} [in_group]            Trip's in_group
+        @apiParam {Integer} [max_price]           Trip's max_price
 
         @apiSuccessExample {json} Success-Response:
         HTTP/1.1 200 OK
@@ -271,9 +261,6 @@ class TripsView(MethodView):
 
         @apiName DeleteTrip
         @apiGroup Trips
-
-        @apiParam {Integer} user_id             Trip's id
-        @apiParam {Integer} trip_id             Trip's id.
 
         @apiSuccessExample {json} Success-Response:
         HTTP/1.1 200 OK
