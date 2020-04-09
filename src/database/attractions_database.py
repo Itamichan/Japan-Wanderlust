@@ -84,7 +84,7 @@ class AttractionsDatabase(Database):
                                city_id=result[6])
                     for result in results]
 
-    def get_attraction_type(self, type_id):
+    def get_type(self, type_id):
         with self.connection.cursor() as cursor:
             sql = "SELECT name from attraction_type WHERE id = %s "
             cursor.execute(sql, (type_id,))

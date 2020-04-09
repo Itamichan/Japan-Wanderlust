@@ -15,7 +15,7 @@ class TripAttractionsView(MethodView):
     def post(self, trip_id, attraction_id, user: User = None):
         """
 
-        @api {POST} /api/v1/trips/<trip_id>/attractions/<attraction_id>/ Add Attraction
+        @api {POST} /api/v1/trips/<trip_id>/attractions/<attraction_id> Add Attraction
         @apiVersion 1.0.0
 
         @apiName AddAttraction
@@ -55,7 +55,7 @@ class TripAttractionsView(MethodView):
     def get(self, trip_id, attraction_id, user: User = None):
         """
 
-        @api {GET} /api/v1/trips/<trip_id>/attractions/<attraction_id>/ Attractions Information
+        @api {GET} /api/v1/trips/<trip_id>/attractions/<attraction_id> Attractions Information
         @apiVersion 1.0.0
 
         @apiName AttractionsInfo
@@ -122,7 +122,7 @@ class TripAttractionsView(MethodView):
     def delete(self, trip_id, attraction_id, user: User = None):
         """
 
-        @api {DELETE} /api/v1/trips/<trip_id>/attractions/<attraction_id>/ Remove Attraction
+        @api {DELETE} /api/v1/trips/<trip_id>/attractions/<attraction_id> Remove Attraction
         @apiVersion 1.0.0
 
         @apiName RemoveAttraction

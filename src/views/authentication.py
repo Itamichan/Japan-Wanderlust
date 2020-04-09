@@ -16,7 +16,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 def register():
     """
 
-    @api {POST} /api/v1/users/ User registration
+    @api {POST} /api/v1/users User registration
     @apiVersion 1.0.0
 
     @apiName UserRegistration
@@ -76,7 +76,7 @@ def register():
 def login():
     """
 
-    @api {POST} /api/v1/token/ User login
+    @api {POST} /api/v1/token User login
     @apiVersion 1.0.0
 
     @apiName UserLogin
@@ -138,7 +138,7 @@ def login():
 def verify_token():
     """
 
-    @api {POST} /api/v1/token/verify/ Token Verification
+    @api {POST} /api/v1/token/verify Token Verification
     @apiVersion 1.0.0
 
     @apiName VerifyToken

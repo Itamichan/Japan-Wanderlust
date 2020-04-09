@@ -5,15 +5,15 @@ from database.attractions_database import AttractionsDatabase
 from errors import response_500, response_404
 
 
-class AttractionsTypeView(MethodView):
+class TypesView(MethodView):
 
     def get(self):
         """
 
-        @api {GET} /api/v1/attraction_type/<type_id> Get Attraction's Type
+        @api {GET} /api/v1/types/<type_id> Get Type
         @apiVersion 1.0.0
 
-        @apiName GetAttractionType
+        @apiName GetType
         @apiGroup Attractions
 
         @apiSuccess {String} type_name      Attraction's type name
@@ -21,10 +21,10 @@ class AttractionsTypeView(MethodView):
         @apiSuccessExample {json} Success-Response:
         HTTP/1.1 200 OK
         {
-            "attraction_type_name": "temples"
+            "type_name": "temples"
         }
 
-        @apiError (NotFound 404) {Object} NoSuchAttractionType    Such attraction type doesn't exist.
+        @apiError (NotFound 404) {Object} NoSuchType    Such type doesn't exist.
         @apiError (InternalServerError 500) {Object} InternalServerError
 
         """
@@ -32,14 +32,14 @@ class AttractionsTypeView(MethodView):
             type_id = int(request.args.get('type_id', None))
 
             db_instance = AttractionsDatabase()
-            attraction_type_name = db_instance.get_attraction_type(type_id)
+            type_name = db_instance.get_type(type_id)
             db_instance.close_connection()
 
-            if not attraction_type_name:
-                return response_404("NoSuchAttractionType", "Such attraction type doesn't exist")
+            if not type_name:
+                return response_404("NoSuchType", "Such type doesn't exist")
 
             return jsonify({
-                "attraction_type_name": attraction_type_name
+                "type_name": type_name
             })
         except:
             return response_500()

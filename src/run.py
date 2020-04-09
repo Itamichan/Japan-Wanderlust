@@ -1,7 +1,7 @@
 import os
 from flask import Flask
 from views import authentication
-from views.attractions_type import AttractionsTypeView
+from views.type_attractions import TypesView
 from views.trip_attractions import TripAttractionsView
 from views.trips import TripsView
 
@@ -23,8 +23,8 @@ application.add_url_rule('/api/v1/trips/<trip_id>/attractions', methods=['GET'],
 application.add_url_rule('/api/v1/trips/<trip_id>/attractions/<attraction_id>', methods=['POST', 'DELETE'],
                          view_func=TripAttractionsView.as_view('AttractionsInfo'))
 
-application.add_url_rule('/api/v1/attraction_type/<type_id>', methods=['GET'],
-                         view_func=AttractionsTypeView.as_view('AttractionTypeInfo'))
+application.add_url_rule('/api/v1/types/<type_id>', methods=['GET'],
+                         view_func=TypesView.as_view('TypeInfo'))
 
 
 

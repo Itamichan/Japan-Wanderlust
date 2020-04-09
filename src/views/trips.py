@@ -13,7 +13,7 @@ class TripsView(MethodView):
     def get_trip_info(self, user, trip_id):
         """
 
-        @api {GET} /api/v1/trips/<trip_id>/ Trip information
+        @api {GET} /api/v1/trips/<trip_id> Trip information
         @apiVersion 1.0.0
 
         @apiName TripInfo
@@ -60,7 +60,7 @@ class TripsView(MethodView):
     def get_trips_list(self, user):
         """
 
-        @api {GET} /api/v1/trips/ Trips List
+        @api {GET} /api/v1/trips Trips List
         @apiVersion 1.0.0
 
         @apiName TripsList
@@ -120,7 +120,7 @@ class TripsView(MethodView):
     def post(self, user: User = None):
         """
 
-        @api {POST} /api/v1/trips/ Trip creation
+        @api {POST} /api/v1/trips Trip creation
         @apiVersion 1.0.0
 
         @apiName CreateTrip
@@ -190,7 +190,7 @@ class TripsView(MethodView):
     def patch(self, trip_id, user: User = None):
         """
 
-        @api {PATCH} /api/v1/trips/trip_id/ Trip update
+        @api {PATCH} /api/v1/trips/trip_id Trip update
         @apiVersion 1.0.0
 
         @apiName TripUpdate
@@ -255,7 +255,7 @@ class TripsView(MethodView):
     def delete(self, trip_id: int, user: User = None):
         """
 
-        @api {DELETE} /api/v1/trips/trip_id/ Trip deletion
+        @api {DELETE} /api/v1/trips/trip_id Trip deletion
         @apiVersion 1.0.0
 
         @apiName DeleteTrip

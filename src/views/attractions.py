@@ -10,7 +10,7 @@ class AttractionsView(MethodView):
     def get(self):
         """
 
-        @api {GET} /api/v1/attractions Search Attractions
+        @api {GET} /api/v1 attractions Search Attractions
         @apiVersion 1.0.0
 
         @apiName SearchAttractions
