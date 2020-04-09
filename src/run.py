@@ -1,7 +1,7 @@
 import os
 from flask import Flask
 from views import authentication
-from views.attractions import AttractionsView
+from views.trip_attractions import TripAttractionsView
 from views.trips import TripsView
 
 application = Flask("japan-wanderlust")
@@ -18,17 +18,12 @@ application.add_url_rule('/api/v1/trips/<trip_id>', methods=['GET', 'PATCH', 'DE
 application.add_url_rule('/api/v1/trips', methods=['GET', 'POST'], view_func=TripsView.as_view('TripsListInfo'))
 
 application.add_url_rule('/api/v1/trips/<trip_id>/attractions', methods=['GET'],
-                         view_func=AttractionsView.as_view('AttractionsListInfo'))
+                         view_func=TripAttractionsView.as_view('AttractionsListInfo'))
 application.add_url_rule('/api/v1/trips/<trip_id>/attractions/<attraction_id>', methods=['POST', 'DELETE'],
-                         view_func=AttractionsView.as_view('AttractionsInfo'))
+                         view_func=TripAttractionsView.as_view('AttractionsInfo'))
 
 
-"""
 
-
-get /api/v1/attractions get attractions info
-
-"""
 
 
 if __name__ == '__main__':

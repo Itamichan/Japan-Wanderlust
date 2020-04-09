@@ -51,3 +51,37 @@ class AttractionsDatabase(Database):
             count_deleted_attraction = cursor.rowcount
             return count_deleted_attraction == 1
 
+    def get_attractions(self, text, attraction_type_id, city_id, max_price):
+        with self.connection.cursor() as cursor:
+            values = []
+            sql = 'select  * from attractions '
+            clause = "where"
+
+            if attraction_type_id is not None:
+                sql += f'join attraction_type_match atm on attractions.id = atm.attraction_id {clause} attraction_type_id = %s '
+                clause = "and"
+                values.append(attraction_type_id)
+
+            if text is not None:
+                sql += f"{clause} name ILIKE %s "
+                clause = "and"
+                ilike_syntax = f"%{text}%"
+                values.append(ilike_syntax)
+
+            if city_id is not None:
+                sql += f'{clause} city_id = %s '
+                clause = "and"
+                values.append(city_id)
+
+            if max_price is not None:
+                sql += f'{clause} price < %s'
+                values.append(max_price)
+
+            cursor.execute(sql, values)
+            results = cursor.fetchall()
+            return [Attraction(id=result[0], attraction_name=result[1], description=result[2],
+                               price=result[3], web_link=result[4], picture_url=result[5],
+                               city_id=result[6])
+                    for result in results]
+
+
