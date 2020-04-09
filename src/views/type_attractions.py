@@ -5,41 +5,63 @@ from database.attractions_database import AttractionsDatabase
 from errors import response_500, response_404
 
 
-class AttractionsTypeView(MethodView):
+class TypeAttractionsView(MethodView):
 
-    def get(self):
+    def get(self, type_id, attraction_id):
         """
 
-        @api {GET} /api/v1/attraction_type/<type_id> Get Attraction's Type
+        @api {GET} /api/v1/types/<type_id>/attractions/<attraction_id> Attractions Information
         @apiVersion 1.0.0
 
-        @apiName GetAttractionType
+        @apiName AttractionsInfo
         @apiGroup Attractions
 
-        @apiSuccess {String} type_name      Attraction's type name
+        @apiSuccess {Object[]} attractions                    List with attractions
+        @apiSuccess {String} attractions.id                   Attraction's id
+        @apiSuccess {String} attractions.attraction_name      Attraction's name
+        @apiSuccess {String} attractions.description          Attraction's description
+        @apiSuccess {Integer} attractions.price               Attraction's price
+        @apiSuccess {String} attractions.web_link             Attraction's web_link
+        @apiSuccess {String} attractions.picture_url          Attraction's picture_url
+        @apiSuccess {Integer} attractions.city_id             Attraction's city_id
 
         @apiSuccessExample {json} Success-Response:
+        # todo add proper url examples
         HTTP/1.1 200 OK
         {
-            "attraction_type_name": "temples"
-        }
+            "attractions":
+            [
+                {
+                    "id": 1
+                    "attraction_name": "Fuji Mountain"
+                    "description": "Highest mountain in Japan."
+                    "price": 200
+                    "web_link": ""
+                    "picture_url": ""
+                    "city_id": 10
+                },
+                {
+                    "id": 1
+                    "attraction_name": "Osaka Tower"
+                    "description": "The tower was 160 meters (525 feet) high."
+                    "price": 130
+                    "web_link": ""
+                    "picture_url": ""
+                    "city_id": 5
+                }
+            ]
+         }
 
-        @apiError (NotFound 404) {Object} NoSuchAttractionType    Such attraction type doesn't exist.
         @apiError (InternalServerError 500) {Object} InternalServerError
 
         """
         try:
-            type_id = int(request.args.get('type_id', None))
-
             db_instance = AttractionsDatabase()
-            attraction_type_name = db_instance.get_type(type_id)
+            attractions_list = db_instance.get_attractions_from_type(type_id, attraction_id)
             db_instance.close_connection()
 
-            if not attraction_type_name:
-                return response_404("NoSuchAttractionType", "Such attraction type doesn't exist")
-
             return jsonify({
-                "attraction_type_name": attraction_type_name
+                "attractions": [e.serialize() for e in attractions_list]
             })
         except:
             return response_500()

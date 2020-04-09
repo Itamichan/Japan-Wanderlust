@@ -61,7 +61,7 @@ class TripAttractionsView(MethodView):
         @apiName AttractionsInfo
         @apiGroup Attractions
 
-        @apiSuccess {Object[]} attractions                  List with attractions
+        @apiSuccess {Object[]} attractions                    List with attractions
         @apiSuccess {String} attractions.id                   Attraction's id
         @apiSuccess {String} attractions.attraction_name      Attraction's name
         @apiSuccess {String} attractions.description          Attraction's description
