@@ -21,6 +21,7 @@ if __name__ == '__main__':
     # print(trip_attraction_match.add_attraction_to_trip(2, 1))
     print(trips_inst.update_trip(3, 1, {"name": "changed"}))
     print(get_attr.get_attractions("te", None, None, None))
+    print(get_attr.get_attraction_type(1))
     # print(trip_delete.trip_delete(1, 1))
 
     db_instance.close_connection()

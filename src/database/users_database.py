@@ -41,7 +41,8 @@ class UserDatabase(Database):
                 return User(id=result[0], username=username, email=result[2], password=result[3], salt=result[4])
 
     def verify_user(self, username, password):
-        """ This function takes username and password as parametres and checks if a user with such a password exists in the database"""
+        """ This function takes username and password as parametres and checks if a user with such a password
+        already exists in the database"""
         user = self.get_user_by_name(username)
         if user:
             salt = bytearray.fromhex(user.salt)
@@ -56,5 +57,3 @@ class UserDatabase(Database):
             result = cursor.fetchone()
             if result:
                 return User(id=user_id, username=result[0], email=result[1], password=result[2], salt=result[3])
-
-

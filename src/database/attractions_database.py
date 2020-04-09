@@ -55,22 +55,22 @@ class AttractionsDatabase(Database):
         with self.connection.cursor() as cursor:
             values = []
             sql = 'select  * from attractions '
-            clause = "where"
+            clause = "WHERE"
 
             if attraction_type_id is not None:
-                sql += f'join attraction_type_match atm on attractions.id = atm.attraction_id {clause} attraction_type_id = %s '
-                clause = "and"
+                sql += f'JOIN attraction_type_match atm ON attractions.id = atm.attraction_id {clause} attraction_type_id = %s '
+                clause = "AND"
                 values.append(attraction_type_id)
 
             if text is not None:
                 sql += f"{clause} name ILIKE %s "
-                clause = "and"
+                clause = "AND"
                 ilike_syntax = f"%{text}%"
                 values.append(ilike_syntax)
 
             if city_id is not None:
                 sql += f'{clause} city_id = %s '
-                clause = "and"
+                clause = "AND"
                 values.append(city_id)
 
             if max_price is not None:
@@ -83,5 +83,13 @@ class AttractionsDatabase(Database):
                                price=result[3], web_link=result[4], picture_url=result[5],
                                city_id=result[6])
                     for result in results]
+
+    def get_attraction_type(self, type_id):
+        with self.connection.cursor() as cursor:
+            sql = "SELECT name from attraction_type WHERE id = %s "
+            cursor.execute(sql, (type_id,))
+            result = cursor.fetchone()
+            if result is not None:
+                return result[0]
 
 
