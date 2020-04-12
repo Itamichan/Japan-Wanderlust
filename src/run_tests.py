@@ -21,9 +21,9 @@ def create_tables():
             sql = file.read()
             print(sql)
             print(os.curdir)
-            with db.connection.cursor() as cursor:
-                cursor.execute(sql)
-                db.connection.commit()
+        with db.connection.cursor() as cursor:
+            cursor.execute(sql)
+            db.connection.commit()
 
 
 if __name__ == '__main__':
