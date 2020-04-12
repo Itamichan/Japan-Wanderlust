@@ -10,7 +10,7 @@ class TestApplicationTypes(GenericTest):
         """Start with a blank database."""
         rv = self.client.get('/api/v1/types')
         self.assertDictEqual(rv.json, {
-            'attractions': []
+            'attraction_types': []
         })
 
     @with_app_context
@@ -24,7 +24,7 @@ class TestApplicationTypes(GenericTest):
         rv = self.client.get('/api/v1/types')
         # Verifying the response
         self.assertDictEqual(rv.json, {
-            'attractions': [
+            'attraction_types': [
                 {
                     'type_id': 1,
                     'type_name': 'nature'
@@ -52,5 +52,5 @@ class TestApplicationTypes(GenericTest):
         self.assertEqual(user.email, "email@email.com")
 
         with db.connection.cursor() as c:
-            c.execute("TRUNCATE users")
+            c.execute("TRUNCATE users CASCADE")
             db.connection.commit()
