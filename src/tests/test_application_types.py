@@ -33,7 +33,7 @@ class TestApplicationTypes(GenericTest):
         })
         db = Database()
         with db.connection.cursor() as c:
-            c.execute("TRUNCATE attraction_type")
+            c.execute("TRUNCATE attraction_type CASCADE")
             db.connection.commit()
 
     @with_app_context
