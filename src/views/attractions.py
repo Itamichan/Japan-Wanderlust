@@ -10,7 +10,7 @@ class AttractionsView(MethodView):
     def get(self):
         """
 
-        @api {GET} /api/v1 attractions Search Attractions
+        @api {GET} /api/v1/attractions Search Attractions
         @apiVersion 1.0.0
 
         @apiName SearchAttractions
@@ -35,24 +35,23 @@ class AttractionsView(MethodView):
         # todo add proper url examples
         HTTP/1.1 200 OK
         {
-            "attractions":
-            [
+            "attractions": [
                 {
-                    "id": 1
-                    "attraction_name": "Fuji Mountain"
-                    "description": "Highest mountain in Japan."
-                    "price": 200
-                    "web_link": ""
-                    "picture_url": ""
+                    "id": 1,
+                    "attraction_name": "Fuji Mountain",
+                    "description": "Highest mountain in Japan.",
+                    "price": 200,
+                    "web_link": "",
+                    "picture_url": "",
                     "city_id": 10
                 },
                 {
-                    "id": 1
-                    "attraction_name": "Osaka Tower"
-                    "description": "The tower was 160 meters (525 feet) high."
-                    "price": 130
-                    "web_link": ""
-                    "picture_url": ""
+                    "id": 1,
+                    "attraction_name": "Osaka Tower",
+                    "description": "The tower was 160 meters (525 feet) high.",
+                    "price": 130,
+                    "web_link": "",
+                    "picture_url": "",
                     "city_id": 5
                 }
             ]
@@ -64,16 +63,17 @@ class AttractionsView(MethodView):
         """
         try:
             text = request.args.get('text', None)
-            attraction_type_id = int(request.args.get('attraction_type_id', None))
-            city_id = int(request.args.get('city_id', None))
-            max_price = int(request.args.get('max_price', None))
+            attraction_type_id = request.args.get('attraction_type_id', None)
+            city_id = request.args.get('city_id', None)
+            max_price = request.args.get('max_price', None)
 
             db_instance = AttractionsDatabase()
-            attractions_list = db_instance.get_attractions(text.lower(), attraction_type_id, city_id, max_price)
+            attractions_list = db_instance.get_attractions(text, attraction_type_id, city_id, max_price)
             db_instance.close_connection()
 
             return jsonify({
                 "attractions": [e.serialize() for e in attractions_list]
             })
-        except:
+        except Exception as e:
+            print(e)
             return response_500()

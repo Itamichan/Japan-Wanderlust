@@ -23,7 +23,7 @@ class TypesView(MethodView):
         @apiSuccessExample {json} Success-Response:
         HTTP/1.1 200 OK
         {
-            [
+           "attraction_types": [
                 {
                     "type_id": 1,
                     "type_name": "temples"
@@ -44,7 +44,7 @@ class TypesView(MethodView):
             db_instance.close_connection()
 
             return jsonify({
-                attraction_types_list
+               "attraction_types": attraction_types_list
             })
         except:
             return response_500()

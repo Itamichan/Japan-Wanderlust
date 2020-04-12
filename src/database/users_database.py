@@ -53,7 +53,7 @@ class UserDatabase(Database):
     def get_user_by_id(self, user_id):
         with self.connection.cursor() as cursor:
             sql = 'SELECT username, email, password, salt FROM users WHERE id = %s'
-            cursor.execute(sql, user_id)
+            cursor.execute(sql, (user_id,))
             result = cursor.fetchone()
             if result:
                 return User(id=user_id, username=result[0], email=result[1], password=result[2], salt=result[3])
