@@ -2,6 +2,7 @@ import os
 
 from flask import Flask
 from views import authentication
+from views.attraction_types import TypesView
 from views.trip_attractions import TripAttractionsView
 from views.trips import TripsView
 
