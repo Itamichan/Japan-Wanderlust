@@ -1,11 +1,10 @@
 from database.database import Database
 from database.users_database import UserDatabase
-from tests.GenericTest import GenericTest, with_app_context
+from tests.GenericTest import GenericTest
 
 
 class TestApplicationTypes(GenericTest):
 
-    @with_app_context
     def test_no_attraction_types(self):
         """Start with a blank database."""
         rv = self.client.get('/api/v1/types')
@@ -13,7 +12,6 @@ class TestApplicationTypes(GenericTest):
             'attraction_types': []
         })
 
-    @with_app_context
     def test_getting_attraction_types_back(self):
         """Start with a blank database."""
         db = Database()
@@ -36,7 +34,6 @@ class TestApplicationTypes(GenericTest):
             c.execute("TRUNCATE attraction_type CASCADE")
             db.connection.commit()
 
-    @with_app_context
     def test_create_new_user(self):
         """Start with a blank database."""
         # API Call
