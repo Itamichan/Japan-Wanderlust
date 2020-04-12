@@ -1,6 +1,21 @@
 from database.database import Database
 from tests.GenericTest import GenericTest, with_app_context
+
+
 class TestApplicationTypes(GenericTest):
+
+    def setUp(self) -> None:
+        db = Database()
+        with db.connection.cursor() as c:
+            c.execute("SAVEPOINT test_savepoint")
+            db.connection.commit()
+
+    def tearDown(self) -> None:
+        db = Database()
+        with db.connection.cursor() as c:
+            c.execute("ROLLBACK TO SAVEPOINT test_savepoint")
+            db.connection.commit()
+
     @with_app_context
     def test_no_attraction_types(self):
         """Start with a blank database."""
@@ -8,6 +23,7 @@ class TestApplicationTypes(GenericTest):
         self.assertDictEqual(rv.json, {
             'attractions': []
         })
+
     @with_app_context
     def test_getting_attraction_types_back(self):
         """Start with a blank database."""
@@ -22,10 +38,12 @@ class TestApplicationTypes(GenericTest):
             'attractions': [
                 {
                     'type_id': 1,
-                    'type_name': 'Nature'
+                    'type_name': 'nature'
                 }
             ]
         })
+
+
     @with_app_context
     def test_getting_attraction_types_back2(self):
         """Start with a blank database."""
@@ -35,4 +53,4 @@ class TestApplicationTypes(GenericTest):
             'password': 'passwooooooord',
             'email': 'email@email.com',
         })
-        self.assertEqual(rv.status, 200)
+        self.assertEqual(rv.status_code, 200)
