@@ -19,11 +19,10 @@ def create_tables():
         join_file_path = os.path.join(sql_dir_name, sql_file)
         with open(join_file_path, "r") as file:
             sql = file.read()
-        statements = sql.split(';')
-        statements = [e for e in statements if len(e) > 5]
-        for statement in statements:
+            print(sql)
+            print(os.curdir)
             with db.connection.cursor() as cursor:
-                cursor.execute(statement + ";")
+                cursor.execute(sql)
                 db.connection.commit()
 
 
