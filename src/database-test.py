@@ -23,6 +23,7 @@ if __name__ == '__main__':
     # print(get_attr.get_attractions("te", None, None, None))
     # print(get_attr.get_type(1))
     print(get_attr.get_attraction_types())
+    print(get_attr.get_cities())
     # print(trip_delete.trip_delete(1, 1))
 
     db_instance.close_connection()

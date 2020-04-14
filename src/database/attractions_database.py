@@ -91,5 +91,12 @@ class AttractionsDatabase(Database):
             results = cursor.fetchall()
             return [{"type_id": result[0], "type_name": result[1]} for result in results]
 
+    def get_cities(self):
+        with self.connection.cursor() as cursor:
+            sql = "SELECT id, name from cities"
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            return [{"city_id": result[0], "city_name": result[1]} for result in results]
+
 
 
