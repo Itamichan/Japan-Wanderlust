@@ -1,1 +1,1 @@
-web: gunicorn -w 2 src.run
+web: gunicorn -w 2 --pythonpath src src.run
