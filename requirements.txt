@@ -5,3 +5,4 @@ pyJWT
 pytest
 dataclasses
 xmlrunner
+requests
