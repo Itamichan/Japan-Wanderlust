@@ -9,8 +9,7 @@ class CitiesView(MethodView):
 
     def get(self):
         """
-
-        @api {GET} /api/v1/cities/ Get Cities
+        @api {GET} /api/v1/cities Get Cities
         @apiVersion 1.0.0
 
         @apiName GetCities
@@ -36,7 +35,6 @@ class CitiesView(MethodView):
         }
 
         @apiError (InternalServerError 500) {Object} InternalServerError
-
         """
         try:
             db_instance = AttractionsDatabase()
