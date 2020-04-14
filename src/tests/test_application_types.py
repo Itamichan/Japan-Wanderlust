@@ -2,13 +2,12 @@ from database.database import Database
 from database.users_database import UserDatabase
 from tests.GenericTest import GenericTest
 
-
 class TestApplicationTypes(GenericTest):
 
     def test_no_attraction_types(self):
         """Start with a blank database."""
-        rv = self.client.get('/api/v1/types')
-        self.assertDictEqual(rv.json, {
+        response = self.client.get('/api/v1/types')
+        self.assertDictEqual(response.json, {
             'attraction_types': []
         })
 
@@ -19,9 +18,9 @@ class TestApplicationTypes(GenericTest):
             c.execute("INSERT INTO attraction_type (id, name) VALUES (1, %s)", ["nature"])
             db.connection.commit()
         # API Call
-        rv = self.client.get('/api/v1/types')
+        response = self.client.get('/api/v1/types')
         # Verifying the response
-        self.assertDictEqual(rv.json, {
+        self.assertDictEqual(response.json, {
             'attraction_types': [
                 {
                     'type_id': 1,
@@ -37,12 +36,12 @@ class TestApplicationTypes(GenericTest):
     def test_create_new_user(self):
         """Start with a blank database."""
         # API Call
-        rv = self.client.post('/api/v1/users', json={
+        response = self.client.post('/api/v1/users', json={
             'username': 'username',
             'password': 'passwooooooord',
             'email': 'email@email.com',
         })
-        self.assertEqual(rv.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         db = UserDatabase()
         user = db.get_user_by_name("username")

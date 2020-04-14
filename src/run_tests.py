@@ -15,6 +15,7 @@ def create_tables():
     db = Database()
     sql_dir_name = "./src/sql"
     sql_files = os.listdir("./src/sql")
+    # todo add a filter which will ignore data migrations files for testing
     for sql_file in sorted(sql_files):
         join_file_path = os.path.join(sql_dir_name, sql_file)
         with open(join_file_path, "r") as file:
