@@ -36,6 +36,7 @@ application.add_url_rule('/api/v1/cities', methods=['GET'],
 application.add_url_rule('/api/v1/attractions', methods=['GET'],
                          view_func=AttractionsView.as_view('AttractionsSearch'))
 
+
 @application.route('/')
 def index():
     index_url = os.environ.get('AWS_INDEX_URL', '')
@@ -43,6 +44,7 @@ def index():
         return "Missing environment variable"
     response = requests.get(index_url)
     return response.content
+
 
 if __name__ == '__main__':
     application.run(os.getenv('IP', "0.0.0.0"),
