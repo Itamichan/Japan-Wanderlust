@@ -14,15 +14,19 @@ def additional_tests():
 def create_tables():
     db = Database()
     sql_dir_name = "./src/sql"
-    sql_files = os.listdir("./src/sql")
+    sql_files = os.listdir(sql_dir_name)
     # todo add a filter which will ignore data migrations files for testing
+
     for sql_file in sorted(sql_files):
-        join_file_path = os.path.join(sql_dir_name, sql_file)
-        with open(join_file_path, "r") as file:
-            sql = file.read()
-        with db.connection.cursor() as cursor:
-            cursor.execute(sql)
-            db.connection.commit()
+        if sql_file.startswith("dm", 3):
+            pass
+        else:
+            join_file_path = os.path.join(sql_dir_name, sql_file)
+            with open(join_file_path, "r") as file:
+                sql = file.read()
+            with db.connection.cursor() as cursor:
+                cursor.execute(sql)
+                db.connection.commit()
 
 
 if __name__ == '__main__':
