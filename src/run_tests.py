@@ -18,10 +18,9 @@ def create_tables():
     # todo add a filter which will ignore data migrations files for testing
 
     for sql_file in sorted(sql_files):
-        if sql_file.startswith("dm", 3):
-            pass
-        else:
+        if not sql_file.startswith("dm", 3):
             join_file_path = os.path.join(sql_dir_name, sql_file)
+            print(join_file_path)
             with open(join_file_path, "r") as file:
                 sql = file.read()
             with db.connection.cursor() as cursor:
