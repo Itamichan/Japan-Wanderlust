@@ -15,7 +15,6 @@ def create_tables():
     db = Database()
     sql_dir_name = "./src/sql"
     sql_files = os.listdir(sql_dir_name)
-    # todo add a filter which will ignore data migrations files for testing
 
     for sql_file in sorted(sql_files):
         if not sql_file.startswith("dm", 3):
