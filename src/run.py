@@ -37,23 +37,6 @@ application.add_url_rule('/api/v1/attractions', methods=['GET'],
                          view_func=AttractionsView.as_view('AttractionsSearch'))
 
 
-# @application.route('/')
-# def index():
-#     """
-#     @api {GET} / Get IndexPage
-#     @apiVersion 1.0.0
-#
-#     @apiName IndexPage
-#     @apiGroup IndexPage
-#
-#     @apiSuccess {WebPage} index_page    Returns our start page.
-#     """
-#     index_url = os.environ.get('AWS_INDEX_URL', '')
-#     if not index_url:
-#         return "Missing environment variable"
-#     response = requests.get(index_url)
-#     return response.content
-
 @application.route('/', defaults={'path': ''})
 @application.route('/<path:path>')
 def catch_all(path):
