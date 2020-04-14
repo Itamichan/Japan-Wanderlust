@@ -2,8 +2,7 @@ matrix:
   include:
     - language: python
       python: "3.6.9"
-      # todo change to true for testing
-      env: PYTHON_ENV_TEST=false
+      env: PYTHON_ENV_TEST=true
       cache: pip
 services:
   - postgresql
