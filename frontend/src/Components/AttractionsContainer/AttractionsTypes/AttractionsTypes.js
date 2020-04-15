@@ -28,6 +28,7 @@ const AttractionsTypes = ({chooseAttractionType}) => {
 
     return( <div>
         {loading ? <div>Loading...</div> : attractionsTypes}
+        <button onClick={() => chooseAttractionType(null)}>Reset</button>
     </div>)
 };
 
