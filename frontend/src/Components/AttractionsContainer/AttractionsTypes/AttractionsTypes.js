@@ -3,7 +3,7 @@ import axios from "axios";
 
 const AttractionsTypes = ({chooseAttractionType}) => {
 
-    // const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
     const [attractionTypes, setAttractionTypes] = useState([]);
 
     const loadAttractionTypes = async () => {
@@ -12,7 +12,9 @@ const AttractionsTypes = ({chooseAttractionType}) => {
     };
 
     useEffect(() => {
+        setLoading(true);
         loadAttractionTypes();
+        setLoading(false);
     }, []);
 
     const attractionsTypes = attractionTypes.map(e => {
@@ -25,7 +27,7 @@ const AttractionsTypes = ({chooseAttractionType}) => {
     );
 
     return( <div>
-        {attractionsTypes}
+        {loading ? <div>Loading...</div> : attractionsTypes}
     </div>)
 };
 
