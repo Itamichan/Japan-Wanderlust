@@ -3,19 +3,22 @@ import axios from "axios";
 import AttractionsTypes from "./AttractionsTypes/AttractionsTypes";
 import AttractionCard from "./AttractionCard/AttractionCard";
 import "./AttractionsContainer.scss";
+import Cities from "./Cities/Cities";
 
 const AttractionsContainer = (props) => {
 
     const [loading, setLoading] = useState(true);
     const [attractions, setAttractions] = useState([]);
     const [chosenAttractionsType, setChosenAttractionsType] = useState(null);
+    const [chosenCity, setChosenCity] = useState(null);
 
 
     const loadAttractions = async () => {
         setLoading(true);
         const {data} = await axios.get("/api/v1/attractions", {
             params: {
-                attraction_type_id: chosenAttractionsType
+                attraction_type_id: chosenAttractionsType,
+                city_id: chosenCity
             }
         });
         setAttractions(data.attractions);
@@ -28,11 +31,15 @@ const AttractionsContainer = (props) => {
 
     useEffect(() => {
         loadAttractions()
-    }, [chosenAttractionsType]);
+    }, [chosenAttractionsType, chosenCity]);
 
 
     const filterAttractions = (attractionTypeId) => {
         setChosenAttractionsType(attractionTypeId)
+    };
+
+    const filterCities = (cityId) => {
+        setChosenCity(cityId)
     };
 
     const attractionsList = attractions.map(attraction => {
@@ -48,11 +55,17 @@ const AttractionsContainer = (props) => {
     return (<div>
             <AttractionsTypes
                 chooseAttractionType={(attractionTypeId) => filterAttractions(attractionTypeId)}/>
+            <Cities
+                chooseCity={(cityId) => filterCities(cityId)}
+            />
 
-            {loading ? <div>Loading...</div> : JSON.stringify(attractions)}
-            <div id={"attractions-container"}>
-                {attractionsList}
-            </div>
+            {loading ?
+                <div>Loading...</div>
+                :
+                <div id={"attractions-container"}>
+                    {attractionsList}
+                </div>
+            }
 
         </div>
 

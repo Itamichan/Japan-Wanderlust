@@ -28,7 +28,7 @@ const AttractionsTypes = ({chooseAttractionType}) => {
 
     return( <div>
         {loading ? <div>Loading...</div> : attractionsTypes}
-        <button onClick={() => chooseAttractionType(null)}>Reset</button>
+        <button onClick={() => chooseAttractionType(null)}>Reset attraction type</button>
     </div>)
 };
 
