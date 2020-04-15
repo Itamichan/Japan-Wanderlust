@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from database.database import Database
 
-
 @dataclass
 class Attraction:
     id: int
@@ -22,7 +21,6 @@ class Attraction:
             "picture_url": self.picture_url,
             "city_id": self.city_id,
         }
-
 
 class AttractionsDatabase(Database):
 
