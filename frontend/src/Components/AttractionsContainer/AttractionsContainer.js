@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import AttractionsTypes from "./AttractionsTypes/AttractionsTypes";
+import AttractionCard from "./AttractionCard/AttractionCard";
 
 const AttractionsContainer = (props) => {
 
@@ -36,7 +37,11 @@ const AttractionsContainer = (props) => {
     return (<div>
             <AttractionsTypes
                 chooseAttractionType={(attractionTypeId) => filterAttractions(attractionTypeId)}/>
-            {loading ? <div>Loading...</div> : JSON.stringify(attractions)}
+            {loading ? <div>Loading...</div> :
+                <AttractionCard
+                    cardTitle = ""
+                    cardImg = ""
+                />}
         </div>
 
     )
