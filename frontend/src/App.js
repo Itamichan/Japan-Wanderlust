@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import AttractionsContainer from "./Components/AttractionsContainer/AttractionsContainer";
 
 function App() {
     return (
@@ -7,6 +8,7 @@ function App() {
             <p>
                 I am your frontend!
             </p>
+            <AttractionsContainer/>
         </div>
 );
 }
