@@ -12,7 +12,7 @@ conn = psycopg2.connect(host=DB_HOST, database=DB_NAME, user=DB_USER, password=D
 sql_dir_name = "./src/sql"
 sql_files = os.listdir("./src/sql")
 
-for sql_file in sql_files:
+for sql_file in sorted(sql_files):
     join_file_path = os.path.join(sql_dir_name, sql_file)
 
     with open(join_file_path, "r") as file:
