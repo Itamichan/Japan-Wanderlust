@@ -1,14 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import axios from "axios";
-import AttractionsTypes from "./AttractionsTypes/AttractionsTypes";
 import AttractionCard from "./AttractionCard/AttractionCard";
 import "./AttractionsContainer.scss";
+import AttractionsTypes from "./AttractionsTypes/AttractionsTypes";
 import Cities from "./Cities/Cities";
 
 const AttractionsContainer = (props) => {
 
+
     const [loading, setLoading] = useState(true);
     const [attractions, setAttractions] = useState([]);
+
     const [chosenAttractionsType, setChosenAttractionsType] = useState(null);
     const [chosenCity, setChosenCity] = useState(null);
 
@@ -33,15 +35,6 @@ const AttractionsContainer = (props) => {
         loadAttractions()
     }, [chosenAttractionsType, chosenCity]);
 
-
-    const filterAttractions = (attractionTypeId) => {
-        setChosenAttractionsType(attractionTypeId)
-    };
-
-    const filterCities = (cityId) => {
-        setChosenCity(cityId)
-    };
-
     const attractionsList = attractions.map(attraction => {
         return (
             <AttractionCard
@@ -52,22 +45,37 @@ const AttractionsContainer = (props) => {
 
     });
 
-    return (<div>
-            <AttractionsTypes
-                chooseAttractionType={(attractionTypeId) => filterAttractions(attractionTypeId)}/>
-            <Cities
-                chooseCity={(cityId) => filterCities(cityId)}
-            />
+    const filterAttractions = (attractionTypeId) => {
+        setChosenAttractionsType(attractionTypeId)
+    };
 
-            {loading ?
-                <div>Loading...</div>
-                :
-                <div id={"attractions-container"}>
-                    {attractionsList}
+    const filterCities = (cityId) => {
+        setChosenCity(cityId);
+    };
+
+    return (
+        <Fragment>
+            <div id={"attractions-container"}>
+                <div>
+                    {loading ?
+                        <div>Loading...</div>
+                        :
+                        <div id={"attractions-list"}>
+                            {attractionsList}
+                        </div>
+                    }
+
                 </div>
-            }
+                <div id={"attractions-filter"}>
+                    <AttractionsTypes
+                        chooseAttractionType={(attractionTypeId) => filterAttractions(attractionTypeId)}/>
+                    <Cities
+                        chooseCity={(cityId) => filterCities(cityId)}
+                    />
+                </div>
+            </div>
 
-        </div>
+        </Fragment>
 
     )
 };

@@ -1,5 +1,15 @@
 #attractions-container {
   display: flex;
   flex-flow: row wrap;
+}
+
+#attractions-list {
+  width: 60vw;
+  display: flex;
+  flex-flow: row wrap;
   justify-content: space-between;
+}
+
+#attractions-filter {
+  width: 40vw;
 }
