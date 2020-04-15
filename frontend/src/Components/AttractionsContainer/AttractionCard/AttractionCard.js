@@ -6,16 +6,16 @@ import {
 
 import "./AttractionCard.scss";
 
-const AttractionCard = (props) => {
+const AttractionCard = ({cardTitle, cardImg}) => {
     return (
         <div>
             <Card  className={"card-body"}>
                 <CardImg
                     top width="100%"
-                    src="/resources/test.jpg"
-                    alt="Card image cap"/>
+                    src={cardImg}
+                    alt="img of the attraction"/>
                 <CardBody>
-                    <CardTitle>Card title</CardTitle>
+                    <CardTitle>{cardTitle}</CardTitle>
                     <CardText>Some quick example text to build on the card title and make up the bulk of the card's
                         content.</CardText>
                     <Button>Button</Button>

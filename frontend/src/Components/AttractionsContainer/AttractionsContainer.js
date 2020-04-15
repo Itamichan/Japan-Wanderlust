@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import AttractionsTypes from "./AttractionsTypes/AttractionsTypes";
 import AttractionCard from "./AttractionCard/AttractionCard";
+import "./AttractionsContainer.scss";
 
 const AttractionsContainer = (props) => {
 
@@ -34,14 +35,25 @@ const AttractionsContainer = (props) => {
         setChosenAttractionsType(attractionTypeId)
     };
 
+    const attractionsList = attractions.map(attraction => {
+        return (
+            <AttractionCard
+                cardTitle={attraction.attraction_name}
+                cardImg="/resources/test.jpg"
+            />
+        )
+
+    });
+
     return (<div>
             <AttractionsTypes
                 chooseAttractionType={(attractionTypeId) => filterAttractions(attractionTypeId)}/>
-            {loading ? <div>Loading...</div> :
-                <AttractionCard
-                    cardTitle = ""
-                    cardImg = ""
-                />}
+
+            {loading ? <div>Loading...</div> : JSON.stringify(attractions)}
+            <div id={"attractions-container"}>
+                {attractionsList}
+            </div>
+
         </div>
 
     )
