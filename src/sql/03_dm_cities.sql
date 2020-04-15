@@ -1,7 +1,7 @@
 INSERT INTO cities
-(name)
+(id, name)
 VALUES
-('Kyoto'),
-('Tokyo'),
-('Osaka'),
-('Hiroshima')
+(1, 'Kyoto'),
+(2, 'Tokyo'),
+(3, 'Osaka'),
+(4, 'Hiroshima')
