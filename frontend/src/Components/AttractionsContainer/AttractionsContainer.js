@@ -56,7 +56,7 @@ const AttractionsContainer = (props) => {
     return (
         <Fragment>
             <div id={"attractions-container"}>
-                <div>
+                <section>
                     {loading ?
                         <div>Loading...</div>
                         :
@@ -65,14 +65,14 @@ const AttractionsContainer = (props) => {
                         </div>
                     }
 
-                </div>
-                <div id={"attractions-filter"}>
+                </section>
+                <section id={"attractions-filter"}>
                     <AttractionsTypes
                         chooseAttractionType={(attractionTypeId) => filterAttractions(attractionTypeId)}/>
                     <Cities
                         chooseCity={(cityId) => filterCities(cityId)}
                     />
-                </div>
+                </section>
             </div>
 
         </Fragment>
