@@ -6,6 +6,7 @@ import AttractionsTypes from "./AttractionsTypes/AttractionsTypes";
 import Cities from "./Cities/Cities";
 import SearchBar from "./SearchBar/SearchBar";
 import FilterTag from "./FilterTag/FilterTag";
+import PriceInput from "./PriceInput/PriceInput";
 
 const AttractionsContainer = (props) => {
 
@@ -16,6 +17,7 @@ const AttractionsContainer = (props) => {
     const [chosenAttractionsType, setChosenAttractionsType] = useState(null);
     const [chosenCity, setChosenCity] = useState(null);
     const [attractionName, setAttractionName] = useState(null);
+    const [maxPrice, setMaxPrice] = useState(null);
 
 
     const loadAttractions = async () => {
@@ -24,7 +26,8 @@ const AttractionsContainer = (props) => {
             params: {
                 attraction_type_id: chosenAttractionsType?.type_id,
                 city_id: chosenCity?.city_id,
-                text: attractionName
+                text: attractionName,
+                max_price: maxPrice
             }
         });
         setAttractions(data.attractions);
@@ -37,7 +40,7 @@ const AttractionsContainer = (props) => {
 
     useEffect(() => {
         loadAttractions()
-    }, [chosenAttractionsType, chosenCity, attractionName]);
+    }, [chosenAttractionsType, chosenCity, attractionName, maxPrice]);
 
     const attractionsList = attractions.map(attraction => {
         return (
@@ -55,6 +58,10 @@ const AttractionsContainer = (props) => {
 
     const filterCities = (city) => {
         setChosenCity(city);
+    };
+
+    const filterPrice = (price) => {
+        setMaxPrice(price);
     };
 
     const searchAttraction = (searchWord) => {
@@ -76,6 +83,10 @@ const AttractionsContainer = (props) => {
                     clearTag={() => filterAttractions(null)}
                     tagName={chosenAttractionsType?.type_name}
                 />
+                <FilterTag
+                    clearTag={() => filterPrice(null)}
+                    tagName={maxPrice? `limit: ${maxPrice} YEN` : null}
+                />
             </div>
 
             <section id={"attractions-container"}>
@@ -95,6 +106,9 @@ const AttractionsContainer = (props) => {
                     />
                     <AttractionsTypes
                         chooseAttractionType={(attractionType) => filterAttractions(attractionType)}/>
+                    <PriceInput
+                    choosePrice={(price) => filterPrice(price)}
+                    />
                 </div>
             </section>
 
