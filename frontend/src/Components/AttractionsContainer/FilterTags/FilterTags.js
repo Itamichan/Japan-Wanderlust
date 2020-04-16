@@ -1,8 +1,16 @@
 import React from 'react';
 
-const FilterTags = (props) => {
+const FilterTags = ({clearTag, tagName}) => {
+
+    if (!tagName) {
+        return null
+    }
+
     return (
-        
+        <div>
+            <button onClick={() => {
+                clearTag(null)}}>{tagName}</button>
+        </div>
     )
 };
 

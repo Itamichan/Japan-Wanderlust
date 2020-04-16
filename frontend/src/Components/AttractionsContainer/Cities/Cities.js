@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import "./Cities.scss";
 
-const Cities = ({chooseCity, showCityName}) => {
+const Cities = ({chooseCity}) => {
 
     const [loading, setLoading] = useState(true);
     const [cities, setCities] = useState([]);
@@ -23,8 +23,7 @@ const Cities = ({chooseCity, showCityName}) => {
                 <div>
                     <button
                         onClick={() => {
-                            chooseCity(city.city_id);
-                            showCityName(city.city_name)
+                            chooseCity(city);
                         }}
                     >
                         {city.city_name}
@@ -42,8 +41,7 @@ const Cities = ({chooseCity, showCityName}) => {
 
             <button id={"reset-button"}
                     onClick={() => {
-                        chooseCity(null);
-                        showCityName(null)
+                        chooseCity(null)
                     }}
             >
                 Show all cities

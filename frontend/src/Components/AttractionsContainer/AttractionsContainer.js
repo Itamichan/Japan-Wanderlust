@@ -16,7 +16,6 @@ const AttractionsContainer = (props) => {
     const [chosenAttractionsType, setChosenAttractionsType] = useState(null);
     const [chosenCity, setChosenCity] = useState(null);
     const [attractionName, setAttractionName] = useState(null);
-    const [cityName, setCityName] = useState(null);
 
 
     const loadAttractions = async () => {
@@ -24,7 +23,7 @@ const AttractionsContainer = (props) => {
         const {data} = await axios.get("/api/v1/attractions", {
             params: {
                 attraction_type_id: chosenAttractionsType,
-                city_id: chosenCity,
+                city_id: chosenCity?.city_id,
                 text: attractionName
             }
         });
@@ -54,28 +53,27 @@ const AttractionsContainer = (props) => {
         setChosenAttractionsType(attractionTypeId)
     };
 
-    const filterCities = (cityId) => {
-        setChosenCity(cityId);
+    const filterCities = (city) => {
+        setChosenCity(city);
     };
 
     const searchAttraction = (searchWord) => {
         setAttractionName(searchWord)
     };
 
-    const showCity = (cityName) => {
-        setCityName(cityName)
-    };
 
     return (
         <Fragment>
             <SearchBar
                 searchAttraction={(searchWord) => searchAttraction(searchWord)}
             />
-            <FilterTags/>
+            <FilterTags
+                clearTag={() => filterCities(null)}
+                tagName={chosenCity?.city_name}
+            />
             <section id={"attractions-container"}>
 
                 <div id={"attractions"}>
-                    <h1>{cityName}</h1>
                     <div>
                         <div>{loading && "Loading..."}</div>
                         <div id={"attractions-list"}>
@@ -86,8 +84,7 @@ const AttractionsContainer = (props) => {
 
                 <div id={"attractions-filter"}>
                     <Cities
-                        chooseCity={(cityId) => filterCities(cityId)}
-                        showCityName={(cityName) => showCity(cityName)}
+                        chooseCity={(city) => filterCities(city)}
                     />
                     <AttractionsTypes
                         chooseAttractionType={(attractionTypeId) => filterAttractions(attractionTypeId)}/>
