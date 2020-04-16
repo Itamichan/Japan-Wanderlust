@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import "./AttractionsTypes.scss";
 
 const AttractionsTypes = ({chooseAttractionType}) => {
 
@@ -26,10 +27,14 @@ const AttractionsTypes = ({chooseAttractionType}) => {
         }
     );
 
-    return( <div>
-        {loading ? <div>Loading...</div> : attractionsTypes}
-        <button onClick={() => chooseAttractionType(null)}>Reset attraction type</button>
-    </div>)
+    return (
+        <div id={"interests"}>
+            <h1>Sort by interest:</h1>
+            <div>
+                {loading ? <div>Loading...</div> : attractionsTypes}
+                <button onClick={() => chooseAttractionType(null)}>Reset attraction type</button>
+            </div>
+        </div>)
 };
 
 export default AttractionsTypes;
