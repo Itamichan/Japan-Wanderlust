@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import "./Cities.scss";
 
-const Cities = ({chooseCity}) => {
+const Cities = ({chooseCity, showCityName}) => {
 
     const [loading, setLoading] = useState(true);
     const [cities, setCities] = useState([]);
@@ -21,20 +21,40 @@ const Cities = ({chooseCity}) => {
     const citiesList = cities.map(city => {
             return (
                 <div>
-                    <button onClick={() => chooseCity(city.city_id)}>{city.city_name}</button>
+                    <button
+                        onClick={() => {
+                            chooseCity(city.city_id);
+                            showCityName(city.city_name)
+                        }}
+                    >
+                        {city.city_name}
+                    </button>
                 </div>
             )
         }
     );
 
     return (
-        <div>
-            <h1 id={"interests"}>
+        <div id={"cities"}>
+            <h1>
                 Choose a city:
             </h1>
+
+            <button id={"reset-button"}
+                    onClick={() => {
+                        chooseCity(null);
+                        showCityName(null)
+                    }}
+            >
+                Show all cities
+            </button>
+
             <div>
-                {loading ? <div>Loading...</div> : citiesList}
-                <button onClick={() => chooseCity(null)}>Reset city</button>
+                {loading ?
+                    "Loading..."
+                    :
+                    citiesList
+                }
             </div>
         </div>)
 };

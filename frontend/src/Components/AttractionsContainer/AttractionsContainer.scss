@@ -1,15 +1,25 @@
 #attractions-container {
   display: flex;
-  flex-flow: row wrap;
+
+  #attractions {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+
+    h1 {
+      position: center;
+    }
+
+    #attractions-list {
+      width: 60vw;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+    }
+  }
+
+  #attractions-filter {
+    width: 40vw;
+  }
 }
 
-#attractions-list {
-  width: 60vw;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-}
-
-#attractions-filter {
-  width: 40vw;
-}

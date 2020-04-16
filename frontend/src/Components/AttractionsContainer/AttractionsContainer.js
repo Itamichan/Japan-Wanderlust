@@ -5,6 +5,7 @@ import "./AttractionsContainer.scss";
 import AttractionsTypes from "./AttractionsTypes/AttractionsTypes";
 import Cities from "./Cities/Cities";
 import SearchBar from "./SearchBar/SearchBar";
+import FilterTags from "./FilterTags/FilterTags";
 
 const AttractionsContainer = (props) => {
 
@@ -15,6 +16,7 @@ const AttractionsContainer = (props) => {
     const [chosenAttractionsType, setChosenAttractionsType] = useState(null);
     const [chosenCity, setChosenCity] = useState(null);
     const [attractionName, setAttractionName] = useState(null);
+    const [cityName, setCityName] = useState(null);
 
 
     const loadAttractions = async () => {
@@ -60,30 +62,37 @@ const AttractionsContainer = (props) => {
         setAttractionName(searchWord)
     };
 
+    const showCity = (cityName) => {
+        setCityName(cityName)
+    };
+
     return (
         <Fragment>
             <SearchBar
                 searchAttraction={(searchWord) => searchAttraction(searchWord)}
             />
-            <div id={"attractions-container"}>
-                <section>
-                    {loading ?
-                        <div>Loading...</div>
-                        :
-                        <div id={"attractions-list"}>
-                            {attractionsList}
-                        </div>
-                    }
+            <FilterTags/>
+            <section id={"attractions-container"}>
 
-                </section>
-                <section id={"attractions-filter"}>
+                <div id={"attractions"}>
+                    <h1>{cityName}</h1>
+                    <div>
+                        <div>{loading && "Loading..."}</div>
+                        <div id={"attractions-list"}>
+                        {attractionsList}
+                        </div>
+                    </div>
+                </div>
+
+                <div id={"attractions-filter"}>
                     <Cities
                         chooseCity={(cityId) => filterCities(cityId)}
+                        showCityName={(cityName) => showCity(cityName)}
                     />
                     <AttractionsTypes
                         chooseAttractionType={(attractionTypeId) => filterAttractions(attractionTypeId)}/>
-                </section>
-            </div>
+                </div>
+            </section>
 
         </Fragment>
 
