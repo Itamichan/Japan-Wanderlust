@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import "./Cities.scss";
 
 const Cities = ({chooseCity}) => {
 
@@ -26,11 +27,16 @@ const Cities = ({chooseCity}) => {
         }
     );
 
-    return (<div>
-        {loading ? <div>Loading...</div> : citiesList}
-        <button onClick={() => chooseCity(null)}>Reset city</button>
-
-    </div>)
+    return (
+        <div>
+            <h1 id={"interests"}>
+                Choose a city:
+            </h1>
+            <div>
+                {loading ? <div>Loading...</div> : citiesList}
+                <button onClick={() => chooseCity(null)}>Reset city</button>
+            </div>
+        </div>)
 };
 
 export default Cities;
