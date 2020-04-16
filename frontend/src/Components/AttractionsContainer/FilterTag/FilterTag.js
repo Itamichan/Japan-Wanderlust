@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FilterTags = ({clearTag, tagName}) => {
+const FilterTag = ({clearTag, tagName}) => {
 
     if (!tagName) {
         return null
@@ -9,9 +9,11 @@ const FilterTags = ({clearTag, tagName}) => {
     return (
         <div>
             <button onClick={() => {
-                clearTag(null)}}>{tagName}</button>
+                clearTag(null)
+            }}>x</button>
+            <span>{tagName}</span>
         </div>
     )
 };
 
-export default FilterTags;
+export default FilterTag;

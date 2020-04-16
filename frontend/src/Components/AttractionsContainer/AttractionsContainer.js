@@ -5,7 +5,7 @@ import "./AttractionsContainer.scss";
 import AttractionsTypes from "./AttractionsTypes/AttractionsTypes";
 import Cities from "./Cities/Cities";
 import SearchBar from "./SearchBar/SearchBar";
-import FilterTags from "./FilterTags/FilterTags";
+import FilterTag from "./FilterTag/FilterTag";
 
 const AttractionsContainer = (props) => {
 
@@ -22,7 +22,7 @@ const AttractionsContainer = (props) => {
         setLoading(true);
         const {data} = await axios.get("/api/v1/attractions", {
             params: {
-                attraction_type_id: chosenAttractionsType,
+                attraction_type_id: chosenAttractionsType?.type_id,
                 city_id: chosenCity?.city_id,
                 text: attractionName
             }
@@ -49,8 +49,8 @@ const AttractionsContainer = (props) => {
 
     });
 
-    const filterAttractions = (attractionTypeId) => {
-        setChosenAttractionsType(attractionTypeId)
+    const filterAttractions = (attractionType) => {
+        setChosenAttractionsType(attractionType)
     };
 
     const filterCities = (city) => {
@@ -67,17 +67,24 @@ const AttractionsContainer = (props) => {
             <SearchBar
                 searchAttraction={(searchWord) => searchAttraction(searchWord)}
             />
-            <FilterTags
-                clearTag={() => filterCities(null)}
-                tagName={chosenCity?.city_name}
-            />
+            <div id={"filter-tags"}>
+                <FilterTag
+                    clearTag={() => filterCities(null)}
+                    tagName={chosenCity?.city_name}
+                />
+                <FilterTag
+                    clearTag={() => filterAttractions(null)}
+                    tagName={chosenAttractionsType?.type_name}
+                />
+            </div>
+
             <section id={"attractions-container"}>
 
                 <div id={"attractions"}>
                     <div>
                         <div>{loading && "Loading..."}</div>
                         <div id={"attractions-list"}>
-                        {attractionsList}
+                            {attractionsList}
                         </div>
                     </div>
                 </div>
@@ -87,7 +94,7 @@ const AttractionsContainer = (props) => {
                         chooseCity={(city) => filterCities(city)}
                     />
                     <AttractionsTypes
-                        chooseAttractionType={(attractionTypeId) => filterAttractions(attractionTypeId)}/>
+                        chooseAttractionType={(attractionType) => filterAttractions(attractionType)}/>
                 </div>
             </section>
 

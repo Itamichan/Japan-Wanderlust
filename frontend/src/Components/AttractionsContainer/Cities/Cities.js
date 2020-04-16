@@ -39,14 +39,6 @@ const Cities = ({chooseCity}) => {
                 Choose a city:
             </h1>
 
-            <button id={"reset-button"}
-                    onClick={() => {
-                        chooseCity(null)
-                    }}
-            >
-                Show all cities
-            </button>
-
             <div>
                 {loading ?
                     "Loading..."

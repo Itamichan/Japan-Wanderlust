@@ -18,10 +18,10 @@ const AttractionsTypes = ({chooseAttractionType}) => {
         setLoading(false);
     }, []);
 
-    const attractionsTypes = attractionTypes.map(e => {
+    const attractionsTypes = attractionTypes.map(attractionType => {
             return (
                 <div>
-                    <button onClick={() => chooseAttractionType(e.type_id)}>{e.type_name}</button>
+                    <button onClick={() => chooseAttractionType(attractionType)}>{attractionType.type_name}</button>
                 </div>
             )
         }
@@ -32,7 +32,6 @@ const AttractionsTypes = ({chooseAttractionType}) => {
             <h1>Sort by interest:</h1>
             <div>
                 {loading ? <div>Loading...</div> : attractionsTypes}
-                <button onClick={() => chooseAttractionType(null)}>Reset attraction type</button>
             </div>
         </div>)
 };
