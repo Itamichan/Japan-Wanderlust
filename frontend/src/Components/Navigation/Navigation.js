@@ -26,11 +26,11 @@ const Navigation = ({isUserLoggedIn, openLoginModal}) => {
     //if user is not logged in we see "Login" button otherwise "Profile".
     if (isUserLoggedIn) {
         toggleNavItem = <NavItem>
-            <NavLink onClick={openLoginModal}>Login</NavLink>
+            <NavLink>Profile</NavLink>
         </NavItem>
     } else {
         toggleNavItem = <NavItem>
-            <NavLink>Profile</NavLink>
+            <NavLink onClick={openLoginModal}>Login</NavLink>
         </NavItem>
     }
 

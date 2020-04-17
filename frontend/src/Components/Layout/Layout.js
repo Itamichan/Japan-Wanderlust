@@ -5,6 +5,7 @@ import {Provider} from "react-redux";
 import {createStore} from "redux";
 import rootReducer from "../../reducers";
 import Navigation from "../Navigation/Navigation";
+import Registration from "../Registration/Registration";
 
 
 const store = createStore(rootReducer);
@@ -14,6 +15,7 @@ const Layout = (props) => {
         <Provider store={store}>
             <Navigation/>
             <AttractionsContainer/>
+
             <Login/>
         </Provider>
     )

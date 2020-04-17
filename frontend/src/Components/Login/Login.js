@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {closeModal, login} from "../Layout/redux/actions";
-import {connect} from "react-redux";
+import {closeModal, login, openModal} from "../Layout/redux/actions";
+import {connect, Provider} from "react-redux";
 import {Modal, ModalHeader, Button, ModalFooter, ModalBody, FormGroup, Input, Label} from "reactstrap";
+import "./Login.scss";
+import Registration from "../Registration/Registration";
 
-const Login = ({loginUser, isUserLoggedIn, isModalOpen, closeModal}) => {
+const Login = ({loginUser, isUserLoggedIn, isModalOpen, closeModal, openRegistrationModal}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -21,8 +23,12 @@ const Login = ({loginUser, isUserLoggedIn, isModalOpen, closeModal}) => {
         loginUser(data.token)
     };
 
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => setModal(!modal);
+
     return (
-        <Modal isOpen={isModalOpen}>
+        <Modal isOpen={isModalOpen} id={"login-form"}>
             <ModalHeader>
                 Modal title
             </ModalHeader>
@@ -39,7 +45,8 @@ const Login = ({loginUser, isUserLoggedIn, isModalOpen, closeModal}) => {
                 </FormGroup>
                 <FormGroup>
                     <h3>Not registered?</h3>
-                    <Button>Join now!</Button>
+                    <Button onClick={toggle}>Join now!</Button>
+                    <Registration modal={modal}/>
                 </FormGroup>
             </ModalBody>
             <ModalFooter>
