@@ -7,8 +7,10 @@ import Cities from "./Cities/Cities";
 import SearchBar from "./SearchBar/SearchBar";
 import FilterTag from "./FilterTag/FilterTag";
 import PriceInput from "./PriceInput/PriceInput";
+import {login, openModal} from "../Login/redux/actions";
+import {connect} from "react-redux";
 
-const AttractionsContainer = (props) => {
+const AttractionsContainer = ({openLoginModal}) => {
 
 
     const [loading, setLoading] = useState(true);
@@ -45,6 +47,7 @@ const AttractionsContainer = (props) => {
     const attractionsList = attractions.map(attraction => {
         return (
             <AttractionCard
+                openLoginModal={openLoginModal}
                 cardTitle={attraction.attraction_name}
                 cardImg="/resources/test.jpg"
             />
@@ -75,6 +78,10 @@ const AttractionsContainer = (props) => {
                 searchAttraction={(searchWord) => searchAttraction(searchWord)}
             />
             <div id={"filter-tags"}>
+                <FilterTag
+                    clearTag={() => searchAttraction(null)}
+                    tagName={attractionName}
+                />
                 <FilterTag
                     clearTag={() => filterCities(null)}
                     tagName={chosenCity?.city_name}
@@ -117,4 +124,21 @@ const AttractionsContainer = (props) => {
     )
 };
 
-export default AttractionsContainer;
+//dispatch will move the provided action dict (result of login(token))
+// to the global state and will run the reducer with the provided action
+const mapDispatchToProps = (dispatch) => {
+    return {
+        openLoginModal: () => dispatch(openModal())
+    }
+};
+
+//map the global state to properties that are passed into the comp
+const mapStateToProps = (state) => {
+    return {
+        isUserLoggedIn: state.LoginReducer.loggedIn,
+    }
+};
+
+//next line ensures that the properties from the 2 passed functions are passed to Login comp
+const DefaultApp = connect(mapStateToProps, mapDispatchToProps)(AttractionsContainer);
+export default DefaultApp;
