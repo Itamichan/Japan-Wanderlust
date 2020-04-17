@@ -13,13 +13,26 @@ import {
     DropdownItem,
     NavbarText
 } from 'reactstrap';
-import {openModal} from "../Login/redux/actions";
+import {openModal} from "../Layout/redux/actions";
 import {connect} from "react-redux";
 
-const Navigation = ({openLoginModal}) => {
+const Navigation = ({isUserLoggedIn, openLoginModal}) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
+
+    let toggleNavItem;
+
+    //if user is not logged in we see "Login" button otherwise "Profile".
+    if (isUserLoggedIn) {
+        toggleNavItem = <NavItem>
+            <NavLink onClick={openLoginModal}>Login</NavLink>
+        </NavItem>
+    } else {
+        toggleNavItem = <NavItem>
+            <NavLink>Profile</NavLink>
+        </NavItem>
+    }
 
     return (
         <div>
@@ -28,9 +41,7 @@ const Navigation = ({openLoginModal}) => {
                 <NavbarToggler onClick={toggle}/>
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
-                        <NavItem>
-                            <NavLink onClick={openLoginModal}>Login</NavLink>
-                        </NavItem>
+                        {toggleNavItem}
                     </Nav>
                 </Collapse>
             </Navbar>

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {closeModal, login} from "./redux/actions";
+import {closeModal, login} from "../Layout/redux/actions";
 import {connect} from "react-redux";
 import {Modal, ModalHeader, Button, ModalFooter, ModalBody, FormGroup, Input, Label} from "reactstrap";
 
@@ -36,6 +36,10 @@ const Login = ({loginUser, isUserLoggedIn, isModalOpen, closeModal}) => {
                     <Label for="password">Password</Label>
                     <Input type="password" id={'password'} name={'password'} value={password}
                            onChange={(e) => setPassword(e.target.value)}/>
+                </FormGroup>
+                <FormGroup>
+                    <h3>Not registered?</h3>
+                    <Button>Join now!</Button>
                 </FormGroup>
             </ModalBody>
             <ModalFooter>

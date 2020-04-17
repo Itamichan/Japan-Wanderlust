@@ -1,6 +1,6 @@
 import {combineReducers} from "redux";
 
-import LoginReducer from "./Components/Login/redux/reducer";
+import LoginReducer from "./Components/Layout/redux/reducer";
 /*
  * Combines all reducers and their state to be used when creating the store
  */
