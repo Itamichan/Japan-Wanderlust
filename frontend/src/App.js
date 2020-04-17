@@ -1,16 +1,15 @@
 import React from 'react';
 import './App.css';
-import AttractionsContainer from "./Components/AttractionsContainer/AttractionsContainer";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Layout from "./Components/Layout/Layout";
+
 
 function App() {
     return (
-        <div className="App">
-            <p>
-                I am your frontend!
-            </p>
-            <AttractionsContainer/>
-        </div>
-);
+            <div className="App">
+                <Layout/>
+            </div>
+    );
 }
 
 export default App;
