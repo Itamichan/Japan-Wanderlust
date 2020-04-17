@@ -2,9 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import {closeModal, login} from "./redux/actions";
 import {connect} from "react-redux";
-import Modal from "reactstrap/es/Modal";
-
-
+import {Modal, ModalHeader, Button, ModalFooter, ModalBody, FormGroup, Input, Label} from "reactstrap";
 
 const Login = ({loginUser, isUserLoggedIn, isModalOpen, closeModal}) => {
     const [username, setUsername] = useState('');
@@ -15,7 +13,7 @@ const Login = ({loginUser, isUserLoggedIn, isModalOpen, closeModal}) => {
 
 
     const login = async () => {
-        const response = await axios.post('https://authorization-api-cristina.herokuapp.com/api/v1/login', {
+        const response = await axios.post('/api/v1/token', {
             'username': username,
             'password': password
         });
@@ -23,19 +21,27 @@ const Login = ({loginUser, isUserLoggedIn, isModalOpen, closeModal}) => {
         loginUser(data.token)
     };
 
-
-
     return (
         <Modal isOpen={isModalOpen}>
-            <button onClick={closeModal}>close</button>
-            <label htmlFor="username">Username </label>
-            <input type="text" id={'username'} name={'username'} value={username}
-                   onChange={(e) => setUsername(e.target.value)}/>
-            <label htmlFor="password"> Password </label>
-            <input type="password" id={'password'} name={'password'} value={password}
-                   onChange={(e) => setPassword(e.target.value)}/>
-            <button onClick={() => login()}>Submit</button>
-            <div>{isUserLoggedIn ? "is logged in" : "is not logged in"}</div>
+            <ModalHeader>
+                Modal title
+            </ModalHeader>
+            <ModalBody>
+                <FormGroup>
+                    <Label for="username">Username</Label>
+                    <Input type="text" id={'username'} name={'username'} value={username}
+                           onChange={(e) => setUsername(e.target.value)}/>
+                </FormGroup>
+                <FormGroup>
+                    <Label for="password">Password</Label>
+                    <Input type="password" id={'password'} name={'password'} value={password}
+                           onChange={(e) => setPassword(e.target.value)}/>
+                </FormGroup>
+            </ModalBody>
+            <ModalFooter>
+                <Button color="primary" onClick={() => login()}>Submit</Button>{' '}
+                <Button color="secondary" onClick={closeModal}>Cancel</Button>
+            </ModalFooter>
         </Modal>
     )
 };
