@@ -12,7 +12,7 @@ import {connect} from "react-redux";
 
 const AttractionsContainer = ({openLoginModal}) => {
 
-
+    //todo put a spinner for loading state- everywhere
     const [loading, setLoading] = useState(true);
     const [attractions, setAttractions] = useState([]);
 

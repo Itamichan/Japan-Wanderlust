@@ -14,7 +14,6 @@ const Login = ({loginUser, isModalOpen, closeModal}) => {
 
     const [loading, setLoading] = useState(false);
 
-    //todo
     const register = async () => {
         try {
             setLoading(true);
@@ -27,6 +26,7 @@ const Login = ({loginUser, isModalOpen, closeModal}) => {
             login()
         } catch (e) {
             switch(e.response.data.error) {
+                //todo write proper notify messages
                 case "InvalidUsername":
                     notify.show('Invalid Username!', "error", 1700);
                     break;

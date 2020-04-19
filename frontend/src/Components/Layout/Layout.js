@@ -13,11 +13,14 @@ const Layout = ({loginUser}) => {
     const [loading, setLoading] = useState(true);
 
     const verifyUser = async () => {
+        const token = localStorage.getItem("token");
         try {
-            const {data} = await axios.post('/api/v1/token/verify', {
-                'token': localStorage.getItem("token")
-            });
-            loginUser(localStorage.getItem("token"), data.user_info);
+            if (token) {
+                const {data} = await axios.post('/api/v1/token/verify', {
+                    'token': token
+                });
+                loginUser(token, data.user_info);
+            }
         } catch (e) {
 
         } finally {

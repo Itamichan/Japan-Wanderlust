@@ -6,6 +6,7 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
+    ButtonDropdown,
     NavLink,
     UncontrolledDropdown,
     DropdownToggle,
@@ -13,10 +14,10 @@ import {
     DropdownItem,
     NavbarText
 } from 'reactstrap';
-import {openModal} from "../Layout/redux/actions";
+import {logout, openModal} from "../Layout/redux/actions";
 import {connect} from "react-redux";
 
-const Navigation = ({isUserLoggedIn, openLoginModal, userEmail}) => {
+const Navigation = ({isUserLoggedIn, openLoginModal, userEmail, logout}) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
@@ -26,7 +27,15 @@ const Navigation = ({isUserLoggedIn, openLoginModal, userEmail}) => {
     //if user is not logged in we see "Login" button otherwise "Profile".
     if (isUserLoggedIn) {
         toggleNavItem = <NavItem>
-            <NavLink>Profile of {userEmail}</NavLink>
+            <ButtonDropdown isOpen={isOpen} toggle={toggle}>
+                <DropdownToggle caret>
+                    Profile of {userEmail}
+                </DropdownToggle>
+                <DropdownMenu>
+                    <DropdownItem onClick={logout}>Log Out</DropdownItem>
+                    <DropdownItem>Dropdown Link</DropdownItem>
+                </DropdownMenu>
+            </ButtonDropdown>
         </NavItem>
     } else {
         toggleNavItem = <NavItem>
@@ -53,7 +62,8 @@ const Navigation = ({isUserLoggedIn, openLoginModal, userEmail}) => {
 // to the global state and will run the reducer with the provided action
 const mapDispatchToProps = (dispatch) => {
     return {
-        openLoginModal: () => dispatch(openModal())
+        openLoginModal: () => dispatch(openModal()),
+        logout: () => dispatch(logout())
     }
 };
 
