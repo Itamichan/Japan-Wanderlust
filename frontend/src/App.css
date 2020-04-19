@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+
+.toast-notification, .toast-notification span {
+  width: 100% !important;
+}
+
+.modal {
+  top: 35px!important;
+}

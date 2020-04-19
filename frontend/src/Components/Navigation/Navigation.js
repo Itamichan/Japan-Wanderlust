@@ -16,7 +16,7 @@ import {
 import {openModal} from "../Layout/redux/actions";
 import {connect} from "react-redux";
 
-const Navigation = ({isUserLoggedIn, openLoginModal}) => {
+const Navigation = ({isUserLoggedIn, openLoginModal, userEmail}) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
@@ -26,7 +26,7 @@ const Navigation = ({isUserLoggedIn, openLoginModal}) => {
     //if user is not logged in we see "Login" button otherwise "Profile".
     if (isUserLoggedIn) {
         toggleNavItem = <NavItem>
-            <NavLink>Profile</NavLink>
+            <NavLink>Profile of {userEmail}</NavLink>
         </NavItem>
     } else {
         toggleNavItem = <NavItem>
@@ -61,6 +61,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         isUserLoggedIn: state.LoginReducer.loggedIn,
+        userEmail: state.LoginReducer.email,
     }
 };
 

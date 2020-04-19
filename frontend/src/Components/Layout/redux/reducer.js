@@ -2,7 +2,9 @@
 
 const initialState = {
     loggedIn: false,
-    modalOpen: false
+    modalOpen: false,
+    username: undefined,
+    email: undefined
 };
 
 const LoginReducer = (state, action) => {
@@ -16,13 +18,18 @@ const LoginReducer = (state, action) => {
             return {
                 //unwraps the state dict
                 ...state,
-                loggedIn: false
+                loggedIn: false,
+                username: undefined,
+                email: undefined,
             };
         case "LOGIN":
             localStorage.setItem("token", action.token);
             return {
                 ...state,
-                loggedIn: true
+                loggedIn: true,
+                modalOpen: false,
+                username: action.userInfo.username,
+                email: action.userInfo.email,
             };
         case "OPEN_MODAL":
             return {
