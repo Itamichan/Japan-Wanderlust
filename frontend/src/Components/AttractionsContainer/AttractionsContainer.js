@@ -7,8 +7,9 @@ import Cities from "./Cities/Cities";
 import SearchBar from "./SearchBar/SearchBar";
 import FilterTag from "./FilterTag/FilterTag";
 import PriceInput from "./PriceInput/PriceInput";
-import {login, openModal} from "../Layout/redux/actions";
+import {login, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
+import TripBanner from "../TripBanner/TripBanner";
 
 const AttractionsContainer = ({openLoginModal}) => {
 
@@ -118,7 +119,7 @@ const AttractionsContainer = ({openLoginModal}) => {
                     />
                 </div>
             </section>
-
+            <TripBanner/>
         </Fragment>
 
     )

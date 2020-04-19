@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {closeModal, login} from "../Layout/redux/actions";
+import {closeModal, login} from "./redux/actions";
 import {connect} from "react-redux";
 import {Button, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import "./Login.scss";
@@ -44,8 +44,6 @@ const Login = ({loginUser, isModalOpen, closeModal}) => {
         } finally {
             setLoading(false);
         }
-
-
     };
 
     const login = async () => {

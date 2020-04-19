@@ -4,7 +4,7 @@ import Login from "../Login/Login";
 import Navigation from "../Navigation/Navigation";
 import Notifications from 'react-notify-toast';
 import axios from "axios";
-import {login, openModal} from "./redux/actions";
+import {login, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 
 

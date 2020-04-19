@@ -14,7 +14,7 @@ import {
     DropdownItem,
     NavbarText
 } from 'reactstrap';
-import {logout, openModal} from "../Layout/redux/actions";
+import {logout, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 
 const Navigation = ({isUserLoggedIn, openLoginModal, userEmail, logout}) => {
