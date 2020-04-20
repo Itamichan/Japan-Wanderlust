@@ -12,11 +12,11 @@ const Login = ({loginUser, isModalOpen, closeModal}) => {
     const [email, setEmail] = useState('');
     const [registerUser, setRegisterUser] = useState(false);
 
-    const [loading, setLoading] = useState(false);
+    const [sendingPostRequest, setSendingPostRequest] = useState(false);
 
     const register = async () => {
         try {
-            setLoading(true);
+            setSendingPostRequest(true);
             const response = await axios.post('/api/v1/users', {
                 'username': username,
                 'password': password,
@@ -42,13 +42,13 @@ const Login = ({loginUser, isModalOpen, closeModal}) => {
             }
 
         } finally {
-            setLoading(false);
+            setSendingPostRequest(false);
         }
     };
 
     const login = async () => {
         try {
-            setLoading(true);
+            setSendingPostRequest(true);
             const {data} = await axios.post('/api/v1/token', {
                 'username': username,
                 'password': password
@@ -57,7 +57,7 @@ const Login = ({loginUser, isModalOpen, closeModal}) => {
         } catch (e) {
             console.log(e)
         } finally {
-            setLoading(false);
+            setSendingPostRequest(false);
         }
 
     };
@@ -77,37 +77,37 @@ const Login = ({loginUser, isModalOpen, closeModal}) => {
             <ModalBody>
                 <FormGroup>
                     <Label for="username">Username</Label>
-                    <Input disabled={loading} type="text" id={'username'} name={'username'} value={username}
+                    <Input disabled={sendingPostRequest} type="text" id={'username'} name={'username'} value={username}
                            onChange={(e) => setUsername(e.target.value)}/>
                 </FormGroup>
                 <FormGroup>
                     <Label for="password">Password</Label>
-                    <Input disabled={loading} type="password" id={'password'} name={'password'} value={password}
+                    <Input disabled={sendingPostRequest} type="password" id={'password'} name={'password'} value={password}
                            onChange={(e) => setPassword(e.target.value)}/>
                 </FormGroup>
                 {
                     registerUser ? (
                         <FormGroup>
                             <Label for="email">Email</Label>
-                            <Input disabled={loading}  type="email" name="email" id="email" value={email}
+                            <Input disabled={sendingPostRequest}  type="email" name="email" id="email" value={email}
                                    onChange={(e) => setEmail(e.target.value)}/>
                         </FormGroup>
                     ) : (
                         <FormGroup>
                             <h3>Not registered?</h3>
-                            <button disabled={loading} onClick={() => setRegisterUser(true)}>register now!</button>
+                            <button disabled={sendingPostRequest} onClick={() => setRegisterUser(true)}>register now!</button>
                         </FormGroup>
                     )
                 }
             </ModalBody>
             <ModalFooter>
-                {registerUser && <Button disabled={loading} onClick={() => setRegisterUser(false)}>Go back to signIn</Button>}
-                <Button disabled={loading} onClick={() => {
+                {registerUser && <Button disabled={sendingPostRequest} onClick={() => setRegisterUser(false)}>Go back to signIn</Button>}
+                <Button disabled={sendingPostRequest} onClick={() => {
                     closeModal();
                     setRegisterUser(false)
                 }}>Cancel
                 </Button>
-                <Button disabled={loading} color="primary" onClick={registerUser ? register : login}>Submit</Button>
+                <Button disabled={sendingPostRequest} color="primary" onClick={registerUser ? register : login}>Submit</Button>
             </ModalFooter>
         </Modal>
     )
