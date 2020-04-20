@@ -17,7 +17,7 @@ import {
 import {logout, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 
-const Navigation = ({isUserLoggedIn, openLoginModal, userEmail, logout}) => {
+const Navigation = ({isUserLoggedIn, openLoginModal, username, logout}) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
@@ -29,7 +29,7 @@ const Navigation = ({isUserLoggedIn, openLoginModal, userEmail, logout}) => {
         toggleNavItem = <NavItem>
             <ButtonDropdown isOpen={isOpen} toggle={toggle}>
                 <DropdownToggle caret>
-                    Profile of {userEmail}
+                    Profile of {username}
                 </DropdownToggle>
                 <DropdownMenu>
                     <DropdownItem onClick={logout}>Log Out</DropdownItem>
@@ -71,7 +71,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         isUserLoggedIn: state.LoginReducer.loggedIn,
-        userEmail: state.LoginReducer.email,
+        username: state.LoginReducer.username,
     }
 };
 
