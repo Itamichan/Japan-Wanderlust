@@ -177,7 +177,7 @@ class TripsView(MethodView):
             if not new_trip:
                 return response_400("BadRequest", "Invalid data entry")
 
-            return jsonify({new_trip.serialize()})
+            return jsonify(new_trip.serialize())
 
         except KeyError:
             return response_400("ParameterError", "Please provide all the parameters")
