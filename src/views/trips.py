@@ -161,7 +161,7 @@ class TripsView(MethodView):
             max_price = int(request.json['max_price'])
 
             # checks that the passed values are valid
-            if not re.match(r'^[.]{2,25}$', name):
+            if not re.match(r'^[\S]{2,25}$', name):
                 return response_400('InvalidName', 'Name should have at least 2 characters and maximum 25, '
                                                    'it can contain any char except new line.')
 
