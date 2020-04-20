@@ -35,7 +35,10 @@ const TripCreateModal = ({close}) => {
                 is_guided: isGuided,
                 in_group: inGroup,
                 max_price: maxPrice
-            });
+            }, {
+                headers: {
+                    Authorization: "JWT " + localStorage.getItem("token")
+                }});
 
         } catch (e) {
 
@@ -44,10 +47,6 @@ const TripCreateModal = ({close}) => {
             setSendingPostRequest(false);
         }
     };
-
-    useEffect(() => {
-        createTrip()
-    }, []);
 
     //todo ask tobert if i need all fancy extra attributes for input fields
     return (
@@ -91,6 +90,7 @@ const TripCreateModal = ({close}) => {
             </ModalBody>
             <ModalFooter>
                 <Button onClick={close}>close</Button>
+                <Button color="primary" onClick={createTrip}>submit</Button>
             </ModalFooter>
         </Modal>
 

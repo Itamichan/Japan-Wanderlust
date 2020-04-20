@@ -26,12 +26,47 @@ const Layout = ({loginUser}) => {
         } finally {
             setLoading(false)
         }
-
-
     };
 
+
     useEffect(() => {
-        verifyUser()
+        verifyUser();
+        // axios.interceptors.request.use(
+        //     function (config) {
+        //         // Do something before request is sent
+        //         const token = localStorage.getItem("token");
+        //         if (token !== null && token !== undefined && token !== "" && token !== "null") {
+        //             config.headers.Authorization = token;
+        //         }
+        //         return config;
+        //     },
+        //     function (error) {
+        //         // Do something with request error
+        //         return Promise.reject(error);
+        //     }
+        // );
+        // axios.interceptors.response.use(
+        //     function (response) {
+        //         // Do something with response data
+        //         return response;
+        //     },
+        //     function (error) {
+        //         // Logout if 401
+        //         if (error.response) {
+        //             if (error.response.status === 401) {
+        //                 // Unauthorized, bad token
+        //                 //todo unauthorizedLogout();
+        //
+        //                 // self.setState({ contentLoaded: true });
+        //                 return Promise.reject(error);
+        //             } else {
+        //                 return Promise.reject(error);
+        //             }
+        //         } else {
+        //             return Promise.reject(error);
+        //         }
+        //     }
+        // );
     }, []);
 
     return (
