@@ -25,7 +25,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip}) => {
         <div id={"trip-banner"}>
             {currentTrip ? <TripDisplay/> : actionButtons}
             {showChooseModal && <TripChooserModal close={() => setShowChooseModal(false)}/>}
-            {showCreateTrip && <TripCreateModal close={() => setShowChooseModal(false)}/>}
+            {showCreateTrip && <TripCreateModal close={() => setShowCreateTrip(false)}/>}
         </div>
     )
 };
