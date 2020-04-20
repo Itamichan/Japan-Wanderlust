@@ -36,7 +36,7 @@ class TripsView(MethodView):
             "max_trip_days": 20,
             "is_guided": True,
             "in_group": False,
-            "max_price": 10000,
+            "max_price": 10000
          }
 
         @apiError (NotFound 404) {Object} NoSuchTrip
@@ -86,7 +86,7 @@ class TripsView(MethodView):
                     "max_trip_days": 20,
                     "is_guided": True,
                     "in_group": False,
-                    "max_price": 10 000,
+                    "max_price": 10 000
                 },
                 {
                     "id": 2,
@@ -95,7 +95,7 @@ class TripsView(MethodView):
                     "max_trip_days": 30,
                     "is_guided": True,
                     "in_group": True,
-                    "max_price": 200 000,
+                    "max_price": 200 000
                 }
             ]
          }
@@ -136,7 +136,13 @@ class TripsView(MethodView):
         @apiSuccessExample {json} Success-Response:
         HTTP/1.1 200 OK
         {
-           'trip_id': 1
+            "id": 1,
+            "name": "Short Travel",
+            "user_id": 1,
+            "max_trip_days": 20,
+            "is_guided": True,
+            "in_group": False,
+            "max_price": 10000
          }
 
         @apiError (BadRequest 400) {Object} InvalidName                     Name should have at least 2 characters and maximum 25, it can contain any char except new line.
@@ -171,7 +177,7 @@ class TripsView(MethodView):
             if not new_trip:
                 return response_400("BadRequest", "Invalid data entry")
 
-            return jsonify({'trip': new_trip})
+            return jsonify({new_trip.serialize()})
 
         except KeyError:
             return response_400("ParameterError", "Please provide all the parameters")
