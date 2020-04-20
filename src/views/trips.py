@@ -181,7 +181,8 @@ class TripsView(MethodView):
 
         except KeyError:
             return response_400("ParameterError", "Please provide all the parameters")
-        except:
+        except Exception as e:
+            print(e)
             return response_500()
 
     @validate_token
