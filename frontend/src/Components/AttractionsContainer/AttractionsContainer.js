@@ -80,10 +80,6 @@ const AttractionsContainer = ({openLoginModal}) => {
             />
             <div id={"filter-tags"}>
                 <FilterTag
-                    clearTag={() => searchAttraction(null)}
-                    tagName={attractionName}
-                />
-                <FilterTag
                     clearTag={() => filterCities(null)}
                     tagName={chosenCity?.city_name}
                 />
@@ -93,7 +89,7 @@ const AttractionsContainer = ({openLoginModal}) => {
                 />
                 <FilterTag
                     clearTag={() => filterPrice(null)}
-                    tagName={maxPrice? `limit: ${maxPrice} YEN` : null}
+                    tagName={maxPrice ? `limit: ${maxPrice} YEN` : null}
                 />
             </div>
 
@@ -115,7 +111,7 @@ const AttractionsContainer = ({openLoginModal}) => {
                     <AttractionsTypes
                         chooseAttractionType={(attractionType) => filterAttractions(attractionType)}/>
                     <PriceInput
-                    choosePrice={(price) => filterPrice(price)}
+                        choosePrice={(price) => filterPrice(price)}
                     />
                 </div>
             </section>

@@ -5,7 +5,7 @@ const SearchBar = ({searchAttraction}) => {
     return (
         <Fragment>
             <input
-                type="text"
+                type="search"
                 placeholder={"Search"}
                 onChange={(event) => {
                     searchAttraction(event.target.value)
