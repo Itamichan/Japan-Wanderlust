@@ -3,20 +3,29 @@ import {openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 import "./TripBanner.scss";
 import TripChooserModal from "./TripChooser/TripChooserModal";
+import TripDisplay from "./TripDisplay/TripDisplay";
+import TripCreateModal from "./TripCreate/TripCreateModal";
 
 const TripBanner = ({isUserLoggedIn, currentTrip}) => {
 
     const [showChooseModal, setShowChooseModal] = useState(false);
+    const [showCreateTrip, setShowCreateTrip] = useState(false);
 
+    const actionButtons = <div>
+        <button onClick={() => setShowCreateTrip(true)}>create a trip</button>
+        <button onClick={() => setShowChooseModal(true)}>choose a trip</button>
+    </div>;
 
-
-    if (!isUserLoggedIn) {
+        if
+    (!isUserLoggedIn)
+    {
         return null
     }
     return (
         <div id={"trip-banner"}>
-            {currentTrip ? null : <button onClick={() => setShowChooseModal(true)}>choose a trip</button>}
+            {currentTrip ? <TripDisplay/> : actionButtons}
             {showChooseModal && <TripChooserModal close={() => setShowChooseModal(false)}/>}
+            {showCreateTrip && <TripCreateModal close={() => setShowChooseModal(false)}/>}
         </div>
     )
 };
