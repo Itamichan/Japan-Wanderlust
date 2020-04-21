@@ -66,7 +66,7 @@ class TripsView(MethodView):
         @apiName TripsList
         @apiGroup Trips
 
-        @apiSuccess {Object[]} trips                    List with trips
+        @apiSuccess {Object[]} trips                List with trips
         @apiSuccess {Integer} trips.id              Trip's id
         @apiSuccess {String} trips.name             Trip's name
         @apiSuccess {Integer} trips.user_id         Trip's user_id
@@ -255,7 +255,8 @@ class TripsView(MethodView):
 
             return jsonify({})
 
-        except:
+        except Exception as e:
+            print(e)
             return response_500()
 
     @validate_token
@@ -286,5 +287,6 @@ class TripsView(MethodView):
 
             return jsonify({})
 
-        except:
+        except Exception as e:
+            print(e)
             return response_500()

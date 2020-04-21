@@ -44,5 +44,6 @@ class CitiesView(MethodView):
             return jsonify({
                 "cities": cities_list
             })
-        except:
+        except Exception as e:
+            print(e)
             return response_500()

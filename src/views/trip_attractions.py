@@ -48,7 +48,8 @@ class TripAttractionsView(MethodView):
             return response_400("AttractionAlreadyExists", "Please provide a new attraction to the trip")
         except IntegrityError:
             return response_400("InvalidReference", "Please provide a valid trip_list_id or attraction_id")
-        except:
+        except Exception as e:
+            print(e)
             return response_500()
 
     @validate_token
@@ -115,7 +116,8 @@ class TripAttractionsView(MethodView):
             return jsonify({
                 "attractions": [e.serialize() for e in attractions_list]
             })
-        except:
+        except Exception as e:
+            print(e)
             return response_500()
 
     @validate_token
@@ -152,6 +154,7 @@ class TripAttractionsView(MethodView):
                 return response_404("NoSuchAttraction", "Such attraction doesn't exist")
 
             return jsonify({})
-        except:
+        except Exception as e:
+            print(e)
             return response_500()
 

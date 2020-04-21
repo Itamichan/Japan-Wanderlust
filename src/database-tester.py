@@ -1,17 +1,17 @@
 import requests
 import json
 #
-response = requests.post('http://localhost:5000/api/v1/users', data=json.dumps({
-    'username': 'testtest2',
-    'password': 'testtest',
-    'email': 'test@gmail.com'
-}), headers={'Content-Type': 'application/json'})
+# response = requests.post('http://localhost:5000/api/v1/users', data=json.dumps({
+#     'username': 'testtest5',
+#     'password': 'testtest',
+#     'email': 'test@gmail.com'
+# }), headers={'Content-Type': 'application/json'})
 
-print(response.status_code, response.json())
-assert response.status_code == 200, 'Endpoint does not respond with 200'
+# print(response.status_code, response.json())
+# assert response.status_code == 200, 'Endpoint does not respond with 200'
 
 response = requests.post('http://localhost:5000/api/v1/token', data=json.dumps({
-    'username': 'testtest2',
+    'username': 'testtest',
     'password': 'testtest'
 }), headers={'Content-Type': 'application/json'}, timeout=1)
 
@@ -29,10 +29,10 @@ response = requests.post('http://localhost:5000/api/v1/token/verify', data=json.
 print(response.status_code, response.content)
 assert response.status_code == 200, 'Endpoint does not respond with 200'
 
-response = requests.get('http://localhost:5000/api/v1/types')
-
-print(response.status_code, response.json())
-assert response.status_code == 200, 'Endpoint does not respond with 200'
+# response = requests.get('http://localhost:5000/api/v1/types')
+#
+# print(response.status_code, response.json())
+# assert response.status_code == 200, 'Endpoint does not respond with 200'
 
 # response = requests.get('http://localhost:5000/api/v1/attractions')
 #
@@ -44,17 +44,17 @@ assert response.status_code == 200, 'Endpoint does not respond with 200'
 # print(response.status_code, response.json())
 # assert response.status_code == 200, 'Endpoint does not respond with 200'
 
-response = requests.get('http://localhost:5000/api/v1/attractions?city_id=2')
+# response = requests.get('http://localhost:5000/api/v1/attractions?city_id=2')
+#
+# print(response.status_code, response.json())
+# assert response.status_code == 200, 'Endpoint does not respond with 200'
+#
+# response = requests.get('http://localhost:5000/api/v1/attractions?text=fu&city_id=2')
+#
+# print(response.status_code, response.json())
+# assert response.status_code == 200, 'Endpoint does not respond with 200'
 
-print(response.status_code, response.json())
-assert response.status_code == 200, 'Endpoint does not respond with 200'
-
-response = requests.get('http://localhost:5000/api/v1/attractions?text=fu&city_id=2')
-
-print(response.status_code, response.json())
-assert response.status_code == 200, 'Endpoint does not respond with 200'
-
-response = requests.get('http://localhost:5000/api/v1/attractions?city_id=2')
+response = requests.get('http://localhost:5000/api/v1/trips/3')
 
 print(response.status_code, response.json())
 assert response.status_code == 200, 'Endpoint does not respond with 200'

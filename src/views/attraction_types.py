@@ -46,5 +46,6 @@ class TypesView(MethodView):
             return jsonify({
                "attraction_types": attraction_types_list
             })
-        except:
+        except Exception as e:
+            print(e)
             return response_500()
