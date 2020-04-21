@@ -40,7 +40,7 @@ const TripsModal = ({close}) => {
         loadTrips()
     }, []);
 
-    const tripName = trips.map(trip => {
+    const tripsList = trips.map(trip => {
         return (
             <div onClick={() => {
                 showTripAttractions(trip.id);
@@ -51,7 +51,10 @@ const TripsModal = ({close}) => {
 
     const attractionsList = attractions.map(attraction => {
         return (
-            <div>{attraction.attraction_name}</div>
+            <div>
+                <div>{attraction.attraction_name}</div>
+            </div>
+
         )
     });
 
@@ -65,11 +68,15 @@ const TripsModal = ({close}) => {
                     loading ?
                         ("loading") :
 
-                        (<div/>)
+                        (<div>
+                            {showAttraction ? attractionsList : tripsList}
+                        </div>)
                 }
             </ModalBody>
             <ModalFooter>
+                {showAttraction && <Button onClick={() => setShowAttraction(false)}>go back</Button>}
                 <Button onClick={close}>close</Button>
+
             </ModalFooter>
         </Modal>
 
