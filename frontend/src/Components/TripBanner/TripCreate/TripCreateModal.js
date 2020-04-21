@@ -17,7 +17,7 @@ import {connect} from "react-redux";
 import {setCurrentTrip} from "../reduxTrip/actions";
 import CustomInput from "reactstrap/es/CustomInput";
 
-const TripCreateModal = ({close}) => {
+const TripCreateModal = ({close, setCurrentTrip}) => {
 
     const [sendingPostRequest, setSendingPostRequest] = useState(false);
     const [tripName, setTripName] = useState("");
@@ -30,19 +30,39 @@ const TripCreateModal = ({close}) => {
         try {
             setSendingPostRequest(true);
             const {data} = await axios.post('/api/v1/trips', {
-                name: tripName,
-                max_trip_days: maxTripDays,
-                is_guided: isGuided,
-                in_group: inGroup,
-                max_price: maxPrice
-            }, {
-                headers: {
-                    Authorization: "JWT " + localStorage.getItem("token")
-                }});
+                    name: tripName,
+                    max_trip_days: maxTripDays,
+                    is_guided: isGuided,
+                    in_group: inGroup,
+                    max_price: maxPrice
+                }
+            );
+            notify.show('yay!!', "success", 1700);
+            setCurrentTrip(data)
 
         } catch (e) {
 
-
+            switch (e.response.data.error) {
+                //todo write proper notify messages
+                case "InvalidName":
+                    notify.show('InvalidName!', "error", 1700);
+                    break;
+                case "InvalidDaysNumber":
+                    notify.show('InvalidDaysNumber!', "error", 1700);
+                    break;
+                case "InvalidPriceNumber":
+                    notify.show('InvalidPriceNumber!', "error", 1700);
+                    break;
+                case "InvalidDataEntry":
+                    notify.show('InvalidDataEntry!', "error", 1700);
+                    break;
+                case "ParameterError":
+                    notify.show('ParameterError!', "error", 1700);
+                    break;
+                case "Unauthorized":
+                    notify.show('Invalid Token!', "error", 1700);
+                    break
+            }
         } finally {
             setSendingPostRequest(false);
         }
@@ -90,7 +110,13 @@ const TripCreateModal = ({close}) => {
             </ModalBody>
             <ModalFooter>
                 <Button onClick={close}>close</Button>
-                <Button color="primary" onClick={createTrip}>submit</Button>
+                <Button color="primary"
+                        onClick={() => {
+                            createTrip();
+                            close()
+                        }}>
+                    submit
+                </Button>
             </ModalFooter>
         </Modal>
 
