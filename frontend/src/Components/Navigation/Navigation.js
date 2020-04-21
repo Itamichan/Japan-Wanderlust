@@ -6,6 +6,7 @@ import {
 import {logout, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 import TripChooserModal from "../TripBanner/TripChooser/TripChooserModal";
+import TripsModal from "./TripsModal/TripsModal";
 
 const Navigation = ({isUserLoggedIn, openLoginModal, username, logout}) => {
 

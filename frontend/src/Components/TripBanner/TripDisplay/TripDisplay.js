@@ -4,38 +4,20 @@ import {setCurrentTrip} from "../reduxTrip/actions";
 import {connect} from "react-redux";
 import {notify} from "react-notify-toast";
 
-const TripDisplay = ({currentTripId}) => {
+const TripDisplay = ({currentTrip}) => {
 
-    console.log(`currentTripId: ${currentTripId}`);
-
-    const [loading, setLoading] = useState(true);
-    const [tripInfo, setTripInfo] = useState(undefined);
-
-    const showTripInfo = async () => {
-        try {
-            setLoading(true);
-            const {data} = await axios.get(`/api/v1/trips/${currentTripId}`);
-
-            setTripInfo(data)
-
-        } catch (e) {
-            switch (e.response.data.error) {
-                //todo write proper notify messages
-                case "NoSuchTrip":
-                    notify.show('No Such Trip!', "error", 1700);
-                    break;
-            }
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        showTripInfo()
-    }, [currentTripId]);
+    let isGuided = currentTrip.is_guided;
+    let inGroup = currentTrip.in_group;
 
     return (
-        <div>{loading ? "loading" : <div>{tripInfo}</div>}</div>
+        <div>
+            <div>trip info:</div>
+            <div>{`trip name: ${currentTrip.name}`}</div>
+            <div>{`is guided: ${isGuided ? "yes" : "no"}`}</div>
+            <div>{`in group: ${inGroup ? "yes" : "no"}`}</div>
+            <div>{`max price: ${currentTrip.max_price} YEN`}</div>
+        </div>
+
     )
 };
 
@@ -50,7 +32,7 @@ const mapDispatchToProps = (dispatch) => {
 //map the global state to properties that are passed into the comp
 const mapStateToProps = (state) => {
     return {
-        currentTripId: state.TripReducer.currentTrip.id
+        currentTrip: state.TripReducer.currentTrip
     }
 };
 
