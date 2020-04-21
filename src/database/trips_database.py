@@ -44,8 +44,8 @@ class TripsDatabase(Database):
             cursor.execute(sql, (user_id, trip_id))
             result = cursor.fetchone()
             if result is not None:
-                return Trip(id=trip_id, name=result[1], user_id=user_id, max_trip_days=result[3], is_guided=result[4],
-                            in_group=result[5], max_price=result[6])
+                return Trip(id=trip_id, name=result[0], user_id=user_id, max_trip_days=result[1], is_guided=result[2],
+                            in_group=result[3], max_price=result[4])
 
     def update_trip(self, trip_id, user_id, changed_fields):
         with self.connection.cursor() as cursor:
