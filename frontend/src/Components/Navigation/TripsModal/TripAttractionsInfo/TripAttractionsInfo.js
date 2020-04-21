@@ -10,7 +10,7 @@ const TripAttractionsInfo = ({currentTrip}) => {
     const [executingRequest, setExecutingRequest] = useState(false);
     const [cityName, setCityName] = useState(undefined);
 
-    const showTripAttractions = async () => {
+    const loadTripAttractions = async () => {
         try {
             const {data} = await axios.get(`/api/v1/trips/${currentTrip.id}/attractions`);
             setAttractions(data.attractions)
@@ -25,7 +25,7 @@ const TripAttractionsInfo = ({currentTrip}) => {
         try {
             setExecutingRequest(true);
             const {data} = await axios.delete(`/api/v1/trips/${tripId}/attractions/${attractionId}`);
-            showTripAttractions()
+            loadTripAttractions()
         } catch (e) {
             switch (e.response.data.error) {
                 //todo write proper notify messages
@@ -54,21 +54,25 @@ const TripAttractionsInfo = ({currentTrip}) => {
     // };
 
     const attractionsList = attractions.map(attraction => {
-        console.log(attraction);
         return (
             <Row>
                 <Col>{attraction.attraction_name}</Col>
                 <Col>cityName</Col>
                 <Col>
-                    <Button disabled={executingRequest}
+                    {/*todo implement get attraction_info*/}
+                    <Button color="warning">More Info</Button>
+                </Col>
+                <Col>
+                    <Button color="danger" disabled={executingRequest}
                             onClick={() => removeAttraction(currentTrip.id, attraction.id)}>delete</Button>
                 </Col>
+
             </Row>
         )
     });
 
     useEffect(() => {
-        showTripAttractions()
+        loadTripAttractions()
     }, []);
 
     let isGuided = currentTrip.is_guided;

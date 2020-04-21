@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+import {Button, Modal, ModalBody, ModalFooter, ModalHeader, Col, Container, Row} from "reactstrap";
 import {setCurrentTrip} from "../../TripBanner/reduxTrip/actions";
 import {connect} from "react-redux";
 import TripAttractionsInfo from "./TripAttractionsInfo/TripAttractionsInfo";
+import {notify} from "react-notify-toast";
 
 const TripsModal = ({close, setCurrentTrip}) => {
 
     const [loading, setLoading] = useState(true);
     const [trips, setTrips] = useState([]);
     const [showAttraction, setShowAttraction] = useState(false);
+    const [executingRequest, setExecutingRequest] = useState(false);
 
     const loadTrips = async () => {
         try {
@@ -23,16 +25,44 @@ const TripsModal = ({close, setCurrentTrip}) => {
         }
     };
 
+    const removeTrip = async (tripId) => {
+        try {
+            setExecutingRequest(true);
+            const {data} = await axios.delete(`/api/v1/trips/${tripId}`);
+            loadTrips()
+        } catch (e) {
+            switch (e.response.data.error) {
+                //todo write proper notify messages
+                case "NoSuchTrip":
+                    notify.show('NoSuchTrip', "error", 1700);
+                    break;
+            }
+        } finally {
+            setExecutingRequest(false);
+        }
+    };
+
     useEffect(() => {
         loadTrips()
     }, []);
 
+
     const tripsList = trips.map(trip => {
+        console.log(trip);
         return (
-            <div onClick={() => {
-                setCurrentTrip(trip);
-                setShowAttraction(true)
-            }}>{trip.name}</div>
+            <Row>
+                <Col>{trip.name}</Col>
+                <Col>
+                    <Button color="success" onClick={() => {
+                        setCurrentTrip(trip);
+                        setShowAttraction(true)
+                    }}>See your trip</Button>
+                </Col>
+                <Col>
+                    <Button disabled={executingRequest} color="danger" onClick={() => removeTrip(trip.id)}>Remove
+                        trip</Button>
+                </Col>
+            </Row>
         )
     });
 
@@ -47,7 +77,13 @@ const TripsModal = ({close, setCurrentTrip}) => {
                         ("loading") :
 
                         (<div>
-                            {showAttraction ? <TripAttractionsInfo/> : tripsList}
+                            {showAttraction ? (
+                                <TripAttractionsInfo/>
+                            ) : (
+                                <Container>
+                                    {tripsList}
+                                </Container>
+                            )}
                         </div>)
                 }
             </ModalBody>
