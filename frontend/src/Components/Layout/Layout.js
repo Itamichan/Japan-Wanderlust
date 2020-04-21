@@ -4,11 +4,11 @@ import Login from "../Login/Login";
 import Navigation from "../Navigation/Navigation";
 import Notifications from 'react-notify-toast';
 import axios from "axios";
-import {login, openModal} from "../Login/redux/actions";
+import {login, logout, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 
 
-const Layout = ({loginUser}) => {
+const Layout = ({loginUser, logout}) => {
 
     const [loading, setLoading] = useState(true);
 
@@ -26,47 +26,46 @@ const Layout = ({loginUser}) => {
         } finally {
             setLoading(false)
         }
+
     };
 
 
     useEffect(() => {
+        axios.interceptors.request.use(
+            function (config) {
+                // Do something before request is sent
+                const token = localStorage.getItem("token");
+                if (token !== null && token !== undefined && token !== "" && token !== "null") {
+                    config.headers.Authorization = 'JWT ' + token;
+                }
+                return config;
+            },
+            function (error) {
+                // Do something with request error
+                return Promise.reject(error);
+            }
+        );
+        axios.interceptors.response.use(
+            function (response) {
+                // Do something with response data
+                return response;
+            },
+            function (error) {
+                // Logout if 401
+                if (error.response) {
+                    if (error.response.status === 401) {
+                        // Unauthorized, bad token
+                        logout();
+                        return Promise.reject(error);
+                    } else {
+                        return Promise.reject(error);
+                    }
+                } else {
+                    return Promise.reject(error);
+                }
+            }
+        );
         verifyUser();
-        // axios.interceptors.request.use(
-        //     function (config) {
-        //         // Do something before request is sent
-        //         const token = localStorage.getItem("token");
-        //         if (token !== null && token !== undefined && token !== "" && token !== "null") {
-        //             config.headers.Authorization = token;
-        //         }
-        //         return config;
-        //     },
-        //     function (error) {
-        //         // Do something with request error
-        //         return Promise.reject(error);
-        //     }
-        // );
-        // axios.interceptors.response.use(
-        //     function (response) {
-        //         // Do something with response data
-        //         return response;
-        //     },
-        //     function (error) {
-        //         // Logout if 401
-        //         if (error.response) {
-        //             if (error.response.status === 401) {
-        //                 // Unauthorized, bad token
-        //                 //todo unauthorizedLogout();
-        //
-        //                 // self.setState({ contentLoaded: true });
-        //                 return Promise.reject(error);
-        //             } else {
-        //                 return Promise.reject(error);
-        //             }
-        //         } else {
-        //             return Promise.reject(error);
-        //         }
-        //     }
-        // );
     }, []);
 
     return (
@@ -93,6 +92,7 @@ const Layout = ({loginUser}) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         loginUser: (token, userInfo) => dispatch(login(token, userInfo)),
+        logout: () => dispatch(logout())
     }
 };
 
