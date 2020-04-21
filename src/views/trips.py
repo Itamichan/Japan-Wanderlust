@@ -53,7 +53,8 @@ class TripsView(MethodView):
 
             return jsonify(trip_info.serialize())
 
-        except:
+        except Exception as e:
+            print(e)
             return response_500()
 
     def get_trips_list(self, user):
