@@ -3,12 +3,12 @@ import axios from "axios";
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {setCurrentTrip} from "../../TripBanner/reduxTrip/actions";
 import {connect} from "react-redux";
+import TripAttractionsInfo from "./TripAttractionsInfo/TripAttractionsInfo";
 
-const TripsModal = ({close}) => {
+const TripsModal = ({close, setCurrentTrip}) => {
 
     const [loading, setLoading] = useState(true);
     const [trips, setTrips] = useState([]);
-    const [attractions, setAttractions] = useState([]);
     const [showAttraction, setShowAttraction] = useState(false);
 
     const loadTrips = async () => {
@@ -23,19 +23,6 @@ const TripsModal = ({close}) => {
         }
     };
 
-    const showTripAttractions = async (tripId) => {
-        try {
-            setLoading(true);
-            const {data} = await axios.get(`/api/v1/trips/${tripId}/attractions`);
-            setAttractions(data.attractions)
-        } catch (e) {
-
-        } finally {
-            setLoading(false);
-        }
-
-    };
-
     useEffect(() => {
         loadTrips()
     }, []);
@@ -43,18 +30,9 @@ const TripsModal = ({close}) => {
     const tripsList = trips.map(trip => {
         return (
             <div onClick={() => {
-                showTripAttractions(trip.id);
+                setCurrentTrip(trip);
                 setShowAttraction(true)
             }}>{trip.name}</div>
-        )
-    });
-
-    const attractionsList = attractions.map(attraction => {
-        return (
-            <div>
-                <div>{attraction.attraction_name}</div>
-            </div>
-
         )
     });
 
@@ -69,7 +47,7 @@ const TripsModal = ({close}) => {
                         ("loading") :
 
                         (<div>
-                            {showAttraction ? attractionsList : tripsList}
+                            {showAttraction ? <TripAttractionsInfo/> : tripsList}
                         </div>)
                 }
             </ModalBody>
