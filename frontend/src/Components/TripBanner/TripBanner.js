@@ -1,10 +1,11 @@
 import React, {Fragment, useState} from 'react';
-import {openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 import "./TripBanner.scss";
 import TripChooserModal from "./TripChooser/TripChooserModal";
 import TripDisplay from "./TripDisplay/TripDisplay";
 import TripCreateModal from "./TripCreate/TripCreateModal";
+import {Col, Container, Row} from 'reactstrap';
+import Button from "reactstrap/es/Button";
 
 const TripBanner = ({isUserLoggedIn, currentTrip}) => {
 
@@ -12,21 +13,29 @@ const TripBanner = ({isUserLoggedIn, currentTrip}) => {
     const [showCreateTrip, setShowCreateTrip] = useState(false);
 
     const actionButtons = <div>
-        <button onClick={() => setShowCreateTrip(true)}>create a trip</button>
-        <button onClick={() => setShowChooseModal(true)}>choose a trip</button>
+        <Button onClick={() => setShowCreateTrip(true)}>create a trip</Button>
+        <Button onClick={() => setShowChooseModal(true)}>choose a trip</Button>
     </div>;
 
-        if
-    (!isUserLoggedIn)
-    {
+    if
+    (!isUserLoggedIn) {
         return null
     }
     return (
-        <div id={"trip-banner"}>
-            {currentTrip ? <TripDisplay/> : actionButtons}
+        <Fragment>
+            <Container fluid id={"trip-banner"}>
+                <Row>
+                    <Col>
+                        <div>{currentTrip? <TripDisplay/> : "start your work on a new trip"}</div>
+                    </Col>
+                    <Col>
+                        <div>{actionButtons}</div>
+                    </Col>
+                </Row>
+            </Container>
             {showChooseModal && <TripChooserModal close={() => setShowChooseModal(false)}/>}
             {showCreateTrip && <TripCreateModal close={() => setShowCreateTrip(false)}/>}
-        </div>
+        </Fragment>
     )
 };
 
