@@ -1,24 +1,16 @@
 import React, {useState} from 'react';
 import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    ButtonDropdown,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    NavbarText
+    Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, ButtonDropdown, NavLink,
+    UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem
 } from 'reactstrap';
 import {logout, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
+import TripChooserModal from "../TripBanner/TripChooser/TripChooserModal";
 
 const Navigation = ({isUserLoggedIn, openLoginModal, username, logout}) => {
+
     const [isOpen, setIsOpen] = useState(false);
+    const [showTripsModal, setShowTripsModal] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
 
@@ -32,8 +24,8 @@ const Navigation = ({isUserLoggedIn, openLoginModal, username, logout}) => {
                     Profile of {username}
                 </DropdownToggle>
                 <DropdownMenu>
+                    <DropdownItem onClick={() => setShowTripsModal(true)}>Show my trips</DropdownItem>
                     <DropdownItem onClick={logout}>Log Out</DropdownItem>
-                    <DropdownItem>Dropdown Link</DropdownItem>
                 </DropdownMenu>
             </ButtonDropdown>
         </NavItem>
@@ -54,6 +46,7 @@ const Navigation = ({isUserLoggedIn, openLoginModal, username, logout}) => {
                     </Nav>
                 </Collapse>
             </Navbar>
+            {showTripsModal && <TripsModal close={() => setShowTripsModal(false)}/>}
         </div>
     );
 };
