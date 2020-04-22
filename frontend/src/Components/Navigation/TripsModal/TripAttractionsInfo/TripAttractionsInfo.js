@@ -80,20 +80,24 @@ const TripAttractionsInfo = ({currentTrip}) => {
 
     return (
         <div>
-            <div>
-                <h3>trip info:</h3>
-                <div>{`trip name: ${currentTrip.name}`}</div>
-                <div>{`is guided: ${isGuided ? "yes" : "no"}`}</div>
-                <div>{`in group: ${inGroup ? "yes" : "no"}`}</div>
-                <div>{`max price: ${currentTrip.max_price} YEN`}</div>
-            </div>
-            <div>
-                <h3>attractions:</h3>
-                <Container>
-                    {attractionsList}
-                </Container>
-
-            </div>
+            <Container>
+                <Row>
+                    <Col>{`trip name: ${currentTrip.name}`}</Col>
+                    <Col>{`is guided: ${isGuided ? "yes" : "no"}`}</Col>
+                </Row>
+                <Row>
+                    <Col>{`in group: ${inGroup ? "yes" : "no"}`}</Col>
+                    <Col>{`max price: ${currentTrip.max_price} YEN`}</Col>
+                </Row>
+            </Container>
+            <Container>
+                <Row>
+                    <Col>
+                        <h3>attractions:</h3>
+                    </Col>
+                </Row>
+                {attractionsList}
+            </Container>
         </div>
     )
 };

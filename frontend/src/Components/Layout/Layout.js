@@ -6,6 +6,13 @@ import Notifications from 'react-notify-toast';
 import axios from "axios";
 import {login, logout, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import ProfileContainer from "../ProfileContainer/ProfileContainer";
 
 
 const Layout = ({loginUser, logout}) => {
@@ -76,10 +83,19 @@ const Layout = ({loginUser, logout}) => {
                 ) : (
                     <div>
                         <Notifications options={{zIndex: 10000, width: "100%"}}/>
-                        <Navigation/>
-                        <AttractionsContainer/>
+                        <Router>
+                            <Navigation/>
+                            <Login/>
+                            <Switch>
+                                <Route path="/profile">
+                                    <ProfileContainer/>
+                                </Route>
+                                <Route path="/">
+                                    <AttractionsContainer/>
+                                </Route>
+                            </Switch>
+                        </Router>
 
-                        <Login/>
                     </div>
                 )
             }

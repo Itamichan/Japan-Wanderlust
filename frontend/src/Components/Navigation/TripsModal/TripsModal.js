@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import axios from "axios";
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader, Col, Container, Row} from "reactstrap";
 import {setCurrentTrip} from "../../TripBanner/reduxTrip/actions";
@@ -6,11 +6,12 @@ import {connect} from "react-redux";
 import TripAttractionsInfo from "./TripAttractionsInfo/TripAttractionsInfo";
 import {notify} from "react-notify-toast";
 
-const TripsModal = ({close, setCurrentTrip}) => {
+const TripsModal = ({close, currentTrip, setCurrentTrip}) => {
 
     const [loading, setLoading] = useState(true);
     const [trips, setTrips] = useState([]);
     const [showAttraction, setShowAttraction] = useState(false);
+    const [framestate, setframeState] = useState('trips');
     const [executingRequest, setExecutingRequest] = useState(false);
 
     const loadTrips = async () => {
@@ -22,6 +23,16 @@ const TripsModal = ({close, setCurrentTrip}) => {
 
         } finally {
             setLoading(false);
+        }
+    };
+
+    const editTripInfo = async () => {
+        try {
+            const {data} = await axios.patch('/api/v1/trips');
+
+        } catch (e) {
+
+        } finally {
         }
     };
 
@@ -66,10 +77,46 @@ const TripsModal = ({close, setCurrentTrip}) => {
         )
     });
 
+    const tripFrame = (
+        <Fragment>
+            <ModalHeader>
+                "Your trips"
+            </ModalHeader>
+            <ModalBody>
+                <Container>
+                    {tripsList}
+                </Container>
+            </ModalBody>
+            <ModalFooter>
+                <Button onClick={close}>close</Button>
+            </ModalFooter>
+        </Fragment>
+    )
+
+
     return (
         <Modal isOpen={true}>
+
+            {framestate === "trips" && tripFrame}
+            {framestate === "trip" && tripFrame}
+            {framestate === "trips" && tripFrame}
+
+
+
+
             <ModalHeader>
-                {showAttraction ? "Your attractions" : "Your trips"}
+                {showAttraction ? (
+                    <Row>
+                        <Col>
+                            <h3>{currentTrip.name}</h3>
+                        </Col>
+                        <Col xs="auto">
+                            <Button color={"warning"} onClick={editTripInfo}>update your Trip</Button>
+                        </Col>
+                    </Row>
+                ) : (
+                    "Your trips"
+                )}
             </ModalHeader>
             <ModalBody>
                 {
@@ -107,7 +154,9 @@ const mapDispatchToProps = (dispatch) => {
 
 //map the global state to properties that are passed into the comp
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        currentTrip: state.TripReducer.currentTrip
+    }
 };
 
 //next line ensures that the properties from the 2 passed functions are passed to Login comp

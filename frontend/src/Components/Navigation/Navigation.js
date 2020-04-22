@@ -7,8 +7,16 @@ import {logout, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 import TripChooserModal from "../TripBanner/TripChooser/TripChooserModal";
 import TripsModal from "./TripsModal/TripsModal";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import { withRouter } from "react-router";
+import Button from "reactstrap/es/Button";
 
-const Navigation = ({isUserLoggedIn, openLoginModal, username, logout}) => {
+const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history}) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [showTripsModal, setShowTripsModal] = useState(false);
@@ -20,9 +28,10 @@ const Navigation = ({isUserLoggedIn, openLoginModal, username, logout}) => {
     //if user is not logged in we see "Login" button otherwise "Profile".
     if (isUserLoggedIn) {
         toggleNavItem = <NavItem>
+
             <ButtonDropdown isOpen={isOpen} toggle={toggle}>
                 <DropdownToggle caret>
-                    Profile of {username}
+                    <Button onClick={() => history.push("/profile")}>Profile of {username}</Button>
                 </DropdownToggle>
                 <DropdownMenu>
                     <DropdownItem onClick={() => setShowTripsModal(true)}>Show my trips</DropdownItem>
@@ -70,5 +79,5 @@ const mapStateToProps = (state) => {
 };
 
 //next line ensures that the properties from the 2 passed functions are passed to Login comp
-const DefaultApp = connect(mapStateToProps, mapDispatchToProps)(Navigation);
+const DefaultApp = withRouter(connect(mapStateToProps, mapDispatchToProps)(Navigation));
 export default DefaultApp;
