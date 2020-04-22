@@ -13,32 +13,36 @@ import {
     Route,
     Link
 } from "react-router-dom";
-import { withRouter } from "react-router";
+import {withRouter} from "react-router";
 import Button from "reactstrap/es/Button";
 
 const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history}) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [showTripsModal, setShowTripsModal] = useState(false);
+    const [collapsed, setCollapsed] = useState(true);
 
-    const toggle = () => setIsOpen(!isOpen);
+    const toggleNavbar = () => setCollapsed(!collapsed);
+
+    const toggleButton = () => setIsOpen(!isOpen);
 
     let toggleNavItem;
 
     //if user is not logged in we see "Login" button otherwise "Profile".
     if (isUserLoggedIn) {
-        toggleNavItem = <NavItem>
-
-            <ButtonDropdown isOpen={isOpen} toggle={toggle}>
-                <DropdownToggle caret>
-                    <Button onClick={() => history.push("/profile")}>Profile of {username}</Button>
-                </DropdownToggle>
-                <DropdownMenu>
-                    <DropdownItem onClick={() => setShowTripsModal(true)}>Show my trips</DropdownItem>
-                    <DropdownItem onClick={logout}>Log Out</DropdownItem>
-                </DropdownMenu>
-            </ButtonDropdown>
-        </NavItem>
+        toggleNavItem =
+            <NavItem>
+                <ButtonDropdown isOpen={isOpen} toggle={toggleButton}>
+                    <DropdownToggle>
+                        <Button>{username}</Button>
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        <DropdownItem onClick={() => history.push("/profile")}>Profile</DropdownItem>
+                        <DropdownItem onClick={() => setShowTripsModal(true)}>Show my trips</DropdownItem>
+                        <DropdownItem onClick={logout}>Log Out</DropdownItem>
+                    </DropdownMenu>
+                </ButtonDropdown>
+            </NavItem>
     } else {
         toggleNavItem = <NavItem>
             <NavLink onClick={openLoginModal}>Login</NavLink>
@@ -49,8 +53,8 @@ const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history})
         <div>
             <Navbar color="light" light expand="md">
                 <NavbarBrand href="/">JapanWanderlust</NavbarBrand>
-                <NavbarToggler onClick={toggle}/>
-                <Collapse isOpen={isOpen} navbar>
+                <NavbarToggler onClick={toggleNavbar}/>
+                <Collapse isOpen={!collapsed} navbar>
                     <Nav className="mr-auto" navbar>
                         {toggleNavItem}
                     </Nav>

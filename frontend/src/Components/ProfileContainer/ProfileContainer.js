@@ -9,6 +9,6 @@ const ProfileContainer = ({history}) => {
             <Button onClick={() => history.push("/")}>back to attractions</Button>
         </div>
     )
-}
+};
 
 export default withRouter(ProfileContainer)

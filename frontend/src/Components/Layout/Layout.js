@@ -6,12 +6,7 @@ import Notifications from 'react-notify-toast';
 import axios from "axios";
 import {login, logout, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import ProfileContainer from "../ProfileContainer/ProfileContainer";
 
 

@@ -91,7 +91,7 @@ const TripsModal = ({close, currentTrip, setCurrentTrip}) => {
                 <Button onClick={close}>close</Button>
             </ModalFooter>
         </Fragment>
-    )
+    );
 
 
     return (
