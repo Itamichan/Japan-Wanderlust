@@ -6,7 +6,6 @@ import {
 import {logout, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 import TripChooserModal from "../TripBanner/TripChooser/TripChooserModal";
-import TripsModal from "./Trips/TripsContainer";
 import {
     BrowserRouter as Router,
     Switch,
@@ -19,7 +18,6 @@ import Button from "reactstrap/es/Button";
 const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history}) => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [showTripsModal, setShowTripsModal] = useState(false);
 
     const toggleButton = () => setIsOpen(!isOpen);
 
@@ -54,7 +52,6 @@ const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history})
                     {toggleNavItem}
                 </Nav>
             </Navbar>
-            {showTripsModal && <TripsModal close={() => setShowTripsModal(false)}/>}
         </div>
     );
 };

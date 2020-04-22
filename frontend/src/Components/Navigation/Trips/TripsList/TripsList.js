@@ -4,8 +4,16 @@ import {notify} from "react-notify-toast";
 import {Button, Col, Row} from "reactstrap";
 import {setCurrentTrip} from "../../../TripBanner/reduxTrip/actions";
 import {connect} from "react-redux";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useRouteMatch
+} from "react-router-dom";
+import {withRouter} from "react-router";
 
-const TripsList = (props) => {
+const TripsList = ({history}) => {
 
     const [loading, setLoading] = useState(true);
     const [trips, setTrips] = useState([]);
@@ -60,9 +68,9 @@ const TripsList = (props) => {
             <Row>
                 <Col>{trip.name}</Col>
                 <Col>
-                    <Button color="success" onClick={() => {
-                        setCurrentTrip(trip);
-                    }}>See your trip</Button>
+                    <Button color="success" onClick={() => history.push(`/trips/attractions`, {tripId: trip.id})}>see
+                        more
+                    </Button>
                 </Col>
                 <Col>
                     <Button disabled={executingRequest} color="danger" onClick={() => removeTrip(trip.id)}>Remove
@@ -95,5 +103,5 @@ const mapStateToProps = (state) => {
 };
 
 //next line ensures that the properties from the 2 passed functions are passed to Login comp
-const DefaultApp = connect(mapStateToProps, mapDispatchToProps)(TripsList);
+const DefaultApp = withRouter(connect(mapStateToProps, mapDispatchToProps)(TripsList));
 export default DefaultApp;

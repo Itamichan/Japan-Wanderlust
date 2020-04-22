@@ -3,16 +3,30 @@ import axios from "axios";
 import {connect} from "react-redux";
 import {Col, Container, Row, Button} from 'reactstrap';
 import {notify} from "react-notify-toast";
+import {useLocation, useParams, withRouter} from "react-router";
 
-const TripAttractionsInfo = ({currentTrip}) => {
 
+const TripAttractionsInfo = ({history}) => {
+
+    const [tripInfo, setTripInfo] = useState({});
     const [attractions, setAttractions] = useState([]);
     const [executingRequest, setExecutingRequest] = useState(false);
-    const [cityName, setCityName] = useState(undefined);
+
+    let tripId = useLocation().state.tripId;
+
+    const loadTripInfo = async () => {
+        try {
+            const {data} = await axios.get(`/api/v1/trips/${tripId}`);
+            setTripInfo(data)
+        } catch (e) {
+        } finally {
+
+        }
+    };
 
     const loadTripAttractions = async () => {
         try {
-            const {data} = await axios.get(`/api/v1/trips/${currentTrip.id}/attractions`);
+            const {data} = await axios.get(`/api/v1/trips/${tripId}/attractions`);
             setAttractions(data.attractions)
         } catch (e) {
 
@@ -40,31 +54,19 @@ const TripAttractionsInfo = ({currentTrip}) => {
             setExecutingRequest(false);
         }
     };
-    //todo create get city_name by id endpoint?
-
-    // const getCityName = async (tripId) => {
-    //     try {
-    //         const {data} = await axios.get(`/api/v1/cities`);
-    //         setAttractions(data.attractions)
-    //     } catch (e) {
-    //
-    //     } finally {
-    //
-    //     }
-    // };
 
     const attractionsList = attractions.map(attraction => {
         return (
             <Row>
                 <Col>{attraction.attraction_name}</Col>
-                <Col>cityName</Col>
+                <Col>{attraction.city.name}</Col>
                 <Col>
                     {/*todo implement get attraction_info*/}
                     <Button color="warning">More Info</Button>
                 </Col>
                 <Col>
                     <Button color="danger" disabled={executingRequest}
-                            onClick={() => removeAttraction(currentTrip.id, attraction.id)}>delete</Button>
+                            onClick={() => removeAttraction(tripId, attraction.id)}>delete</Button>
                 </Col>
 
             </Row>
@@ -72,24 +74,26 @@ const TripAttractionsInfo = ({currentTrip}) => {
     });
 
     useEffect(() => {
-        loadTripAttractions()
+        loadTripInfo();
+        loadTripAttractions();
     }, []);
 
-    let isGuided = currentTrip.is_guided;
-    let inGroup = currentTrip.in_group;
+    let isGuided = tripInfo.is_guided;
+    let inGroup = tripInfo.in_group;
 
     return (
         <div>
             <Container>
                 <Row>
-                    <Col>{`trip name: ${currentTrip.name}`}</Col>
+                    <Col>{`trip name: ${tripInfo.name}`}</Col>
                     <Col>{`is guided: ${isGuided ? "yes" : "no"}`}</Col>
                 </Row>
                 <Row>
                     <Col>{`in group: ${inGroup ? "yes" : "no"}`}</Col>
-                    <Col>{`max price: ${currentTrip.max_price} YEN`}</Col>
+                    <Col>{`max price: ${tripInfo.max_price} YEN`}</Col>
                 </Row>
             </Container>
+            <div>trip's id: {tripId}</div>
             <Container>
                 <Row>
                     <Col>
@@ -98,23 +102,9 @@ const TripAttractionsInfo = ({currentTrip}) => {
                 </Row>
                 {attractionsList}
             </Container>
+            <Button onClick={() => history.goBack()}>back to all the trips</Button>
         </div>
     )
 };
 
-//dispatch will move the provided action dict (result of login(token))
-// to the global state and will run the reducer with the provided action
-const mapDispatchToProps = (dispatch) => {
-    return {}
-};
-
-//map the global state to properties that are passed into the comp
-const mapStateToProps = (state) => {
-    return {
-        currentTrip: state.TripReducer.currentTrip
-    }
-};
-
-//next line ensures that the properties from the 2 passed functions are passed to Login comp
-const DefaultApp = connect(mapStateToProps, mapDispatchToProps)(TripAttractionsInfo);
-export default DefaultApp;
+export default withRouter(TripAttractionsInfo)
