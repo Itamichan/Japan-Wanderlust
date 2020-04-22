@@ -5,142 +5,22 @@ import {setCurrentTrip} from "../../TripBanner/reduxTrip/actions";
 import {connect} from "react-redux";
 import TripAttractionsInfo from "./TripAttractionsInfo/TripAttractionsInfo";
 import {notify} from "react-notify-toast";
+import TripsList from "./TripsList/TripsList";
 
 const TripsContainer = ({close, currentTrip, setCurrentTrip}) => {
 
     const [loading, setLoading] = useState(true);
-    const [trips, setTrips] = useState([]);
     const [showAttraction, setShowAttraction] = useState(false);
-    const [framestate, setframeState] = useState('trips');
+    const [currentScreen, setCurrentScreen] = useState('tripsList');
     const [executingRequest, setExecutingRequest] = useState(false);
 
-    const loadTrips = async () => {
-        try {
-            setLoading(true);
-            const {data} = await axios.get('/api/v1/trips');
-            setTrips(data.trips)
-        } catch (e) {
-
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const editTripInfo = async () => {
-        try {
-            const {data} = await axios.patch('/api/v1/trips');
-
-        } catch (e) {
-
-        } finally {
-        }
-    };
-
-    const removeTrip = async (tripId) => {
-        try {
-            setExecutingRequest(true);
-            const {data} = await axios.delete(`/api/v1/trips/${tripId}`);
-            loadTrips()
-        } catch (e) {
-            switch (e.response.data.error) {
-                //todo write proper notify messages
-                case "NoSuchTrip":
-                    notify.show('NoSuchTrip', "error", 1700);
-                    break;
-            }
-        } finally {
-            setExecutingRequest(false);
-        }
-    };
-
-    useEffect(() => {
-        loadTrips()
-    }, []);
-
-
-    const tripsList = trips.map(trip => {
-        console.log(trip);
-        return (
-            <Row>
-                <Col>{trip.name}</Col>
-                <Col>
-                    <Button color="success" onClick={() => {
-                        setCurrentTrip(trip);
-                        setShowAttraction(true)
-                    }}>See your trip</Button>
-                </Col>
-                <Col>
-                    <Button disabled={executingRequest} color="danger" onClick={() => removeTrip(trip.id)}>Remove
-                        trip</Button>
-                </Col>
-            </Row>
-        )
-    });
-
-    const tripFrame = (
-        <Fragment>
-            <ModalHeader>
-                "Your trips"
-            </ModalHeader>
-            <ModalBody>
-                <Container>
-                    {tripsList}
-                </Container>
-            </ModalBody>
-            <ModalFooter>
-                <Button onClick={close}>close</Button>
-            </ModalFooter>
-        </Fragment>
-    );
-
+    let screenOption;
+    if (currentScreen === 'tripsList') {
+        screenOption = <TripsList/>
+    }
 
     return (
-        <Modal isOpen={true}>
-
-            {framestate === "trips" && tripFrame}
-            {framestate === "trip" && tripFrame}
-            {framestate === "trips" && tripFrame}
-
-
-
-
-            <ModalHeader>
-                {showAttraction ? (
-                    <Row>
-                        <Col>
-                            <h3>{currentTrip.name}</h3>
-                        </Col>
-                        <Col xs="auto">
-                            <Button color={"warning"} onClick={editTripInfo}>update your Trip</Button>
-                        </Col>
-                    </Row>
-                ) : (
-                    "Your trips"
-                )}
-            </ModalHeader>
-            <ModalBody>
-                {
-                    loading ?
-                        ("loading") :
-
-                        (<div>
-                            {showAttraction ? (
-                                <TripAttractionsInfo/>
-                            ) : (
-                                <Container>
-                                    {tripsList}
-                                </Container>
-                            )}
-                        </div>)
-                }
-            </ModalBody>
-            <ModalFooter>
-                {showAttraction && <Button onClick={() => setShowAttraction(false)}>go back</Button>}
-                <Button onClick={close}>close</Button>
-
-            </ModalFooter>
-        </Modal>
-
+        {screenOption}
     )
 };
 

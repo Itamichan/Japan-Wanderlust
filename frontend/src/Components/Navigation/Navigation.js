@@ -20,9 +20,6 @@ const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history})
 
     const [isOpen, setIsOpen] = useState(false);
     const [showTripsModal, setShowTripsModal] = useState(false);
-    const [collapsed, setCollapsed] = useState(true);
-
-    const toggleNavbar = () => setCollapsed(!collapsed);
 
     const toggleButton = () => setIsOpen(!isOpen);
 
@@ -38,7 +35,7 @@ const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history})
                     </DropdownToggle>
                     <DropdownMenu>
                         <DropdownItem onClick={() => history.push("/profile")}>Profile</DropdownItem>
-                        <DropdownItem onClick={() => setShowTripsModal(true)}>Show my trips</DropdownItem>
+                        <DropdownItem onClick={() => history.push("/trips")}>Show my trips</DropdownItem>
                         <DropdownItem onClick={logout}>Log Out</DropdownItem>
                     </DropdownMenu>
                 </ButtonDropdown>
@@ -53,12 +50,9 @@ const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history})
         <div>
             <Navbar color="light" light expand="md">
                 <NavbarBrand href="/">JapanWanderlust</NavbarBrand>
-                <NavbarToggler onClick={toggleNavbar}/>
-                <Collapse isOpen={!collapsed} navbar>
-                    <Nav className="mr-auto" navbar>
-                        {toggleNavItem}
-                    </Nav>
-                </Collapse>
+                <Nav>
+                    {toggleNavItem}
+                </Nav>
             </Navbar>
             {showTripsModal && <TripsModal close={() => setShowTripsModal(false)}/>}
         </div>

@@ -8,6 +8,7 @@ import {login, logout, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import ProfileContainer from "../ProfileContainer/ProfileContainer";
+import TripsList from "../Navigation/Trips/TripsList/TripsList";
 
 
 const Layout = ({loginUser, logout}) => {
@@ -84,6 +85,9 @@ const Layout = ({loginUser, logout}) => {
                             <Switch>
                                 <Route path="/profile">
                                     <ProfileContainer/>
+                                </Route>
+                                <Route path="/trips">
+                                    <TripsList/>
                                 </Route>
                                 <Route path="/">
                                     <AttractionsContainer/>
