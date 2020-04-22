@@ -10,6 +10,7 @@ class Attraction:
     web_link: str
     picture_url: str
     city_id: int
+    city_name: str
 
     def serialize(self) -> dict:
         return {
@@ -19,7 +20,10 @@ class Attraction:
             "price": self.price,
             "web_link": self.web_link,
             "picture_url": self.picture_url,
-            "city_id": self.city_id,
+            "city": {
+                "id": self.city_id,
+                "name": self.city_name
+            }
         }
 
 class AttractionsDatabase(Database):
@@ -32,13 +36,14 @@ class AttractionsDatabase(Database):
 
     def get_attractions_from_trip(self, trip_id):
         with self.connection.cursor() as cursor:
-            sql = 'SELECT attr.* from trip_attraction_match tam JOIN attractions attr ON ' \
+            sql = 'SELECT attr.*, cities.name from attractions attr JOIN cities on attr.city_id = cities.id ' \
+                  'JOIN trip_attraction_match tam  ON ' \
                   'tam.attraction_id = attr.id WHERE tam.trip_id = %s'
             cursor.execute(sql, (trip_id,))
             results = cursor.fetchall()
             return [Attraction(id=result[0], attraction_name=result[1], description=result[2],
                                price=result[3], web_link=result[4], picture_url=result[5],
-                               city_id=result[6])
+                               city_id=result[6], city_name=result[7])
                     for result in results]
 
     def remove_attraction_from_trip(self, trip_id, attraction_id):
@@ -52,7 +57,7 @@ class AttractionsDatabase(Database):
     def get_attractions(self, text, attraction_type_id, city_id, max_price):
         with self.connection.cursor() as cursor:
             values = []
-            sql = 'select  * from attractions '
+            sql = 'select  *, cities.name from attractions JOIN cities on attractions.city_id = cities.id '
             clause = "WHERE"
 
             if attraction_type_id is not None:
@@ -79,7 +84,7 @@ class AttractionsDatabase(Database):
             results = cursor.fetchall()
             return [Attraction(id=result[0], attraction_name=result[1], description=result[2],
                                price=result[3], web_link=result[4], picture_url=result[5],
-                               city_id=result[6])
+                               city_id=result[6], city_name=result[7])
                     for result in results]
 
     def get_attraction_types(self):
