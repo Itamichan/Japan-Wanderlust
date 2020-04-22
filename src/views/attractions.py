@@ -22,14 +22,16 @@ class AttractionsView(MethodView):
         @apiParam {Integer} max_price              Shows attractions up to a max price
 
 
-        @apiSuccess {Object[]} attractions                    List with attractions
-        @apiSuccess {String} attractions.id                   Attraction's id
-        @apiSuccess {String} attractions.attraction_name      Attraction's name
-        @apiSuccess {String} attractions.description          Attraction's description
-        @apiSuccess {Integer} attractions.price               Attraction's price
-        @apiSuccess {String} attractions.web_link             Attraction's web_link
-        @apiSuccess {String} attractions.picture_url          Attraction's picture_url
-        @apiSuccess {Integer} attractions.city_id             Attraction's city_id
+        @apiSuccess {Object[]} attractions                      List with attractions
+        @apiSuccess {String} attractions.id                     Attraction's id
+        @apiSuccess {String} attractions.attraction_name        Attraction's name
+        @apiSuccess {String} attractions.description            Attraction's description
+        @apiSuccess {Integer} attractions.price                 Attraction's price
+        @apiSuccess {String} attractions.web_link               Attraction's web_link
+        @apiSuccess {String} attractions.picture_url            Attraction's picture_url
+        @apiSuccess {Object} attractions.city                   Attraction's city dictionary
+        @apiSuccess {Integer} city.id                           Attraction's city id
+        @apiSuccess {String} city.name                          Attraction's city name
 
         @apiSuccessExample {json} Success-Response:
         # todo add proper url examples
@@ -43,7 +45,10 @@ class AttractionsView(MethodView):
                     "price": 200,
                     "web_link": "",
                     "picture_url": "",
-                    "city_id": 10
+                    "city": {
+                        "id": 1,
+                        "name": "Tokyo"
+                            }
                 },
                 {
                     "id": 1,
@@ -52,7 +57,10 @@ class AttractionsView(MethodView):
                     "price": 130,
                     "web_link": "",
                     "picture_url": "",
-                    "city_id": 5
+                    "city": {
+                        "id": 2,
+                        "name": "Osaka"
+                            }
                 }
             ]
          }
