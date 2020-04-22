@@ -6,7 +6,7 @@ import {
 import {logout, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 import TripChooserModal from "../TripBanner/TripChooser/TripChooserModal";
-import TripsModal from "./TripsModal/TripsModal";
+import TripsModal from "./Trips/TripsContainer";
 import {
     BrowserRouter as Router,
     Switch,

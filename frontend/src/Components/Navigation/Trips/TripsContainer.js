@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import TripAttractionsInfo from "./TripAttractionsInfo/TripAttractionsInfo";
 import {notify} from "react-notify-toast";
 
-const TripsModal = ({close, currentTrip, setCurrentTrip}) => {
+const TripsContainer = ({close, currentTrip, setCurrentTrip}) => {
 
     const [loading, setLoading] = useState(true);
     const [trips, setTrips] = useState([]);
@@ -160,5 +160,5 @@ const mapStateToProps = (state) => {
 };
 
 //next line ensures that the properties from the 2 passed functions are passed to Login comp
-const DefaultApp = connect(mapStateToProps, mapDispatchToProps)(TripsModal);
+const DefaultApp = connect(mapStateToProps, mapDispatchToProps)(TripsContainer);
 export default DefaultApp;
