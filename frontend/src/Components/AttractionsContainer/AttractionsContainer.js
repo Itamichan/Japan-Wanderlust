@@ -50,7 +50,8 @@ const AttractionsContainer = ({openLoginModal}) => {
             <AttractionCard
                 openLoginModal={openLoginModal}
                 cardTitle={attraction.attraction_name}
-                cardImg="/resources/test.jpg"
+                cardImg={attraction.picture_url}
+                cardText={attraction.description}
             />
         )
 

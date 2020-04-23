@@ -4,7 +4,7 @@ import {Button, Card, CardBody, CardImg, CardText, CardTitle} from 'reactstrap';
 
 import "./AttractionCard.scss";
 
-const AttractionCard = ({cardTitle, cardImg, openLoginModal}) => {
+const AttractionCard = ({cardTitle, cardImg, openLoginModal, cardText}) => {
     return (
         <div>
             <Card  className={"card-body"}>
@@ -14,8 +14,7 @@ const AttractionCard = ({cardTitle, cardImg, openLoginModal}) => {
                     alt="img of the attraction"/>
                 <CardBody>
                     <CardTitle>{cardTitle}</CardTitle>
-                    <CardText>Some quick example text to build on the card title and make up the bulk of the card's
-                        content.</CardText>
+                    <CardText>{cardText}</CardText>
                     <Button onClick={openLoginModal}>Button</Button>
                 </CardBody>
             </Card>

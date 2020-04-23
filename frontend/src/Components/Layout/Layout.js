@@ -35,6 +35,7 @@ const Layout = ({loginUser, logout}) => {
 
 
     useEffect(() => {
+        //todo ask Robert to explain this or google it
         axios.interceptors.request.use(
             function (config) {
                 // Do something before request is sent
