@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import "./TripBanner.scss";
 import TripChooserModal from "./TripChooser/TripChooserModal";
 import TripDisplay from "./TripDisplay/TripDisplay";
-import TripCreateModal from "./TripCreate/TripCreateModal";
+import TripCreateModal from "./TripModal/TripCreateModal";
 import {Col, Container, Row} from 'reactstrap';
 import Button from "reactstrap/es/Button";
 

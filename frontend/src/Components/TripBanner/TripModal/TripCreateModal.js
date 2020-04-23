@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {
     Button,
     FormGroup,
@@ -16,6 +16,7 @@ import {notify} from "react-notify-toast";
 import {connect} from "react-redux";
 import {setCurrentTrip} from "../reduxTrip/actions";
 import CustomInput from "reactstrap/es/CustomInput";
+import TripInputView from "./TripInputView";
 
 const TripCreateModal = ({close, setCurrentTrip}) => {
 
@@ -38,8 +39,7 @@ const TripCreateModal = ({close, setCurrentTrip}) => {
                 }
             );
             notify.show('yay!!', "success", 1700);
-            setCurrentTrip(data)
-
+            close()
         } catch (e) {
 
             switch (e.response.data.error) {
@@ -68,58 +68,24 @@ const TripCreateModal = ({close, setCurrentTrip}) => {
         }
     };
 
-    //todo ask tobert if i need all fancy extra attributes for input fields
     return (
-        <Modal isOpen={true}>
-            <ModalHeader>
-                Create a trip
-            </ModalHeader>
-            <ModalBody>
-                <FormGroup>
-                    <Label for="tripName">Trip name:</Label>
-                    <Input disabled={sendingPostRequest} type="text" id={'tripName'} name={'tripName'} value={tripName}
-                           onChange={(e) => setTripName(e.target.value)}/>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="maxTripDays">max Trip Days:</Label>
-                    <InputGroup>
-                        <Input disabled={sendingPostRequest} type="number" id={'maxTripDays'} name={'maxTripDays'}
-                               value={maxTripDays} min={0} max={100}
-                               onChange={(e) => setMaxTripDays(e.target.value)}/>
-                        <InputGroupAddon addonType="append">days</InputGroupAddon>
-                    </InputGroup>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="isGuided">Do you want it to be guided?</Label>
-                    <CustomInput type="switch" id={"isGuided"} name="isGuided" label={"yes"}
-                                 onChange={(e) => setIsGuided(!isGuided)}/>{' '}
-
-                    <Label for="InGroup">Do you want it to be in Group?</Label>
-                    <CustomInput type="switch" id={"InGroup"} name="InGroup" label={"yes"}
-                                 onChange={(e) => setInGroup(!inGroup)}/>{' '}
-                </FormGroup>
-                <FormGroup>
-                    <Label for="maxPrice">max Price:</Label>
-                    <InputGroup>
-                        <Input disabled={sendingPostRequest} type="number" id={'maxPrice'} name={'maxPrice'}
-                               value={maxPrice} placeholder="Amount" min={0} max={1000000} step="100"
-                               onChange={(e) => setMaxPrice(e.target.value)}/>
-                        <InputGroupAddon addonType="append">YEN</InputGroupAddon>
-                    </InputGroup>
-                </FormGroup>
-            </ModalBody>
-            <ModalFooter>
-                <Button onClick={close}>close</Button>
-                <Button color="primary"
-                        onClick={() => {
-                            createTrip();
-                            close()
-                        }}>
-                    submit
-                </Button>
-            </ModalFooter>
-        </Modal>
-
+        <Fragment>
+            <TripInputView
+                tripName={tripName}
+                disable={sendingPostRequest}
+                maxTripDays={maxTripDays}
+                isGuided={isGuided}
+                inGroup={inGroup}
+                maxPrice={maxPrice}
+                setTripName={setTripName}
+                setMaxTripDays={setMaxTripDays}
+                setIsGuided={setIsGuided}
+                setInGroup={setInGroup}
+                setMaxPrice={setMaxPrice}
+                close={close}
+                submit={createTrip}
+            />
+        </Fragment>
     )
 };
 
