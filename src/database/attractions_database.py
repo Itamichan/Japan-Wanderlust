@@ -57,7 +57,7 @@ class AttractionsDatabase(Database):
     def get_attractions(self, text, attraction_type_id, city_id, max_price):
         with self.connection.cursor() as cursor:
             values = []
-            sql = 'select  *, cities.name from attractions JOIN cities on attractions.city_id = cities.id '
+            sql = 'select  * from attractions JOIN cities on attractions.city_id = cities.id '
             clause = "WHERE"
 
             if attraction_type_id is not None:
@@ -84,7 +84,7 @@ class AttractionsDatabase(Database):
             results = cursor.fetchall()
             return [Attraction(id=result[0], attraction_name=result[1], description=result[2],
                                price=result[3], web_link=result[4], picture_url=result[5],
-                               city_id=result[6], city_name=result[7])
+                               city_id=result[6], city_name=result[8])
                     for result in results]
 
     def get_attraction_types(self):
