@@ -18,14 +18,10 @@ import {setCurrentTrip} from "../reduxTrip/actions";
 import CustomInput from "reactstrap/es/CustomInput";
 
 const TripInputModal = ({
-                            close, submit,disabled, tripTypeName, tripName, maxTripDays, isGuided, inGroup, maxPrice, setTripName,
-                            setMaxTripDays,
-                            setIsGuided,
-                            setInGroup,
-                            setMaxPrice
+                            close, submit, disabled, tripTypeName, tripName, maxTripDays, isGuided, inGroup, maxPrice,
+                            setTripName, setMaxTripDays, setIsGuided, setInGroup, setMaxPrice
                         }) => {
 
-    //todo ask robert if i need all the fancy extra attributes for input fields
     return (
         <Modal isOpen={true}>
             <ModalHeader>

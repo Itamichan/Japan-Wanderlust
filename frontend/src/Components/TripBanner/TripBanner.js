@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import "./TripBanner.scss";
 import TripChooserModal from "./TripChooser/TripChooserModal";
 import TripDisplay from "./TripDisplay/TripDisplay";
-import TripCreateModal from "./TripModal/TripCreateModal";
+import TripCreate from "./TripModal/TripCreate";
 import {Col, Container, Row} from 'reactstrap';
 import Button from "reactstrap/es/Button";
 
@@ -34,7 +34,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip}) => {
                 </Row>
             </Container>
             {showChooseModal && <TripChooserModal close={() => setShowChooseModal(false)}/>}
-            {showCreateTrip && <TripCreateModal close={() => setShowCreateTrip(false)}/>}
+            {showCreateTrip && <TripCreate close={() => setShowCreateTrip(false)}/>}
         </Fragment>
     )
 };

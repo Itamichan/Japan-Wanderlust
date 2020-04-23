@@ -18,9 +18,9 @@ import {setCurrentTrip} from "../reduxTrip/actions";
 import CustomInput from "reactstrap/es/CustomInput";
 import TripInputView from "./TripInputView";
 
-const TripCreateModal = ({close, setCurrentTrip}) => {
+const TripCreate = ({close}) => {
 
-    const [sendingPostRequest, setSendingPostRequest] = useState(false);
+    const [sendingRequest, setSendingRequest] = useState(false);
     const [tripName, setTripName] = useState("");
     const [maxTripDays, setMaxTripDays] = useState("");
     const [isGuided, setIsGuided] = useState(false);
@@ -29,7 +29,7 @@ const TripCreateModal = ({close, setCurrentTrip}) => {
 
     const createTrip = async () => {
         try {
-            setSendingPostRequest(true);
+            setSendingRequest(true);
             const {data} = await axios.post('/api/v1/trips', {
                     name: tripName,
                     max_trip_days: maxTripDays,
@@ -64,7 +64,7 @@ const TripCreateModal = ({close, setCurrentTrip}) => {
                     break
             }
         } finally {
-            setSendingPostRequest(false);
+            setSendingRequest(false);
         }
     };
 
@@ -72,7 +72,6 @@ const TripCreateModal = ({close, setCurrentTrip}) => {
         <Fragment>
             <TripInputView
                 tripName={tripName}
-                disable={sendingPostRequest}
                 maxTripDays={maxTripDays}
                 isGuided={isGuided}
                 inGroup={inGroup}
@@ -84,24 +83,11 @@ const TripCreateModal = ({close, setCurrentTrip}) => {
                 setMaxPrice={setMaxPrice}
                 close={close}
                 submit={createTrip}
+                disable={setSendingRequest}
+                tripTypeName={"Create a new trip"}
             />
         </Fragment>
     )
 };
 
-//dispatch will move the provided action dict (result of login(token))
-// to the global state and will run the reducer with the provided action
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setCurrentTrip: (trip) => dispatch(setCurrentTrip(trip))
-    }
-};
-
-//map the global state to properties that are passed into the comp
-const mapStateToProps = (state) => {
-    return {}
-};
-
-//next line ensures that the properties from the 2 passed functions are passed to Login comp
-const DefaultApp = connect(mapStateToProps, mapDispatchToProps)(TripCreateModal);
-export default DefaultApp;
+export default TripCreate
