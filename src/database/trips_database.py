@@ -51,7 +51,7 @@ class TripsDatabase(Database):
         with self.connection.cursor() as cursor:
             # creates a list with the attributes which  should be updated
             fields = [f"{key} = %s" for key in changed_fields.keys()]
-            sql = f"UPDATE trips SET {' '.join(fields)} WHERE user_id = %s AND id = %s "
+            sql = f"UPDATE trips SET {','.join(fields)} WHERE user_id = %s AND id = %s "
             # unwraps the values from the changed_fields dictionary directly in the tuple
             cursor.execute(sql, (*changed_fields.values(), user_id, trip_id))
             self.connection.commit()
