@@ -6,15 +6,20 @@ import TripDisplay from "./TripDisplay/TripDisplay";
 import TripCreate from "./TripModal/TripCreate";
 import {Col, Container, Row} from 'reactstrap';
 import Button from "reactstrap/es/Button";
+import TripUpdate from "./TripModal/TripUpdate";
+import {setCurrentTrip} from "./reduxTrip/actions";
 
-const TripBanner = ({isUserLoggedIn, currentTrip}) => {
+const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip}) => {
 
     const [showChooseModal, setShowChooseModal] = useState(false);
     const [showCreateTrip, setShowCreateTrip] = useState(false);
+    const [showUpdateTrip, setShowUpdateTrip] = useState(false);
+
 
     const actionButtons = <div>
         <Button onClick={() => setShowCreateTrip(true)}>create a trip</Button>
         <Button onClick={() => setShowChooseModal(true)}>choose a trip</Button>
+        {currentTrip && <Button onClick={() => setShowUpdateTrip(true)}>Edit trip</Button>}
     </div>;
 
     if
@@ -35,6 +40,21 @@ const TripBanner = ({isUserLoggedIn, currentTrip}) => {
             </Container>
             {showChooseModal && <TripChooserModal close={() => setShowChooseModal(false)}/>}
             {showCreateTrip && <TripCreate close={() => setShowCreateTrip(false)}/>}
+            {showUpdateTrip && <TripUpdate
+                close={() => setShowUpdateTrip(false)}
+                initialTripName={currentTrip.name}
+                initialMaxTripDays={currentTrip.max_trip_days}
+                initialIsGuided={currentTrip.isGuided}
+                initialInGroup={currentTrip.inGroup}
+                initialMaxPrice={currentTrip.max_price}
+                tripId={currentTrip.id}
+                reloadTripInfo={(update) => {
+                    setCurrentTrip({
+                        ...currentTrip,
+                        ...update
+                    })
+                }}
+            />}
         </Fragment>
     )
 };
@@ -42,7 +62,9 @@ const TripBanner = ({isUserLoggedIn, currentTrip}) => {
 //dispatch will move the provided action dict (result of login(token))
 // to the global state and will run the reducer with the provided action
 const mapDispatchToProps = (dispatch) => {
-    return {}
+    return {
+        setCurrentTrip: (trip) => dispatch(setCurrentTrip(trip))
+    }
 };
 
 //map the global state to properties that are passed into the comp

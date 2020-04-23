@@ -23,7 +23,7 @@ const TripUpdate = ({
                         initialMaxTripDays,
                         initialIsGuided,
                         initialInGroup,
-                        initialMaxPrice, tripId, updateTripInfo
+                        initialMaxPrice, tripId, reloadTripInfo
                     }) => {
 
     const [sendingRequest, setSendingRequest] = useState(false);
@@ -44,8 +44,14 @@ const TripUpdate = ({
                     max_price: maxPrice
                 }
             );
-            updateTripInfo();
             notify.show('yay!!', "success", 1700);
+            reloadTripInfo({
+                name: tripName,
+                max_trip_days: maxTripDays,
+                is_guided: isGuided,
+                in_group: inGroup,
+                max_price: maxPrice
+            });
             close()
         } catch (e) {
             switch (e.response.data.error) {

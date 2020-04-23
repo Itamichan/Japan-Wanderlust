@@ -17,7 +17,6 @@ const TripDisplay = ({currentTrip}) => {
             <div>{`in group: ${inGroup ? "yes" : "no"}`}</div>
             <div>{`max price: ${currentTrip.max_price} YEN`}</div>
         </div>
-
     )
 };
 

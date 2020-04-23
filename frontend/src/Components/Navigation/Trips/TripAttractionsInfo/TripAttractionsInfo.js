@@ -121,7 +121,12 @@ const TripAttractionsInfo = ({history}) => {
                 initialInGroup={inGroup}
                 initialMaxPrice={tripInfo.max_price}
                 tripId={tripId}
-                updateTripInfo={loadTripInfo}
+                reloadTripInfo={(update) => {
+                    setTripInfo({
+                        ...tripInfo,
+                        ...update
+                    })
+                }}
             />}
         </div>
     );

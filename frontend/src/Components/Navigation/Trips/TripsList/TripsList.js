@@ -31,16 +31,6 @@ const TripsList = ({history}) => {
         }
     };
 
-    const editTripInfo = async () => {
-        try {
-            const {data} = await axios.patch('/api/v1/trips');
-
-        } catch (e) {
-
-        } finally {
-        }
-    };
-
     const removeTrip = async (tripId) => {
         try {
             setExecutingRequest(true);
