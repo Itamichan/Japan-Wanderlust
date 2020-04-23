@@ -234,7 +234,7 @@ class TripsView(MethodView):
                 return response_400("NoParameter", "Please provide a parameter")
 
             # checks that the passed values are valid
-            if not re.match(r'^[.]{2,25}$', changed_fields["name"]):
+            if not re.match(r'^[\S]{2,25}$', changed_fields["name"]):
                 return response_400('InvalidName', 'Name should have at least 2 characters and maximum 25, it can '
                                                    'contain any char except new line.')
 
