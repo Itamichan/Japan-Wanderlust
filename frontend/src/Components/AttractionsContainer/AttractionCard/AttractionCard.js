@@ -9,13 +9,14 @@ const AttractionCard = ({cardTitle, cardImg, openLoginModal, cardText}) => {
         <div>
             <Card  className={"card-body"}>
                 <CardImg
+                    className={"card-img"}
                     top width="100%"
                     src={cardImg}
                     alt="img of the attraction"/>
                 <CardBody>
                     <CardTitle>{cardTitle}</CardTitle>
                     <CardText>{cardText}</CardText>
-                    <Button onClick={openLoginModal}>Button</Button>
+                    <Button color={"success"} onClick={openLoginModal}>read more</Button>
                 </CardBody>
             </Card>
         </div>
