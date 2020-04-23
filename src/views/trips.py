@@ -238,12 +238,12 @@ class TripsView(MethodView):
                 return response_400('InvalidName', 'Name should have at least 2 characters and maximum 25, it can '
                                                    'contain any char except new line.')
 
-            if "max_trip_days" in changed_fields and changed_fields["max_trip_days"] < 1 or changed_fields[
-                "max_trip_days"] > 30:
+            if "max_trip_days" in changed_fields and int(changed_fields["max_trip_days"]) < 1 or int(changed_fields[
+                                                                                                         "max_trip_days"]) > 30:
                 return response_400("InvalidDaysNumber", "Please provide valid max_trip_days value")
 
-            if "max_price" in changed_fields and changed_fields["max_price"] < 1 or changed_fields[
-                "max_price"] > 1000000:
+            if "max_price" in changed_fields and int(changed_fields["max_price"]) < 1 or int(changed_fields[
+                                                                                                 "max_price"]) > 1000000:
                 return response_400("InvalidPriceNumber", "Please provide a valid max_price value")
 
             db_instance = TripsDatabase()
