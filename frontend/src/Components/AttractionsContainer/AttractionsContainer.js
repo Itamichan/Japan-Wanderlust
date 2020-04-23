@@ -51,7 +51,7 @@ const AttractionsContainer = ({openLoginModal}) => {
                 openLoginModal={openLoginModal}
                 cardTitle={attraction.attraction_name}
                 cardImg={attraction.picture_url}
-                cardText={attraction.description}
+                cardText={attraction.city.name}
             />
         )
 
