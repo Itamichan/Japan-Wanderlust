@@ -68,7 +68,7 @@ const TripsList = ({history}) => {
             <Row>
                 <Col>{trip.name}</Col>
                 <Col>
-                    <Button color="success" onClick={() => history.push(`/trips/attractions`, {tripId: trip.id})}>see
+                    <Button color="success" onClick={() => history.push(`/trips/${trip.id}`)}>see
                         more
                     </Button>
                 </Col>

@@ -87,9 +87,7 @@ const Layout = ({loginUser, logout}) => {
                                 <Route path="/profile">
                                     <ProfileContainer/>
                                 </Route>
-                                <Route path="/trips/attractions">
-                                    <TripAttractionsInfo/>
-                                </Route>
+                                <Route path="/trips/:id" component={TripAttractionsInfo}/>
                                 <Route path="/trips">
                                     <TripsList/>
                                 </Route>

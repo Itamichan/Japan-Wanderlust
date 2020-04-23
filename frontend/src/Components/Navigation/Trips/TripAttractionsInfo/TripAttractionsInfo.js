@@ -12,11 +12,12 @@ const TripAttractionsInfo = ({history}) => {
     const [attractions, setAttractions] = useState([]);
     const [executingRequest, setExecutingRequest] = useState(false);
 
-    let tripId = useLocation().state.tripId;
+    let { id } = useParams();
+
 
     const loadTripInfo = async () => {
         try {
-            const {data} = await axios.get(`/api/v1/trips/${tripId}`);
+            const {data} = await axios.get(`/api/v1/trips/${id}`);
             setTripInfo(data)
         } catch (e) {
         } finally {
@@ -26,7 +27,7 @@ const TripAttractionsInfo = ({history}) => {
 
     const loadTripAttractions = async () => {
         try {
-            const {data} = await axios.get(`/api/v1/trips/${tripId}/attractions`);
+            const {data} = await axios.get(`/api/v1/trips/${id}/attractions`);
             setAttractions(data.attractions)
         } catch (e) {
 
@@ -38,7 +39,7 @@ const TripAttractionsInfo = ({history}) => {
     const removeAttraction = async (tripId, attractionId) => {
         try {
             setExecutingRequest(true);
-            const {data} = await axios.delete(`/api/v1/trips/${tripId}/attractions/${attractionId}`);
+            const {data} = await axios.delete(`/api/v1/trips/${id}/attractions/${attractionId}`);
             loadTripAttractions()
         } catch (e) {
             switch (e.response.data.error) {
@@ -66,7 +67,7 @@ const TripAttractionsInfo = ({history}) => {
                 </Col>
                 <Col>
                     <Button color="danger" disabled={executingRequest}
-                            onClick={() => removeAttraction(tripId, attraction.id)}>delete</Button>
+                            onClick={() => removeAttraction(id, attraction.id)}>delete</Button>
                 </Col>
 
             </Row>
@@ -93,7 +94,7 @@ const TripAttractionsInfo = ({history}) => {
                     <Col>{`max price: ${tripInfo.max_price} YEN`}</Col>
                 </Row>
             </Container>
-            <div>trip's id: {tripId}</div>
+            <div>trip's id: {id}</div>
             <Container>
                 <Row>
                     <Col>
