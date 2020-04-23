@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {connect} from "react-redux";
-import {Col, Container, Row, Button} from 'reactstrap';
+import {Button, Col, Container, Media, Row} from 'reactstrap';
 import {notify} from "react-notify-toast";
-import {useLocation, useParams, withRouter} from "react-router";
-import TripChooserModal from "../../../TripBanner/TripChooser/TripChooserModal";
+import {useParams, withRouter} from "react-router";
 import TripUpdate from "../../../TripBanner/TripModal/TripUpdate";
+import UserAttraction from "./UserAttractionsList/UserAttraction";
 
 
-const TripAttractionsInfo = ({history}) => {
+const UserDetailedTrip = ({history}) => {
 
     const [tripInfo, setTripInfo] = useState({});
     const [attractions, setAttractions] = useState([]);
@@ -62,17 +61,21 @@ const TripAttractionsInfo = ({history}) => {
     const attractionsList = attractions.map(attraction => {
         return (
             <Row>
-                <Col>{attraction.attraction_name}</Col>
-                <Col>{attraction.city.name}</Col>
-                <Col>
+                <Col xs={"8"}>
+                    <UserAttraction
+                        mediaImg={attraction.picture_url}
+                        mediaHeading={attraction.attraction_name}
+                        mediaText={attraction.city.name}
+                    />
+                </Col>
+                <Col xs="2">
                     {/*todo implement get attraction_info*/}
-                    <Button color="warning">More Info</Button>
+                    <Button color="warning">More</Button>
                 </Col>
-                <Col>
+                <Col xs="2">
                     <Button color="danger" disabled={executingRequest}
-                            onClick={() => removeAttraction(tripId, attraction.id)}>delete</Button>
+                            onClick={() => removeAttraction(tripId, attraction.id)}>Delete</Button>
                 </Col>
-
             </Row>
         )
     });
@@ -132,4 +135,4 @@ const TripAttractionsInfo = ({history}) => {
     );
 };
 
-export default withRouter(TripAttractionsInfo)
+export default withRouter(UserDetailedTrip)

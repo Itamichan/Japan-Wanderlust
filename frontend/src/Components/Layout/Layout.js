@@ -8,8 +8,8 @@ import {login, logout, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import ProfileContainer from "../ProfileContainer/ProfileContainer";
-import TripsList from "../Navigation/Trips/TripsList/TripsList";
-import TripAttractionsInfo from "../Navigation/Trips/TripAttractionsInfo/TripAttractionsInfo";
+import TripsList from "../Navigation/UserTrips/TripsList/UserTripsList";
+import TripAttractionsInfo from "../Navigation/UserTrips/UserDetailedTrip/UserDetailedTrip";
 
 
 const Layout = ({loginUser, logout}) => {

@@ -13,7 +13,7 @@ import {
 } from "react-router-dom";
 import {withRouter} from "react-router";
 
-const TripsList = ({history}) => {
+const UserTripsList = ({history}) => {
 
     const [loading, setLoading] = useState(true);
     const [trips, setTrips] = useState([]);
@@ -93,5 +93,5 @@ const mapStateToProps = (state) => {
 };
 
 //next line ensures that the properties from the 2 passed functions are passed to Login comp
-const DefaultApp = withRouter(connect(mapStateToProps, mapDispatchToProps)(TripsList));
+const DefaultApp = withRouter(connect(mapStateToProps, mapDispatchToProps)(UserTripsList));
 export default DefaultApp;
