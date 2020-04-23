@@ -20,6 +20,7 @@ const Layout = ({loginUser, logout}) => {
         const token = localStorage.getItem("token");
         try {
             if (token) {
+
                 const {data} = await axios.post('/api/v1/token/verify', {
                     'token': token
                 });
@@ -30,7 +31,6 @@ const Layout = ({loginUser, logout}) => {
         } finally {
             setLoading(false)
         }
-
     };
 
 
@@ -87,7 +87,7 @@ const Layout = ({loginUser, logout}) => {
                                 <Route path="/profile">
                                     <ProfileContainer/>
                                 </Route>
-                                <Route path="/trips/:id" component={TripAttractionsInfo}/>
+                                <Route path="/trips/:tripId" component={TripAttractionsInfo}/>
                                 <Route path="/trips">
                                     <TripsList/>
                                 </Route>

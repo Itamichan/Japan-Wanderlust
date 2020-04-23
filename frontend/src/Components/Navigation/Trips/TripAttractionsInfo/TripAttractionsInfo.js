@@ -4,6 +4,8 @@ import {connect} from "react-redux";
 import {Col, Container, Row, Button} from 'reactstrap';
 import {notify} from "react-notify-toast";
 import {useLocation, useParams, withRouter} from "react-router";
+import TripChooserModal from "../../../TripBanner/TripChooser/TripChooserModal";
+import TripUpdate from "../../../TripBanner/TripModal/TripUpdate";
 
 
 const TripAttractionsInfo = ({history}) => {
@@ -11,13 +13,14 @@ const TripAttractionsInfo = ({history}) => {
     const [tripInfo, setTripInfo] = useState({});
     const [attractions, setAttractions] = useState([]);
     const [executingRequest, setExecutingRequest] = useState(false);
+    const [showUpdateTrip, setShowUpdateTrip] = useState(false);
 
-    let { id } = useParams();
+    let {tripId} = useParams();
 
 
     const loadTripInfo = async () => {
         try {
-            const {data} = await axios.get(`/api/v1/trips/${id}`);
+            const {data} = await axios.get(`/api/v1/trips/${tripId}`);
             setTripInfo(data)
         } catch (e) {
         } finally {
@@ -27,7 +30,7 @@ const TripAttractionsInfo = ({history}) => {
 
     const loadTripAttractions = async () => {
         try {
-            const {data} = await axios.get(`/api/v1/trips/${id}/attractions`);
+            const {data} = await axios.get(`/api/v1/trips/${tripId}/attractions`);
             setAttractions(data.attractions)
         } catch (e) {
 
@@ -39,7 +42,7 @@ const TripAttractionsInfo = ({history}) => {
     const removeAttraction = async (tripId, attractionId) => {
         try {
             setExecutingRequest(true);
-            const {data} = await axios.delete(`/api/v1/trips/${id}/attractions/${attractionId}`);
+            const {data} = await axios.delete(`/api/v1/trips/${tripId}/attractions/${attractionId}`);
             loadTripAttractions()
         } catch (e) {
             switch (e.response.data.error) {
@@ -67,7 +70,7 @@ const TripAttractionsInfo = ({history}) => {
                 </Col>
                 <Col>
                     <Button color="danger" disabled={executingRequest}
-                            onClick={() => removeAttraction(id, attraction.id)}>delete</Button>
+                            onClick={() => removeAttraction(tripId, attraction.id)}>delete</Button>
                 </Col>
 
             </Row>
@@ -92,9 +95,15 @@ const TripAttractionsInfo = ({history}) => {
                 <Row>
                     <Col>{`in group: ${inGroup ? "yes" : "no"}`}</Col>
                     <Col>{`max price: ${tripInfo.max_price} YEN`}</Col>
+                    <Col>{`max trip days: ${tripInfo.max_trip_days} days`}</Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Button onClick={() => setShowUpdateTrip(true)}>Edit trip</Button>
+                    </Col>
                 </Row>
             </Container>
-            <div>trip's id: {id}</div>
+
             <Container>
                 <Row>
                     <Col>
@@ -104,8 +113,18 @@ const TripAttractionsInfo = ({history}) => {
                 {attractionsList}
             </Container>
             <Button onClick={() => history.goBack()}>back to all the trips</Button>
+            {showUpdateTrip && <TripUpdate
+                close={() => setShowUpdateTrip(false)}
+                initialTripName={tripInfo.name}
+                initialMaxTripDays={tripInfo.max_trip_days}
+                initialIsGuided={isGuided}
+                initialInGroup={inGroup}
+                initialMaxPrice={tripInfo.max_price}
+                tripId={tripId}
+                updateTripInfo={loadTripInfo}
+            />}
         </div>
-    )
+    );
 };
 
 export default withRouter(TripAttractionsInfo)

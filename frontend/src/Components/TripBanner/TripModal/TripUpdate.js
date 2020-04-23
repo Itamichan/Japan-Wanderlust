@@ -18,19 +18,25 @@ import {setCurrentTrip} from "../reduxTrip/actions";
 import CustomInput from "reactstrap/es/CustomInput";
 import TripInputView from "./TripInputView";
 
-const TripCreate = ({close}) => {
+const TripUpdate = ({
+                        close, initialTripName,
+                        initialMaxTripDays,
+                        initialIsGuided,
+                        initialInGroup,
+                        initialMaxPrice, tripId, updateTripInfo
+                    }) => {
 
     const [sendingRequest, setSendingRequest] = useState(false);
-    const [tripName, setTripName] = useState("");
-    const [maxTripDays, setMaxTripDays] = useState("");
-    const [isGuided, setIsGuided] = useState(false);
-    const [inGroup, setInGroup] = useState(false);
-    const [maxPrice, setMaxPrice] = useState("");
+    const [tripName, setTripName] = useState(initialTripName);
+    const [maxTripDays, setMaxTripDays] = useState(initialMaxTripDays);
+    const [isGuided, setIsGuided] = useState(initialIsGuided);
+    const [inGroup, setInGroup] = useState(initialInGroup);
+    const [maxPrice, setMaxPrice] = useState(initialMaxPrice);
 
-    const createTrip = async () => {
+    const updateTrip = async () => {
         try {
             setSendingRequest(true);
-            const {data} = await axios.post('/api/v1/trips', {
+            const {data} = await axios.patch(`/api/v1/trips/${tripId}`, {
                     name: tripName,
                     max_trip_days: maxTripDays,
                     is_guided: isGuided,
@@ -38,10 +44,10 @@ const TripCreate = ({close}) => {
                     max_price: maxPrice
                 }
             );
+            updateTripInfo();
             notify.show('yay!!', "success", 1700);
             close()
         } catch (e) {
-
             switch (e.response.data.error) {
                 //todo write proper notify messages
                 case "InvalidName":
@@ -53,15 +59,12 @@ const TripCreate = ({close}) => {
                 case "InvalidPriceNumber":
                     notify.show('InvalidPriceNumber!', "error", 1700);
                     break;
-                case "InvalidDataEntry":
-                    notify.show('InvalidDataEntry!', "error", 1700);
+                case "NoParameter":
+                    notify.show('NoParameter!', "error", 1700);
                     break;
-                case "ParameterError":
-                    notify.show('ParameterError!', "error", 1700);
+                case "NoSuchTrip":
+                    notify.show('NoSuchTrip!', "error", 1700);
                     break;
-                case "Unauthorized":
-                    notify.show('Invalid Token!', "error", 1700);
-                    break
             }
         } finally {
             setSendingRequest(false);
@@ -82,12 +85,12 @@ const TripCreate = ({close}) => {
                 setInGroup={setInGroup}
                 setMaxPrice={setMaxPrice}
                 close={close}
-                submit={createTrip}
+                submit={updateTrip}
                 disable={sendingRequest}
-                tripTypeName={"Create a new trip"}
+                tripTypeName={"Edit your trip"}
             />
         </Fragment>
     )
 };
 
-export default TripCreate
+export default TripUpdate
