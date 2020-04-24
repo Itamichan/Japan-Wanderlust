@@ -5,7 +5,6 @@ import {notify} from "react-notify-toast";
 import {useParams, withRouter} from "react-router";
 import TripUpdate from "../../../TripBanner/TripModal/TripUpdate";
 import UserAttraction from "./UserAttractionsList/UserAttraction";
-import AttractionCardInfo from "../../../AttractionsContainer/AttractionCard/AttractionCardInfo/AttractionCardInfo";
 
 
 const UserDetailedTrip = ({history}) => {

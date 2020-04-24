@@ -9,7 +9,7 @@ import {connect} from "react-redux";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import ProfileContainer from "../ProfileContainer/ProfileContainer";
 import TripsList from "../Navigation/UserTrips/UserTripsList/UserTripsList";
-import TripAttractionsInfo from "../Navigation/UserTrips/UserDetailedTrip/UserDetailedTrip";
+import UserDetailedTrip from "../Navigation/UserTrips/UserDetailedTrip/UserDetailedTrip";
 
 
 const Layout = ({loginUser, logout}) => {
@@ -88,7 +88,7 @@ const Layout = ({loginUser, logout}) => {
                                 <Route path="/profile">
                                     <ProfileContainer/>
                                 </Route>
-                                <Route path="/trips/:tripId" component={TripAttractionsInfo}/>
+                                <Route path="/trips/:tripId" component={UserDetailedTrip}/>
                                 <Route path="/trips">
                                     <TripsList/>
                                 </Route>

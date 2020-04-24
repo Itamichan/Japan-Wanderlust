@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {notify} from "react-notify-toast";
-import {Button, Col, Row} from "reactstrap";
+import {Container} from "reactstrap";
 import {setCurrentTrip} from "../../../TripBanner/reduxTrip/actions";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
+import UserTrip from "./UserTrip";
+import "./UserTripsList.scss";
 
-const UserTripsList = ({history}) => {
+const UserTripsList = (props) => {
 
     const [loading, setLoading] = useState(true);
     const [trips, setTrips] = useState([]);
@@ -49,25 +51,20 @@ const UserTripsList = ({history}) => {
 
     const tripsList = trips.map(trip => {
         return (
-            <Row key={trip.id}>
-                <Col>{trip.name}</Col>
-                <Col>
-                    <Button color="success" onClick={() => history.push(`/trips/${trip.id}`)}>see
-                        more
-                    </Button>
-                </Col>
-                <Col>
-                    <Button disabled={executingRequest} color="danger" onClick={() => removeTrip(trip.id)}>Remove
-                        trip</Button>
-                </Col>
-            </Row>
+            <UserTrip
+                key={trip.id}
+                disabled={executingRequest}
+                mediaHeading={trip.name}
+                tripId={trip.id}
+                removeTrip={() => removeTrip(trip.id)}
+            />
         )
     });
 
     return (
-        <div>
+        <Container fluid="lg" id={"user-trips-container"}>
             {loading ? "loading" : tripsList}
-        </div>
+        </Container>
     )
 };
 
