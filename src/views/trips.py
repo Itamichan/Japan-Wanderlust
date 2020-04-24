@@ -164,7 +164,7 @@ class TripsView(MethodView):
             # checks that the passed values are valid
             if not re.match(r'^[\S]{2,25}$', name):
                 return response_400('InvalidName', 'Name should have at least 2 characters and maximum 25, '
-                                                   'it can contain any char except new line.')
+                                                   'it can contain any char not part of \s.')
 
             if max_trip_days < 1 or max_trip_days > 30:
                 return response_400("InvalidDaysNumber", "Please provide valid max_trip_days value.")
@@ -236,7 +236,7 @@ class TripsView(MethodView):
             # checks that the passed values are valid
             if not re.match(r'^[\S]{2,25}$', changed_fields["name"]):
                 return response_400('InvalidName', 'Name should have at least 2 characters and maximum 25, it can '
-                                                   'contain any char except new line.')
+                                                   'contain any char not part of \s.')
 
             if "max_trip_days" in changed_fields and int(changed_fields["max_trip_days"]) < 1 or int(changed_fields[
                                                                                                          "max_trip_days"]) > 30:
