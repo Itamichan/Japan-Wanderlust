@@ -5,6 +5,7 @@ import {notify} from "react-notify-toast";
 import {useParams, withRouter} from "react-router";
 import TripUpdate from "../../../TripBanner/TripModal/TripUpdate";
 import UserAttraction from "./UserAttractionsList/UserAttraction";
+import AttractionCardInfo from "../../../AttractionsContainer/AttractionCard/AttractionCardInfo/AttractionCardInfo";
 
 
 const UserDetailedTrip = ({history}) => {
@@ -63,20 +64,17 @@ const UserDetailedTrip = ({history}) => {
     const attractionsList = attractions.map(attraction => {
         return (
             <Row key={attraction.id}>
-                <Col xs={"8"}>
+                <Col>
                     <UserAttraction
                         mediaImg={attraction.picture_url}
                         mediaHeading={attraction.attraction_name}
-                        mediaText={attraction.city.name}
+                        mediaCity={attraction.city.name}
+                        removeAttraction={() => removeAttraction(tripId, attraction.id)}
+                        disabled={executingRequest}
+                        attractionText={attraction.description}
+                        attractionPrice={attraction.price}
+                        attractionWebAddress={attraction.web_link}
                     />
-                </Col>
-                <Col xs="2">
-                    {/*todo implement get attraction_info*/}
-                    <Button color="warning">More</Button>
-                </Col>
-                <Col xs="2">
-                    <Button color="danger" disabled={executingRequest}
-                            onClick={() => removeAttraction(tripId, attraction.id)}>Delete</Button>
                 </Col>
             </Row>
         )

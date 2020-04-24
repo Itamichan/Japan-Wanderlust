@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     Button, Modal, ModalBody, ModalFooter, ModalHeader, Container, Row,
     Col
@@ -10,8 +10,12 @@ const AttractionCardInfo = ({
                                 attractionWebAddress, attractionImg
                             }) => {
     return (
-        <Modal isOpen={true} className={"card-info-container"}>
-            <ModalHeader>
+        <Modal
+            isOpen={true}
+            className={"card-info-container"}
+        >
+            <ModalHeader
+                toggle={close}>
                 <div>{attractionName}</div>
                 <div>{attractionCity}</div>
             </ModalHeader>
@@ -52,7 +56,7 @@ const AttractionCardInfo = ({
                 </Container>
             </ModalBody>
             <ModalFooter>
-                <Button onClick={close}>close</Button>
+                <Button onClick={close}>ok</Button>
             </ModalFooter>
         </Modal>
     )

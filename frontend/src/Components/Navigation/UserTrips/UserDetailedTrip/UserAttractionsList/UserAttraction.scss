@@ -1,8 +1,14 @@
-.media-img {
-  max-height: 80px;
-  max-width: 80px;
-}
 
 .media-container {
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
+
+  .media-body {
+    text-align: left;
+    padding-left: 1rem;
+  }
+
+  .media-img {
+    max-height: 7rem;
+    max-width: 7rem;
+  }
 }
