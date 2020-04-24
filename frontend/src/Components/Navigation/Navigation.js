@@ -31,7 +31,6 @@ const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history})
                         {username}
                     </DropdownToggle>
                     <DropdownMenu>
-                        <DropdownItem onClick={() => history.push("/profile")}>Profile</DropdownItem>
                         <DropdownItem onClick={() => history.push("/trips")}>Show my trips</DropdownItem>
                         <DropdownItem onClick={logout}>Log Out</DropdownItem>
                     </DropdownMenu>
