@@ -7,8 +7,7 @@ import axios from "axios";
 import {login, logout} from "../Login/redux/actions";
 import {connect} from "react-redux";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import ProfileContainer from "../ProfileContainer/ProfileContainer";
-import TripsList from "../Navigation/UserTrips/UserTripsList/UserTripsList";
+import TripsList from "../Navigation/UserTrips/UserTripsOverview/UserTripsList";
 import UserDetailedTrip from "../Navigation/UserTrips/UserDetailedTrip/UserDetailedTrip";
 
 
@@ -85,9 +84,6 @@ const Layout = ({loginUser, logout}) => {
                             <Navigation/>
                             <Login/>
                             <Switch>
-                                <Route path="/profile">
-                                    <ProfileContainer/>
-                                </Route>
                                 <Route path="/trips/:tripId" component={UserDetailedTrip}/>
                                 <Route path="/trips">
                                     <TripsList/>

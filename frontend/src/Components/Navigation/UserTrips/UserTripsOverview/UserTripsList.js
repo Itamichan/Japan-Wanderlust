@@ -2,17 +2,21 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {notify} from "react-notify-toast";
 import {Container} from "reactstrap";
-import {setCurrentTrip} from "../../../TripBanner/reduxTrip/actions";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
-import UserTrip from "./UserTrip";
+import UserTrip from "./UserTrip/UserTrip";
 import "./UserTripsList.scss";
+import Col from "reactstrap/es/Col";
+import Row from "reactstrap/es/Row";
+import Button from "reactstrap/es/Button";
+import TripCreate from "../../../TripBanner/TripModal/TripCreate";
 
-const UserTripsList = (props) => {
+const UserTripsList = ({isUserLoggedIn, history}) => {
 
     const [loading, setLoading] = useState(true);
     const [trips, setTrips] = useState([]);
     const [executingRequest, setExecutingRequest] = useState(false);
+    const [showCreateTrip, setShowCreateTrip] = useState(false);
 
     const loadTrips = async () => {
         try {
@@ -62,24 +66,38 @@ const UserTripsList = (props) => {
     });
 
     return (
-        <Container fluid="lg" id={"user-trips-container"}>
-            {loading ? "loading" : tripsList}
-        </Container>
+        <div>
+            {isUserLoggedIn ? (
+                <Container fluid="lg" id={"user-trips-container"}>
+                    <Row>
+                        <Col xs={"8"} id={"user-trips-heading"}>
+                            <h1>Your trips:</h1>
+                        </Col>
+                        <Col xs={"4"} id={"add-trip"}>
+                            <Button onClick={() => setShowCreateTrip(true)}>Add a new trip</Button>
+                            {showCreateTrip && <TripCreate close={() => setShowCreateTrip(false)}/>}
+                        </Col>
+                    </Row>
+                    {loading ? "loading" : tripsList}
+
+                </Container>
+            ) : (
+                history.push("/")
+            )}
+        </div>
     )
 };
 
 //dispatch will move the provided action dict (result of login(token))
 // to the global state and will run the reducer with the provided action
 const mapDispatchToProps = (dispatch) => {
-    return {
-        setCurrentTrip: (trip) => dispatch(setCurrentTrip(trip))
-    }
+    return {}
 };
 
 //map the global state to properties that are passed into the comp
 const mapStateToProps = (state) => {
     return {
-        currentTrip: state.TripReducer.currentTrip
+        isUserLoggedIn: state.LoginReducer.loggedIn
     }
 };
 
