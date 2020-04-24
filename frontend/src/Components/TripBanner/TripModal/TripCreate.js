@@ -3,7 +3,7 @@ import axios from "axios";
 import {notify} from "react-notify-toast";
 import TripInputView from "./TripInputView";
 
-const TripCreate = ({close}) => {
+const TripCreate = ({close, update}) => {
 
     const [sendingRequest, setSendingRequest] = useState(false);
     const [tripName, setTripName] = useState("");
@@ -24,6 +24,7 @@ const TripCreate = ({close}) => {
                 }
             );
             notify.show('yay!!', "success", 1700);
+            if (update) update();
             close()
         } catch (e) {
 

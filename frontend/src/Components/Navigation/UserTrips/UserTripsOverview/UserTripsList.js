@@ -75,11 +75,13 @@ const UserTripsList = ({isUserLoggedIn, history}) => {
                         </Col>
                         <Col xs={"4"} id={"add-trip"}>
                             <Button onClick={() => setShowCreateTrip(true)}>Add a new trip</Button>
-                            {showCreateTrip && <TripCreate close={() => setShowCreateTrip(false)}/>}
+                            {showCreateTrip && <TripCreate
+                                close={() => setShowCreateTrip(false)}
+                                update={loadTrips}
+                            />}
                         </Col>
                     </Row>
                     {loading ? "loading" : tripsList}
-
                 </Container>
             ) : (
                 history.push("/")
