@@ -8,7 +8,7 @@ import {login, logout} from "../Login/redux/actions";
 import {connect} from "react-redux";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import ProfileContainer from "../ProfileContainer/ProfileContainer";
-import TripsList from "../Navigation/UserTrips/TripsList/UserTripsList";
+import TripsList from "../Navigation/UserTrips/UserTripsList/UserTripsList";
 import TripAttractionsInfo from "../Navigation/UserTrips/UserDetailedTrip/UserDetailedTrip";
 
 
