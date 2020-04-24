@@ -1,18 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
-    Button,
-    FormGroup,
-    Input,
-    InputGroupAddon,
-    InputGroup,
-    Label,
-    Modal,
-    ModalBody,
-    ModalFooter,
-    ModalHeader
+    Button, FormGroup, Input, InputGroup, InputGroupAddon, Label, Modal,
+    ModalBody, ModalFooter, ModalHeader
 } from "reactstrap";
-import axios from "axios";
-import {notify} from "react-notify-toast";
 import {connect} from "react-redux";
 import {setCurrentTrip} from "../reduxTrip/actions";
 import CustomInput from "reactstrap/es/CustomInput";

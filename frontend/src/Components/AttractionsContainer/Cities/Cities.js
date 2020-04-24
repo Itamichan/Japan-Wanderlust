@@ -20,12 +20,8 @@ const Cities = ({chooseCity}) => {
 
     const citiesList = cities.map(city => {
             return (
-                <div>
-                    <button
-                        onClick={() => {
-                            chooseCity(city);
-                        }}
-                    >
+                <div key={city.city_id}>
+                    <button onClick={() => chooseCity(city)}>
                         {city.city_name}
                     </button>
                 </div>

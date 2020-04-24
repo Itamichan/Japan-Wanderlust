@@ -1,8 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
+import React from 'react';
 import {setCurrentTrip} from "../reduxTrip/actions";
 import {connect} from "react-redux";
-import {notify} from "react-notify-toast";
 
 const TripDisplay = ({currentTrip}) => {
 

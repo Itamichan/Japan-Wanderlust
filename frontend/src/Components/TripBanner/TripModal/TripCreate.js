@@ -1,21 +1,6 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import {
-    Button,
-    FormGroup,
-    Input,
-    InputGroupAddon,
-    InputGroup,
-    Label,
-    Modal,
-    ModalBody,
-    ModalFooter,
-    ModalHeader
-} from "reactstrap";
+import React, {Fragment, useState} from 'react';
 import axios from "axios";
 import {notify} from "react-notify-toast";
-import {connect} from "react-redux";
-import {setCurrentTrip} from "../reduxTrip/actions";
-import CustomInput from "reactstrap/es/CustomInput";
 import TripInputView from "./TripInputView";
 
 const TripCreate = ({close}) => {
@@ -30,7 +15,7 @@ const TripCreate = ({close}) => {
     const createTrip = async () => {
         try {
             setSendingRequest(true);
-            const {data} = await axios.post('/api/v1/trips', {
+            await axios.post('/api/v1/trips', {
                     name: tripName,
                     max_trip_days: maxTripDays,
                     is_guided: isGuided,
@@ -61,7 +46,9 @@ const TripCreate = ({close}) => {
                     break;
                 case "Unauthorized":
                     notify.show('Invalid Token!', "error", 1700);
-                    break
+                    break;
+                default:
+                    break;
             }
         } finally {
             setSendingRequest(false);

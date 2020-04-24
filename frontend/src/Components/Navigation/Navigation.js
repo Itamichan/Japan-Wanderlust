@@ -1,19 +1,18 @@
 import React, {useState} from 'react';
 import {
-    Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, ButtonDropdown, NavLink,
-    UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem
+    ButtonDropdown,
+    DropdownItem,
+    DropdownMenu,
+    DropdownToggle,
+    Nav,
+    Navbar,
+    NavbarBrand,
+    NavItem,
+    NavLink
 } from 'reactstrap';
 import {logout, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
-import TripChooserModal from "../TripBanner/TripChooser/TripChooserModal";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
 import {withRouter} from "react-router";
-import Button from "reactstrap/es/Button";
 
 const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history}) => {
 
@@ -29,7 +28,7 @@ const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history})
             <NavItem>
                 <ButtonDropdown isOpen={isOpen} toggle={toggleButton}>
                     <DropdownToggle>
-                        <Button>{username}</Button>
+                        {username}
                     </DropdownToggle>
                     <DropdownMenu>
                         <DropdownItem onClick={() => history.push("/profile")}>Profile</DropdownItem>

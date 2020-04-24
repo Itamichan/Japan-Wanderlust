@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Button, Col, Container, Media, Row} from 'reactstrap';
+import {Button, Col, Container, Row} from 'reactstrap';
 import {notify} from "react-notify-toast";
 import {useParams, withRouter} from "react-router";
 import TripUpdate from "../../../TripBanner/TripModal/TripUpdate";
@@ -41,7 +41,7 @@ const UserDetailedTrip = ({history}) => {
     const removeAttraction = async (tripId, attractionId) => {
         try {
             setExecutingRequest(true);
-            const {data} = await axios.delete(`/api/v1/trips/${tripId}/attractions/${attractionId}`);
+            await axios.delete(`/api/v1/trips/${tripId}/attractions/${attractionId}`);
             loadTripAttractions()
         } catch (e) {
             switch (e.response.data.error) {
@@ -52,6 +52,8 @@ const UserDetailedTrip = ({history}) => {
                 case "NoSuchAttraction":
                     notify.show('NoSuchAttraction', "error", 1700);
                     break;
+                default:
+                    break;
             }
         } finally {
             setExecutingRequest(false);
@@ -60,7 +62,7 @@ const UserDetailedTrip = ({history}) => {
 
     const attractionsList = attractions.map(attraction => {
         return (
-            <Row>
+            <Row key={attraction.id}>
                 <Col xs={"8"}>
                     <UserAttraction
                         mediaImg={attraction.picture_url}

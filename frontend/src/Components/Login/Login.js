@@ -4,7 +4,7 @@ import {closeModal, login} from "./redux/actions";
 import {connect} from "react-redux";
 import {Button, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import "./Login.scss";
-import Notifications, {notify} from 'react-notify-toast';
+import {notify} from 'react-notify-toast';
 
 const Login = ({loginUser, isModalOpen, closeModal}) => {
     const [username, setUsername] = useState('');
@@ -17,7 +17,7 @@ const Login = ({loginUser, isModalOpen, closeModal}) => {
     const register = async () => {
         try {
             setSendingPostRequest(true);
-            const response = await axios.post('/api/v1/users', {
+            await axios.post('/api/v1/users', {
                 'username': username,
                 'password': password,
                 'email': email
@@ -25,7 +25,7 @@ const Login = ({loginUser, isModalOpen, closeModal}) => {
             notify.show('yay!!', "success", 1700);
             login()
         } catch (e) {
-            switch(e.response.data.error) {
+            switch (e.response.data.error) {
                 //todo write proper notify messages
                 case "InvalidUsername":
                     notify.show('Invalid Username!', "error", 1700);
@@ -38,7 +38,9 @@ const Login = ({loginUser, isModalOpen, closeModal}) => {
                     break;
                 case "InvalidEmailFormat":
                     notify.show('InvalidEmail Format!', "error", 1700);
-                    break
+                    break;
+                default:
+                    break;
             }
 
         } finally {
@@ -82,32 +84,36 @@ const Login = ({loginUser, isModalOpen, closeModal}) => {
                 </FormGroup>
                 <FormGroup>
                     <Label for="password">Password</Label>
-                    <Input disabled={sendingPostRequest} type="password" id={'password'} name={'password'} value={password}
+                    <Input disabled={sendingPostRequest} type="password" id={'password'} name={'password'}
+                           value={password}
                            onChange={(e) => setPassword(e.target.value)}/>
                 </FormGroup>
                 {
                     registerUser ? (
                         <FormGroup>
                             <Label for="email">Email</Label>
-                            <Input disabled={sendingPostRequest}  type="email" name="email" id="email" value={email}
+                            <Input disabled={sendingPostRequest} type="email" name="email" id="email" value={email}
                                    onChange={(e) => setEmail(e.target.value)}/>
                         </FormGroup>
                     ) : (
                         <FormGroup>
                             <h3>Not registered?</h3>
-                            <button disabled={sendingPostRequest} onClick={() => setRegisterUser(true)}>register now!</button>
+                            <button disabled={sendingPostRequest} onClick={() => setRegisterUser(true)}>register now!
+                            </button>
                         </FormGroup>
                     )
                 }
             </ModalBody>
             <ModalFooter>
-                {registerUser && <Button disabled={sendingPostRequest} onClick={() => setRegisterUser(false)}>Go back to signIn</Button>}
+                {registerUser &&
+                <Button disabled={sendingPostRequest} onClick={() => setRegisterUser(false)}>Go back to signIn</Button>}
                 <Button disabled={sendingPostRequest} onClick={() => {
                     closeModal();
                     setRegisterUser(false)
                 }}>Cancel
                 </Button>
-                <Button disabled={sendingPostRequest} color="primary" onClick={registerUser ? register : login}>Submit</Button>
+                <Button disabled={sendingPostRequest} color="primary"
+                        onClick={registerUser ? register : login}>Submit</Button>
             </ModalFooter>
         </Modal>
     )

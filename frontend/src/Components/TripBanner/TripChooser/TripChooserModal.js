@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {Button, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import axios from "axios";
-import {notify} from "react-notify-toast";
 import {connect} from "react-redux";
 import {setCurrentTrip} from "../reduxTrip/actions";
 
@@ -29,7 +28,9 @@ const TripChooserModal = ({close, setCurrentTrip}) => {
 
     const tripName = trips.map(trip => {
         return (
-            <div onClick={() => {
+            <div
+                key={trip.id}
+                onClick={() => {
                 setCurrentTrip(trip);
                 close()
             }}>{trip.name}</div>

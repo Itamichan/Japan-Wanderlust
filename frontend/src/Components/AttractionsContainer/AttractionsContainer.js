@@ -7,7 +7,7 @@ import Cities from "./Cities/Cities";
 import SearchBar from "./SearchBar/SearchBar";
 import FilterTag from "./FilterTag/FilterTag";
 import PriceInput from "./PriceInput/PriceInput";
-import {login, openModal} from "../Login/redux/actions";
+import {openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 import TripBanner from "../TripBanner/TripBanner";
 
@@ -48,6 +48,7 @@ const AttractionsContainer = ({openLoginModal}) => {
     const attractionsList = attractions.map(attraction => {
         return (
             <AttractionCard
+                key={attraction.id}
                 openLoginModal={openLoginModal}
                 cardTitle={attraction.attraction_name}
                 cardImg={attraction.picture_url}

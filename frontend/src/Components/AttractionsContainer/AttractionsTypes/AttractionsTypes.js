@@ -20,8 +20,12 @@ const AttractionsTypes = ({chooseAttractionType}) => {
 
     const attractionsTypes = attractionTypes.map(attractionType => {
             return (
-                <div>
-                    <button onClick={() => chooseAttractionType(attractionType)}>{attractionType.type_name}</button>
+                <div key={attractionType.type_id}>
+                    <button
+                        onClick={() => chooseAttractionType(attractionType)}
+                    >
+                        {attractionType.type_name}
+                    </button>
                 </div>
             )
         }

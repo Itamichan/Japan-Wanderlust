@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {InputGroup, InputGroupAddon, Input} from "reactstrap";
+import React from 'react';
+import {Input, InputGroup, InputGroupAddon} from "reactstrap";
 import "./PriceInput.scss";
 
 const PriceInput = ({choosePrice}) => {

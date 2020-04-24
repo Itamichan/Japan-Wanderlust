@@ -1,7 +1,6 @@
 import React from "react";
-import { withRouter } from "react-router";
+import {withRouter} from "react-router";
 import Button from "reactstrap/es/Button";
-import {DropdownToggle} from "reactstrap";
 
 const ProfileContainer = ({history}) => {
     return (

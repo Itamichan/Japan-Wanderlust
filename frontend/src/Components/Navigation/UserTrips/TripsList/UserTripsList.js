@@ -4,13 +4,6 @@ import {notify} from "react-notify-toast";
 import {Button, Col, Row} from "reactstrap";
 import {setCurrentTrip} from "../../../TripBanner/reduxTrip/actions";
 import {connect} from "react-redux";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useRouteMatch
-} from "react-router-dom";
 import {withRouter} from "react-router";
 
 const UserTripsList = ({history}) => {
@@ -34,13 +27,15 @@ const UserTripsList = ({history}) => {
     const removeTrip = async (tripId) => {
         try {
             setExecutingRequest(true);
-            const {data} = await axios.delete(`/api/v1/trips/${tripId}`);
+            await axios.delete(`/api/v1/trips/${tripId}`);
             loadTrips()
         } catch (e) {
             switch (e.response.data.error) {
                 //todo write proper notify messages
                 case "NoSuchTrip":
                     notify.show('NoSuchTrip', "error", 1700);
+                    break;
+                default:
                     break;
             }
         } finally {
@@ -53,9 +48,8 @@ const UserTripsList = ({history}) => {
     }, []);
 
     const tripsList = trips.map(trip => {
-        console.log(trip);
         return (
-            <Row>
+            <Row key={trip.id}>
                 <Col>{trip.name}</Col>
                 <Col>
                     <Button color="success" onClick={() => history.push(`/trips/${trip.id}`)}>see
