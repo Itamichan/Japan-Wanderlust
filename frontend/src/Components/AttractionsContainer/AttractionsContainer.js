@@ -53,8 +53,8 @@ const AttractionsContainer = ({openLoginModal}) => {
                 cardImg={attraction.picture_url}
                 cardCity={attraction.city.name}
                 attractionText={attraction.description }
-                attractionPrice={attraction.city.price}
-                attractionWebAddress={attraction.city.web_link}
+                attractionPrice={attraction.price}
+                attractionWebAddress={attraction.web_link}
             />
         )
 
