@@ -49,10 +49,12 @@ const AttractionsContainer = ({openLoginModal}) => {
         return (
             <AttractionCard
                 key={attraction.id}
-                openLoginModal={openLoginModal}
                 cardTitle={attraction.attraction_name}
                 cardImg={attraction.picture_url}
-                cardText={attraction.city.name}
+                cardCity={attraction.city.name}
+                attractionText={attraction.description }
+                attractionPrice={attraction.city.price}
+                attractionWebAddress={attraction.city.web_link}
             />
         )
 
