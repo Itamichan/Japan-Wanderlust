@@ -17,35 +17,20 @@ const UserTripsList = ({isUserLoggedIn, history}) => {
     const [trips, setTrips] = useState([]);
     const [executingRequest, setExecutingRequest] = useState(false);
     const [showCreateTrip, setShowCreateTrip] = useState(false);
+    const [error, setError] = useState(false);
 
     const loadTrips = async () => {
         try {
             setLoading(true);
-            const {data} = await axios.get('/api/v1/trips');
+            setError(false);
+            const {data} = await axios.get('/api/v1/trips', {
+                timeout: 750
+            });
             setTrips(data.trips)
         } catch (e) {
-
+            setError(true)
         } finally {
             setLoading(false);
-        }
-    };
-
-    const removeTrip = async (tripId) => {
-        try {
-            setExecutingRequest(true);
-            await axios.delete(`/api/v1/trips/${tripId}`);
-            loadTrips()
-        } catch (e) {
-            switch (e.response.data.error) {
-                //todo write proper notify messages
-                case "NoSuchTrip":
-                    notify.show('NoSuchTrip', "error", 1700);
-                    break;
-                default:
-                    break;
-            }
-        } finally {
-            setExecutingRequest(false);
         }
     };
 
@@ -57,10 +42,11 @@ const UserTripsList = ({isUserLoggedIn, history}) => {
         return (
             <UserTrip
                 key={trip.id}
-                disabled={executingRequest}
                 mediaHeading={trip.name}
                 tripId={trip.id}
-                removeTrip={() => removeTrip(trip.id)}
+                removedTrip={() => setTrips(prevState => {
+                    return prevState.filter(element => element.id !== trip.id)
+                })}
             />
         )
     });
@@ -74,11 +60,24 @@ const UserTripsList = ({isUserLoggedIn, history}) => {
                             <h1>Your trips:</h1>
                         </Col>
                         <Col xs={"4"} id={"add-trip"}>
-                            <Button onClick={() => setShowCreateTrip(true)}>Add a new trip</Button>
-                            {showCreateTrip && <TripCreate
-                                close={() => setShowCreateTrip(false)}
-                                update={loadTrips}
-                            />}
+                            {
+                                error ? (
+                                    <div>
+                                        <p>smth went wrong</p>
+                                        <Button onClick={loadTrips}>reload</Button>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <Button onClick={() => setShowCreateTrip(true)}>Add a new trip</Button>
+                                        {
+                                            showCreateTrip && <TripCreate
+                                                close={() => setShowCreateTrip(false)}
+                                                update={(data) => setTrips([...trips, data])}
+                                            />
+                                        }
+                                    </div>
+                                )
+                            }
                         </Col>
                     </Row>
                     {loading ? "loading" : tripsList}

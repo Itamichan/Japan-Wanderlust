@@ -9,13 +9,13 @@ const TripChooserModal = ({close, setCurrentTrip}) => {
     const [loading, setLoading] = useState(true);
     const [trips, setTrips] = useState([]);
 
+
     const loadTrips = async () => {
         try {
             setLoading(true);
             const {data} = await axios.get('/api/v1/trips');
             setTrips(data.trips)
         } catch (e) {
-
 
         } finally {
             setLoading(false);
@@ -31,9 +31,9 @@ const TripChooserModal = ({close, setCurrentTrip}) => {
             <div
                 key={trip.id}
                 onClick={() => {
-                setCurrentTrip(trip);
-                close()
-            }}>{trip.name}</div>
+                    setCurrentTrip(trip);
+                    close()
+                }}>{trip.name}</div>
         )
     });
 
@@ -63,9 +63,7 @@ const mapDispatchToProps = (dispatch) => {
 
 //map the global state to properties that are passed into the comp
 const mapStateToProps = (state) => {
-    return {
-
-    }
+    return {}
 };
 
 //next line ensures that the properties from the 2 passed functions are passed to Login comp

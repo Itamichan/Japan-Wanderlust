@@ -15,7 +15,7 @@ const TripCreate = ({close, update}) => {
     const createTrip = async () => {
         try {
             setSendingRequest(true);
-            await axios.post('/api/v1/trips', {
+            const {data} = await axios.post('/api/v1/trips', {
                     name: tripName,
                     max_trip_days: maxTripDays,
                     is_guided: isGuided,
@@ -24,7 +24,7 @@ const TripCreate = ({close, update}) => {
                 }
             );
             notify.show('yay!!', "success", 1700);
-            if (update) update();
+            if (update) update(data);
             close()
         } catch (e) {
 
