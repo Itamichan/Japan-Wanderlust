@@ -10,7 +10,7 @@ import TripUpdate from "./TripModal/TripUpdate";
 import {setCurrentTrip} from "./reduxTrip/actions";
 import UserAttraction from "../Navigation/UserTrips/UserDetailedTrip/UserAttractionsList/UserAttraction";
 
-const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip}) => {
+const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttractionCount}) => {
 
     const [showChooseModal, setShowChooseModal] = useState(false);
     const [showCreateTrip, setShowCreateTrip] = useState(false);
@@ -49,7 +49,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip}) => {
                         </div>
                     </Col>
                     <Col>
-
+                        {currentAttractionCount}
                     </Col>
                     <Col>
                         {actionButtons}
@@ -89,7 +89,8 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         isUserLoggedIn: state.LoginReducer.loggedIn,
-        currentTrip: state.TripReducer.currentTrip
+        currentTrip: state.TripReducer.currentTrip,
+        currentAttractionCount: state.TripReducer.currentAttractionCount,
     }
 };
 

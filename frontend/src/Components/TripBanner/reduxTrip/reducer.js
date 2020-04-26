@@ -1,7 +1,8 @@
 //a reducer takes a previous state, modifies it and return the new state
 
 const initialState = {
-    currentTrip: undefined
+    currentTrip: undefined,
+    currentAttractionCount: undefined
 };
 
 const TripReducer = (state, action) => {
@@ -14,7 +15,8 @@ const TripReducer = (state, action) => {
             return {
                 //unwraps the state dict
                 ...state,
-                currentTrip:action.trip
+                currentTrip: action.trip,
+                currentAttractionCount: action.attractionCount
             };
         default:
             return state

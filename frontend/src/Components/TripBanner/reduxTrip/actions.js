@@ -1,7 +1,8 @@
-export const setCurrentTrip = (trip) => {
+export const setCurrentTrip = (trip, attractionCount) => {
     return {
         type: "SET_CURRENT_TRIP",
-        trip: trip
+        trip: trip,
+        attractionCount: attractionCount
     }
 };
 

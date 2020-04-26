@@ -26,14 +26,18 @@ const TripChooserModal = ({close, setCurrentTrip}) => {
         loadTrips()
     }, []);
 
+    const changeCurrentTrip = async (trip) => {
+        const {data} = await axios.get(`/api/v1/trips/${trip.id}/attractions`);
+
+        setCurrentTrip(trip, data.attractions.length);
+        close()
+    };
+
     const tripName = trips.map(trip => {
         return (
             <div
                 key={trip.id}
-                onClick={() => {
-                    setCurrentTrip(trip);
-                    close()
-                }}>{trip.name}</div>
+                onClick={() => changeCurrentTrip(trip)}>{trip.name}</div>
         )
     });
 
@@ -57,7 +61,7 @@ const TripChooserModal = ({close, setCurrentTrip}) => {
 // to the global state and will run the reducer with the provided action
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCurrentTrip: (trip) => dispatch(setCurrentTrip(trip))
+        setCurrentTrip: (trip, attractionCount) => dispatch(setCurrentTrip(trip, attractionCount))
     }
 };
 
