@@ -26,7 +26,8 @@ def validate_token(f):
 
             return f(*args, **kwargs)
 
-        except:
+        except Exception as e:
+            print(e)
             return response_401('InvalidToken')
 
     return _wrapper
