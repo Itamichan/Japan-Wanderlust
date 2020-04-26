@@ -8,7 +8,6 @@ import {Col, Container, Row} from 'reactstrap';
 import Button from "reactstrap/es/Button";
 import TripUpdate from "./TripModal/TripUpdate";
 import {setCurrentTrip} from "./reduxTrip/actions";
-import UserAttraction from "../Navigation/UserTrips/UserDetailedTrip/UserAttractionsList/UserAttraction";
 
 const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttractionCount}) => {
 
@@ -90,7 +89,7 @@ const mapStateToProps = (state) => {
     return {
         isUserLoggedIn: state.LoginReducer.loggedIn,
         currentTrip: state.TripReducer.currentTrip,
-        currentAttractionCount: state.TripReducer.currentAttractionCount,
+        currentAttractionCount: state.TripReducer.currentAttractionCount
     }
 };
 

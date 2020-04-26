@@ -6,4 +6,13 @@ export const setCurrentTrip = (trip, attractionCount) => {
     }
 };
 
+export const decrementCurrentCount = (tripId) => {
+    return {
+        type: "DECREMENT_CURRENT_ATTRACTION_COUNT",
+        tripId: tripId
+    }
+};
+
+
+
 

@@ -56,7 +56,7 @@ class TripAttractionsView(MethodView):
     def get(self, trip_id, user: User = None):
         """
 
-        @api {GET} /api/v1/trips/<trip_id>/attractions/ Attractions Information
+        @api {GET} /api/v1/trips/<trip_id>/attractions Attractions Information
         @apiVersion 1.0.0
 
         @apiName AttractionsInfo
