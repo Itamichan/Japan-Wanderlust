@@ -44,6 +44,7 @@ class TripAttractionsView(MethodView):
             attr_db_instance.close_connection()
             return jsonify({})
 
+        # raises the UniqueViolation error
         except psycopg2.errors.lookup("23505"):
             return response_400("AttractionAlreadyExists", "Please provide a new attraction to the trip")
         except IntegrityError:

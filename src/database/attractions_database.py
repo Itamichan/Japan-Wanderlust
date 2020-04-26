@@ -66,7 +66,7 @@ class AttractionsDatabase(Database):
                 values.append(attraction_type_id)
 
             if text is not None:
-                sql += f"{clause} name ILIKE %s "
+                sql += f"{clause} attractions.name ILIKE %s "
                 clause = "AND"
                 ilike_syntax = f"%{text}%"
                 values.append(ilike_syntax)
