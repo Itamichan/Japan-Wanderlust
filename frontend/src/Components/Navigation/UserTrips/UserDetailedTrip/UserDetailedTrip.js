@@ -5,9 +5,10 @@ import {notify} from "react-notify-toast";
 import {useParams, withRouter} from "react-router";
 import TripUpdate from "../../../TripBanner/TripModal/TripUpdate";
 import UserAttraction from "./UserAttractionsList/UserAttraction";
+import TripInfo from "../../../TripBanner/TripInfo/TripInfo";
 
 
-const UserDetailedTrip = ({history}) => {
+const UserDetailedTrip = ({isUserLoggedIn, history}) => {
 
     const [tripInfo, setTripInfo] = useState({});
     const [attractions, setAttractions] = useState([]);
@@ -84,20 +85,19 @@ const UserDetailedTrip = ({history}) => {
         loadTripAttractions();
     }, []);
 
-    let isGuided = tripInfo.is_guided;
-    let inGroup = tripInfo.in_group;
-
     return (
         <div>
             <Container>
                 <Row>
-                    <Col>{`trip name: ${tripInfo.name}`}</Col>
-                    <Col>{`is guided: ${isGuided ? "yes" : "no"}`}</Col>
-                </Row>
-                <Row>
-                    <Col>{`in group: ${inGroup ? "yes" : "no"}`}</Col>
-                    <Col>{`max price: ${tripInfo.max_price} YEN`}</Col>
-                    <Col>{`max trip days: ${tripInfo.max_trip_days} days`}</Col>
+                    <Col>
+                        <TripInfo
+                            tripName={tripInfo.name}
+                            isGuided={tripInfo.is_guided ? "yes" : "no"}
+                            inGroup={tripInfo.in_group ? "yes" : "no"}
+                            maxPrice={`${tripInfo.max_price} YEN`}
+                            maxTripDays={`${tripInfo.max_trip_days} days`}
+                        />
+                    </Col>
                 </Row>
                 <Row>
                     <Col>
@@ -119,8 +119,8 @@ const UserDetailedTrip = ({history}) => {
                 close={() => setShowUpdateTrip(false)}
                 initialTripName={tripInfo.name}
                 initialMaxTripDays={tripInfo.max_trip_days}
-                initialIsGuided={isGuided}
-                initialInGroup={inGroup}
+                initialIsGuided={tripInfo.is_guided}
+                initialInGroup={tripInfo.in_group}
                 initialMaxPrice={tripInfo.max_price}
                 tripId={tripId}
                 reloadTripInfo={(update) => {

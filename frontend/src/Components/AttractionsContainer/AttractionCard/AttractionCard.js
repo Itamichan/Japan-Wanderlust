@@ -18,7 +18,8 @@ const AttractionCard = ({cardTitle, cardImg, cardCity, attractionText, attractio
                 <CardBody>
                     <CardTitle>{cardTitle}</CardTitle>
                     <CardText>{cardCity}</CardText>
-                    <Button color={"success"} onClick={() => setShowAttractionInfo(true)}>read more</Button>
+                    <Button color={"info"} onClick={() => setShowAttractionInfo(true)}>read more</Button>
+                    <Button color={"success"} onClick={() => setShowAttractionInfo(true)}>add to the trip</Button>
                 </CardBody>
             </Card>
             {showAttractionInfo && <AttractionCardInfo

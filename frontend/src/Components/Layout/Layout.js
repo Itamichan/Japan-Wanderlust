@@ -93,7 +93,6 @@ const Layout = ({loginUser, logout}) => {
                                 </Route>
                             </Switch>
                         </Router>
-
                     </div>
                 )
             }

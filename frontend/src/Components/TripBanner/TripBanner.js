@@ -2,12 +2,13 @@ import React, {Fragment, useState} from 'react';
 import {connect} from "react-redux";
 import "./TripBanner.scss";
 import TripChooserModal from "./TripChooser/TripChooserModal";
-import TripDisplay from "./TripDisplay/TripDisplay";
+import TripInfo from "./TripInfo/TripInfo";
 import TripCreate from "./TripModal/TripCreate";
 import {Col, Container, Row} from 'reactstrap';
 import Button from "reactstrap/es/Button";
 import TripUpdate from "./TripModal/TripUpdate";
 import {setCurrentTrip} from "./reduxTrip/actions";
+import UserAttraction from "../Navigation/UserTrips/UserDetailedTrip/UserAttractionsList/UserAttraction";
 
 const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip}) => {
 
@@ -22,6 +23,8 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip}) => {
         {currentTrip && <Button onClick={() => setShowUpdateTrip(true)}>Edit trip</Button>}
     </div>;
 
+
+    //todo look to use maybe the same conditional for other comp
     if
     (!isUserLoggedIn) {
         return null
@@ -31,10 +34,25 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip}) => {
             <Container fluid id={"trip-banner"}>
                 <Row>
                     <Col>
-                        <div>{currentTrip? <TripDisplay/> : "start your work on a new trip"}</div>
+                        <div>{
+                            currentTrip ? (
+                                <TripInfo
+                                    tripName={currentTrip.name}
+                                    isGuided={currentTrip.is_guided ? "yes" : "no"}
+                                    inGroup={currentTrip.in_group ? "yes" : "no"}
+                                    maxPrice={`${currentTrip.max_price} YEN`}
+                                    maxTripDays={`${currentTrip.max_trip_days} days`}
+                                />
+                            ) : (
+                                "start your work on a new trip"
+                            )}
+                        </div>
                     </Col>
                     <Col>
-                        <div>{actionButtons}</div>
+
+                    </Col>
+                    <Col>
+                        {actionButtons}
                     </Col>
                 </Row>
             </Container>
