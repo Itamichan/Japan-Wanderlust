@@ -24,10 +24,18 @@ const TripReducer = (state, action) => {
                 return {
                     ...state,
                     currentAttractionCount: state.currentAttractionCount - 1
-                };
-            } else {
-                return state
+                }
             }
+            return state;
+        case "INCREMENT_CURRENT_ATTRACTION_COUNT":
+
+            if (action.tripId === state.currentTrip.id) {
+                return {
+                    ...state,
+                    currentAttractionCount: state.currentAttractionCount + 1
+                }
+            }
+            return state;
         default:
             return state
     }

@@ -13,6 +13,12 @@ export const decrementCurrentCount = (tripId) => {
     }
 };
 
+export const incrementCurrentCount = (tripId) => {
+    return {
+        type: "INCREMENT_CURRENT_ATTRACTION_COUNT",
+        tripId: tripId
+    }
+};
 
 
 

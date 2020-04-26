@@ -1,7 +1,7 @@
+import psycopg2
 from flask import jsonify
 from flask.views import MethodView
 from psycopg2._psycopg import IntegrityError
-from psycopg2.errorcodes import UNIQUE_VIOLATION
 from database.attractions_database import AttractionsDatabase
 from database.trips_database import TripsDatabase
 from database.users_database import User
@@ -44,7 +44,7 @@ class TripAttractionsView(MethodView):
             attr_db_instance.close_connection()
             return jsonify({})
 
-        except UNIQUE_VIOLATION:
+        except psycopg2.errors.lookup("23505"):
             return response_400("AttractionAlreadyExists", "Please provide a new attraction to the trip")
         except IntegrityError:
             return response_400("InvalidReference", "Please provide a valid trip_list_id or attraction_id")

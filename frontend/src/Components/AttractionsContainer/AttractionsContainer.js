@@ -10,11 +10,14 @@ import PriceInput from "./PriceInput/PriceInput";
 import {openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 import TripBanner from "../TripBanner/TripBanner";
+import {notify} from "react-notify-toast";
+import {decrementCurrentCount, incrementCurrentCount} from "../TripBanner/reduxTrip/actions";
 
-const AttractionsContainer = ({openLoginModal}) => {
+const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => {
 
     //todo put a spinner for loading state- everywhere
     const [loading, setLoading] = useState(true);
+    const [executingRequest, setExecutingRequest] = useState(false);
     const [attractions, setAttractions] = useState([]);
 
     const [chosenAttractionsType, setChosenAttractionsType] = useState(null);
@@ -37,6 +40,53 @@ const AttractionsContainer = ({openLoginModal}) => {
         setLoading(false)
     };
 
+    const addAttraction = async (tripId, attractionId) => {
+        try {
+            setExecutingRequest(true);
+            await axios.post(`/api/v1/trips/${tripId}/attractions/${attractionId}`);
+            incrementCount(currentTrip.id)
+        } catch (e) {
+            switch (e.response.data.error) {
+                //todo write proper notify messages
+                case "NoSuchTrip":
+                    notify.show('NoSuchTrip', "error", 1700);
+                    break;
+                case "AttractionAlreadyExists":
+                    notify.show('AttractionAlreadyExists', "error", 1700);
+                    break;
+                case "InvalidReference":
+                    notify.show('InvalidReference', "error", 1700);
+                    break;
+                default:
+                    break;
+            }
+        } finally {
+            setExecutingRequest(false);
+        }
+    };
+
+    const removeAttraction = async (tripId, attractionId) => {
+        try {
+            setExecutingRequest(true);
+            await axios.delete(`/api/v1/trips/${tripId}/attractions/${attractionId}`);
+            decrementCount(currentTrip.id)
+        } catch (e) {
+            switch (e.response.data.error) {
+                //todo write proper notify messages
+                case "NoSuchTrip":
+                    notify.show('NoSuchTrip', "error", 1700);
+                    break;
+                case "NoSuchAttraction":
+                    notify.show('NoSuchAttraction', "error", 1700);
+                    break;
+                default:
+                    break;
+            }
+        } finally {
+            setExecutingRequest(false);
+        }
+    };
+
     useEffect(() => {
         loadAttractions()
     }, []);
@@ -52,9 +102,11 @@ const AttractionsContainer = ({openLoginModal}) => {
                 cardTitle={attraction.attraction_name}
                 cardImg={attraction.picture_url}
                 cardCity={attraction.city.name}
-                attractionText={attraction.description }
+                attractionText={attraction.description}
                 attractionPrice={attraction.price}
                 attractionWebAddress={attraction.web_link}
+                removeAttraction={() => removeAttraction(currentTrip.id, attraction.id)}
+                addAttraction={() => addAttraction(currentTrip.id, attraction.id)}
             />
         )
 
@@ -129,7 +181,9 @@ const AttractionsContainer = ({openLoginModal}) => {
 // to the global state and will run the reducer with the provided action
 const mapDispatchToProps = (dispatch) => {
     return {
-        openLoginModal: () => dispatch(openModal())
+        openLoginModal: () => dispatch(openModal()),
+        decrementCount: (tripId) => dispatch(decrementCurrentCount(tripId)),
+        incrementCount: (tripId) => dispatch(incrementCurrentCount(tripId))
     }
 };
 
@@ -137,6 +191,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         isUserLoggedIn: state.LoginReducer.loggedIn,
+        currentTrip: state.TripReducer.currentTrip
     }
 };
 

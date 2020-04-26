@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import {Button, Card, CardBody, CardImg, CardText, CardTitle} from 'reactstrap';
 import "./AttractionCard.scss";
 import AttractionCardInfo from "./AttractionCardInfo/AttractionCardInfo";
-import {decrementCurrentCount, setCurrentTrip} from "../../TripBanner/reduxTrip/actions";
+import {decrementCurrentCount, incrementCurrentCount, setCurrentTrip} from "../../TripBanner/reduxTrip/actions";
 import {connect} from "react-redux";
 
 const AttractionCard = ({
                             cardTitle, cardImg, cardCity, attractionText, attractionPrice, attractionWebAddress,
-                            isUserLoggedIn, currentTrip, currentAttractionCount, decrementCount
+                            isUserLoggedIn, currentTrip, decrementCount, incrementCount, removeAttraction, addAttraction
                         }) => {
 
     const [showAttractionInfo, setShowAttractionInfo] = useState(false);
@@ -24,7 +24,10 @@ const AttractionCard = ({
                     <CardTitle>{cardTitle}</CardTitle>
                     <CardText>{cardCity}</CardText>
                     <Button color={"info"} onClick={() => setShowAttractionInfo(true)}>read more</Button>
-                    <Button color={"success"} onClick={() => decrementCount(currentTrip.id)}>add to the trip</Button>
+                    {isUserLoggedIn &&
+                    <Button color={"danger"} onClick={removeAttraction}>remove from trip</Button>}
+                    {isUserLoggedIn &&
+                    <Button color={"success"} onClick={addAttraction}>add to trip</Button>}
                 </CardBody>
             </Card>
             {showAttractionInfo && <AttractionCardInfo
@@ -44,17 +47,15 @@ const AttractionCard = ({
 // to the global state and will run the reducer with the provided action
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCurrentTrip: (trip) => dispatch(setCurrentTrip(trip)),
         decrementCount: (tripId) => dispatch(decrementCurrentCount(tripId)),
+        incrementCount: (tripId) => dispatch(incrementCurrentCount(tripId))
     }
 };
 
 //map the global state to properties that are passed into the comp
 const mapStateToProps = (state) => {
     return {
-        isUserLoggedIn: state.LoginReducer.loggedIn,
-        currentTrip: state.TripReducer.currentTrip,
-        currentAttractionCount: state.TripReducer.currentAttractionCount
+        isUserLoggedIn: state.LoginReducer.loggedIn
     }
 };
 
