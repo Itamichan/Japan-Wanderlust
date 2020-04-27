@@ -20,9 +20,13 @@ const TripInputModal = ({
             <ModalBody>
                 <FormGroup>
                     <Label for="tripName">Trip name:</Label>
-                    <Input disabled={disabled} type="text" id={'tripName'} name={'tripName'}
-                           value={tripName}
-                           onChange={(e) => setTripName(e.target.value)}/>
+                    <Input
+                        id={'tripName'}
+                        disabled={disabled}
+                        type="text"
+                        name={'tripName'}
+                        value={tripName}
+                        onChange={(e) => setTripName(e.target.value)}/>
                 </FormGroup>
                 <FormGroup>
                     <Label for="maxTripDays">max Trip Days:</Label>

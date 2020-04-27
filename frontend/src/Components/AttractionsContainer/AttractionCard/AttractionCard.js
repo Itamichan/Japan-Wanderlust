@@ -4,6 +4,7 @@ import "./AttractionCard.scss";
 import AttractionCardInfo from "./AttractionCardInfo/AttractionCardInfo";
 import {decrementCurrentCount, incrementCurrentCount, setCurrentTrip} from "../../TripBanner/reduxTrip/actions";
 import {connect} from "react-redux";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const AttractionCard = ({
                             cardTitle, cardImg, cardCity, attractionText, attractionPrice, attractionWebAddress,
@@ -28,6 +29,8 @@ const AttractionCard = ({
                     <Button color={"danger"} onClick={removeAttraction}>remove from trip</Button>}
                     {isUserLoggedIn &&
                     <Button color={"success"} onClick={addAttraction}>add to trip</Button>}
+                    <FontAwesomeIcon icon="heart" />
+                    <FontAwesomeIcon icon={['far', 'heart']} />
                 </CardBody>
             </Card>
             {showAttractionInfo && <AttractionCardInfo
