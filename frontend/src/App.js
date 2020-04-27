@@ -7,10 +7,10 @@ import {createStore} from "redux";
 import rootReducer from "./reducers";
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {fab} from '@fortawesome/free-brands-svg-icons'
-import {faHeart} from '@fortawesome/free-solid-svg-icons'
-import {far} from '@fortawesome/free-regular-svg-icons'
+import {faHeart as fasFaHeart} from '@fortawesome/free-solid-svg-icons'
+import {faHeart as farFaHeart} from '@fortawesome/free-regular-svg-icons'
 
-library.add(fab, far, faHeart);
+library.add(fab, farFaHeart, fasFaHeart);
 
 const store = createStore(rootReducer);
 

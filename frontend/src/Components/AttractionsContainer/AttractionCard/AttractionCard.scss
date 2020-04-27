@@ -1,9 +1,25 @@
-.card-body {
-  max-width: 200px;
-  padding: 2rem;
+
+.attraction-container {
+  position: relative;
+
+  .heart-icon {
+    position: absolute;
+    color: #c0370f;
+    z-index: 20;
+    left: 87%;
+    top: 2%;
+  }
+
+  .card-body {
+    max-width: 200px;
+    padding: 2rem;
+
+    .card-img {
+      max-width: 180px;
+      max-height: 80px;
+    }
+
+
+  }
 }
 
-.card-img {
-  max-width: 180px;
-  max-height: 80px;
-}

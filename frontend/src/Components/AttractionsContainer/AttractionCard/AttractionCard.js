@@ -12,9 +12,33 @@ const AttractionCard = ({
                         }) => {
 
     const [showAttractionInfo, setShowAttractionInfo] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
+
+    const toggleHover = () => {
+        setIsHovered(!isHovered);
+    };
 
     return (
-        <div>
+        <div className={"attraction-container"}>
+            {
+                isHovered ?
+                    (
+                        <FontAwesomeIcon
+                            className={"heart-icon"}
+                            size="lg"
+                            icon="heart"
+                            onMouseLeave={toggleHover}
+                            onClick={addAttraction}
+                        />
+                    ) : (
+                        <FontAwesomeIcon
+                            className={"heart-icon"}
+                            size="lg"
+                            icon={['far', 'heart']}
+                            onMouseOver={toggleHover}
+                        />
+                    )
+            }
             <Card className={"card-body"}>
                 <CardImg
                     className={"card-img"}
@@ -29,8 +53,6 @@ const AttractionCard = ({
                     <Button color={"danger"} onClick={removeAttraction}>remove from trip</Button>}
                     {isUserLoggedIn &&
                     <Button color={"success"} onClick={addAttraction}>add to trip</Button>}
-                    <FontAwesomeIcon icon="heart" />
-                    <FontAwesomeIcon icon={['far', 'heart']} />
                 </CardBody>
             </Card>
             {showAttractionInfo && <AttractionCardInfo

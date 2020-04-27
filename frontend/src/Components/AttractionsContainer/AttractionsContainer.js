@@ -105,8 +105,16 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
                 attractionText={attraction.description}
                 attractionPrice={attraction.price}
                 attractionWebAddress={attraction.web_link}
-                removeAttraction={() => removeAttraction(currentTrip.id, attraction.id)}
-                addAttraction={() => addAttraction(currentTrip.id, attraction.id)}
+                removeAttraction={() => {
+                    if (currentTrip) {
+                        removeAttraction(currentTrip.id, attraction.id)
+                    }
+                }}
+                addAttraction={() => {
+                    if (currentTrip) {
+                        addAttraction(currentTrip.id, attraction.id)
+                    }
+                }}
             />
         )
 
