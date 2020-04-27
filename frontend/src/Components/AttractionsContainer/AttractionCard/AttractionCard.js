@@ -8,34 +8,47 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const AttractionCard = ({
                             cardTitle, cardImg, cardCity, attractionText, attractionPrice, attractionWebAddress,
-                            isUserLoggedIn, currentTrip, decrementCount, incrementCount, removeAttraction, addAttraction
+                            isUserLoggedIn, currentTrip, removeAttraction, addAttraction
                         }) => {
 
     const [showAttractionInfo, setShowAttractionInfo] = useState(false);
-    const [isHovered, setIsHovered] = useState(false);
+    const [isIconSelected, setIsIconSelected] = useState(false);
 
-    const toggleHover = () => {
-        setIsHovered(!isHovered);
+    const toggleIcon = () => {
+        setIsIconSelected(!isIconSelected);
+    };
+
+    const addAttractionToCurrentTrip = () => {
+        if (currentTrip) {
+            addAttraction();
+            toggleIcon()
+        }
+    };
+
+    const removeAttractionToCurrentTrip = () => {
+        if (currentTrip) {
+            removeAttraction();
+            toggleIcon()
+        }
     };
 
     return (
         <div className={"attraction-container"}>
             {
-                isHovered ?
+                isIconSelected ?
                     (
                         <FontAwesomeIcon
                             className={"heart-icon"}
                             size="lg"
                             icon="heart"
-                            onMouseLeave={toggleHover}
-                            onClick={addAttraction}
+                            onClick={removeAttractionToCurrentTrip}
                         />
                     ) : (
                         <FontAwesomeIcon
                             className={"heart-icon"}
                             size="lg"
                             icon={['far', 'heart']}
-                            onMouseOver={toggleHover}
+                            onClick={addAttractionToCurrentTrip}
                         />
                     )
             }
@@ -72,15 +85,15 @@ const AttractionCard = ({
 // to the global state and will run the reducer with the provided action
 const mapDispatchToProps = (dispatch) => {
     return {
-        decrementCount: (tripId) => dispatch(decrementCurrentCount(tripId)),
-        incrementCount: (tripId) => dispatch(incrementCurrentCount(tripId))
+
     }
 };
 
 //map the global state to properties that are passed into the comp
 const mapStateToProps = (state) => {
     return {
-        isUserLoggedIn: state.LoginReducer.loggedIn
+        isUserLoggedIn: state.LoginReducer.loggedIn,
+        currentTrip: state.TripReducer.currentTrip
     }
 };
 
