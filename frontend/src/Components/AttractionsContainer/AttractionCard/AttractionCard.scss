@@ -2,10 +2,10 @@
 .attraction-container {
   position: relative;
 
-  .heart-icon {
+  .empty-heart-icon, .filled-heart-icon {
     position: absolute;
     color: #c0370f;
-    z-index: 20;
+    z-index: 1;
     left: 87%;
     top: 2%;
 

@@ -2,24 +2,32 @@ import React, {useState} from 'react';
 import {Button, Card, CardBody, CardImg, CardText, CardTitle} from 'reactstrap';
 import "./AttractionCard.scss";
 import AttractionCardInfo from "./AttractionCardInfo/AttractionCardInfo";
-import {decrementCurrentCount, incrementCurrentCount, setCurrentTrip} from "../../TripBanner/reduxTrip/actions";
 import {connect} from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {openModal} from "../../Login/redux/actions";
+import TripChooserModal from "../../TripBanner/TripChooser/TripChooserModal";
 
 const AttractionCard = ({
                             cardTitle, cardImg, cardCity, attractionText, attractionPrice, attractionWebAddress,
-                            isUserLoggedIn, currentTrip, removeAttraction, addAttraction
+                            isUserLoggedIn, currentTrip, removeAttraction, addAttraction, cardId, openLoginModal
                         }) => {
-
+    //todo implement that the heart is prefilled if it is already in the trip
     const [showAttractionInfo, setShowAttractionInfo] = useState(false);
     const [isIconSelected, setIsIconSelected] = useState(false);
+    const [showChooseModal, setShowChooseModal] = useState(false);
 
     const toggleIcon = () => {
         setIsIconSelected(!isIconSelected);
     };
 
     const addAttractionToCurrentTrip = () => {
-        if (currentTrip) {
+        if (!isUserLoggedIn) {
+            openLoginModal()
+        }
+        if (isUserLoggedIn && !currentTrip) {
+            setShowChooseModal(true)
+        }
+        if (isUserLoggedIn && currentTrip) {
             addAttraction();
             toggleIcon()
         }
@@ -38,14 +46,14 @@ const AttractionCard = ({
                 isIconSelected ?
                     (
                         <FontAwesomeIcon
-                            className={"heart-icon"}
+                            className={"filled-heart-icon"}
                             size="lg"
                             icon="heart"
                             onClick={removeAttractionToCurrentTrip}
                         />
                     ) : (
                         <FontAwesomeIcon
-                            className={"heart-icon"}
+                            className={"empty-heart-icon"}
                             size="lg"
                             icon={['far', 'heart']}
                             onClick={addAttractionToCurrentTrip}
@@ -62,10 +70,6 @@ const AttractionCard = ({
                     <CardTitle>{cardTitle}</CardTitle>
                     <CardText>{cardCity}</CardText>
                     <Button color={"info"} onClick={() => setShowAttractionInfo(true)}>read more</Button>
-                    {isUserLoggedIn &&
-                    <Button color={"danger"} onClick={removeAttraction}>remove from trip</Button>}
-                    {isUserLoggedIn &&
-                    <Button color={"success"} onClick={addAttraction}>add to trip</Button>}
                 </CardBody>
             </Card>
             {showAttractionInfo && <AttractionCardInfo
@@ -77,6 +81,7 @@ const AttractionCard = ({
                 attractionWebAddress={attractionWebAddress}
                 attractionImg={cardImg}
             />}
+            {showChooseModal && <TripChooserModal close={() => setShowChooseModal(false)}/>}
         </div>
     );
 };
@@ -85,7 +90,7 @@ const AttractionCard = ({
 // to the global state and will run the reducer with the provided action
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        openLoginModal: () => dispatch(openModal()),
     }
 };
 

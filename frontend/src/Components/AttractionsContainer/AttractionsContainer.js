@@ -19,12 +19,10 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
     const [loading, setLoading] = useState(true);
     const [executingRequest, setExecutingRequest] = useState(false);
     const [attractions, setAttractions] = useState([]);
-
     const [chosenAttractionsType, setChosenAttractionsType] = useState(null);
     const [chosenCity, setChosenCity] = useState(null);
     const [attractionName, setAttractionName] = useState(null);
     const [maxPrice, setMaxPrice] = useState(null);
-
 
     const loadAttractions = async () => {
         setLoading(true);
@@ -87,6 +85,7 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
         }
     };
 
+    //load Attractions one time after the first rendering
     useEffect(() => {
         loadAttractions()
     }, []);
@@ -99,6 +98,7 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
         return (
             <AttractionCard
                 key={attraction.id}
+                cardId={attraction.id}
                 cardTitle={attraction.attraction_name}
                 cardImg={attraction.picture_url}
                 cardCity={attraction.city.name}
