@@ -19,3 +19,13 @@ $color-primary-1: #908C8C;
 $color-primary-2: #545454;
 $color-primary-3: #000000;
 $color-primary-4: #010000;
+
+
+.filter-button {
+  background-color: $base-color;
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    background-color: $base-color-dark;
+  }
+}

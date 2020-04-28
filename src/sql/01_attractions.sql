@@ -18,10 +18,10 @@ CREATE TABLE attractions (
 			primary key,
 	name text not null,
 	description text not null,
-	price integer, --price in YEN
+	price integer not null, --price in YEN
 	web_link text,
 	picture_url text not null,
-	city_id integer REFERENCES cities (id)
+	city_id integer REFERENCES cities (id) not null
 );
 
 CREATE TABLE attraction_type_match (

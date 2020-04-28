@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import "./AttractionsTypes.scss";
+import Button from "reactstrap/es/Button";
 
 const AttractionsTypes = ({chooseAttractionType}) => {
 
@@ -21,11 +22,12 @@ const AttractionsTypes = ({chooseAttractionType}) => {
     const attractionsTypes = attractionTypes.map(attractionType => {
             return (
                 <div key={attractionType.type_id}>
-                    <button
+                    <Button
+                        className={"filter-button"}
                         onClick={() => chooseAttractionType(attractionType)}
                     >
                         {attractionType.type_name}
-                    </button>
+                    </Button>
                 </div>
             )
         }
