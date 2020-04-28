@@ -138,11 +138,11 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
 
 
     return (
-        <Fragment>
+        <div id={"attractions-page"}>
             <SearchBar
                 searchAttraction={(searchWord) => searchAttraction(searchWord)}
             />
-            <div id={"filter-tags"}>
+            <section id={"filter-tags"}>
                 <FilterTag
                     clearTag={() => filterCities(null)}
                     tagName={chosenCity?.city_name}
@@ -155,7 +155,7 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
                     clearTag={() => filterPrice(null)}
                     tagName={maxPrice ? `limit: ${maxPrice} YEN` : null}
                 />
-            </div>
+            </section>
 
             <section id={"attractions-container"}>
 
@@ -180,7 +180,7 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
                 </div>
             </section>
             <TripBanner/>
-        </Fragment>
+        </div>
 
     )
 };

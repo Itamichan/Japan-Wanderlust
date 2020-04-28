@@ -29,8 +29,8 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
         return null
     }
     return (
-        <Fragment>
-            <Container fluid id={"trip-banner"}>
+        <section id={"trip-banner"}>
+            <Container fluid>
                 <Row>
                     <Col>
                         <div>{
@@ -72,7 +72,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                     })
                 }}
             />}
-        </Fragment>
+        </section>
     )
 };
 
