@@ -13,6 +13,7 @@ import {
 import {logout, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
+import "./Navigation.scss";
 
 const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history}) => {
 
@@ -44,8 +45,8 @@ const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history})
 
     return (
         <div>
-            <Navbar color="light" light expand="md">
-                <NavbarBrand href="/">JapanWanderlust</NavbarBrand>
+            <Navbar color="dark" className={"navbar"} light expand="md">
+                <NavbarBrand className={"navbar-logo"} href="/">JapanWanderlust</NavbarBrand>
                 <Nav>
                     {toggleNavItem}
                 </Nav>

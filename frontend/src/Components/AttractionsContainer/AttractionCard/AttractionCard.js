@@ -11,7 +11,7 @@ const AttractionCard = ({
                             cardTitle, cardImg, cardCity, attractionText, attractionPrice, attractionWebAddress,
                             isUserLoggedIn, currentTrip, removeAttraction, addAttraction, cardId, openLoginModal
                         }) => {
-    //todo implement that the heart is prefilled if it is already in the trip
+    //todo implement that the heart is filled if it is already in the trip
     const [showAttractionInfo, setShowAttractionInfo] = useState(false);
     const [isIconSelected, setIsIconSelected] = useState(false);
     const [showChooseModal, setShowChooseModal] = useState(false);
@@ -53,9 +53,9 @@ const AttractionCard = ({
                         />
                     ) : (
                         <FontAwesomeIcon
-                            className={"empty-heart-icon"}
+                            className={"disabled-heart-icon"}
                             size="lg"
-                            icon={['far', 'heart']}
+                            icon="heart"
                             onClick={addAttractionToCurrentTrip}
                         />
                     )

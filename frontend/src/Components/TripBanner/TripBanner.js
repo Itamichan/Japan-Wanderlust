@@ -17,9 +17,9 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
 
 
     const actionButtons = <div>
-        <Button onClick={() => setShowCreateTrip(true)}>create a trip</Button>
-        <Button onClick={() => setShowChooseModal(true)}>choose a trip</Button>
-        {currentTrip && <Button onClick={() => setShowUpdateTrip(true)}>Edit trip</Button>}
+        <Button className={"action-button"} onClick={() => setShowCreateTrip(true)}>create a trip</Button>
+        <Button className={"action-button"} onClick={() => setShowChooseModal(true)}>choose a trip</Button>
+        {currentTrip && <Button className={"action-button"} onClick={() => setShowUpdateTrip(true)}>Edit trip</Button>}
     </div>;
 
 
