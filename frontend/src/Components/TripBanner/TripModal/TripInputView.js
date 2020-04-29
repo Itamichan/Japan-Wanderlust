@@ -60,8 +60,12 @@ const TripInputModal = ({
                 </FormGroup>
             </ModalBody>
             <ModalFooter>
-                <Button onClick={close}>close</Button>
-                <Button color="primary" onClick={submit}>
+                <Button onClick={close} disabled={disabled}>close</Button>
+                <Button
+                    color="primary"
+                    onClick={submit}
+                    disabled={disabled}
+                >
                     submit
                 </Button>
             </ModalFooter>
