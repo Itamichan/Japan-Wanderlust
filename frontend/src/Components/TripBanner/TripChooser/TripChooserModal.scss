@@ -1,6 +1,37 @@
-.trip-name {
-  &:hover {
-    background-color: #f4f4f4;
-    cursor: pointer;
+@import "../../../global-scss/global-styles";
+
+#trip-choose-modal {
+
+  #modal-header {
+    border-bottom: none;
+
+  }
+
+  #modal-body {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 1.2rem 2rem;
+    #trips-body {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-evenly;
+      align-items: center;
+      #trips-body-middle {
+        padding-left: 2.5rem;
+      }
+      .trip-name {
+        &:hover {
+          background-color: #f4f4f4;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  #modal-footer {
+    justify-content: center;
   }
 }
+

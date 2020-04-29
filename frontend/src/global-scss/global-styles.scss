@@ -30,3 +30,29 @@ $color-primary-4: #010000;
     background-color: $base-color-dark;
   }
 }
+
+//text
+
+
+@mixin text() {
+  font-family: Eczar, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.text-default {
+  @include text();
+}
+
+.text-highlight {
+  @include text();
+  font-weight: 600;
+}
+
+.text-header {
+  @include text();
+  font-weight: 600;
+  padding-bottom: 1rem;
+  font-size: 1.2rem;
+
+}

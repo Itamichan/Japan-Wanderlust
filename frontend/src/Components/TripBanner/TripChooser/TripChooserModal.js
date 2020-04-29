@@ -43,7 +43,7 @@ const TripChooserModal = ({close, setCurrentTrip}) => {
     const tripNamesList = trips.map(trip => {
         return (
             <ListGroupItem
-                className={"trip-name"}
+                className={"trip-name text-highlight"}
                 key={trip.id}
                 onClick={() => changeCurrentTrip(trip)}>{trip.name}</ListGroupItem>
         )
@@ -56,37 +56,37 @@ const TripChooserModal = ({close, setCurrentTrip}) => {
     }
 
     if (trips.length === 0) {
-        tripsBody = <Col>You don't have any trips at the moment</Col>
+        tripsBody =
+            <h1 className={"text-header"}>You don't have any trips at the moment</h1>
     } else {
         tripsBody =
-            <Col>
-                <Row>
-                    <Col>
-                        <p>Select from existing trips:</p>
-                        <ListGroup flush>
-                            {tripNamesList}
-                        </ListGroup>
-                    </Col>
-                    <Col>
-                        <p><b>OR</b></p>
-                    </Col>
-                </Row>
-            </Col>
+            <Row id={"trips-body"}>
+                <Col xs={"8"}>
+                    <h1 className={"text-header"}>Select from existing trips:</h1>
+                    <ListGroup flush>
+                        {tripNamesList}
+                    </ListGroup>
+                </Col>
+                <Col xs={"4"} className={"text-highlight"} id={"trips-body-middle"}>
+                    <div><b>OR</b></div>
+                </Col>
+            </Row>
     }
 
     return (
-        <Modal isOpen={true}>
+        <Modal isOpen={true} id={"trip-choose-modal"}>
             <ModalHeader
+                id={"modal-header"}
                 toggle={close}
             >
             </ModalHeader>
             <ModalBody>
-                <Row>
-                    <Col>
+                <Row id={"modal-body"}>
+                    <Col xs={"8"}>
                         {tripsBody}
                     </Col>
-                    <Col>
-                        <Button className={"action-button"} onClick={() => setShowCreateTrip(true)}>create a new
+                    <Col xs={"4"}>
+                        <Button className={"action-button"} onClick={() => setShowCreateTrip(true)}>create a
                             trip</Button>
                         {showCreateTrip && <TripCreate
                             close={() => setShowCreateTrip(false)}
@@ -95,7 +95,7 @@ const TripChooserModal = ({close, setCurrentTrip}) => {
                     </Col>
                 </Row>
             </ModalBody>
-            <ModalFooter>
+            <ModalFooter id={"modal-footer"}>
                 <Button onClick={close}>close</Button>
             </ModalFooter>
         </Modal>
