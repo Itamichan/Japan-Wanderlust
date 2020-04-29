@@ -12,12 +12,12 @@ import {setCurrentTrip} from "./reduxTrip/actions";
 const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttractionCount}) => {
 
     const [showChooseModal, setShowChooseModal] = useState(false);
-    const [showCreateTrip, setShowCreateTrip] = useState(false);
+
     const [showUpdateTrip, setShowUpdateTrip] = useState(false);
 
 
     const actionButtons = <div>
-        <Button className={"action-button"} onClick={() => setShowCreateTrip(true)}>create a trip</Button>
+
         <Button className={"action-button"} onClick={() => setShowChooseModal(true)}>choose a trip</Button>
         {currentTrip && <Button className={"action-button"} onClick={() => setShowUpdateTrip(true)}>Edit trip</Button>}
     </div>;
@@ -56,7 +56,6 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                 </Row>
             </Container>
             {showChooseModal && <TripChooserModal close={() => setShowChooseModal(false)}/>}
-            {showCreateTrip && <TripCreate close={() => setShowCreateTrip(false)}/>}
             {showUpdateTrip && <TripUpdate
                 close={() => setShowUpdateTrip(false)}
                 initialTripName={currentTrip.name}

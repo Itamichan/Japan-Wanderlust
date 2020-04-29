@@ -13,8 +13,11 @@ const TripInputModal = ({
                         }) => {
 
     return (
-        <Modal isOpen={true}>
-            <ModalHeader>
+        <Modal
+            isOpen={true}
+            toggle={close}>
+            <ModalHeader
+                toggle={close}>
                 {tripTypeName}
             </ModalHeader>
             <ModalBody>

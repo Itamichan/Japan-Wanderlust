@@ -3,11 +3,18 @@ import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import axios from "axios";
 import {connect} from "react-redux";
 import {setCurrentTrip} from "../reduxTrip/actions";
+import Row from "reactstrap/es/Row";
+import Col from "reactstrap/es/Col";
+import TripCreate from "../TripModal/TripCreate";
+import ListGroup from "reactstrap/es/ListGroup";
+import ListGroupItem from "reactstrap/es/ListGroupItem";
+import "./TripChooserModal.scss";
 
 const TripChooserModal = ({close, setCurrentTrip}) => {
 
     const [loading, setLoading] = useState(true);
     const [trips, setTrips] = useState([]);
+    const [showCreateTrip, setShowCreateTrip] = useState(false);
 
 
     const loadTrips = async () => {
@@ -33,21 +40,43 @@ const TripChooserModal = ({close, setCurrentTrip}) => {
         close()
     };
 
-    const tripName = trips.map(trip => {
+    const tripNamesList = trips.map(trip => {
         return (
-            <div
+            <ListGroupItem
+                className={"trip-name"}
                 key={trip.id}
-                onClick={() => changeCurrentTrip(trip)}>{trip.name}</div>
+                onClick={() => changeCurrentTrip(trip)}>{trip.name}</ListGroupItem>
         )
     });
 
     return (
         <Modal isOpen={true}>
-            <ModalHeader>
-
+            <ModalHeader
+                toggle={close}
+            >
             </ModalHeader>
             <ModalBody>
-                {loading ? "loading" : tripName}
+                <Row>
+                    <Col>
+                        <p>Select from existing trips:</p>
+                        {
+                            loading ? (
+                                "loading"
+                            ) : (
+                                <ListGroup flush>
+                                    {tripNamesList}
+                                </ListGroup>
+                            )}
+                    </Col>
+                    <Col>
+                        <p><b>OR</b></p>
+                    </Col>
+                    <Col>
+                        <Button className={"action-button"} onClick={() => setShowCreateTrip(true)}>create a new
+                            trip</Button>
+                        {showCreateTrip && <TripCreate close={() => setShowCreateTrip(false)}/>}
+                    </Col>
+                </Row>
             </ModalBody>
             <ModalFooter>
                 <Button onClick={close}>close</Button>

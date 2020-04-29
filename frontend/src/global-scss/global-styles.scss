@@ -24,6 +24,7 @@ $color-primary-4: #010000;
 .filter-button {
   background-color: $base-color;
   margin-bottom: 0.5rem;
+  width: 6rem;
 
   &:hover {
     background-color: $base-color-dark;

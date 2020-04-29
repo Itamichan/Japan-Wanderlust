@@ -1,12 +1,15 @@
 #attractions-page {
+  position: relative;
 
   #filter-tags {
+    position: relative;
     display: flex;
     flex-flow: row;
     justify-content: center;
   }
 
   #attractions-container {
+    position: relative;
     display: flex;
 
     #attractions {
