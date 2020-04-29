@@ -1,9 +1,10 @@
 import React, {Fragment} from 'react';
+import "./SearchBar.scss";
 
 const SearchBar = ({searchAttraction}) => {
 
     return (
-        <Fragment>
+        <section id={"search-bar"}>
             <input
                 type="search"
                 placeholder={"Search"}
@@ -11,7 +12,7 @@ const SearchBar = ({searchAttraction}) => {
                     searchAttraction(event.target.value)
                 }}
             />
-        </Fragment>
+        </section>
 
     )
 };
