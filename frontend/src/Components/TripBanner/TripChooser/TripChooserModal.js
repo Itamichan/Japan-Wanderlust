@@ -49,6 +49,31 @@ const TripChooserModal = ({close, setCurrentTrip}) => {
         )
     });
 
+    let tripsBody;
+
+    if (loading) {
+        tripsBody = "loading"
+    }
+
+    if (trips.length === 0) {
+        tripsBody = <Col>You don't have any trips at the moment</Col>
+    } else {
+        tripsBody =
+            <Col>
+                <Row>
+                    <Col>
+                        <p>Select from existing trips:</p>
+                        <ListGroup flush>
+                            {tripNamesList}
+                        </ListGroup>
+                    </Col>
+                    <Col>
+                        <p><b>OR</b></p>
+                    </Col>
+                </Row>
+            </Col>
+    }
+
     return (
         <Modal isOpen={true}>
             <ModalHeader
@@ -58,23 +83,15 @@ const TripChooserModal = ({close, setCurrentTrip}) => {
             <ModalBody>
                 <Row>
                     <Col>
-                        <p>Select from existing trips:</p>
-                        {
-                            loading ? (
-                                "loading"
-                            ) : (
-                                <ListGroup flush>
-                                    {tripNamesList}
-                                </ListGroup>
-                            )}
-                    </Col>
-                    <Col>
-                        <p><b>OR</b></p>
+                        {tripsBody}
                     </Col>
                     <Col>
                         <Button className={"action-button"} onClick={() => setShowCreateTrip(true)}>create a new
                             trip</Button>
-                        {showCreateTrip && <TripCreate close={() => setShowCreateTrip(false)}/>}
+                        {showCreateTrip && <TripCreate
+                            close={() => setShowCreateTrip(false)}
+                            update={(data) => setTrips([...trips, data])}
+                        />}
                     </Col>
                 </Row>
             </ModalBody>
