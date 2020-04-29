@@ -45,7 +45,7 @@ const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history})
 
     return (
         <div>
-            <Navbar color="dark" className={"navbar"} light expand="md">
+            <Navbar color="light" className={"navbar"} light expand="md">
                 <NavbarBrand className={"navbar-logo"} href="/">JapanWanderlust</NavbarBrand>
                 <Nav>
                     {toggleNavItem}
