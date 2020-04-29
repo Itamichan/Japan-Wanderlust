@@ -1,9 +1,8 @@
-import React, {Fragment, useState} from 'react';
+import React, {useState} from 'react';
 import {connect} from "react-redux";
 import "./TripBanner.scss";
 import TripChooserModal from "./TripChooser/TripChooserModal";
 import TripInfo from "./TripInfo/TripInfo";
-import TripCreate from "./TripModal/TripCreate";
 import {Col, Container, Row} from 'reactstrap';
 import Button from "reactstrap/es/Button";
 import TripUpdate from "./TripModal/TripUpdate";
@@ -12,15 +11,7 @@ import {setCurrentTrip} from "./reduxTrip/actions";
 const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttractionCount}) => {
 
     const [showChooseModal, setShowChooseModal] = useState(false);
-
     const [showUpdateTrip, setShowUpdateTrip] = useState(false);
-
-
-    const actionButtons = <div>
-
-        <Button className={"action-button"} onClick={() => setShowChooseModal(true)}>choose a trip</Button>
-        {currentTrip && <Button className={"action-button"} onClick={() => setShowUpdateTrip(true)}>Edit trip</Button>}
-    </div>;
 
 
     //todo look to use maybe the same conditional for other comp
@@ -28,31 +19,66 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
     (!isUserLoggedIn) {
         return null
     }
-    return (
-        <section id={"trip-banner"}>
-            <Container fluid>
+
+    let bannerBody;
+
+    if (!currentTrip) {
+        bannerBody =
+            <Col>
                 <Row>
                     <Col>
-                        <div>{
-                            currentTrip ? (
-                                <TripInfo
-                                    tripName={currentTrip.name}
-                                    isGuided={currentTrip.is_guided ? "yes" : "no"}
-                                    inGroup={currentTrip.in_group ? "yes" : "no"}
-                                    maxPrice={`${currentTrip.max_price} YEN`}
-                                    maxTripDays={`${currentTrip.max_trip_days} days`}
-                                />
-                            ) : (
-                                "start your work on a new trip"
-                            )}
-                        </div>
+                        <h1 className={"text-header"}>Add your favourite attractions to a trip</h1>
+                    </Col>
+                </Row>
+                <Row>
+                    <Button className={"action-button"} onClick={() => setShowChooseModal(true)}>Select a trip</Button>
+                </Row>
+            </Col>
+    }
+
+    if (currentTrip) {
+        bannerBody =
+            <Col>
+                <Row>
+                    <Col>
+                        <div>{`trip name: ${currentTrip.name}`}</div>
+                        <button onClick={() => setCurrentTrip(undefined)}>x</button>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <div>{`max price: ${currentTrip.max_price} YEN`}</div>
                     </Col>
                     <Col>
                         {currentAttractionCount}
                     </Col>
                     <Col>
-                        {actionButtons}
+                        <div>{`max trip days: ${currentTrip.max_trip_days} days`}</div>
                     </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Button className={"action-button"} onClick={() => setShowUpdateTrip(true)}>Edit trip</Button>
+                        <Button>Get an offer now!</Button>
+                    </Col>
+                </Row>
+            </Col>
+
+    }
+
+    {/*<TripInfo*/}
+    {/*    tripName={currentTrip.name}*/}
+    {/*    isGuided={currentTrip.is_guided ? "yes" : "no"}*/}
+    {/*    inGroup={currentTrip.in_group ? "yes" : "no"}*/}
+    {/*    maxPrice={`${currentTrip.max_price} YEN`}*/}
+    {/*    maxTripDays={`${currentTrip.max_trip_days} days`}*/}
+    {/*/>*/}
+
+    return (
+        <section id={"trip-banner"}>
+            <Container fluid>
+                <Row>
+                    {bannerBody}
                 </Row>
             </Container>
             {showChooseModal && <TripChooserModal close={() => setShowChooseModal(false)}/>}
