@@ -14,7 +14,6 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
     const [showChooseModal, setShowChooseModal] = useState(false);
     const [showUpdateTrip, setShowUpdateTrip] = useState(false);
 
-
     //todo look to use maybe the same conditional for other comp
     if
     (!isUserLoggedIn) {
@@ -104,8 +103,8 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                 close={() => setShowUpdateTrip(false)}
                 initialTripName={currentTrip.name}
                 initialMaxTripDays={currentTrip.max_trip_days}
-                initialIsGuided={currentTrip.isGuided}
-                initialInGroup={currentTrip.inGroup}
+                initialIsGuided={currentTrip.is_guided}
+                initialInGroup={currentTrip.in_group}
                 initialMaxPrice={currentTrip.max_price}
                 tripId={currentTrip.id}
                 reloadTripInfo={(update) => {

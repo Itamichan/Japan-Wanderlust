@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import {setCurrentTrip} from "../reduxTrip/actions";
 import CustomInput from "reactstrap/es/CustomInput";
 
-const TripInputModal = ({
+const TripInputView = ({
                             close, submit, disabled, tripTypeName, tripName, maxTripDays, isGuided, inGroup, maxPrice,
                             setTripName, setMaxTripDays, setIsGuided, setInGroup, setMaxPrice
                         }) => {
@@ -42,12 +42,22 @@ const TripInputModal = ({
                 </FormGroup>
                 <FormGroup>
                     <Label for="isGuided">Do you want it to be guided?</Label>
-                    <CustomInput type="switch" id={"isGuided"} name="isGuided" label={"yes"}
-                                 onChange={(e) => setIsGuided(!isGuided)}/>{' '}
-
+                    {isGuided ? (
+                        <CustomInput type="switch" id={"isGuided"} name="isGuided" label={"yes"} defaultChecked
+                                     onChange={(e) => setIsGuided(!isGuided)}/>
+                    ) : (
+                        <CustomInput type="switch" id={"isGuided"} name="isGuided" label={"yes"}
+                                     onChange={(e) => setIsGuided(!isGuided)}/>
+                    )}
                     <Label for="InGroup">Do you want it to be in Group?</Label>
-                    <CustomInput type="switch" id={"InGroup"} name="InGroup" label={"yes"}
-                                 onChange={(e) => setInGroup(!inGroup)}/>{' '}
+
+                    {inGroup ? (
+                        <CustomInput type="switch" id={"InGroup"} name="InGroup" label={"yes"} defaultChecked
+                                     onChange={(e) => setInGroup(!inGroup)}/>
+                    ) : (
+                        <CustomInput type="switch" id={"InGroup"} name="InGroup" label={"yes"}
+                                     onChange={(e) => setInGroup(!inGroup)}/>
+                    )}
                 </FormGroup>
                 <FormGroup>
                     <Label for="maxPrice">max Price:</Label>
@@ -88,5 +98,5 @@ const mapStateToProps = (state) => {
 };
 
 //next line ensures that the properties from the 2 passed functions are passed to Login comp
-const DefaultApp = connect(mapStateToProps, mapDispatchToProps)(TripInputModal);
+const DefaultApp = connect(mapStateToProps, mapDispatchToProps)(TripInputView);
 export default DefaultApp;
