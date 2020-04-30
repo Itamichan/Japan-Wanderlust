@@ -2,7 +2,7 @@
 
 const initialState = {
     currentTrip: undefined,
-    currentAttractionCount: undefined
+    currentAttractionsList: []
 };
 
 const TripReducer = (state, action) => {
@@ -16,24 +16,27 @@ const TripReducer = (state, action) => {
                 //unwraps the state dict
                 ...state,
                 currentTrip: action.trip,
-                currentAttractionCount: action.attractionCount === undefined? state.currentAttractionCount : action.attractionCount
+                currentAttractionsList: action.attractionsList
             };
-        case "DECREMENT_CURRENT_ATTRACTION_COUNT":
-
-            if (action.tripId === state.currentTrip.id && state.currentAttractionCount !== 0) {
+        case "REMOVE_ATTRACTION_FROM_TRIP":
+            if (action.tripId === state.currentTrip.id) {
+                let updatedList = state.currentAttractionsList.filter(item => {
+                    if (item !== action.attractionId) {
+                        return item
+                    }
+                });
                 return {
                     ...state,
-                    currentAttractionCount: state.currentAttractionCount - 1
-                }
+                    currentAttractionsList: updatedList
+                };
             }
             return state;
-        case "INCREMENT_CURRENT_ATTRACTION_COUNT":
-
+        case "ADD_ATTRACTION_TO_TRIP":
             if (action.tripId === state.currentTrip.id) {
                 return {
                     ...state,
-                    currentAttractionCount: state.currentAttractionCount + 1
-                }
+                    currentAttractionsList: [...state.currentAttractionsList, action.attractionId]
+                };
             }
             return state;
         default:

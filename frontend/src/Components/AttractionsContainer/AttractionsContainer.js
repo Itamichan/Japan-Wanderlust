@@ -12,6 +12,8 @@ import {connect} from "react-redux";
 import TripBanner from "../TripBanner/TripBanner";
 import {notify} from "react-notify-toast";
 import {decrementCurrentCount, incrementCurrentCount} from "../TripBanner/reduxTrip/actions";
+import Button from "reactstrap/es/Button";
+import {isMobile, isTablet, isBrowser} from "react-device-detect";
 
 const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => {
 
@@ -117,7 +119,6 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
                 }}
             />
         )
-
     });
 
     const filterAttractions = (attractionType) => {
@@ -139,9 +140,15 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
 
     return (
         <div id={"attractions-page"}>
-            <SearchBar
-                searchAttraction={(searchWord) => searchAttraction(searchWord)}
-            />
+            <section id={"attractions-header"}>
+                <SearchBar
+                    searchAttraction={(searchWord) => searchAttraction(searchWord)}
+                />
+                {isTablet || isMobile ? (
+                    <Button id={"filter-button"}>Filter</Button>
+                ) : null}
+
+            </section>
             <section id={"filter-tags"}>
                 <FilterTag
                     clearTag={() => filterCities(null)}
@@ -159,15 +166,15 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
 
             <section id={"attractions-container"}>
 
-                <div id={"attractions"}>
+                <div id={ "attractions"}>
                     <div>
                         <div>{loading && "Loading..."}</div>
-                        <div id={"attractions-list"}>
+                        <div id={isBrowser? "attractions-list" : "attractions-list-mobile"}>
                             {attractionsList}
                         </div>
                     </div>
                 </div>
-
+                {isBrowser &&
                 <div id={"attractions-filter"}>
                     <Cities
                         chooseCity={(city) => filterCities(city)}
@@ -177,7 +184,7 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
                     <PriceInput
                         choosePrice={(price) => filterPrice(price)}
                     />
-                </div>
+                </div>}
             </section>
             <TripBanner/>
         </div>

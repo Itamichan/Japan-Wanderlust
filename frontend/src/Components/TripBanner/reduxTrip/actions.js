@@ -1,24 +1,25 @@
-export const setCurrentTrip = (trip, attractionCount) => {
+export const setCurrentTrip = (trip, attractionsList) => {
     return {
         type: "SET_CURRENT_TRIP",
         trip: trip,
-        attractionCount: attractionCount
+        attractionsList: attractionsList
     }
 };
 
-export const decrementCurrentCount = (tripId) => {
+export const removeAttractionFromTrip = (tripId, attractionId) => {
     return {
-        type: "DECREMENT_CURRENT_ATTRACTION_COUNT",
+        type: "REMOVE_ATTRACTION_FROM_TRIP",
+        attractionId: attractionId,
         tripId: tripId
     }
 };
 
-export const incrementCurrentCount = (tripId) => {
+export const addAttractionToTrip = (tripId, attractionId) => {
     return {
-        type: "INCREMENT_CURRENT_ATTRACTION_COUNT",
+        type: "ADD_ATTRACTION_TO_TRIP",
+        attractionId: attractionId,
         tripId: tripId
     }
 };
-
 
 

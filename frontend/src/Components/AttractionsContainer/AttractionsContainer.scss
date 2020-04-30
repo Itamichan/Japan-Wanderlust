@@ -1,6 +1,16 @@
 #attractions-page {
   position: relative;
 
+  #attractions-header {
+    position: relative;
+
+    #filter-button {
+      position: absolute;
+      top: 10%;
+      right: 5vw;
+    }
+  }
+
   #filter-tags {
     position: relative;
     display: flex;
@@ -21,11 +31,14 @@
         position: center;
       }
 
-      #attractions-list {
-        width: 60vw;
+      #attractions-list-mobile, #attractions-list {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
+      }
+
+      #attractions-list {
+        width: 60vw;
       }
     }
 
