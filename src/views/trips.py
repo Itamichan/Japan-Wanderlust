@@ -146,7 +146,7 @@ class TripsView(MethodView):
             "max_price": 10000
          }
 
-        @apiError (BadRequest 400) {Object} InvalidName                     Name should have at least 2 characters and maximum 25, it can contain any char except new line.
+        @apiError (BadRequest 400) {Object} InvalidName                     Name should have at least 2 characters and maximum 25.
         @apiError (BadRequest 400) {Object} InvalidDaysNumber               Please provide valid max_trip_days value.
         @apiError (BadRequest 400) {Object} InvalidPriceNumber              Please provide a valid max_price value.
         @apiError (BadRequest 400) {Object} InvalidDataEntry
@@ -162,9 +162,8 @@ class TripsView(MethodView):
             max_price = int(request.json['max_price'])
 
             # checks that the passed values are valid
-            if not re.match(r'^[\S]{2,25}$', name):
-                return response_400('InvalidName', 'Name should have at least 2 characters and maximum 25, '
-                                                   'it can contain any char not part of \s.')
+            if not re.match(r'^[\S\s]{2,25}$', name):
+                return response_400('InvalidName', 'Name should have at least 2 characters and maximum 25.')
 
             if max_trip_days < 1 or max_trip_days > 30:
                 return response_400("InvalidDaysNumber", "Please provide valid max_trip_days value.")
@@ -203,7 +202,7 @@ class TripsView(MethodView):
         @apiName TripUpdate
         @apiGroup Trips
 
-        @apiParam {String} [name]                 Trip's name
+        @apiParam {String}  [name]                Trip's name
         @apiParam {Integer} [max_trip_days]       Trip's max_trip_days
         @apiParam {Boolean} [is_guided]           Trip's is_guided
         @apiParam {Boolean} [in_group]            Trip's in_group
@@ -214,7 +213,7 @@ class TripsView(MethodView):
         {}
 
         @apiError (BadRequest 400) {Object} NoParameter                     Please provide a parameter.
-        @apiError (BadRequest 400) {Object} InvalidName                     Name should have at least 2 characters and maximum 25, it can contain any char except new line.
+        @apiError (BadRequest 400) {Object} InvalidName                     Name should have at least 2 characters and maximum 25.
         @apiError (BadRequest 400) {Object} InvalidDaysNumber               Please provide valid max_trip_days value.
         @apiError (BadRequest 400) {Object} InvalidPriceNumber              Please provide a valid max_price value.
         @apiError (NotFound 404) {Object} NoSuchTrip                        Such trip doesn't exist
@@ -234,9 +233,8 @@ class TripsView(MethodView):
                 return response_400("NoParameter", "Please provide a parameter")
 
             # checks that the passed values are valid
-            if not re.match(r'^[\S]{2,25}$', changed_fields["name"]):
-                return response_400('InvalidName', 'Name should have at least 2 characters and maximum 25, it can '
-                                                   'contain any char not part of \s.')
+            if not re.match(r'^[\S\s]]{2,25}$', changed_fields["name"]):
+                return response_400('InvalidName', 'Name should have at least 2 characters and maximum 25.')
 
             if "max_trip_days" in changed_fields and int(changed_fields["max_trip_days"]) < 1 or int(changed_fields[
                                                                                                          "max_trip_days"]) > 30:
