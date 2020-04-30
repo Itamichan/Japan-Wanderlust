@@ -7,10 +7,10 @@ import {createStore} from "redux";
 import rootReducer from "./reducers";
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {fab} from '@fortawesome/free-brands-svg-icons'
-import {faHeart as fasFaHeart, faWindowClose} from '@fortawesome/free-solid-svg-icons'
-import {faHeart as farFaHeart} from '@fortawesome/free-regular-svg-icons'
+import {faHeart as fasFaHeart, faWindowClose, faYenSign, faStreetView, faUsers} from '@fortawesome/free-solid-svg-icons'
+import {faCalendarAlt} from '@fortawesome/free-regular-svg-icons'
 
-library.add(fab, farFaHeart, fasFaHeart, faWindowClose);
+library.add(fab, fasFaHeart, faWindowClose, faYenSign, faStreetView, faUsers, faCalendarAlt);
 
 const store = createStore(rootReducer);
 

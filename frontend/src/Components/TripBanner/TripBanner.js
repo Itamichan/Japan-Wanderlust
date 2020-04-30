@@ -28,7 +28,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
             <Col id={"no-trip-container"}>
                 <Row>
                     <Col>
-                        <h1 className={"text-header"}>Add your favourite attractions to a trip</h1>
+                        <h1 className={"text-header-important"}>Add your favourite attractions to a trip</h1>
                     </Col>
                 </Row>
                 <Row id={"trip-banner-button"}>
@@ -42,10 +42,9 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
             <Col id={"with-trip-container"}>
                 <Row>
                     <Col id={"trip-banner-header"}>
-                        <div className={"text-header"}>{currentTrip.name}</div>
+                        <div className={"text-header-important"}>{currentTrip.name}</div>
                         <FontAwesomeIcon
                             id={"window-close-icon"}
-                            className={"disabled-heart-icon"}
                             icon="window-close"
                             onClick={() => setCurrentTrip(undefined)}
                         />
@@ -53,21 +52,32 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                 </Row>
                 <Row>
                     <Col>
-                        <div>{`max price: ${currentTrip.max_price} YEN`}</div>
+                        <div className={"trip-info-icon"}>
+                            <FontAwesomeIcon icon="yen-sign"/>
+                            {` ${currentTrip.max_price} YEN`}
+                        </div>
+                        {/*appears only in browser view*/}
                         <BrowserView>
-                            <div>
-                                {`is guided: ${currentTrip.is_guided ? "yes" : "no"}`}
+                            <div className={"trip-info-icon"}>
+                                <FontAwesomeIcon icon="street-view"/>
+                                {currentTrip.is_guided ? " Yes" : " No"}
                             </div>
                         </BrowserView>
                     </Col>
-                    <Col>
+                    <Col id={"attractions-count"}>
                         {currentAttractionCount}
+                        <div className={"text-header"}>Attractions</div>
                     </Col>
                     <Col>
-                        <div>{`max trip days: ${currentTrip.max_trip_days} days`}</div>
+                        <div className={"trip-info-icon"}>
+                            <FontAwesomeIcon icon={['far', 'calendar-alt']} />
+                            {` ${currentTrip.max_trip_days} days`}
+                        </div>
+                        {/*appears only in browser view*/}
                         <BrowserView>
-                            <div>
-                                {`in group: ${currentTrip.in_group ? "yes" : "no"}`}
+                            <div className={"trip-info-icon"}>
+                                <FontAwesomeIcon icon="users"/>
+                                {currentTrip.in_group ? " Yes" : " No"}
                             </div>
                         </BrowserView>
                     </Col>
