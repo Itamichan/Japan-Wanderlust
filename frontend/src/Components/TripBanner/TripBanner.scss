@@ -10,14 +10,27 @@
   z-index: 100;
 
   #no-trip-container {
-    #trip-banner-heading {
-      padding-top: 3rem;
-    }
 
     #trip-banner-button {
       padding-top: 2rem;
       display: flex;
       justify-content: center;
+    }
+  }
+
+  #with-trip-container {
+    #trip-banner-header {
+      position: relative;
+
+      #window-close-icon {
+        position: absolute;
+        top: 36%;
+        left: 96%;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 }

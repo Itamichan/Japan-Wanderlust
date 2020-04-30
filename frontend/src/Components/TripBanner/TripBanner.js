@@ -8,6 +8,7 @@ import Button from "reactstrap/es/Button";
 import TripUpdate from "./TripModal/TripUpdate";
 import {setCurrentTrip} from "./reduxTrip/actions";
 import {isBrowser} from "react-device-detect";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttractionCount}) => {
 
@@ -26,7 +27,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
     if (!currentTrip) {
         bannerBody =
             <Col id={"no-trip-container"}>
-                <Row id={"trip-banner-heading"}>
+                <Row>
                     <Col>
                         <h1 className={"text-header"}>Add your favourite attractions to a trip</h1>
                     </Col>
@@ -39,11 +40,17 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
 
     if (currentTrip) {
         bannerBody =
-            <Col>
+            <Col id={"with-trip-container"}>
                 <Row>
-                    <Col>
-                        <div>{`trip name: ${currentTrip.name}`}</div>
-                        <button onClick={() => setCurrentTrip(undefined)}>x</button>
+                    <Col id={"trip-banner-header"}>
+                        <div className={"text-header"}>{currentTrip.name}</div>
+                        <FontAwesomeIcon
+                            id={"window-close-icon"}
+                            className={"disabled-heart-icon"}
+                            size="lg"
+                            icon="window-close"
+                            onClick={() => setCurrentTrip(undefined)}
+                        />
                     </Col>
                 </Row>
                 <Row>
