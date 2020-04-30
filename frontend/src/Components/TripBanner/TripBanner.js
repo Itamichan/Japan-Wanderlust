@@ -82,9 +82,9 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
+                    <Col id={"banner-buttons"}>
                         <Button className={"action-button"} onClick={() => setShowUpdateTrip(true)}>Edit trip</Button>
-                        <Button>Get an offer now!</Button>
+                        <Button className={"action-button"}>Get an offer now!</Button>
                     </Col>
                 </Row>
             </Col>

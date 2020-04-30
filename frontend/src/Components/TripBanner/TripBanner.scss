@@ -42,6 +42,12 @@
     }
     #attractions-count {
       font-size: 4.5rem;
+    }
+    #banner-buttons {
+      display: flex;
+      flex-flow: row wrap;
+      text-align: center;
+      justify-content: space-evenly;
 
     }
   }
