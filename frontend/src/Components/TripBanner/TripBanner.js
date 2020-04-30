@@ -2,12 +2,11 @@ import React, {useState} from 'react';
 import {connect} from "react-redux";
 import "./TripBanner.scss";
 import TripChooserModal from "./TripChooser/TripChooserModal";
-import TripInfo from "./TripInfo/TripInfo";
 import {Col, Container, Row} from 'reactstrap';
 import Button from "reactstrap/es/Button";
 import TripUpdate from "./TripModal/TripUpdate";
 import {setCurrentTrip} from "./reduxTrip/actions";
-import {isBrowser} from "react-device-detect";
+import {BrowserView} from "react-device-detect";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttractionCount}) => {
@@ -47,7 +46,6 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                         <FontAwesomeIcon
                             id={"window-close-icon"}
                             className={"disabled-heart-icon"}
-                            size="lg"
                             icon="window-close"
                             onClick={() => setCurrentTrip(undefined)}
                         />
@@ -56,20 +54,22 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                 <Row>
                     <Col>
                         <div>{`max price: ${currentTrip.max_price} YEN`}</div>
-                        {isBrowser &&
-                        <div>
-                            {`is guided: ${currentTrip.is_guided ? "yes" : "no"}`}
-                        </div>}
+                        <BrowserView>
+                            <div>
+                                {`is guided: ${currentTrip.is_guided ? "yes" : "no"}`}
+                            </div>
+                        </BrowserView>
                     </Col>
                     <Col>
                         {currentAttractionCount}
                     </Col>
                     <Col>
                         <div>{`max trip days: ${currentTrip.max_trip_days} days`}</div>
-                        {isBrowser &&
-                        <div>
-                            {`in group: ${currentTrip.in_group ? "yes" : "no"}`}
-                        </div>}
+                        <BrowserView>
+                            <div>
+                                {`in group: ${currentTrip.in_group ? "yes" : "no"}`}
+                            </div>
+                        </BrowserView>
                     </Col>
                 </Row>
                 <Row>

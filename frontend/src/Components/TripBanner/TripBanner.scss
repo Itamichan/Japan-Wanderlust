@@ -24,11 +24,15 @@
 
       #window-close-icon {
         position: absolute;
-        top: 36%;
-        left: 96%;
+        top: 15%;
+        left: 95vw;
+        font-size: 1.5rem;
 
         &:hover {
           cursor: pointer;
+        }
+        @media (max-width: 415px) {
+          font-size: 1rem;
         }
       }
     }

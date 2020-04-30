@@ -1,6 +1,10 @@
 html {
   font-size: 12px;
   scroll-behavior: smooth;
+  //todo add proper media breaking points
+  @media (max-width: 415px) {
+    font-size: 10px;
+  }
 }
 
 body {
