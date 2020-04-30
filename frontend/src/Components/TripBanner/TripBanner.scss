@@ -1,6 +1,4 @@
-.action-button {
-  background-color: #00BC8D;
-}
+@import "../../global-scss/global-styles";
 
 #trip-banner {
 
@@ -9,5 +7,17 @@
   bottom: 0;
   position: fixed;
   background-color: #c8c8c8;
-  z-index: 100
+  z-index: 100;
+
+  #no-trip-container {
+    #trip-banner-heading {
+      padding-top: 3rem;
+    }
+
+    #trip-banner-button {
+      padding-top: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+  }
 }

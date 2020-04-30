@@ -25,13 +25,13 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
 
     if (!currentTrip) {
         bannerBody =
-            <Col>
-                <Row>
+            <Col id={"no-trip-container"}>
+                <Row id={"trip-banner-heading"}>
                     <Col>
                         <h1 className={"text-header"}>Add your favourite attractions to a trip</h1>
                     </Col>
                 </Row>
-                <Row>
+                <Row id={"trip-banner-button"}>
                     <Button className={"action-button"} onClick={() => setShowChooseModal(true)}>Select a trip</Button>
                 </Row>
             </Col>
@@ -73,21 +73,6 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                 </Row>
             </Col>
 
-    }
-
-    {/*<TripInfo*/
-    }
-    {/*    tripName={currentTrip.name}*/
-    }
-    {/*    isGuided={currentTrip.is_guided ? "yes" : "no"}*/
-    }
-    {/*    inGroup={currentTrip.in_group ? "yes" : "no"}*/
-    }
-    {/*    maxPrice={`${currentTrip.max_price} YEN`}*/
-    }
-    {/*    maxTripDays={`${currentTrip.max_trip_days} days`}*/
-    }
-    {/*/>*/
     }
 
     return (

@@ -20,6 +20,7 @@ $color-primary-2: #545454;
 $color-primary-3: #000000;
 $color-primary-4: #010000;
 
+//buttons
 
 .filter-button {
   background-color: $base-color;
@@ -29,6 +30,10 @@ $color-primary-4: #010000;
   &:hover {
     background-color: $base-color-dark;
   }
+}
+
+.action-button {
+  background-color: #00BC8D;
 }
 
 //text
@@ -54,5 +59,4 @@ $color-primary-4: #010000;
   font-weight: 600;
   padding-bottom: 1rem;
   font-size: 1.2rem;
-
 }
