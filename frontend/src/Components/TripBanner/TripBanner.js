@@ -51,30 +51,30 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                 </Row>
                 <Row>
                     <Col>
-                        <div className={"trip-info-icon"}>
+                        <div className={"text-header"}>
                             <FontAwesomeIcon icon="yen-sign"/>
                             {` ${currentTrip.max_price} YEN`}
                         </div>
                         {/*appears only in browser view*/}
                         <BrowserView>
-                            <div className={"trip-info-icon"}>
+                            <div className={"text-header"}>
                                 <FontAwesomeIcon icon="street-view"/>
                                 {currentTrip.is_guided ? " Yes" : " No"}
                             </div>
                         </BrowserView>
                     </Col>
-                    <Col id={"attractions-count"}>
+                    <Col className={"text-header-important"}>
                         {currentAttractionCount}
                         <div className={"text-header"}>Attractions</div>
                     </Col>
                     <Col>
-                        <div className={"trip-info-icon"}>
+                        <div className={"text-header"}>
                             <FontAwesomeIcon icon={['far', 'calendar-alt']} />
                             {` ${currentTrip.max_trip_days} days`}
                         </div>
                         {/*appears only in browser view*/}
                         <BrowserView>
-                            <div className={"trip-info-icon"}>
+                            <div className={"text-header"}>
                                 <FontAwesomeIcon icon="users"/>
                                 {currentTrip.in_group ? " Yes" : " No"}
                             </div>

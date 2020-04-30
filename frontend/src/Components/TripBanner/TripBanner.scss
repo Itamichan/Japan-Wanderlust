@@ -10,7 +10,6 @@
   z-index: 100;
 
   #no-trip-container {
-
     #trip-banner-button {
       padding-top: 2rem;
       display: flex;
@@ -31,24 +30,18 @@
         &:hover {
           cursor: pointer;
         }
+
         @media (max-width: 415px) {
           font-size: 1.2rem;
         }
       }
     }
-    .trip-info-icon {
-      padding-top: 1rem;
-      font-size: 1.8rem;
-    }
-    #attractions-count {
-      font-size: 4.5rem;
-    }
+
     #banner-buttons {
       display: flex;
       flex-flow: row wrap;
       text-align: center;
       justify-content: space-evenly;
-
     }
   }
 }

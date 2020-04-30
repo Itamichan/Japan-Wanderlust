@@ -35,6 +35,10 @@ $color-primary-4: #010000;
 .action-button {
   background-color: #00BC8D;
   margin-top: 0.8rem;
+  @media (max-width: 415px) {
+    margin-top: 0
+
+  }
 }
 
 //text
@@ -58,15 +62,20 @@ $color-primary-4: #010000;
 .text-header {
   @include text();
   font-weight: 600;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
+  padding: 1rem 0 1rem;
   font-size: 1.2rem;
+  @media (max-width: 415px) {
+    padding: 0.5rem 0 0.5rem;
+  }
 }
 
 .text-header-important {
   @include text();
   font-weight: 600;
-  padding-bottom: 1rem;
-  padding-top: 3rem;
   font-size: 1.8rem;
+  padding: 3rem 0 1rem;
+  @media (max-width: 415px) {
+    padding: 1.5rem 0 0.5rem;
+    font-size: 1.2rem;
+  }
 }
