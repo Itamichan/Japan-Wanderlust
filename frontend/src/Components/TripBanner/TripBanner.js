@@ -7,6 +7,7 @@ import {Col, Container, Row} from 'reactstrap';
 import Button from "reactstrap/es/Button";
 import TripUpdate from "./TripModal/TripUpdate";
 import {setCurrentTrip} from "./reduxTrip/actions";
+import {isBrowser} from "react-device-detect";
 
 const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttractionCount}) => {
 
@@ -48,12 +49,20 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                 <Row>
                     <Col>
                         <div>{`max price: ${currentTrip.max_price} YEN`}</div>
+                        {isBrowser &&
+                        <div>
+                            {`is guided: ${currentTrip.is_guided ? "yes" : "no"}`}
+                        </div>}
                     </Col>
                     <Col>
                         {currentAttractionCount}
                     </Col>
                     <Col>
                         <div>{`max trip days: ${currentTrip.max_trip_days} days`}</div>
+                        {isBrowser &&
+                        <div>
+                            {`in group: ${currentTrip.in_group ? "yes" : "no"}`}
+                        </div>}
                     </Col>
                 </Row>
                 <Row>
@@ -66,13 +75,20 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
 
     }
 
-    {/*<TripInfo*/}
-    {/*    tripName={currentTrip.name}*/}
-    {/*    isGuided={currentTrip.is_guided ? "yes" : "no"}*/}
-    {/*    inGroup={currentTrip.in_group ? "yes" : "no"}*/}
-    {/*    maxPrice={`${currentTrip.max_price} YEN`}*/}
-    {/*    maxTripDays={`${currentTrip.max_trip_days} days`}*/}
-    {/*/>*/}
+    {/*<TripInfo*/
+    }
+    {/*    tripName={currentTrip.name}*/
+    }
+    {/*    isGuided={currentTrip.is_guided ? "yes" : "no"}*/
+    }
+    {/*    inGroup={currentTrip.in_group ? "yes" : "no"}*/
+    }
+    {/*    maxPrice={`${currentTrip.max_price} YEN`}*/
+    }
+    {/*    maxTripDays={`${currentTrip.max_trip_days} days`}*/
+    }
+    {/*/>*/
+    }
 
     return (
         <section id={"trip-banner"}>
