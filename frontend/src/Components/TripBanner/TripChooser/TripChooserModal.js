@@ -57,20 +57,22 @@ const TripChooserModal = ({close, setCurrentTrip}) => {
 
     if (trips.length === 0) {
         tripsBody =
-            <h1 className={"text-header"}>You don't have any trips at the moment</h1>
+            <h1 id={"trips-body-empty"} className={"text-header"}>You don't have any trips at the moment</h1>
     } else {
         tripsBody =
-            <Row id={"trips-body"}>
-                <Col xs={"8"}>
+            <div id={"trips-body"}>
+                <div id={"trips-body-header"}>
                     <h1 className={"text-header"}>Select from existing trips:</h1>
+                </div>
+                <div>
                     <ListGroup flush>
                         {tripNamesList}
                     </ListGroup>
-                </Col>
-                <Col xs={"4"} className={"text-highlight"} id={"trips-body-middle"}>
-                    <div><b>OR</b></div>
-                </Col>
-            </Row>
+                </div>
+                <div id={"trips-body-choice"} className={"text-highlight"}>
+                    <b>OR</b>
+                </div>
+            </div>
     }
 
     return (
@@ -81,23 +83,21 @@ const TripChooserModal = ({close, setCurrentTrip}) => {
             >
             </ModalHeader>
             <ModalBody>
-                <Row id={"modal-body"}>
-                    <Col xs={"8"}>
+                <div id={"modal-body"}>
+                    <div>
                         {tripsBody}
-                    </Col>
-                    <Col xs={"4"}>
-                        <Button className={"action-button"} onClick={() => setShowCreateTrip(true)}>create a
-                            trip</Button>
-                        {showCreateTrip && <TripCreate
-                            close={() => setShowCreateTrip(false)}
-                            update={(data) => setTrips([...trips, data])}
-                        />}
-                    </Col>
-                </Row>
+                    </div>
+                    <div id={"create-trip-button"}>
+                        <Button className={"action-button"} onClick={() => setShowCreateTrip(true)}>
+                            Create a trip
+                        </Button>
+                    </div>
+                </div>
+                {showCreateTrip && <TripCreate
+                    close={() => setShowCreateTrip(false)}
+                    update={(data) => setTrips([...trips, data])}
+                />}
             </ModalBody>
-            <ModalFooter id={"modal-footer"}>
-                <Button onClick={close}>close</Button>
-            </ModalFooter>
         </Modal>
 
     )

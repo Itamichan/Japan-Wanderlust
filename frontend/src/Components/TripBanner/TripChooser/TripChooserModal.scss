@@ -6,20 +6,11 @@
   }
 
   #modal-body {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 1.2rem 2rem;
+    padding-bottom: 3rem;
 
     #trips-body {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-evenly;
-      align-items: center;
-
-      #trips-body-middle {
-        padding-left: 2.5rem;
+      #trips-body-header, #trips-body-choice {
+        text-align: center;
       }
 
       .trip-name {
@@ -28,11 +19,14 @@
           cursor: pointer;
         }
       }
+      #trips-body-choice{
+        margin: 1rem 0 1rem;
+      }
     }
-  }
 
-  #modal-footer {
-    justify-content: center;
+    #create-trip-button, #trips-body-empty {
+      text-align: center;
+    }
   }
 }
 

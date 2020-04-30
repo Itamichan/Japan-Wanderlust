@@ -32,8 +32,8 @@ const TripInputView = ({
                         name={'tripName'}
                         value={tripName}
                         onChange={(e) => setTripName(e.target.value)}/>
+                    <FormText>Maximum length 25 characters.</FormText>
                 </FormGroup>
-                <FormText>Maximum length 25 characters.</FormText>
                 <FormGroup>
                     <Label className={"text-highlight"} for="maxTripDays">For how long do you want to travel?</Label>
                     <InputGroup>
