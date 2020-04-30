@@ -10,6 +10,8 @@
   z-index: 100;
 
   #no-trip-container {
+    padding-top: 4rem;
+
     #trip-banner-button {
       padding-top: 2rem;
       display: flex;
@@ -18,6 +20,8 @@
   }
 
   #with-trip-container {
+    padding-top: 2rem;
+
     #trip-banner-header {
       position: relative;
 
@@ -38,6 +42,7 @@
     }
 
     #banner-buttons {
+      padding-top: 1rem;
       display: flex;
       flex-flow: row wrap;
       text-align: center;

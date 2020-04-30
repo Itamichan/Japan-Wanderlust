@@ -80,7 +80,7 @@ const TripInputView = ({
                     onClick={submit}
                     disabled={disabled}
                 >
-                    submit
+                    OK
                 </Button>
             </ModalFooter>
         </Modal>

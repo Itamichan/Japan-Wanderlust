@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+import {Button, Modal, ModalBody, ModalHeader} from "reactstrap";
 import axios from "axios";
 import {connect} from "react-redux";
 import {setCurrentTrip} from "../reduxTrip/actions";
-import Row from "reactstrap/es/Row";
-import Col from "reactstrap/es/Col";
 import TripCreate from "../TripModal/TripCreate";
 import ListGroup from "reactstrap/es/ListGroup";
 import ListGroupItem from "reactstrap/es/ListGroupItem";

@@ -64,7 +64,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                         </BrowserView>
                     </Col>
                     <Col className={"text-header-important"}>
-                        {currentAttractionCount}
+                        <b>{currentAttractionCount}</b>
                         <div className={"text-header"}>Attractions</div>
                     </Col>
                     <Col>
