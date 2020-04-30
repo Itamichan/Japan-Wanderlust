@@ -29,7 +29,7 @@ const TripUpdate = ({
                     max_price: maxPrice
                 }
             );
-            notify.show('yay!!', "success", 1700);
+            notify.show('Your trip is successfully updated', "success", 1700);
             reloadTripInfo({
                 name: tripName,
                 max_trip_days: maxTripDays,

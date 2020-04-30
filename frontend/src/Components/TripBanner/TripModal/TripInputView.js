@@ -1,28 +1,30 @@
 import React from 'react';
 import {
     Button, FormGroup, Input, InputGroup, InputGroupAddon, Label, Modal,
-    ModalBody, ModalFooter, ModalHeader
+    ModalBody, ModalFooter, ModalHeader, FormText, CustomInput
 } from "reactstrap";
 import {connect} from "react-redux";
 import {setCurrentTrip} from "../reduxTrip/actions";
-import CustomInput from "reactstrap/es/CustomInput";
+import "./TripInputView.scss";
 
 const TripInputView = ({
-                            close, submit, disabled, tripTypeName, tripName, maxTripDays, isGuided, inGroup, maxPrice,
-                            setTripName, setMaxTripDays, setIsGuided, setInGroup, setMaxPrice
-                        }) => {
+                           close, submit, disabled, tripTypeName, tripName, maxTripDays, isGuided, inGroup, maxPrice,
+                           setTripName, setMaxTripDays, setIsGuided, setInGroup, setMaxPrice
+                       }) => {
 
     return (
         <Modal
+            id={"trip-input-modal"}
             isOpen={true}
             toggle={close}>
             <ModalHeader
+                id={"trip-input-header"}
                 toggle={close}>
-                {tripTypeName}
+                <h1 className={"text-header"}>{tripTypeName}</h1>
             </ModalHeader>
             <ModalBody>
                 <FormGroup>
-                    <Label for="tripName">Trip name:</Label>
+                    <Label for="tripName" className={"text-highlight"}>Trip Name:</Label>
                     <Input
                         id={'tripName'}
                         disabled={disabled}
@@ -32,16 +34,17 @@ const TripInputView = ({
                         onChange={(e) => setTripName(e.target.value)}/>
                 </FormGroup>
                 <FormGroup>
-                    <Label for="maxTripDays">max Trip Days:</Label>
+                    <Label className={"text-highlight"} for="maxTripDays">For how long do you want to travel?</Label>
                     <InputGroup>
                         <Input disabled={disabled} type="number" id={'maxTripDays'} name={'maxTripDays'}
                                value={maxTripDays} min={0} max={100}
                                onChange={(e) => setMaxTripDays(e.target.value)}/>
                         <InputGroupAddon addonType="append">days</InputGroupAddon>
                     </InputGroup>
+                    <FormText>Maximum trip duration is 30 days.</FormText>
                 </FormGroup>
-                <FormGroup>
-                    <Label for="isGuided">Do you want it to be guided?</Label>
+                <FormGroup id={"trip-input-switchers"}>
+                    <Label className={"text-highlight"} for="isGuided">Do you want to have a guide?</Label>
                     {isGuided ? (
                         <CustomInput type="switch" id={"isGuided"} name="isGuided" label={"yes"} defaultChecked
                                      onChange={(e) => setIsGuided(!isGuided)}/>
@@ -49,7 +52,7 @@ const TripInputView = ({
                         <CustomInput type="switch" id={"isGuided"} name="isGuided" label={"yes"}
                                      onChange={(e) => setIsGuided(!isGuided)}/>
                     )}
-                    <Label for="InGroup">Do you want it to be in Group?</Label>
+                    <Label className={"text-highlight"} for="InGroup">Do you want to travel in group?</Label>
 
                     {inGroup ? (
                         <CustomInput type="switch" id={"InGroup"} name="InGroup" label={"yes"} defaultChecked
@@ -60,17 +63,17 @@ const TripInputView = ({
                     )}
                 </FormGroup>
                 <FormGroup>
-                    <Label for="maxPrice">max Price:</Label>
+                    <Label className={"text-highlight"} for="maxPrice">Your budget ceiling:</Label>
                     <InputGroup>
                         <Input disabled={disabled} type="number" id={'maxPrice'} name={'maxPrice'}
                                value={maxPrice} placeholder="Amount" min={0} max={1000000} step="100"
                                onChange={(e) => setMaxPrice(e.target.value)}/>
                         <InputGroupAddon addonType="append">YEN</InputGroupAddon>
                     </InputGroup>
+                    <FormText>Maximum budget ceiling is 1 mln YEN.</FormText>
                 </FormGroup>
             </ModalBody>
-            <ModalFooter>
-                <Button onClick={close} disabled={disabled}>close</Button>
+            <ModalFooter id={"trip-input-footer"}>
                 <Button
                     color="primary"
                     onClick={submit}
