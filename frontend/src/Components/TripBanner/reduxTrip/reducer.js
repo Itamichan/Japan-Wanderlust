@@ -16,7 +16,7 @@ const TripReducer = (state, action) => {
                 //unwraps the state dict
                 ...state,
                 currentTrip: action.trip,
-                currentAttractionCount: action.attractionCount
+                currentAttractionCount: action.attractionCount === undefined? state.currentAttractionCount : action.attractionCount
             };
         case "DECREMENT_CURRENT_ATTRACTION_COUNT":
 

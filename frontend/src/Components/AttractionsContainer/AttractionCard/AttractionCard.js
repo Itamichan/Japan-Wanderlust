@@ -9,7 +9,7 @@ import TripChooserModal from "../../TripBanner/TripChooser/TripChooserModal";
 
 const AttractionCard = ({
                             cardTitle, cardImg, cardCity, attractionText, attractionPrice, attractionWebAddress,
-                            isUserLoggedIn, currentTrip, removeAttraction, addAttraction, cardId, openLoginModal
+                            isUserLoggedIn, currentTrip, removeAttraction, addAttraction, openLoginModal
                         }) => {
     //todo implement that the heart is filled if it is already in the trip
     const [showAttractionInfo, setShowAttractionInfo] = useState(false);
@@ -33,7 +33,7 @@ const AttractionCard = ({
         }
     };
 
-    const removeAttractionToCurrentTrip = () => {
+    const removeAttractionFromCurrentTrip = () => {
         if (currentTrip) {
             removeAttraction();
             toggleIcon()
@@ -49,7 +49,7 @@ const AttractionCard = ({
                             className={"filled-heart-icon"}
                             size="lg"
                             icon="heart"
-                            onClick={removeAttractionToCurrentTrip}
+                            onClick={removeAttractionFromCurrentTrip}
                         />
                     ) : (
                         <FontAwesomeIcon
