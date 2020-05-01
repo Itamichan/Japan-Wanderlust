@@ -16,7 +16,7 @@ const TripReducer = (state, action) => {
                 //unwraps the state dict
                 ...state,
                 currentTrip: action.trip,
-                currentAttractionsList: action.attractionsList
+                currentAttractionsList: action.attractionsList === undefined? state. currentAttractionsList : action.attractionsList
             };
         case "REMOVE_ATTRACTION_FROM_TRIP":
             if (action.tripId === state.currentTrip.id) {

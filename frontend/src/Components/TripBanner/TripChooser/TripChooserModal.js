@@ -8,7 +8,7 @@ import ListGroup from "reactstrap/es/ListGroup";
 import ListGroupItem from "reactstrap/es/ListGroupItem";
 import "./TripChooserModal.scss";
 
-const TripChooserModal = ({close, setCurrentTrip}) => {
+const TripChooserModal = ({close, setCurrentTrip, tripAttractionsList}) => {
 
     const [loading, setLoading] = useState(true);
     const [trips, setTrips] = useState([]);
@@ -33,8 +33,10 @@ const TripChooserModal = ({close, setCurrentTrip}) => {
 
     const changeCurrentTrip = async (trip) => {
         const {data} = await axios.get(`/api/v1/trips/${trip.id}/attractions`);
-
-        setCurrentTrip(trip, data.attractions.length);
+        let tripAttractions = data.attractions.map(attraction => {
+            return attraction.id
+        });
+        setCurrentTrip(trip, tripAttractions);
         close()
     };
 
@@ -111,7 +113,9 @@ const mapDispatchToProps = (dispatch) => {
 
 //map the global state to properties that are passed into the comp
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        tripAttractionsList: state.TripReducer.currentAttractionsList
+    }
 };
 
 //next line ensures that the properties from the 2 passed functions are passed to Login comp

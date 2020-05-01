@@ -9,52 +9,43 @@ import TripChooserModal from "../../TripBanner/TripChooser/TripChooserModal";
 
 const AttractionCard = ({
                             cardTitle, cardImg, cardCity, attractionText, attractionPrice, attractionWebAddress,
-                            isUserLoggedIn, currentTrip, removeAttraction, addAttraction, openLoginModal
+                            isUserLoggedIn, currentTrip, removeAttraction, addAttraction, openLoginModal, isAttractionSelected
                         }) => {
     //todo implement that the heart is filled if it is already in the trip
     const [showAttractionInfo, setShowAttractionInfo] = useState(false);
-    const [isIconSelected, setIsIconSelected] = useState(false);
     const [showChooseModal, setShowChooseModal] = useState(false);
-
-    const toggleIcon = () => {
-        setIsIconSelected(!isIconSelected);
-    };
 
     const addAttractionToCurrentTrip = () => {
         if (!isUserLoggedIn) {
-            openLoginModal()
+            return openLoginModal();
         }
-        if (isUserLoggedIn && !currentTrip) {
-            setShowChooseModal(true)
-        }
-        if (isUserLoggedIn && currentTrip) {
+
+        if (currentTrip) {
             addAttraction();
-            toggleIcon()
+        } else {
+            setShowChooseModal(true)
         }
     };
 
     const removeAttractionFromCurrentTrip = () => {
         if (currentTrip) {
             removeAttraction();
-            toggleIcon()
         }
     };
 
     return (
         <div className={"attraction-container"}>
             {
-                isIconSelected ?
+                isAttractionSelected ?
                     (
                         <FontAwesomeIcon
                             className={"filled-heart-icon"}
-                            size="lg"
                             icon="heart"
                             onClick={removeAttractionFromCurrentTrip}
                         />
                     ) : (
                         <FontAwesomeIcon
                             className={"disabled-heart-icon"}
-                            size="lg"
                             icon="heart"
                             onClick={addAttractionToCurrentTrip}
                         />
