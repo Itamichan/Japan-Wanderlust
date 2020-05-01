@@ -224,6 +224,17 @@ class TripsView(MethodView):
 
         """
         try:
+
+            # finalised is a fictional value in my database.
+            # if a trip is finalised then the user will get emails with matching offers to their trip from tourist
+            # agencies.
+            finalised = request.json.get("finalised", None)
+
+            # send dummy email on trip finalised as an offer example
+            if finalised:
+                offer_email(user.email)
+                return jsonify({})
+
             changed_fields = {}
 
             for key in ["name", "is_guided", "max_trip_days", "in_group", "max_price"]:
@@ -253,15 +264,6 @@ class TripsView(MethodView):
 
             if not updated_trip:
                 return response_404("NoSuchTrip", "Such trip doesn't exist")
-
-            # finalised is a fictional value in my database.
-            # if a trip is finalised then the user will get emails with matching offers to their trip from tourist
-            # agencies.
-            finalised = request.json.get("finalised", None)
-
-            # send dummy email on trip finalised as an offer example
-            if finalised:
-                offer_email(user.email)
 
             return jsonify({})
 
