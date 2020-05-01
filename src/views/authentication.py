@@ -6,6 +6,7 @@ import jwt
 from flask import request, jsonify
 from psycopg2._psycopg import IntegrityError
 
+from communication import welcome_email
 from database.users_database import UserDatabase
 from errors import response_500, response_401, response_400
 
@@ -63,6 +64,9 @@ def register():
         db_instance = UserDatabase()
         db_instance.create_user(username, email.lower(), password)
         db_instance.close_connection()
+
+        welcome_email(email)
+
         return jsonify({})
 
     except IntegrityError as e:

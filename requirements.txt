@@ -6,3 +6,4 @@ pytest
 dataclasses
 xmlrunner
 requests
+sendgrid==6.3.0
