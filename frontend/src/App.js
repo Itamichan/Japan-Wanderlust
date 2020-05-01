@@ -8,9 +8,9 @@ import rootReducer from "./reducers";
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {fab} from '@fortawesome/free-brands-svg-icons'
 import {faHeart as fasFaHeart, faWindowClose, faYenSign, faStreetView, faUsers} from '@fortawesome/free-solid-svg-icons'
-import {faCalendarAlt} from '@fortawesome/free-regular-svg-icons'
+import {faCalendarAlt, faTimesCircle} from '@fortawesome/free-regular-svg-icons'
 
-library.add(fab, fasFaHeart, faWindowClose, faYenSign, faStreetView, faUsers, faCalendarAlt);
+library.add(fab, fasFaHeart, faWindowClose, faYenSign, faStreetView, faUsers, faCalendarAlt, faTimesCircle);
 
 const store = createStore(rootReducer);
 

@@ -27,6 +27,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
     const [attractionName, setAttractionName] = useState(null);
     const [maxPrice, setMaxPrice] = useState(null);
     const [page, setPage] = useState(1);
+    const [showFiltersMenu, setShowFiltersMenu] = useState(false);
 
     const ATTRACTIONS_PER_PAGE = 4;
 
@@ -146,7 +147,6 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
         setAttractionName(searchWord)
     };
 
-
     return (
         <div id={"attractions-page"}>
             <section id={"attractions-header"}>
@@ -154,7 +154,10 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                     searchAttraction={(searchWord) => searchAttraction(searchWord)}
                 />
                 {isMobile || isTablet ? (
-                    <Button id={"filter-button"}>Filter</Button>
+                    <Button
+                        id={"filter-button"}
+                        onClick={() => setShowFiltersMenu(!showFiltersMenu)}
+                    >Filter</Button>
                 ) : null}
 
             </section>
@@ -202,6 +205,20 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                         choosePrice={(price) => filterPrice(price)}
                     />
                 </div>}
+
+                {isMobile || isTablet ? (
+                    <div id={showFiltersMenu ? "filters-menu-show" : "filters-menu"}>
+                        <Cities
+                            chooseCity={(city) => filterCities(city)}
+                        />
+                        <AttractionsTypes
+                            chooseAttractionType={(attractionType) => filterAttractions(attractionType)}/>
+                        <PriceInput
+                            choosePrice={(price) => filterPrice(price)}
+                        />
+                    </div>
+                ) : null
+                }
             </section>
             <TripBanner/>
         </div>

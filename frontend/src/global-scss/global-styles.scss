@@ -1,20 +1,18 @@
-
-
 //colors
 
-$base-color: #BC002C;	// Japan flag's red
+$base-color: #BC002C; // Japan flag's red
 $color-primary-1: #EF3E67;
 $color-primary-2: #EB1144;
 $base-color-dark: #930022;
 $color-primary-4: #610017;
 
-$complementary-color: #00BC8D;	// complementary color
+$complementary-color: #00BC8D; // complementary color
 $color-primary-1: #4DD9B6;
 $color-primary-2: #26C9A0;
 $complementary-color-dark: #008D6A;
 $color-primary-4: #00684E;
 
-$color-primary-0: #101010;	// Main Primary color */
+$color-primary-0: #101010; // Main Primary color */
 $color-primary-1: #908C8C;
 $color-primary-2: #545454;
 $color-primary-3: #000000;
@@ -22,7 +20,12 @@ $color-primary-4: #010000;
 
 //buttons
 
+@mixin button() {
+  border-radius: 8%;
+}
+
 .filter-button {
+  @include button();
   background-color: $base-color;
   margin-bottom: 0.5rem;
   width: 6rem;
@@ -32,17 +35,22 @@ $color-primary-4: #010000;
   }
 }
 
+.filter-tag-button {
+  @include button();
+  margin: 0 0.5rem;
+}
+
 .action-button {
+  @include button();
   background-color: #00BC8D;
   margin-top: 0.8rem;
   @media (max-width: 415px) {
     margin-top: 0
-
   }
 }
 
-//text
 
+//text
 
 @mixin text() {
   font-family: Eczar, sans-serif;

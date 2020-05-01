@@ -1,5 +1,7 @@
 #attractions-page {
   position: relative;
+  overflow: hidden;
+  height: 70vh;
 
   #attractions-header {
     position: relative;
@@ -46,6 +48,21 @@
 
     #attractions-filters {
       width: 40vw;
+    }
+
+    #filters-menu, #filters-menu-show {
+      position: absolute;
+      right: -100%;
+      transition: all 0.5s ease;
+      display: block;
+      background-color: lightgrey;
+      text-align: center;
+      width: 50vw;
+      z-index: 100;
+    }
+
+    #filters-menu-show {
+      right: 0;
     }
   }
 }
