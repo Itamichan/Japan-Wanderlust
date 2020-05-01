@@ -3,14 +3,14 @@ import {Pagination, PaginationItem, PaginationLink} from 'reactstrap';
 
 const AttractionsPagination = ({currentPage, setCurrentPage, ItemsPerPage, totalItemsNr}) => {
 
-    let pagesNr = totalItemsNr/ItemsPerPage;
+    let pagesNr = totalItemsNr / ItemsPerPage;
 
     let paginationItems = [];
 
-    for (let i = 1; i<=pagesNr; i++) {
+    for (let i = 1; i <= pagesNr; i++) {
         paginationItems.push(
             <PaginationItem
-                active={i===currentPage}>
+                active={i === currentPage}>
                 <PaginationLink onClick={() => setCurrentPage(i)}>
                     {i}
                 </PaginationLink>
@@ -19,9 +19,11 @@ const AttractionsPagination = ({currentPage, setCurrentPage, ItemsPerPage, total
     }
 
     return (
-        <Pagination aria-label="Page navigation example">
-            {paginationItems}
-        </Pagination>
+        <div>
+            <Pagination aria-label="Page navigation example">
+                {paginationItems}
+            </Pagination>
+        </div>
     );
 };
 

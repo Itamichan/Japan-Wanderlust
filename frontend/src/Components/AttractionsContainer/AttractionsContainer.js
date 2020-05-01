@@ -28,7 +28,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
     const [maxPrice, setMaxPrice] = useState(null);
     const [page, setPage] = useState(1);
 
-    const ATTRACTIONS_PER_PAGE = 2;
+    const ATTRACTIONS_PER_PAGE = 4;
 
     const loadAttractions = async () => {
         setLoading(true);
@@ -127,6 +127,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
         )
     });
 
+    //returns attractionsList with attractions for each corresponding page number.
     attractionsList = attractionsList.slice(ATTRACTIONS_PER_PAGE * (page - 1), ATTRACTIONS_PER_PAGE * page);
 
     const filterAttractions = (attractionType) => {
@@ -152,7 +153,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                 <SearchBar
                     searchAttraction={(searchWord) => searchAttraction(searchWord)}
                 />
-                {isTablet || isMobile ? (
+                {isMobile || isTablet ? (
                     <Button id={"filter-button"}>Filter</Button>
                 ) : null}
 
@@ -173,24 +174,25 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
             </section>
 
             <section id={"attractions-container"}>
-                <div id={"attractions"}>
-                    <div>
-                        <div>{loading && "Loading..."}</div>
-                        <div id={isBrowser ? "attractions-list" : "attractions-list-mobile"}>
+                {loading ? (
+                    "Loading..."
+                ) : (
+                    <div id={"attractions"}>
+                        <div id={isBrowser ? "attractions-list-browser" : "attractions-list-mobile"}>
                             {attractionsList}
                         </div>
+                        <div id={"pagination"}>
+                            <AttractionsPagination
+                                currentPage={page}
+                                setCurrentPage={setPage}
+                                ItemsPerPage={ATTRACTIONS_PER_PAGE}
+                                totalItemsNr={attractions.length}
+                            />
+                        </div>
                     </div>
-                    <div>
-                        <AttractionsPagination
-                            currentPage={page}
-                            setCurrentPage={setPage}
-                            ItemsPerPage={ATTRACTIONS_PER_PAGE}
-                            totalItemsNr={attractions.length}
-                        />
-                    </div>
-                </div>
+                )}
                 {isBrowser &&
-                <div id={"attractions-filter"}>
+                <div id={"attractions-filters"}>
                     <Cities
                         chooseCity={(city) => filterCities(city)}
                     />

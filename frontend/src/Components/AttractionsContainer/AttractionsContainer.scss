@@ -23,26 +23,28 @@
     display: flex;
 
     #attractions {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
 
-      h1 {
-        position: center;
-      }
-
-      #attractions-list-mobile, #attractions-list {
+      #attractions-list-mobile, #attractions-list-browser {
         display: flex;
         flex-flow: row wrap;
-        justify-content: space-between;
+        align-items: flex-start;
+        justify-content: space-evenly;
+        align-content: space-around;
+
       }
 
-      #attractions-list {
+      #attractions-list-browser {
         width: 60vw;
       }
     }
 
-    #attractions-filter {
+    #pagination {
+      width: 15%;
+      margin: 0 auto;
+      padding-top: 2rem;
+    }
+
+    #attractions-filters {
       width: 40vw;
     }
   }
