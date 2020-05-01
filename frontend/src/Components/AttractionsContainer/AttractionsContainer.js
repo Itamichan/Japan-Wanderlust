@@ -178,7 +178,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
 
             <section id={"attractions-container"}>
                 {loading ? (
-                    "Loading..."
+                    <div id={"loading"}>"Loading..."</div>
                 ) : (
                     <div id={"attractions"}>
                         <div id={isBrowser ? "attractions-list-browser" : "attractions-list-mobile"}>
@@ -195,7 +195,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                     </div>
                 )}
                 {isBrowser &&
-                <div id={"attractions-filters"}>
+                <div id={"attractions-filters"} className={"materialize-default"}>
                     <Cities
                         chooseCity={(city) => filterCities(city)}
                     />
@@ -207,7 +207,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                 </div>}
 
                 {isMobile || isTablet ? (
-                    <div id={showFiltersMenu ? "filters-menu-show" : "filters-menu"}>
+                    <div id={showFiltersMenu ? "filters-menu-show" : "filters-menu"} className={"materialize-default"}>
                         <Cities
                             chooseCity={(city) => filterCities(city)}
                         />

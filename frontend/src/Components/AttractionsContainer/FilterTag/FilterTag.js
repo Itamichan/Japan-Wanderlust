@@ -1,5 +1,4 @@
 import React from 'react';
-import "./FilterTag.scss";
 import Button from "reactstrap/es/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 

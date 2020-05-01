@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import "./AttractionsTypes.scss";
 import Button from "reactstrap/es/Button";
 
 const AttractionsTypes = ({chooseAttractionType}) => {
@@ -23,7 +22,7 @@ const AttractionsTypes = ({chooseAttractionType}) => {
             return (
                 <div key={attractionType.type_id}>
                     <Button
-                        className={"filter-button"}
+                        className={"filter-button text-highlight"}
                         onClick={() => chooseAttractionType(attractionType)}
                     >
                         {attractionType.type_name}
@@ -34,8 +33,8 @@ const AttractionsTypes = ({chooseAttractionType}) => {
     );
 
     return (
-        <div id={"interests"}>
-            <h1>Sort by interest:</h1>
+        <div>
+            <h1 className={"text-header-important"}>Choose a category:</h1>
             <div>
                 {loading ? <div>Loading...</div> : attractionsTypes}
             </div>

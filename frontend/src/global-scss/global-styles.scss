@@ -1,22 +1,28 @@
 //colors
 
-$base-color: #BC002C; // Japan flag's red
-$color-primary-1: #EF3E67;
-$color-primary-2: #EB1144;
-$base-color-dark: #930022;
-$color-primary-4: #610017;
+$bg-color-0: #272727; // Main Primary color */
+$bg-color-1: rgba(144, 140, 140, 0.12);
+$bg-color-2: #545454;
+$bg-color-3: #000000;
+$bg-color-4: #010000;
 
-$complementary-color: #00BC8D; // complementary color
-$color-primary-1: #4DD9B6;
-$color-primary-2: #26C9A0;
-$complementary-color-dark: #008D6A;
-$color-primary-4: #00684E;
 
-$color-primary-0: #101010; // Main Primary color */
-$color-primary-1: #908C8C;
-$color-primary-2: #545454;
-$color-primary-3: #000000;
-$color-primary-4: #010000;
+$base-color: #dc3545; // Main Primary color */
+$color-primary-1: #FF8585;
+$color-primary-2: #FF5C5C;
+$base-color-dark: #c53242;
+
+$color-secondary-1-0: #209292; // Main Secondary color (1) */
+$color-secondary-1-1: #64C0C0;
+$color-secondary-1-2: #3AA1A1;
+$color-secondary-1-3: #098080;
+$color-secondary-1-4: #026565;
+
+$color-secondary-2-0: #A8E331; // Main Secondary color (2) */
+$color-secondary-2-1: #CEF580;
+$color-secondary-2-2: #BCEF56;
+$color-secondary-2-3: #89C70E;
+$color-secondary-2-4: #699D02;
 
 //buttons
 
@@ -28,25 +34,40 @@ $color-primary-4: #010000;
   @include button();
   background-color: $base-color;
   margin-bottom: 0.5rem;
-  width: 6rem;
+  width: 6.2rem;
+
+  &:hover {
+    background-color: $base-color-dark;
+  }
+
+  @media (min-width: 576px) {
+    width: 6.2rem;
+  }
+
+  //// Medium devices (tablets, 768px and up)
+  //@media (min-width: 768px) { ... }
+  //
+  //// Large devices (desktops, 992px and up)
+  //@media (min-width: 992px) { ... }
+  //
+  //// Extra large devices (large desktops, 1200px and up)
+  //@media (min-width: 1200px) { ... }
+}
+
+.filter-tag-button {
+  @include button();
+  margin: 0 0.5rem;
+  background-color: $base-color;
 
   &:hover {
     background-color: $base-color-dark;
   }
 }
 
-.filter-tag-button {
-  @include button();
-  margin: 0 0.5rem;
-}
-
 .action-button {
   @include button();
   background-color: #00BC8D;
-  margin-top: 0.8rem;
-  @media (max-width: 415px) {
-    margin-top: 0
-  }
+
 }
 
 
@@ -56,6 +77,20 @@ $color-primary-4: #010000;
   font-family: Eczar, sans-serif;
   font-size: 1rem;
   font-weight: 500;
+
+  @media (min-width: 576px) {
+    font-size: 1.2rem;
+  }
+
+  //// Medium devices (tablets, 768px and up)
+  //@media (min-width: 768px) { ... }
+  //
+  //// Large devices (desktops, 992px and up)
+  //@media (min-width: 992px) { ... }
+  //
+  //// Extra large devices (large desktops, 1200px and up)
+  //@media (min-width: 1200px) { ... }
+
 }
 
 .text-default {
@@ -65,12 +100,13 @@ $color-primary-4: #010000;
 .text-highlight {
   @include text();
   font-weight: 600;
+
 }
 
 .text-header {
   @include text();
   font-weight: 600;
-  padding: 1rem 0 1rem;
+  padding: 1rem 0 0.5rem;
   font-size: 1.2rem;
   @media (max-width: 415px) {
     padding: 0.5rem 0 0.5rem;
@@ -80,10 +116,38 @@ $color-primary-4: #010000;
 .text-header-important {
   @include text();
   font-weight: 600;
-  font-size: 1.8rem;
-  padding: 2.5rem 0 1rem;
-  @media (max-width: 415px) {
-    padding: 0.2rem 0 0;
-    font-size: 1.4rem;
+  padding: 0.8rem 0 0;
+  font-size: 1.2rem;
+
+  @media (min-width: 0) and (max-height: 732px) {
+    font-size: 1rem;
+    padding: 0.8rem 0 0;
   }
+  @media (min-width: 0) and (max-height: 641px) {
+    font-size: 1rem;
+    padding: 0.8rem 0 0;
+  }
+
+  @media (min-width: 576px) {
+    font-size: 1.8rem;
+    padding: 2.5rem 0 1rem;
+  }
+
+  //// Medium devices (tablets, 768px and up)
+  //@media (min-width: 768px) { ... }
+  //
+  //// Large devices (desktops, 992px and up)
+  //@media (min-width: 992px) { ... }
+  //
+  //// Extra large devices (large desktops, 1200px and up)
+  //@media (min-width: 1200px) { ... }
+}
+
+//materialize box
+@mixin default-box() {
+  box-shadow: 4px -5px 5px;
+}
+
+.materialize-default {
+  @include default-box();
 }

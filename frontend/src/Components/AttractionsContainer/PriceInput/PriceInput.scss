@@ -1,5 +1,16 @@
 #price-input {
+  max-width: 12rem;
+  margin: 0 auto;
+  @media (min-width: 576px) {
+    max-width: 12rem;
+  }
 
-  max-width: 200px;
-  margin-top: 1rem;
+  //// Medium devices (tablets, 768px and up)
+  //@media (min-width: 768px) { ... }
+  //
+  //// Large devices (desktops, 992px and up)
+  //@media (min-width: 992px) { ... }
+  //
+  //// Extra large devices (large desktops, 1200px and up)
+  //@media (min-width: 1200px) { ... }
 }

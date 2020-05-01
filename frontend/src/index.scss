@@ -1,11 +1,11 @@
 html {
-  font-size: 12px;
+  font-size: 7.5px;
   scroll-behavior: smooth;
-  //todo add proper media breaking points
-  @media (max-width: 415px) {
-    font-size: 10px;
+  @media (min-width: 0) and (max-height: 641px) {
+    font-size: 7.5px;
   }
 }
+//todo do breaking points here
 
 body {
   margin: 0;

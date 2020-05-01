@@ -1,7 +1,9 @@
+@import "../../global-scss/global-styles";
+
 #attractions-page {
   position: relative;
   overflow: hidden;
-  height: 70vh;
+  height: 75vh;
 
   #attractions-header {
     position: relative;
@@ -18,14 +20,18 @@
     display: flex;
     flex-flow: row;
     justify-content: center;
+    min-height: 3rem;
   }
 
   #attractions-container {
+    height: 50vh;
     position: relative;
     display: flex;
 
+    #loading {
+      width: 60vw;
+    }
     #attractions {
-
       #attractions-list-mobile, #attractions-list-browser {
         display: flex;
         flex-flow: row wrap;
@@ -36,7 +42,20 @@
       }
 
       #attractions-list-browser {
-        width: 60vw;
+        width: 80vw;
+        @media (min-width: 576px) {
+          width: 70vw;
+        }
+
+        //// Medium devices (tablets, 768px and up)
+        //@media (min-width: 768px) { ... }
+        //
+        //// Large devices (desktops, 992px and up)
+        //@media (min-width: 992px) { ... }
+        //
+        //// Extra large devices (large desktops, 1200px and up)
+        //@media (min-width: 1200px) { ... }
+
       }
     }
 
@@ -47,18 +66,35 @@
     }
 
     #attractions-filters {
-      width: 40vw;
+      border: 0.1rem solid $base-color;
+      padding: 0 0 3rem;
+      margin-right: 2rem;
+      width: 20vw;
+      background-color: $bg-color-1;
+      @media (min-width: 576px) {
+        width: 30vw;
+      }
+
+      //// Medium devices (tablets, 768px and up)
+      //@media (min-width: 768px) { ... }
+      //
+      //// Large devices (desktops, 992px and up)
+      //@media (min-width: 992px) { ... }
+      //
+      //// Extra large devices (large desktops, 1200px and up)
+      //@media (min-width: 1200px) { ... }
     }
 
     #filters-menu, #filters-menu-show {
       position: absolute;
       right: -100%;
       transition: all 0.5s ease;
-      display: block;
-      background-color: lightgrey;
-      text-align: center;
       width: 50vw;
       z-index: 100;
+      background-color: $bg-color-0;
+      color: #ffffff;
+      height: 170%;
+      padding-bottom: 1rem;
     }
 
     #filters-menu-show {
