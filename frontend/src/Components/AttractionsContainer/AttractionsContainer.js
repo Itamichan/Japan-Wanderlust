@@ -181,7 +181,6 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                         </div>
                     </div>
                     <div>
-                        {/*todo put in the right place*/}
                         <AttractionsPagination
                             currentPage={page}
                             setCurrentPage={setPage}

@@ -73,7 +73,7 @@ $color-primary-4: #010000;
   @include text();
   font-weight: 600;
   font-size: 1.8rem;
-  padding: 3rem 0 1rem;
+  padding: 2.5rem 0 1rem;
   @media (max-width: 415px) {
     padding: 0.2rem 0 0;
     font-size: 1.4rem;

@@ -63,7 +63,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                         <FontAwesomeIcon
                             id={"window-close-icon"}
                             icon="window-close"
-                            onClick={() => setCurrentTrip(undefined)}
+                            onClick={() => setCurrentTrip(undefined, [])}
                         />
                     </Col>
                 </Row>
@@ -134,7 +134,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                     setCurrentTrip({
                         ...currentTrip,
                         ...update
-                    })
+                    }, undefined)
                 }}
             />}
         </section>
@@ -145,7 +145,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
 // to the global state and will run the reducer with the provided action
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCurrentTrip: (trip) => dispatch(setCurrentTrip(trip))
+        setCurrentTrip: (trip, attractionsList) => dispatch(setCurrentTrip(trip, attractionsList))
     }
 };
 

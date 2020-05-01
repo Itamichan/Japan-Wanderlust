@@ -12,11 +12,21 @@ const TripReducer = (state, action) => {
     }
     switch (action.type) {
         case "SET_CURRENT_TRIP":
+
+            let tripAttractionsList = [];
+
+            if (action.attractionsList) {
+                tripAttractionsList = action.attractionsList
+            } else if (action.attractionsList === undefined) {
+                tripAttractionsList = state.currentAttractionsList
+            } else if (action.attractionsList === []) {
+                tripAttractionsList = []
+            }
             return {
                 //unwraps the state dict
                 ...state,
                 currentTrip: action.trip,
-                currentAttractionsList: action.attractionsList === undefined? state. currentAttractionsList : action.attractionsList
+                currentAttractionsList: tripAttractionsList
             };
         case "REMOVE_ATTRACTION_FROM_TRIP":
             if (action.tripId === state.currentTrip.id) {
