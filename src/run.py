@@ -37,6 +37,7 @@ application.add_url_rule('/api/v1/attractions', methods=['GET'],
                          view_func=AttractionsView.as_view('AttractionsSearch'))
 
 
+
 @application.route('/', defaults={'path': ''})
 @application.route('/<path:path>')
 def catch_all(path):

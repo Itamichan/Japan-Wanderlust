@@ -2,6 +2,8 @@ import re
 
 from flask import jsonify, request
 from flask.views import MethodView
+
+from communication import offer_email
 from database.trips_database import TripsDatabase
 from database.users_database import User
 from decorators import validate_token
@@ -207,6 +209,7 @@ class TripsView(MethodView):
         @apiParam {Boolean} [is_guided]           Trip's is_guided
         @apiParam {Boolean} [in_group]            Trip's in_group
         @apiParam {Integer} [max_price]           Trip's max_price
+        @apiParam {Boolean} [finalised]           If true is passed in the user will receive an offer.
 
         @apiSuccessExample {json} Success-Response:
         HTTP/1.1 200 OK
@@ -250,6 +253,15 @@ class TripsView(MethodView):
 
             if not updated_trip:
                 return response_404("NoSuchTrip", "Such trip doesn't exist")
+
+            # finalised is a fictional value in my database.
+            # if a trip is finalised then the user will get emails with matching offers to their trip from tourist
+            # agencies.
+            finalised = request.json.get("finalised", None)
+
+            # send dummy email on trip finalised as an offer example
+            if finalised:
+                offer_email(user.email)
 
             return jsonify({})
 
