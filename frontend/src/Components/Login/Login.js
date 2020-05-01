@@ -23,7 +23,7 @@ const Login = ({loginUser, isModalOpen, closeModal}) => {
                 'email': email
             });
             notify.show('yay!!', "success", 1700);
-            login()
+            login();
         } catch (e) {
             switch (e.response.data.error) {
                 //todo write proper notify messages

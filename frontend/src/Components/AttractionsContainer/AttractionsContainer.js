@@ -127,7 +127,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
         )
     });
 
-    attractionsList = attractionsList.slice(ATTRACTIONS_PER_PAGE*(page - 1), ATTRACTIONS_PER_PAGE*page);
+    attractionsList = attractionsList.slice(ATTRACTIONS_PER_PAGE * (page - 1), ATTRACTIONS_PER_PAGE * page);
 
     const filterAttractions = (attractionType) => {
         setChosenAttractionsType(attractionType)
@@ -173,7 +173,6 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
             </section>
 
             <section id={"attractions-container"}>
-
                 <div id={"attractions"}>
                     <div>
                         <div>{loading && "Loading..."}</div>
@@ -181,14 +180,16 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                             {attractionsList}
                         </div>
                     </div>
+                    <div>
+                        {/*todo put in the right place*/}
+                        <AttractionsPagination
+                            currentPage={page}
+                            setCurrentPage={setPage}
+                            ItemsPerPage={ATTRACTIONS_PER_PAGE}
+                            totalItemsNr={attractions.length}
+                        />
+                    </div>
                 </div>
-                {/*todo put in the right place*/}
-                <AttractionsPagination
-                    currentPage={page}
-                    setCurrentPage={setPage}
-                    ItemsPerPage={ATTRACTIONS_PER_PAGE}
-                    totalItemsNr={attractions.length}
-                />
                 {isBrowser &&
                 <div id={"attractions-filter"}>
                     <Cities
