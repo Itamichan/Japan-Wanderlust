@@ -9,14 +9,14 @@ VALUES
 INSERT INTO attraction_type
 (id, name)
 VALUES
-(1, 'shrine'),
-(2, 'onsen'),
-(3, 'temple'),
-(4, 'park'),
-(5, 'nature'),
-(6, 'museum'),
-(7, 'castle'),
-(8, 'mountain');
+(1, 'Shrine'),
+(2, 'Onsen'),
+(3, 'Temple'),
+(4, 'Park'),
+(5, 'Nature'),
+(6, 'Museum'),
+(7, 'Castle'),
+(8, 'Mountain');
 
 INSERT INTO attraction_type_match
 (attraction_type_id, attraction_id)
