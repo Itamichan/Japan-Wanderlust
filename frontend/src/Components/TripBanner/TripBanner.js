@@ -8,11 +8,29 @@ import TripUpdate from "./TripModal/TripUpdate";
 import {setCurrentTrip} from "./reduxTrip/actions";
 import {BrowserView} from "react-device-detect";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import axios from "axios";
+import {notify} from "react-notify-toast";
 
-const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttractionCount}) => {
+const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttractionsList}) => {
 
     const [showChooseModal, setShowChooseModal] = useState(false);
     const [showUpdateTrip, setShowUpdateTrip] = useState(false);
+    const [executingRequest, setExecutingRequest] = useState(false);
+
+
+    let getOfferEmail = async () => {
+        try {
+            setExecutingRequest(true);
+            await axios.patch(`/api/v1/trips/${currentTrip.id}`, {
+                    finalised: true
+                }
+            );
+            notify.show('Your offer is on the way!', "success", 1700);
+        } catch (e) {
+        } finally {
+            setExecutingRequest(false);
+        }
+    };
 
     //todo look to use maybe the same conditional for other comp
     if
@@ -64,12 +82,12 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                         </BrowserView>
                     </Col>
                     <Col className={"text-header-important"}>
-                        <b>{currentAttractionCount}</b>
+                        <b>{currentAttractionsList.length}</b>
                         <div className={"text-header"}>Attractions</div>
                     </Col>
                     <Col>
                         <div className={"text-header"}>
-                            <FontAwesomeIcon icon={['far', 'calendar-alt']} />
+                            <FontAwesomeIcon icon={['far', 'calendar-alt']}/>
                             {` ${currentTrip.max_trip_days} days`}
                         </div>
                         {/*appears only in browser view*/}
@@ -84,11 +102,16 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                 <Row>
                     <Col id={"banner-buttons"}>
                         <Button className={"action-button"} onClick={() => setShowUpdateTrip(true)}>Edit trip</Button>
-                        <Button className={"action-button"}>Get an offer now!</Button>
+                        <Button
+                            className={"action-button"}
+                            onClick={getOfferEmail}
+                            disabled={executingRequest}
+                        >
+                            Get an offer now!
+                        </Button>
                     </Col>
                 </Row>
             </Col>
-
     }
 
     return (
@@ -131,7 +154,7 @@ const mapStateToProps = (state) => {
     return {
         isUserLoggedIn: state.LoginReducer.loggedIn,
         currentTrip: state.TripReducer.currentTrip,
-        currentAttractionCount: state.TripReducer.currentAttractionCount
+        currentAttractionsList: state.TripReducer.currentAttractionsList
     }
 };
 
