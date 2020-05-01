@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import AttractionCard from "./AttractionCard/AttractionCard";
 import "./AttractionsContainer.scss";
@@ -11,11 +11,12 @@ import {openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 import TripBanner from "../TripBanner/TripBanner";
 import {notify} from "react-notify-toast";
-import {decrementCurrentCount, incrementCurrentCount} from "../TripBanner/reduxTrip/actions";
 import Button from "reactstrap/es/Button";
-import {isMobile, isTablet, isBrowser} from "react-device-detect";
+import {isBrowser, isMobile, isTablet} from "react-device-detect";
+import {addAttractionToTrip, removeAttractionFromTrip} from "../TripBanner/reduxTrip/actions";
+import AttractionsPagination from "./AttractionsPagination/AttractionsPagination";
 
-const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => {
+const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttractionToTrip, currentAttractionsList}) => {
 
     //todo put a spinner for loading state- everywhere
     const [loading, setLoading] = useState(true);
@@ -25,6 +26,9 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
     const [chosenCity, setChosenCity] = useState(null);
     const [attractionName, setAttractionName] = useState(null);
     const [maxPrice, setMaxPrice] = useState(null);
+    const [page, setPage] = useState(1);
+
+    const ATTRACTIONS_PER_PAGE = 2;
 
     const loadAttractions = async () => {
         setLoading(true);
@@ -44,7 +48,7 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
         try {
             setExecutingRequest(true);
             await axios.post(`/api/v1/trips/${tripId}/attractions/${attractionId}`);
-            incrementCount(currentTrip.id)
+            addAttractionToTrip(tripId, attractionId)
         } catch (e) {
             switch (e.response.data.error) {
                 //todo write proper notify messages
@@ -69,7 +73,8 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
         try {
             setExecutingRequest(true);
             await axios.delete(`/api/v1/trips/${tripId}/attractions/${attractionId}`);
-            decrementCount(currentTrip.id)
+            removeAttractionFromTrip(tripId, attractionId)
+
         } catch (e) {
             switch (e.response.data.error) {
                 //todo write proper notify messages
@@ -96,7 +101,7 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
         loadAttractions()
     }, [chosenAttractionsType, chosenCity, attractionName, maxPrice]);
 
-    const attractionsList = attractions.map(attraction => {
+    let attractionsList = attractions.map(attraction => {
         return (
             <AttractionCard
                 key={attraction.id}
@@ -107,6 +112,7 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
                 attractionText={attraction.description}
                 attractionPrice={attraction.price}
                 attractionWebAddress={attraction.web_link}
+                isAttractionSelected={currentAttractionsList.includes(attraction.id)}
                 removeAttraction={() => {
                     if (currentTrip) {
                         removeAttraction(currentTrip.id, attraction.id)
@@ -120,6 +126,8 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
             />
         )
     });
+
+    attractionsList = attractionsList.slice(ATTRACTIONS_PER_PAGE*(page - 1), ATTRACTIONS_PER_PAGE*page);
 
     const filterAttractions = (attractionType) => {
         setChosenAttractionsType(attractionType)
@@ -166,14 +174,21 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
 
             <section id={"attractions-container"}>
 
-                <div id={ "attractions"}>
+                <div id={"attractions"}>
                     <div>
                         <div>{loading && "Loading..."}</div>
-                        <div id={isBrowser? "attractions-list" : "attractions-list-mobile"}>
+                        <div id={isBrowser ? "attractions-list" : "attractions-list-mobile"}>
                             {attractionsList}
                         </div>
                     </div>
                 </div>
+                {/*todo put in the right place*/}
+                <AttractionsPagination
+                    currentPage={page}
+                    setCurrentPage={setPage}
+                    ItemsPerPage={ATTRACTIONS_PER_PAGE}
+                    totalItemsNr={attractions.length}
+                />
                 {isBrowser &&
                 <div id={"attractions-filter"}>
                     <Cities
@@ -197,8 +212,9 @@ const AttractionsContainer = ({currentTrip, decrementCount, incrementCount}) => 
 const mapDispatchToProps = (dispatch) => {
     return {
         openLoginModal: () => dispatch(openModal()),
-        decrementCount: (tripId) => dispatch(decrementCurrentCount(tripId)),
-        incrementCount: (tripId) => dispatch(incrementCurrentCount(tripId))
+        addAttractionToTrip: (tripId, attractionId) => dispatch(addAttractionToTrip(tripId, attractionId)),
+        removeAttractionFromTrip: (tripId, attractionId) => dispatch(removeAttractionFromTrip(tripId, attractionId)),
+
     }
 };
 
@@ -206,7 +222,8 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         isUserLoggedIn: state.LoginReducer.loggedIn,
-        currentTrip: state.TripReducer.currentTrip
+        currentTrip: state.TripReducer.currentTrip,
+        currentAttractionsList: state.TripReducer.currentAttractionsList
     }
 };
 
