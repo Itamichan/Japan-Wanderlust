@@ -4,7 +4,6 @@ import AttractionCard from "./AttractionCard/AttractionCard";
 import "./AttractionsContainer.scss";
 import AttractionsTypes from "./AttractionsTypes/AttractionsTypes";
 import Cities from "./Cities/Cities";
-import SearchBar from "./SearchBar/SearchBar";
 import FilterTag from "./FilterTag/FilterTag";
 import PriceInput from "./PriceInput/PriceInput";
 import {openModal} from "../Login/redux/actions";
@@ -15,6 +14,10 @@ import Button from "reactstrap/es/Button";
 import {isBrowser, isMobile, isTablet} from "react-device-detect";
 import {addAttractionToTrip, removeAttractionFromTrip} from "../TripBanner/reduxTrip/actions";
 import AttractionsPagination from "./AttractionsPagination/AttractionsPagination";
+import InputGroup from "reactstrap/es/InputGroup";
+import InputGroupAddon from "reactstrap/es/InputGroupAddon";
+import Input from "reactstrap/es/Input";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttractionToTrip, currentAttractionsList}) => {
 
@@ -147,18 +150,30 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
         setAttractionName(searchWord)
     };
 
+    const searchInput = <Input
+        type="search"
+        placeholder={"Search"}
+        onChange={(event) => {
+            searchAttraction(event.target.value)
+        }}
+    />;
+
     return (
         <div id={"attractions-page"}>
             <section id={"attractions-header"}>
-                <SearchBar
-                    searchAttraction={(searchWord) => searchAttraction(searchWord)}
-                />
+
                 {isMobile || isTablet ? (
-                    <Button
-                        id={"filter-button"}
-                        onClick={() => setShowFiltersMenu(!showFiltersMenu)}
-                    >Filter</Button>
-                ) : null}
+                    <div style={{padding: 15}}>
+                        <InputGroup>
+                            {searchInput}
+                            <InputGroupAddon addonType="append">
+                                <Button onClick={() => setShowFiltersMenu(true)}>Filter</Button>
+                            </InputGroupAddon>
+                        </InputGroup>
+                    </div>
+                ) : (
+                    searchInput
+                )}
 
             </section>
             <section id={"filter-tags"}>
@@ -192,10 +207,11 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                                 totalItemsNr={attractions.length}
                             />
                         </div>
+                        <div style={{height:"25vh"}}/>
                     </div>
                 )}
                 {isBrowser &&
-                <div id={"attractions-filters"} className={"materialize-default"}>
+                <div id={"attractions-filters"}>
                     <Cities
                         chooseCity={(city) => filterCities(city)}
                     />
@@ -207,15 +223,26 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                 </div>}
 
                 {isMobile || isTablet ? (
-                    <div id={showFiltersMenu ? "filters-menu-show" : "filters-menu"} className={"materialize-default"}>
-                        <Cities
-                            chooseCity={(city) => filterCities(city)}
-                        />
-                        <AttractionsTypes
-                            chooseAttractionType={(attractionType) => filterAttractions(attractionType)}/>
-                        <PriceInput
-                            choosePrice={(price) => filterPrice(price)}
-                        />
+                    <div id={showFiltersMenu ? "filters-menu-show" : "filters-menu"}>
+                        <div>
+                            <div style={{width: "100%", textAlign: "right"}}>
+                                <div style={{padding: 16, display: "inline-block"}}
+                                     onClick={() => setShowFiltersMenu(false)}>
+                                    <FontAwesomeIcon
+                                        size={"lg"}
+                                        icon="times"
+                                    />
+                                </div>
+                            </div>
+                            <Cities
+                                chooseCity={(city) => filterCities(city)}
+                            />
+                            <AttractionsTypes
+                                chooseAttractionType={(attractionType) => filterAttractions(attractionType)}/>
+                            <PriceInput
+                                choosePrice={(price) => filterPrice(price)}
+                            />
+                        </div>
                     </div>
                 ) : null
                 }

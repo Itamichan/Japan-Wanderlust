@@ -34,24 +34,10 @@ $color-secondary-2-4: #699D02;
   @include button();
   background-color: $base-color;
   margin-bottom: 0.5rem;
-  width: 6.2rem;
 
   &:hover {
     background-color: $base-color-dark;
   }
-
-  //@media (min-width: 576px) {
-  //  width: 6.2rem;
-  //}
-
-  //// Medium devices (tablets, 768px and up)
-  //@media (min-width: 768px) { ... }
-  //
-  //// Large devices (desktops, 992px and up)
-  //@media (min-width: 992px) { ... }
-  //
-  //// Extra large devices (large desktops, 1200px and up)
-  //@media (min-width: 1200px) { ... }
 }
 
 .filter-tag-button {
@@ -67,9 +53,7 @@ $color-secondary-2-4: #699D02;
 .action-button {
   @include button();
   background-color: #00BC8D;
-
 }
-
 
 //text
 
@@ -77,20 +61,6 @@ $color-secondary-2-4: #699D02;
   font-family: Eczar, sans-serif;
   font-size: 1rem;
   font-weight: 500;
-
-  //@media (min-width: 576px) {
-  //  font-size: 1.2rem;
-  //}
-
-  //// Medium devices (tablets, 768px and up)
-  //@media (min-width: 768px) { ... }
-  //
-  //// Large devices (desktops, 992px and up)
-  //@media (min-width: 992px) { ... }
-  //
-  //// Extra large devices (large desktops, 1200px and up)
-  //@media (min-width: 1200px) { ... }
-
 }
 
 .text-default {
@@ -118,36 +88,4 @@ $color-secondary-2-4: #699D02;
   font-weight: 600;
   padding: 0.8rem 0 0;
   font-size: 1.2rem;
-
-  //@media (min-width: 0) and (max-height: 732px) {
-  //  font-size: 1rem;
-  //  padding: 0.8rem 0 0;
-  //}
-  //@media (min-width: 0) and (max-height: 641px) {
-  //  font-size: 1rem;
-  //  padding: 0.8rem 0 0;
-  //}
-  //
-  //@media (min-width: 576px) {
-  //  font-size: 1.8rem;
-  //  padding: 2.5rem 0 1rem;
-  //}
-
-  //// Medium devices (tablets, 768px and up)
-  //@media (min-width: 768px) { ... }
-  //
-  //// Large devices (desktops, 992px and up)
-  //@media (min-width: 992px) { ... }
-  //
-  //// Extra large devices (large desktops, 1200px and up)
-  //@media (min-width: 1200px) { ... }
-}
-
-//materialize box
-@mixin default-box() {
-  box-shadow: 4px -5px 5px;
-}
-
-.materialize-default {
-  @include default-box();
 }

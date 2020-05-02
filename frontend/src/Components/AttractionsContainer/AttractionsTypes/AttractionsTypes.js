@@ -20,7 +20,7 @@ const AttractionsTypes = ({chooseAttractionType}) => {
 
     const attractionsTypes = attractionTypes.map(attractionType => {
             return (
-                <div key={attractionType.type_id}>
+                <div key={attractionType.type_id} style={{padding: 4}}>
                     <Button
                         className={"filter-button text-highlight"}
                         onClick={() => chooseAttractionType(attractionType)}
@@ -34,8 +34,8 @@ const AttractionsTypes = ({chooseAttractionType}) => {
 
     return (
         <div>
-            <h1 className={"text-header-important"}>Choose a category:</h1>
-            <div>
+            <h1 className={"text-header-important"}>Choose a Category</h1>
+            <div style={{display:"flex", flexWrap:"wrap", justifyContent:"center"}}>
                 {loading ? <div>Loading...</div> : attractionsTypes}
             </div>
         </div>)
