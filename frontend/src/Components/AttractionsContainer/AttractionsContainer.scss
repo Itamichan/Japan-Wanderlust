@@ -66,7 +66,6 @@
     }
 
     #attractions-filters {
-      border: 0.1rem solid $base-color;
       padding: 0 0 3rem;
       margin-right: 2rem;
       width: 20vw;
@@ -94,7 +93,7 @@
       background-color: $bg-color-0;
       color: #ffffff;
       height: 170%;
-      padding-bottom: 1rem;
+      padding-bottom: 0.5rem;
     }
 
     #filters-menu-show {

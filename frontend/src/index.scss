@@ -4,8 +4,13 @@ html {
   @media (min-width: 0) and (max-height: 641px) {
     font-size: 7.5px;
   }
+  @media (min-width: 576px) {
+    font-size: 10px;
+  }
+  @media (min-width: 768px) {
+    font-size: 12px;
+  }
 }
-//todo do breaking points here
 
 body {
   margin: 0;

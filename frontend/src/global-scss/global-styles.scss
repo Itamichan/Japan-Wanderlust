@@ -40,9 +40,9 @@ $color-secondary-2-4: #699D02;
     background-color: $base-color-dark;
   }
 
-  @media (min-width: 576px) {
-    width: 6.2rem;
-  }
+  //@media (min-width: 576px) {
+  //  width: 6.2rem;
+  //}
 
   //// Medium devices (tablets, 768px and up)
   //@media (min-width: 768px) { ... }
@@ -78,9 +78,9 @@ $color-secondary-2-4: #699D02;
   font-size: 1rem;
   font-weight: 500;
 
-  @media (min-width: 576px) {
-    font-size: 1.2rem;
-  }
+  //@media (min-width: 576px) {
+  //  font-size: 1.2rem;
+  //}
 
   //// Medium devices (tablets, 768px and up)
   //@media (min-width: 768px) { ... }
@@ -119,19 +119,19 @@ $color-secondary-2-4: #699D02;
   padding: 0.8rem 0 0;
   font-size: 1.2rem;
 
-  @media (min-width: 0) and (max-height: 732px) {
-    font-size: 1rem;
-    padding: 0.8rem 0 0;
-  }
-  @media (min-width: 0) and (max-height: 641px) {
-    font-size: 1rem;
-    padding: 0.8rem 0 0;
-  }
-
-  @media (min-width: 576px) {
-    font-size: 1.8rem;
-    padding: 2.5rem 0 1rem;
-  }
+  //@media (min-width: 0) and (max-height: 732px) {
+  //  font-size: 1rem;
+  //  padding: 0.8rem 0 0;
+  //}
+  //@media (min-width: 0) and (max-height: 641px) {
+  //  font-size: 1rem;
+  //  padding: 0.8rem 0 0;
+  //}
+  //
+  //@media (min-width: 576px) {
+  //  font-size: 1.8rem;
+  //  padding: 2.5rem 0 1rem;
+  //}
 
   //// Medium devices (tablets, 768px and up)
   //@media (min-width: 768px) { ... }
