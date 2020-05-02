@@ -12,6 +12,7 @@ import TripCreate from "../../../TripBanner/TripModal/TripCreate";
 import ListGroup from "reactstrap/es/ListGroup";
 import ListGroupItem from "reactstrap/es/ListGroupItem";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Tooltip from "reactstrap/es/Tooltip";
 
 const UserTripsList = ({isUserLoggedIn, history}) => {
 
@@ -19,6 +20,9 @@ const UserTripsList = ({isUserLoggedIn, history}) => {
     const [trips, setTrips] = useState([]);
     const [showCreateTrip, setShowCreateTrip] = useState(false);
     const [error, setError] = useState(false);
+    const [tooltipOpen, setTooltipOpen] = useState(false);
+
+    const toggle = () => setTooltipOpen(!tooltipOpen);
 
     const loadTrips = async () => {
         try {
@@ -60,7 +64,7 @@ const UserTripsList = ({isUserLoggedIn, history}) => {
                 <Container fluid="lg" id={"user-trips-container"}>
                     <Row>
                         <Col xs={"8"} id={"user-trips-heading"}>
-                            <h1 className={"text-header"}>Your trips:</h1>
+                            <h1 className={"text-header-important"}>Your Trips:</h1>
                         </Col>
                         <Col xs={"4"} id={"add-trip"}>
                             {
@@ -72,7 +76,11 @@ const UserTripsList = ({isUserLoggedIn, history}) => {
                                 ) : (
                                     <div>
                                         <span id={"icon-add"} onClick={() => setShowCreateTrip(true)}>
-                                            <FontAwesomeIcon icon="plus"/>
+                                            <FontAwesomeIcon size={"lg"} icon="plus"/>
+                                            <Tooltip placement="right" isOpen={tooltipOpen} target="icon-add"
+                                                     toggle={toggle}>
+                                            Create a new Trip
+                                            </Tooltip>
                                         </span>
                                         {showCreateTrip && <TripCreate
                                             close={() => setShowCreateTrip(false)}
@@ -85,9 +93,11 @@ const UserTripsList = ({isUserLoggedIn, history}) => {
                     {loading ? (
                         "loading"
                     ) : (
-                        <ListGroup>
-                            {tripsList}
-                        </ListGroup>
+                        <div id={"trips-list"}>
+                            <ListGroup>
+                                {tripsList}
+                            </ListGroup>
+                        </div>
                     )}
                 </Container>
             ) : (

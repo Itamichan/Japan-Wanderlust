@@ -8,24 +8,12 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const UserTrip = ({history, mediaHeading, tripId, removedTrip}) => {
 
-    const [executingRequest, setExecutingRequest] = useState(false);
-
     const removeTrip = async () => {
         try {
-            setExecutingRequest(true);
             await axios.delete(`/api/v1/trips/${tripId}`);
             removedTrip()
         } catch (e) {
-            switch (e.response.data.error) {
-                //todo write proper notify messages
-                case "NoSuchTrip":
-                    notify.show('NoSuchTrip', "error", 1700);
-                    break;
-                default:
-                    break;
-            }
         } finally {
-            setExecutingRequest(false);
         }
     };
 
@@ -37,7 +25,7 @@ const UserTrip = ({history, mediaHeading, tripId, removedTrip}) => {
             <Col xs={"2"}>
                 <div className={"icon-delete"}
                      onClick={removeTrip}>
-                    <FontAwesomeIcon icon={['far', 'trash-alt']}/>
+                    <FontAwesomeIcon size={"lg"} icon={['far', 'trash-alt']}/>
                 </div>
             </Col>
         </Row>

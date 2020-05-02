@@ -5,7 +5,8 @@
     text-align: left;
 
     &:hover {
-      background-color: #f4f4f4;;
+      cursor: pointer;
+      color: $base-color;
     }
   }
 
@@ -16,6 +17,7 @@
 
     &:hover {
       color: $base-color-dark;
+      cursor: pointer;
     }
   }
 }
