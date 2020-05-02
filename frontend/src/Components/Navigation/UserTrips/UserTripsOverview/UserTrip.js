@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
-import {Button, Col, Row} from "reactstrap";
+import React from 'react';
+import {Col, Row} from "reactstrap";
 import {withRouter} from "react-router";
 import "./UserTrip.scss";
 import axios from "axios";
-import {notify} from "react-notify-toast";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const UserTrip = ({history, mediaHeading, tripId, removedTrip}) => {

@@ -5,7 +5,10 @@ import {notify} from "react-notify-toast";
 import {useParams, withRouter} from "react-router";
 import TripUpdate from "../../../TripBanner/TripModal/TripUpdate";
 import UserAttraction from "./UserAttractionsList/UserAttraction";
-import TripInfo from "../../../TripBanner/TripInfo/TripInfo";
+import {connect} from "react-redux";
+import "./UserDetailedTrip.scss";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Tooltip from "reactstrap/es/Tooltip";
 
 
 const UserDetailedTrip = ({isUserLoggedIn, history}) => {
@@ -14,9 +17,14 @@ const UserDetailedTrip = ({isUserLoggedIn, history}) => {
     const [attractions, setAttractions] = useState([]);
     const [executingRequest, setExecutingRequest] = useState(false);
     const [showUpdateTrip, setShowUpdateTrip] = useState(false);
+    const [BackIconOpen, setBackIconOpen] = useState(false);
+    const [EditIconOpen, setEditIconOpen] = useState(false);
 
+    const toggleBackIcon = () => setBackIconOpen(!BackIconOpen);
+    const toggleEditIcon = () => setEditIconOpen(!EditIconOpen);
+
+    //value from history's state
     let {tripId} = useParams();
-
 
     const loadTripInfo = async () => {
         try {
@@ -85,53 +93,116 @@ const UserDetailedTrip = ({isUserLoggedIn, history}) => {
         loadTripAttractions();
     }, []);
 
-    return (
-        <div>
-            <Container>
-                <Row>
-                    <Col>
-                        <TripInfo
-                            tripName={tripInfo.name}
-                            isGuided={tripInfo.is_guided ? "yes" : "no"}
-                            inGroup={tripInfo.in_group ? "yes" : "no"}
-                            maxPrice={`${tripInfo.max_price} YEN`}
-                            maxTripDays={`${tripInfo.max_trip_days} days`}
-                        />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Button onClick={() => setShowUpdateTrip(true)}>Edit trip</Button>
-                    </Col>
-                </Row>
-            </Container>
+    //renders component only for logged in users
+    if
+    (!isUserLoggedIn) {
+        return null
+    }
 
+    return (
+        <div id={"detailed-trip-container"}>
             <Container>
                 <Row>
-                    <Col>
-                        <h3>attractions:</h3>
+                    <Col xs={"6"}>
+                        <div id={"back-button"}>
+                            <FontAwesomeIcon
+                                id={"back-icon"}
+                                size={"2x"}
+                                icon="chevron-left"
+                                onClick={() => history.goBack()}
+                            />
+                            <Tooltip placement="right" isOpen={BackIconOpen} target="back-icon"
+                                     toggle={toggleBackIcon}>
+                                Go to your Trips
+                            </Tooltip>
+                        </div>
+                    </Col>
+                    <Col xs={"6"}>
+                        <div id={"edit-button"}>
+                            <FontAwesomeIcon
+                                id={"edit-icon"}
+                                size={"2x"}
+                                icon="edit"
+                                onClick={() => setShowUpdateTrip(true)}
+                            />
+                            <Tooltip placement="right" isOpen={EditIconOpen} target="edit-icon"
+                                     toggle={toggleEditIcon}>
+                                Edit your Trip
+                            </Tooltip>
+                        </div>
                     </Col>
                 </Row>
-                {attractionsList}
+                <Row>
+                    <Col id={"trip-info"}>
+                        <Row>
+                            <Col>
+                                <h1 id={"text-header-important"}>{tripInfo.name}</h1>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <div className={"text-header"}>
+                                    <FontAwesomeIcon size={"lg"} icon="yen-sign"/>
+                                    {` ${tripInfo.max_price} YEN`}
+                                </div>
+                                <div className={"text-header"}>
+                                    <FontAwesomeIcon size={"lg"} icon="street-view"/>
+                                    {tripInfo.is_guided ? " Yes" : " No"}
+                                </div>
+                            </Col>
+                            <Col>
+                                <div className={"text-header"}>
+                                    <FontAwesomeIcon size={"lg"} icon={['far', 'calendar-alt']}/>
+                                    {` ${tripInfo.max_trip_days} days`}
+                                </div>
+
+                                <div className={"text-header"}>
+                                    <FontAwesomeIcon size={"lg"} icon="users"/>
+                                    {tripInfo.in_group ? "Yes" : "No"}
+                                </div>
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col id={"attractions-list-container"}>
+                        {attractionsList}
+                    </Col>
+                </Row>
+                {showUpdateTrip && <TripUpdate
+                    close={() => setShowUpdateTrip(false)}
+                    initialTripName={tripInfo.name}
+                    initialMaxTripDays={tripInfo.max_trip_days}
+                    initialIsGuided={tripInfo.is_guided}
+                    initialInGroup={tripInfo.in_group}
+                    initialMaxPrice={tripInfo.max_price}
+                    tripId={tripId}
+                    reloadTripInfo={(update) => {
+                        setTripInfo({
+                            ...tripInfo,
+                            ...update
+                        })
+                    }}
+                />}
             </Container>
-            <Button onClick={() => history.goBack()}>back to all the trips</Button>
-            {showUpdateTrip && <TripUpdate
-                close={() => setShowUpdateTrip(false)}
-                initialTripName={tripInfo.name}
-                initialMaxTripDays={tripInfo.max_trip_days}
-                initialIsGuided={tripInfo.is_guided}
-                initialInGroup={tripInfo.in_group}
-                initialMaxPrice={tripInfo.max_price}
-                tripId={tripId}
-                reloadTripInfo={(update) => {
-                    setTripInfo({
-                        ...tripInfo,
-                        ...update
-                    })
-                }}
-            />}
         </div>
     );
 };
 
-export default withRouter(UserDetailedTrip)
+// export default withRouter(UserDetailedTrip)
+//dispatch will move the provided action dict (result of login(token))
+// to the global state and will run the reducer with the provided action
+const mapDispatchToProps = (dispatch) => {
+    return {}
+};
+
+//map the global state to properties that are passed into the comp
+const mapStateToProps = (state) => {
+    return {
+        isUserLoggedIn: state.LoginReducer.loggedIn
+    }
+};
+
+//next line ensures that the properties from the 2 passed functions are passed to Login comp
+const DefaultApp = withRouter(connect(mapStateToProps, mapDispatchToProps)(UserDetailedTrip));
+export default DefaultApp;

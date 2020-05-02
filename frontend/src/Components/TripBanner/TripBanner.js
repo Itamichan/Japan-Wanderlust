@@ -32,12 +32,6 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
         }
     };
 
-    //todo look to use maybe the same conditional for other comp
-    if
-    (!isUserLoggedIn) {
-        return null
-    }
-
     let bannerBody;
 
     if (!currentTrip) {
@@ -112,6 +106,12 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                     </Col>
                 </Row>
             </Col>
+    }
+
+    //todo look to use maybe the same conditional for other comp
+    if
+    (!isUserLoggedIn) {
+        return null
     }
 
     return (

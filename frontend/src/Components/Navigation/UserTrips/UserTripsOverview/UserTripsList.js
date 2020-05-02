@@ -3,7 +3,7 @@ import axios from "axios";
 import {Container} from "reactstrap";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
-import UserTrip from "./UserTrip/UserTrip";
+import UserTrip from "./UserTrip";
 import "./UserTripsList.scss";
 import Col from "reactstrap/es/Col";
 import Row from "reactstrap/es/Row";
@@ -76,7 +76,7 @@ const UserTripsList = ({isUserLoggedIn, history}) => {
                                 ) : (
                                     <div>
                                         <span id={"icon-add"} onClick={() => setShowCreateTrip(true)}>
-                                            <FontAwesomeIcon size={"lg"} icon="plus"/>
+                                            <FontAwesomeIcon size={"2x"} icon="plus"/>
                                             <Tooltip placement="right" isOpen={tooltipOpen} target="icon-add"
                                                      toggle={toggle}>
                                             Create a new Trip

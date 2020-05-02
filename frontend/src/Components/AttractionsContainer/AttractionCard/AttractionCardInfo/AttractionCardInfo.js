@@ -1,8 +1,5 @@
-import React, {useState} from 'react';
-import {
-    Button, Modal, ModalBody, ModalFooter, ModalHeader, Container, Row,
-    Col
-} from "reactstrap";
+import React from 'react';
+import {Button, Col, Container, Modal, ModalBody, ModalFooter, ModalHeader, Row} from "reactstrap";
 import "./AttractionCardInfo.scss";
 
 const AttractionCardInfo = ({

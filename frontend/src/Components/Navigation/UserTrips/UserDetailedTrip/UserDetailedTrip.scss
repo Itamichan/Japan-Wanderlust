@@ -1,0 +1,24 @@
+@import "../../../../global-scss/global-styles";
+
+#detailed-trip-container {
+  padding-top: 65px;
+
+  #back-button, #edit-button {
+    &:hover {
+      cursor: pointer;
+      color: $base-color;
+    }
+  }
+
+  #back-button {
+    text-align: left;
+  }
+
+  #edit-button {
+    text-align: right;
+  }
+
+  #trip-info, #attractions-list-container {
+    padding-top: 3rem;
+  }
+}
