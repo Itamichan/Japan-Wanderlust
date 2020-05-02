@@ -1,9 +1,21 @@
+@import "../../../../global-scss/global-styles";
+
 #user-trips-container {
+  padding-top: 55px;
+
   #user-trips-heading {
     text-align: left;
   }
 
   #add-trip {
     text-align: right;
+
+    #icon-add {
+      color: $color-secondary-1-0;
+
+      &:hover {
+        color: $color-secondary-1-3;
+      }
+    }
   }
 }

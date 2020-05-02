@@ -4,6 +4,7 @@ import {withRouter} from "react-router";
 import "./UserTrip.scss";
 import axios from "axios";
 import {notify} from "react-notify-toast";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const UserTrip = ({history, mediaHeading, tripId, removedTrip}) => {
 
@@ -30,24 +31,14 @@ const UserTrip = ({history, mediaHeading, tripId, removedTrip}) => {
 
     return (
         <Row className={"user-trip-container"}>
-            <Col xs={"8"} className={"user-trip-heading"}>
-                <h4> {mediaHeading}</h4>
+            <Col xs={"10"} className={"user-trip-heading"}>
+                <h1 className={"text-header"} onClick={() => history.push(`/trips/${tripId}`)}> {mediaHeading}</h1>
             </Col>
-            <Col xs={"4"}>
-                <Row>
-                    <Col>
-                        <Button color="success"
-                                disabled={executingRequest}
-                                onClick={() => history.push(`/trips/${tripId}`)}>see
-                            more
-                        </Button>
-                    </Col>
-                    <Col>
-                        <Button disabled={executingRequest} color="danger" onClick={removeTrip}>
-                            Delete
-                        </Button>
-                    </Col>
-                </Row>
+            <Col xs={"2"}>
+                <div className={"icon-delete"}
+                     onClick={removeTrip}>
+                    <FontAwesomeIcon icon={['far', 'trash-alt']}/>
+                </div>
             </Col>
         </Row>
     )

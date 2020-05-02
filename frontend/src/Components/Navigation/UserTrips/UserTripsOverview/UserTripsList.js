@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {notify} from "react-notify-toast";
 import {Container} from "reactstrap";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
@@ -10,12 +9,14 @@ import Col from "reactstrap/es/Col";
 import Row from "reactstrap/es/Row";
 import Button from "reactstrap/es/Button";
 import TripCreate from "../../../TripBanner/TripModal/TripCreate";
+import ListGroup from "reactstrap/es/ListGroup";
+import ListGroupItem from "reactstrap/es/ListGroupItem";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const UserTripsList = ({isUserLoggedIn, history}) => {
 
     const [loading, setLoading] = useState(true);
     const [trips, setTrips] = useState([]);
-    const [executingRequest, setExecutingRequest] = useState(false);
     const [showCreateTrip, setShowCreateTrip] = useState(false);
     const [error, setError] = useState(false);
 
@@ -40,14 +41,16 @@ const UserTripsList = ({isUserLoggedIn, history}) => {
 
     const tripsList = trips.map(trip => {
         return (
-            <UserTrip
-                key={trip.id}
-                mediaHeading={trip.name}
-                tripId={trip.id}
-                removedTrip={() => setTrips(prevState => {
-                    return prevState.filter(element => element.id !== trip.id)
-                })}
-            />
+            <ListGroupItem>
+                <UserTrip
+                    key={trip.id}
+                    mediaHeading={trip.name}
+                    tripId={trip.id}
+                    removedTrip={() => setTrips(prevState => {
+                        return prevState.filter(element => element.id !== trip.id)
+                    })}
+                />
+            </ListGroupItem>
         )
     });
 
@@ -57,30 +60,35 @@ const UserTripsList = ({isUserLoggedIn, history}) => {
                 <Container fluid="lg" id={"user-trips-container"}>
                     <Row>
                         <Col xs={"8"} id={"user-trips-heading"}>
-                            <h1>Your trips:</h1>
+                            <h1 className={"text-header"}>Your trips:</h1>
                         </Col>
                         <Col xs={"4"} id={"add-trip"}>
                             {
                                 error ? (
                                     <div>
-                                        <p>smth went wrong</p>
+                                        <p>something went wrong</p>
                                         <Button onClick={loadTrips}>reload</Button>
                                     </div>
                                 ) : (
                                     <div>
-                                        <Button onClick={() => setShowCreateTrip(true)}>Add a new trip</Button>
-                                        {
-                                            showCreateTrip && <TripCreate
-                                                close={() => setShowCreateTrip(false)}
-                                                update={(data) => setTrips([...trips, data])}
-                                            />
-                                        }
+                                        <span id={"icon-add"} onClick={() => setShowCreateTrip(true)}>
+                                            <FontAwesomeIcon icon="plus"/>
+                                        </span>
+                                        {showCreateTrip && <TripCreate
+                                            close={() => setShowCreateTrip(false)}
+                                            update={(data) => setTrips([...trips, data])}/>}
                                     </div>
                                 )
                             }
                         </Col>
                     </Row>
-                    {loading ? "loading" : tripsList}
+                    {loading ? (
+                        "loading"
+                    ) : (
+                        <ListGroup>
+                            {tripsList}
+                        </ListGroup>
+                    )}
                 </Container>
             ) : (
                 history.push("/")

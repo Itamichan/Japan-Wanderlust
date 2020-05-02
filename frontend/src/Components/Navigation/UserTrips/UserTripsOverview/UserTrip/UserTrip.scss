@@ -1,9 +1,21 @@
+@import "../../../../../global-scss/global-styles";
 
 .user-trip-container {
-
-  padding-bottom: 1rem;
-
   .user-trip-heading {
     text-align: left;
+
+    &:hover {
+      background-color: #f4f4f4;;
+    }
+  }
+
+  .icon-delete {
+    display: inline-block;
+    color: $base-color;
+    padding-top: 6px;
+
+    &:hover {
+      color: $base-color-dark;
+    }
   }
 }
