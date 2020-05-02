@@ -1,8 +1,7 @@
 @import "../../global-scss/global-styles";
 
 #trip-banner {
-
-  height: 20vh;
+  height: 25vh;
   width: 100%;
   bottom: 0;
   position: fixed;
@@ -10,12 +9,12 @@
   z-index: 100;
 
   #no-trip-container {
-    padding-top: 4rem;
+    padding-top: 1.33rem;
 
     #trip-banner-button {
-      padding-top: 2rem;
       display: flex;
       justify-content: center;
+      padding-top: 1rem;
     }
   }
 
@@ -40,7 +39,6 @@
     }
 
     #banner-buttons {
-      padding-top: 1rem;
       display: flex;
       flex-flow: row wrap;
       text-align: center;

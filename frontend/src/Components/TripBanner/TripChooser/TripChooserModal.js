@@ -65,7 +65,7 @@ const TripChooserModal = ({close, setCurrentTrip, tripAttractionsList}) => {
                     <h1 className={"text-header"}>Select from existing trips:</h1>
                 </div>
                 <div>
-                    <ListGroup flush>
+                    <ListGroup>
                         {tripNamesList}
                     </ListGroup>
                 </div>

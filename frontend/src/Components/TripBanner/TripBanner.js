@@ -62,7 +62,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                         <div className={"text-header-important"}>{currentTrip.name}</div>
                         <FontAwesomeIcon
                             id={"window-close-icon"}
-                            icon="window-close"
+                            icon="times"
                             onClick={() => setCurrentTrip(undefined, [])}
                         />
                     </Col>
