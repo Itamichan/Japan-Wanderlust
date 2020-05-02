@@ -14,6 +14,7 @@ import {logout, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
 import "./Navigation.scss";
+import NavbarText from "reactstrap/es/NavbarText";
 
 const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history}) => {
 
@@ -26,17 +27,15 @@ const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history})
     //if user is not logged in we see "Login" button otherwise "Profile".
     if (isUserLoggedIn) {
         toggleNavItem =
-            <NavItem>
                 <ButtonDropdown isOpen={isOpen} toggle={toggleButton}>
-                    <DropdownToggle>
+                    <DropdownToggle nav caret>
                         {username}
                     </DropdownToggle>
-                    <DropdownMenu>
+                    <DropdownMenu right>
                         <DropdownItem onClick={() => history.push("/trips")}>Show my trips</DropdownItem>
                         <DropdownItem onClick={logout}>Log Out</DropdownItem>
                     </DropdownMenu>
                 </ButtonDropdown>
-            </NavItem>
     } else {
         toggleNavItem = <NavItem>
             <NavLink onClick={openLoginModal}>Login</NavLink>
@@ -45,7 +44,7 @@ const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history})
 
     return (
         <div>
-            <Navbar color="light" className={"navbar"} light expand="md">
+            <Navbar fixed={"top"} color="light" className={"navbar"} light expand={false}>
                 <NavbarBrand className={"navbar-logo"} href="/">JapanWanderlust</NavbarBrand>
                 <Nav>
                     {toggleNavItem}
