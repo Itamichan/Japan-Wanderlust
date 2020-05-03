@@ -25,10 +25,10 @@
   }
 
   #filter-tags {
-    position: relative;
     display: flex;
     flex-flow: row;
     justify-content: center;
+    min-height: 4rem;
   }
 
   #attractions-container {

@@ -19,7 +19,7 @@ const AttractionsPagination = ({currentPage, setCurrentPage, ItemsPerPage, total
     }
 
     return (
-        <Pagination aria-label="Page navigation" className="pagination justify-content-center">
+        <Pagination className="pagination justify-content-center" aria-label="Page navigation" >
             {paginationItems}
         </Pagination>
     );
