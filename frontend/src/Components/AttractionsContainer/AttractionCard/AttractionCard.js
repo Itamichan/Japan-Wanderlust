@@ -11,7 +11,7 @@ const AttractionCard = ({
                             cardTitle, cardImg, cardCity, attractionText, attractionPrice, attractionWebAddress,
                             isUserLoggedIn, currentTrip, removeAttraction, addAttraction, openLoginModal, isAttractionSelected
                         }) => {
-    //todo implement that the heart is filled if it is already in the trip
+
     const [showAttractionInfo, setShowAttractionInfo] = useState(false);
     const [showChooseModal, setShowChooseModal] = useState(false);
 
@@ -35,32 +35,33 @@ const AttractionCard = ({
 
     return (
         <div className={"attraction-container"}>
-            {
-                isAttractionSelected ?
-                    (
-                        <FontAwesomeIcon
-                            className={"filled-heart-icon"}
-                            icon="heart"
-                            onClick={removeAttractionFromCurrentTrip}
-                        />
-                    ) : (
-                        <FontAwesomeIcon
-                            className={"disabled-heart-icon"}
-                            icon="heart"
-                            onClick={addAttractionToCurrentTrip}
-                        />
-                    )
-            }
-            <Card className={"card-body"}>
+            <Card className={"card-body"} onClick={() => setShowAttractionInfo(true)}>
                 <CardImg
                     className={"card-img"}
                     top width="100%"
                     src={cardImg}
                     alt="img of the attraction"/>
+                {
+                    isAttractionSelected ?
+                        (
+                            <FontAwesomeIcon
+                                className={"filled-heart-icon"}
+                                size={"1.5x"}
+                                icon="heart"
+                                onClick={removeAttractionFromCurrentTrip}
+                            />
+                        ) : (
+                            <FontAwesomeIcon
+                                className={"disabled-heart-icon"}
+                                size={"1.5x"}
+                                icon="heart"
+                                onClick={addAttractionToCurrentTrip}
+                            />
+                        )
+                }
                 <CardBody>
                     <CardTitle>{cardTitle}</CardTitle>
                     <CardText>{cardCity}</CardText>
-                    <Button color={"info"} onClick={() => setShowAttractionInfo(true)}>read more</Button>
                 </CardBody>
             </Card>
             {showAttractionInfo && <AttractionCardInfo

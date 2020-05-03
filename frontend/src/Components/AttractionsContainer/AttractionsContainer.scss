@@ -39,15 +39,16 @@
     #loading {
       width: 75vw;
     }
+    //
+    //#attractions-list-wide {
+    //  //width: 75vw;
+    //
+    //
+    //}
 
-    #attractions-list-wide {
-      width: 75vw;
-
-      #buffer-div {
-        //height: 25vh;
-      }
+    #buffer-div {
+      height: 25vh;
     }
-
     #pagination {
       width: 15%;
       margin: 0 auto;
@@ -57,7 +58,6 @@
     #attractions-filters {
       padding: 2rem;
       margin-right: 2rem;
-      //width: 25vw;
       background-color: $bg-color-1;
     }
 

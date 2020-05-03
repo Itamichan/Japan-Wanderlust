@@ -1,18 +1,25 @@
+@import "../../../global-scss/global-styles";
 
 .attraction-container {
   position: relative;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   .disabled-heart-icon, .filled-heart-icon {
     position: absolute;
-    color: #c0370f;
     z-index: 1;
     left: 87%;
     top: 2%;
 
     &:hover {
       transform: scale(1.2);
-      cursor: pointer;
     }
+  }
+
+  .filled-heart-icon {
+    color: $base-color;
   }
 
   .disabled-heart-icon {
@@ -20,12 +27,35 @@
   }
 
   .card-body {
-    max-width: 200px;
     padding: 0 0 2rem 0;
 
     .card-img {
-      max-width: 180px;
-      max-height: 80px;
+      height: 8rem;
+      //responsive attraction image
+      @media (min-width: 490px) {
+        height: 10rem;
+      }
+      @media (min-width: 576px) {
+        height: 12rem;
+      }
+      @media (min-width: 768px) {
+        height: 14rem;
+      }
+      @media (min-width: 870px) {
+        height: 15rem;
+      }
+      @media (min-width: 992px) {
+        height: 10rem;
+      }
+      @media (min-width: 1200px) {
+        height: 15rem;
+      }
+      @media (min-width: 1400px) {
+        height: 16rem;
+      }
+      @media (min-width: 1650px) {
+        height: 20rem;
+      }
     }
   }
 }

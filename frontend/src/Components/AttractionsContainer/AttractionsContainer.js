@@ -33,7 +33,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
     const [page, setPage] = useState(1);
     const [showFiltersMenu, setShowFiltersMenu] = useState(false);
 
-    const ATTRACTIONS_PER_PAGE = 8;
+    const ATTRACTIONS_PER_PAGE = 6;
 
     const loadAttractions = async () => {
         setLoading(true);
@@ -104,7 +104,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
 
     let attractionsList = attractions.map(attraction => {
         return (
-            <Col>
+            <Col xs={"6"} lg={"3"}>
                 <AttractionCard
                     key={attraction.id}
                     cardId={attraction.id}
