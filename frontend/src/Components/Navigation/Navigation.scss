@@ -1,9 +1,15 @@
-.navbar {
-  height: 50px;
-  a {
-    color:black;
-  }
-  .navbar-logo {
+@import "../../global-scss/global-styles";
 
+#navbar {
+  height: 50px;
+
+  a {
+    color: black;
+  }
+
+  #navbar-logo {
+    img{
+      height: 35px;
+    }
   }
 }

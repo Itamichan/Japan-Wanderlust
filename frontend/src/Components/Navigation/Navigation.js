@@ -13,8 +13,8 @@ import {
 import {logout, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
+import logo from "../../static/images/logo_transerent.png";
 import "./Navigation.scss";
-import NavbarText from "reactstrap/es/NavbarText";
 
 const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history}) => {
 
@@ -44,8 +44,11 @@ const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history})
 
     return (
         <div>
-            <Navbar fixed={"top"} color="light" className={"navbar"} light expand={false}>
-                <NavbarBrand className={"navbar-logo"} href="/">JapanWanderlust</NavbarBrand>
+            <Navbar fixed={"top"} color="light" id={"navbar"} light expand={false}>
+                <NavbarBrand id={"navbar-logo"} href="/">
+                    <img src={logo} alt="JapanWanderlust logo"/>
+                    <span className={"text-header-important"}> JapanWanderlust</span>
+                </NavbarBrand>
                 <Nav>
                     {toggleNavItem}
                 </Nav>
