@@ -9,16 +9,27 @@
   z-index: 100;
 
   #no-trip-container {
-    padding-top: 1.33rem;
+    padding-top: 1.3rem;
+    @media (min-width: 415px) {
+      padding-top: 5rem;
+    }
 
     #trip-banner-button {
       display: flex;
       justify-content: center;
       padding-top: 1rem;
+      @media (min-width: 415px) {
+        padding-top: 2rem;
+      }
     }
   }
 
   #with-trip-container {
+    padding-top: 0.8rem;
+    @media (min-width: 415px) {
+      padding-top: 5rem;
+    }
+
     #trip-banner-header {
       position: relative;
 
@@ -43,6 +54,9 @@
       flex-flow: row wrap;
       text-align: center;
       justify-content: space-evenly;
+      @media (min-width: 415px) {
+        padding-top: 2rem;
+      }
     }
   }
 }
