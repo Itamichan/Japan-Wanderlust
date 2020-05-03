@@ -8,6 +8,10 @@
   #attractions-header {
     position: relative;
 
+    #search-container {
+      padding: 1.1rem;
+    }
+
     #filter-button {
       position: absolute;
       top: 10%;
@@ -43,6 +47,10 @@
       #attractions-list-browser {
         width: 75vw;
       }
+
+      #buffer-div {
+        height: 25vh;
+      }
     }
 
     #pagination {
@@ -70,6 +78,16 @@
 
     #filters-menu-show {
       top: 50px;
+    }
+
+    #icon-container {
+      width: 100%;
+      text-align: right;
+
+      #icon-div {
+        display: inline-block;
+        padding: 1.2rem;
+      }
     }
   }
 }

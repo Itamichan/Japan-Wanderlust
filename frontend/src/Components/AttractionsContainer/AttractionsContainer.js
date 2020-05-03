@@ -161,9 +161,8 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
     return (
         <div id={"attractions-page"}>
             <section id={"attractions-header"}>
-
                 {isMobile || isTablet ? (
-                    <div style={{padding: 15}}>
+                    <div id={"search-container"}>
                         <InputGroup>
                             {searchInput}
                             <InputGroupAddon addonType="append">
@@ -174,7 +173,6 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                 ) : (
                     searchInput
                 )}
-
             </section>
             <section id={"filter-tags"}>
                 <FilterTag
@@ -207,7 +205,8 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                                 totalItemsNr={attractions.length}
                             />
                         </div>
-                        <div style={{height:"25vh"}}/>
+                        {/*provides empty space that will be covered by the TripBanner*/}
+                        <div id={"buffer-div"}/>
                     </div>
                 )}
                 {isBrowser &&
@@ -225,9 +224,8 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                 {isMobile || isTablet ? (
                     <div id={showFiltersMenu ? "filters-menu-show" : "filters-menu"}>
                         <div>
-                            <div style={{width: "100%", textAlign: "right"}}>
-                                <div style={{padding: 16, display: "inline-block"}}
-                                     onClick={() => setShowFiltersMenu(false)}>
+                            <div id={"icon-container"}>
+                                <div id={"icon-div"} onClick={() => setShowFiltersMenu(false)}>
                                     <FontAwesomeIcon
                                         size={"lg"}
                                         icon="times"
