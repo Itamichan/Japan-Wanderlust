@@ -162,7 +162,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
         <div id={"attractions-page"}>
             <section id={"attractions-header"}>
                 {isMobile || isTablet ? (
-                    <div id={"search-container"}>
+                    <div>
                         <InputGroup>
                             {searchInput}
                             <InputGroupAddon addonType="append">
@@ -171,7 +171,9 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                         </InputGroup>
                     </div>
                 ) : (
-                    searchInput
+                    <div id={"search-desktop"}>
+                        {searchInput}
+                    </div>
                 )}
             </section>
             <section id={"filter-tags"}>

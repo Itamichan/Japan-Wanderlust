@@ -7,9 +7,14 @@
 
   #attractions-header {
     position: relative;
+    padding: 1.1rem;
+    @media (min-width: 415px) {
+      padding: 1.3rem;
+    }
 
-    #search-container {
-      padding: 1.1rem;
+    #search-desktop {
+      max-width: 30vw;
+      margin: 0 auto;
     }
 
     #filter-button {
