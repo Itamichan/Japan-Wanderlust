@@ -10,12 +10,24 @@ import {BrowserView} from "react-device-detect";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import {notify} from "react-notify-toast";
+import Tooltip from "reactstrap/es/Tooltip";
 
 const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttractionsList}) => {
 
     const [showChooseModal, setShowChooseModal] = useState(false);
     const [showUpdateTrip, setShowUpdateTrip] = useState(false);
     const [executingRequest, setExecutingRequest] = useState(false);
+
+    //tooltips for trip details icons
+    const [moneyIconOpen, setMoneyIconOpen] = useState(false);
+    const [timeIconOpen, setTimeIconOpen] = useState(false);
+    const [guideIconOpen, setGuideIconOpen] = useState(false);
+    const [groupIconOpen, setGroupIconOpen] = useState(false);
+
+    const toggleMoneyIcon = () => setMoneyIconOpen(!moneyIconOpen);
+    const toggleTimeIcon = () => setTimeIconOpen(!timeIconOpen);
+    const toggleGuideIcon = () => setGuideIconOpen(!guideIconOpen);
+    const toggleGroupIcon= () => setGroupIconOpen(!groupIconOpen);
 
 
     let getOfferEmail = async () => {
@@ -57,6 +69,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                         <FontAwesomeIcon
                             id={"window-close-icon"}
                             icon="times"
+                            size={"2x"}
                             onClick={() => setCurrentTrip(undefined, [])}
                         />
                     </Col>
@@ -64,14 +77,22 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                 <Row>
                     <Col>
                         <div className={"text-header"}>
-                            <FontAwesomeIcon icon="yen-sign"/>
+                            <FontAwesomeIcon icon="yen-sign" id={"money-icon"} size={"2x"}/>
                             {` ${currentTrip.max_price} YEN`}
+                            <Tooltip placement="left" isOpen={moneyIconOpen} target="money-icon"
+                                     toggle={toggleMoneyIcon}>
+                                Your Budget
+                            </Tooltip>
                         </div>
                         {/*appears only in browser view*/}
                         <BrowserView>
                             <div className={"text-header"}>
-                                <FontAwesomeIcon icon="street-view"/>
+                                <FontAwesomeIcon icon="street-view" id={"guide-icon"} size={"2x"}/>
                                 {currentTrip.is_guided ? " Yes" : " No"}
+                                <Tooltip placement="left" isOpen={guideIconOpen} target="guide-icon"
+                                         toggle={toggleGuideIcon}>
+                                    Travel with Guide
+                                </Tooltip>
                             </div>
                         </BrowserView>
                     </Col>
@@ -81,14 +102,22 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                     </Col>
                     <Col>
                         <div className={"text-header"}>
-                            <FontAwesomeIcon icon={['far', 'calendar-alt']}/>
+                            <FontAwesomeIcon icon={['far', 'calendar-alt']} id={"time-icon"} size={"2x"}/>
                             {` ${currentTrip.max_trip_days} days`}
+                            <Tooltip placement="left" isOpen={timeIconOpen} target="time-icon"
+                                     toggle={toggleTimeIcon}>
+                                Duration
+                            </Tooltip>
                         </div>
                         {/*appears only in browser view*/}
                         <BrowserView>
                             <div className={"text-header"}>
-                                <FontAwesomeIcon icon="users"/>
+                                <FontAwesomeIcon icon="users" id={"group-icon"} size={"2x"}/>
                                 {currentTrip.in_group ? " Yes" : " No"}
+                                <Tooltip placement="left" isOpen={groupIconOpen} target="group-icon"
+                                         toggle={toggleGroupIcon}>
+                                    Travel in Group
+                                </Tooltip>
                             </div>
                         </BrowserView>
                     </Col>
