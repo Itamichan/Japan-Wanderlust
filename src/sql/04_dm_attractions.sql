@@ -26,9 +26,10 @@ VALUES
 (23, 'Osaka Castle', 'The construction of Osaka Castle (大阪城, Ōsakajō) started in 1583 on the former site of the Ishiyama Honganji Temple, which had been destroyed by Oda Nobunaga thirteen years earlier. Toyotomi Hideyoshi intended the castle to become the center of a new, unified Japan under Toyotomi rule. It was the largest castle at the time.', 800, 'http://www.osakacastle.net/english/', 'ggg', 3),
 (24, 'Shitenno-ji Temple', 'Shitennoji (四天王寺, Shitennōji) is one of Japan''s oldest temples and the first ever to be built by the state. It was founded in 593 by Prince Shotoku, who supported the introduction of Buddhism into Japan. Although the temple''s buildings burned down several times throughout the centuries, they were always carefully reconstructed to reflect the original 6th century design.', 600, 'http://www.shitennoji.or.jp/', 'ggg', 3),
 (25, 'Sumiyoshi Taisha', 'Osaka''s Sumiyoshi Taisha (住吉大社, "Sumiyoshi Grand Shrine") is one of Japan''s oldest shrines. Founded in the 3rd century before the introduction of Buddhism, it displays a unique style of shrine architecture, called Sumiyoshi-zukuri, that is free of influence from the Asian mainland. Only two other shrine architecture styles are also considered purely Japanese: Shinmei-zukuri as seen at the Ise Shrines and Taisha-zukuri as seen at Izumo Taisha.', 0, 'http://www.sumiyoshitaisha.net/en/', 'ggg', 3),
-(26, 'Osaka Science Museum', 'text', 400, 'https://www.sci-museum.jp/info/guide/', 'ggg', 3),
-(27, 'bla', 'text', 0, 'ggg', 'ggg', 3),
-(28, 'bla', 'text', 0, 'ggg', 'ggg', 3);
+(26, 'Osaka Science Museum', 'The Osaka Science Museum (大阪市立科学館, Ōsaka Shiritsu Kagakukan) on Nakanoshima Island has four floors of interactive exhibits and displays. The museum was designed with children in mind and takes visitors through displays on the universe, chemistry, electricity and energy.', 400, 'https://www.sci-museum.jp/info/guide/', 'ggg', 3),
+(27, 'Peace Park', 'Hiroshima''s Peace Memorial Park (平和記念公園, Heiwa Kinen Kōen) is one of the most prominent features of the city. Even visitors not looking for it will likely stumble upon the large park of over 120,000 square meters. Its trees, lawns, and walking paths are in stark contrast to the surrounding downtown area.', 200, '', 'ggg', 4),
+(28, 'Hiroshima Castle', 'Hiroshima Castle (広島城, Hiroshimajō), also called the Carp Castle, is a good example of a castle built on a plain in the center of a city as opposed to hilltop and mountaintop castles. Its main keep is five stories tall, and its grounds are surrounded by a moat. Also within the castle''s precincts are a shrine, some ruins and a few reconstructed buildings of the Ninomaru (second circle of defense).', 370, 'http://www.rijo-castle.jp/', 'ggg', 4),
+(29, 'Shukkeien Garden', 'Shukkeien''s (縮景園) name can be translated into English as "shrunken-scenery garden", which is also a good description of the garden itself. Valleys, mountains, and forests are represented in miniature in the garden''s landscapes. Through careful cultivation of the land and vegetation, the garden mimics a variety of natural formations and scenic views.', 260, 'http://shukkeien.jp/', 'ggg', 4);
 
 
 INSERT INTO attraction_type
@@ -78,4 +79,9 @@ VALUES
 (7, 23),
 (3, 24),
 (1, 25),
-(6, 26);
+(6, 26),
+(4, 27),
+(5, 27),
+(7, 28),
+(4, 29),
+(5, 29);
