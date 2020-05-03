@@ -22,7 +22,13 @@ VALUES
 (19, 'Arashiyama bamboo forest', 'Arashiyama (嵐山) is a pleasant, touristy district in the western outskirts of Kyoto. The area has been a popular destination since the Heian Period (794-1185), when nobles would enjoy its natural setting. Arashiyama is particularly popular during the cherry blossom and fall color seasons.', 0, '', 'ggg', 1),
 (20, 'Kiyomizu-dera Temple', 'Kiyomizudera (清水寺, literally "Pure Water Temple") is one of the most celebrated temples of Japan. It was founded in 780 on the site of the Otowa Waterfall in the wooded hills east of Kyoto, and derives its name from the fall''s pure waters. The temple was originally associated with the Hosso sect, one of the oldest schools within Japanese Buddhism, but formed its own Kita Hosso sect in 1965. In 1994, the temple was added to the list of UNESCO world heritage sites.', 400, 'http://kiyomizudera.or.jp/en/', 'ggg', 2),
 (21, 'Sanjusangendo', 'Sanjusangendo (三十三間堂, Sanjūsangendō) is the popular name for Rengeo-in, a temple in eastern Kyoto which is famous for its 1001 statues of Kannon, the goddess of mercy. The temple was founded in 1164 and rebuilt a century later after the original structure had been destroyed in a fire.', 600, 'http://www.sanjusangendo.jp/', 'ggg', 2),
-(22, 'Nanzenji Temple', 'Nanzenji Temple (南禅寺), whose spacious grounds are located at the base of Kyoto''s forested Higashiyama mountains, is one of the most important Zen temples in all of Japan. It is the head temple of one of the schools within the Rinzai sect of Japanese Zen Buddhism and includes multiple subtemples, that make the already large complex of temple buildings even larger.', 2200, 'http://www.nanzen.net/english/', 'ggg', 2);
+(22, 'Nanzenji Temple', 'Nanzenji Temple (南禅寺), whose spacious grounds are located at the base of Kyoto''s forested Higashiyama mountains, is one of the most important Zen temples in all of Japan. It is the head temple of one of the schools within the Rinzai sect of Japanese Zen Buddhism and includes multiple subtemples, that make the already large complex of temple buildings even larger.', 2200, 'http://www.nanzen.net/english/', 'ggg', 2),
+(23, 'Osaka Castle', 'The construction of Osaka Castle (大阪城, Ōsakajō) started in 1583 on the former site of the Ishiyama Honganji Temple, which had been destroyed by Oda Nobunaga thirteen years earlier. Toyotomi Hideyoshi intended the castle to become the center of a new, unified Japan under Toyotomi rule. It was the largest castle at the time.', 800, 'http://www.osakacastle.net/english/', 'ggg', 3),
+(24, 'Shitenno-ji Temple', 'Shitennoji (四天王寺, Shitennōji) is one of Japan''s oldest temples and the first ever to be built by the state. It was founded in 593 by Prince Shotoku, who supported the introduction of Buddhism into Japan. Although the temple''s buildings burned down several times throughout the centuries, they were always carefully reconstructed to reflect the original 6th century design.', 600, 'http://www.shitennoji.or.jp/', 'ggg', 3),
+(25, 'Sumiyoshi Taisha', 'Osaka''s Sumiyoshi Taisha (住吉大社, "Sumiyoshi Grand Shrine") is one of Japan''s oldest shrines. Founded in the 3rd century before the introduction of Buddhism, it displays a unique style of shrine architecture, called Sumiyoshi-zukuri, that is free of influence from the Asian mainland. Only two other shrine architecture styles are also considered purely Japanese: Shinmei-zukuri as seen at the Ise Shrines and Taisha-zukuri as seen at Izumo Taisha.', 0, 'http://www.sumiyoshitaisha.net/en/', 'ggg', 3),
+(26, 'Osaka Science Museum', 'text', 400, 'https://www.sci-museum.jp/info/guide/', 'ggg', 3),
+(27, 'bla', 'text', 0, 'ggg', 'ggg', 3),
+(28, 'bla', 'text', 0, 'ggg', 'ggg', 3);
 
 
 INSERT INTO attraction_type
@@ -68,4 +74,8 @@ VALUES
 (5, 19),
 (3, 20),
 (3, 21),
-(3, 22);
+(3, 22),
+(7, 23),
+(3, 24),
+(1, 25),
+(6, 26);
