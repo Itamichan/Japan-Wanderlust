@@ -10,8 +10,8 @@
   .disabled-heart-icon, .filled-heart-icon {
     position: absolute;
     z-index: 1;
-    left: 87%;
-    top: 2%;
+    left: 84%;
+    top: 4%;
 
     &:hover {
       transform: scale(1.2);
@@ -56,7 +56,9 @@
       @media (min-width: 1650px) {
         height: 20rem;
       }
+      @media (min-width: 1800px) {
+        height: 22rem;
+      }
     }
   }
 }
-

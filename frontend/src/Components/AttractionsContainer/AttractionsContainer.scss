@@ -33,22 +33,15 @@
 
   #attractions-container {
     height: 50vh;
-    position: relative;
-    display: flex;
 
-    #loading {
-      width: 75vw;
+    .attraction-card {
+      margin-bottom: 2rem;
     }
-    //
-    //#attractions-list-wide {
-    //  //width: 75vw;
-    //
-    //
-    //}
 
     #buffer-div {
       height: 25vh;
     }
+
     #pagination {
       width: 15%;
       margin: 0 auto;

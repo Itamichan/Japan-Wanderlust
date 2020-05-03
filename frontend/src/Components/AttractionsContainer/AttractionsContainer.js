@@ -104,7 +104,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
 
     let attractionsList = attractions.map(attraction => {
         return (
-            <Col xs={"6"} lg={"3"}>
+            <Col xs={"6"} lg={"3"} className={"attraction-card"}>
                 <AttractionCard
                     key={attraction.id}
                     cardId={attraction.id}
@@ -196,9 +196,9 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                     <Col>
                         <Row>
                             {loading ? (
-                                <Col id={"loading"}>"Loading..."</Col>
+                                <Col>"Loading..."</Col>
                             ) : (
-                                <Col id={isBrowser ? "attractions-list-wide" : "attractions-list"}>
+                                <Col>
                                     <Row>
                                         {attractionsList}
                                     </Row>

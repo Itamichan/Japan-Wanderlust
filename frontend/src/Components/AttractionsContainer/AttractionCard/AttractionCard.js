@@ -35,31 +35,33 @@ const AttractionCard = ({
 
     return (
         <div className={"attraction-container"}>
-            <Card className={"card-body"} onClick={() => setShowAttractionInfo(true)}>
+            <Card className={"card-body"} >
                 <CardImg
                     className={"card-img"}
                     top width="100%"
                     src={cardImg}
-                    alt="img of the attraction"/>
+                    alt="img of the attraction"
+                    onClick={() => setShowAttractionInfo(true)}
+                />
                 {
                     isAttractionSelected ?
                         (
                             <FontAwesomeIcon
                                 className={"filled-heart-icon"}
-                                size={"1.5x"}
+                                size={"2x"}
                                 icon="heart"
                                 onClick={removeAttractionFromCurrentTrip}
                             />
                         ) : (
                             <FontAwesomeIcon
                                 className={"disabled-heart-icon"}
-                                size={"1.5x"}
+                                size={"2x"}
                                 icon="heart"
                                 onClick={addAttractionToCurrentTrip}
                             />
                         )
                 }
-                <CardBody>
+                <CardBody onClick={() => setShowAttractionInfo(true)}>
                     <CardTitle>{cardTitle}</CardTitle>
                     <CardText>{cardCity}</CardText>
                 </CardBody>
