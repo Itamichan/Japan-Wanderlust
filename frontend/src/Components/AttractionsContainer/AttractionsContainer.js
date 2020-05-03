@@ -32,7 +32,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
     const [page, setPage] = useState(1);
     const [showFiltersMenu, setShowFiltersMenu] = useState(false);
 
-    const ATTRACTIONS_PER_PAGE = 4;
+    const ATTRACTIONS_PER_PAGE = 8;
 
     const loadAttractions = async () => {
         setLoading(true);
