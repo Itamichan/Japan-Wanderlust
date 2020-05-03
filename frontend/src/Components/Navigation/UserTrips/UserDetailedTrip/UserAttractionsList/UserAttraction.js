@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Button, Col, Media, Row} from 'reactstrap';
 import "./UserAttraction.scss";
 import AttractionCardInfo from "../../../../AttractionsContainer/AttractionCard/AttractionCardInfo/AttractionCardInfo";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const UserAttraction = ({
                             mediaImg, mediaHeading, mediaCity, removeAttraction, disabled, attractionText,
@@ -24,20 +25,21 @@ const UserAttraction = ({
                 </Media>
                 <Media body className={"media-body"}>
                     <Row>
-                        <Col xs={"6"}>
-                            <Media heading className={"media-heading"}>
+                        <Col
+                            xs={"10"}
+                            onClick={() => setShowAttractionInfo(true)}
+                            className={"attraction-info-body text-highlight"}
+                        >
+                            <Media heading className={"text-header media-heading"}>
                                 {mediaHeading}
                             </Media>
                             {mediaCity}
                         </Col>
-                        <Col xs={"3"}>
-                            <Button color="warning" onClick={() => setShowAttractionInfo(true)}>read more
-                            </Button>
-                        </Col>
-                        <Col xs={"3"}>
-                            <Button color="danger" disabled={disabled}
-                                    onClick={removeAttraction}>Delete
-                            </Button>
+                        <Col xs={"2"}>
+                            <div className={"icon-delete"}
+                                 onClick={removeAttraction}>
+                                <FontAwesomeIcon size={"2x"} icon={['far', 'trash-alt']}/>
+                            </div>
                         </Col>
                     </Row>
                 </Media>

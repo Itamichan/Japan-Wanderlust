@@ -1,18 +1,18 @@
 //colors
 
-$bg-color-0: #272727; // Main Primary color */
+$bg-color-0: #272727; // Background color */
 $bg-color-1: rgba(144, 140, 140, 0.12);
 $bg-color-2: #545454;
 $bg-color-3: #000000;
 $bg-color-4: #010000;
 
 
-$base-color: #dc3545; // Main Primary color */
+$base-color: #dc3545; // Primary color */
 $color-primary-1: #FF8585;
 $color-primary-2: #FF5C5C;
 $base-color-dark: #c53242;
 
-$color-secondary-1-0: #209292; // Main Secondary color (1) */
+$color-secondary-1-0: #209292; // Secondary color (1) */
 $color-secondary-1-1: #64C0C0;
 $color-secondary-1-2: #3AA1A1;
 $color-secondary-1-3: #098080;
@@ -52,7 +52,10 @@ $color-secondary-2-4: #699D02;
 
 .action-button {
   @include button();
-  background-color: #00BC8D;
+  background-color: $color-secondary-1-0;
+  &:hover {
+    background-color: $color-secondary-1-3;
+  }
 }
 
 //text
@@ -86,5 +89,5 @@ $color-secondary-2-4: #699D02;
   @include text();
   font-weight: 600;
   padding: 0.8rem 0 0;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
 }

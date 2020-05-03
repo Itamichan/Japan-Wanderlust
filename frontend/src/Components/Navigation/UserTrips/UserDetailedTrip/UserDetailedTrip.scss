@@ -1,7 +1,7 @@
 @import "../../../../global-scss/global-styles";
 
 #detailed-trip-container {
-  padding-top: 65px;
+  padding-top: 100px;
 
   #back-button, #edit-button {
     &:hover {
@@ -19,6 +19,13 @@
   }
 
   #trip-info, #attractions-list-container {
-    padding-top: 3rem;
+    padding-top: 4rem;
+  }
+  #trip-name {
+    color: $base-color;
+    padding-bottom: 2rem;
+  }
+  #offer-button {
+    padding-top: 2rem;
   }
 }

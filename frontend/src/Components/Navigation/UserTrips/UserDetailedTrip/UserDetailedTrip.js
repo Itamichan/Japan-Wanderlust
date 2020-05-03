@@ -88,6 +88,20 @@ const UserDetailedTrip = ({isUserLoggedIn, history}) => {
         )
     });
 
+    let getOfferEmail = async () => {
+        try {
+            setExecutingRequest(true);
+            await axios.patch(`/api/v1/trips/${tripId}`, {
+                    finalised: true
+                }
+            );
+            notify.show('Your offer is on the way!', "success", 1700);
+        } catch (e) {
+        } finally {
+            setExecutingRequest(false);
+        }
+    };
+
     useEffect(() => {
         loadTripInfo();
         loadTripAttractions();
@@ -136,7 +150,7 @@ const UserDetailedTrip = ({isUserLoggedIn, history}) => {
                     <Col id={"trip-info"}>
                         <Row>
                             <Col>
-                                <h1 id={"text-header-important"}>{tripInfo.name}</h1>
+                                <h1 className={"text-header-important"} id={"trip-name"}>{tripInfo.name}</h1>
                             </Col>
                         </Row>
                         <Row>
@@ -167,6 +181,17 @@ const UserDetailedTrip = ({isUserLoggedIn, history}) => {
                 <Row>
                     <Col id={"attractions-list-container"}>
                         {attractionsList}
+                    </Col>
+                </Row>
+                <Row>
+                    <Col id={"offer-button"}>
+                        <Button
+                            className={"action-button"}
+                            onClick={getOfferEmail}
+                            disabled={executingRequest}
+                        >
+                            Get an offer now!
+                        </Button>
                     </Col>
                 </Row>
                 {showUpdateTrip && <TripUpdate
