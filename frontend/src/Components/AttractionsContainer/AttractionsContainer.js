@@ -18,6 +18,7 @@ import InputGroup from "reactstrap/es/InputGroup";
 import InputGroupAddon from "reactstrap/es/InputGroupAddon";
 import Input from "reactstrap/es/Input";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Col, Container, Row} from "reactstrap";
 
 const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttractionToTrip, currentAttractionsList}) => {
 
@@ -55,15 +56,11 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
             addAttractionToTrip(tripId, attractionId)
         } catch (e) {
             switch (e.response.data.error) {
-                //todo write proper notify messages
                 case "NoSuchTrip":
-                    notify.show('NoSuchTrip', "error", 1700);
+                    notify.show('Such Trip doesn\'t exist', "error", 1700);
                     break;
                 case "AttractionAlreadyExists":
-                    notify.show('AttractionAlreadyExists', "error", 1700);
-                    break;
-                case "InvalidReference":
-                    notify.show('InvalidReference', "error", 1700);
+                    notify.show('You already have this Attraction', "error", 1700);
                     break;
                 default:
                     break;
@@ -81,12 +78,11 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
 
         } catch (e) {
             switch (e.response.data.error) {
-                //todo write proper notify messages
                 case "NoSuchTrip":
-                    notify.show('NoSuchTrip', "error", 1700);
+                    notify.show('Such Trip doesn\'t exist', "error", 1700);
                     break;
                 case "NoSuchAttraction":
-                    notify.show('NoSuchAttraction', "error", 1700);
+                    notify.show('Such Attraction doesn\'t exist', "error", 1700);
                     break;
                 default:
                     break;
@@ -101,33 +97,36 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
         loadAttractions()
     }, []);
 
+    //load Attractions every time when the dependencies are changing.
     useEffect(() => {
         loadAttractions()
     }, [chosenAttractionsType, chosenCity, attractionName, maxPrice]);
 
     let attractionsList = attractions.map(attraction => {
         return (
-            <AttractionCard
-                key={attraction.id}
-                cardId={attraction.id}
-                cardTitle={attraction.attraction_name}
-                cardImg={attraction.picture_url}
-                cardCity={attraction.city.name}
-                attractionText={attraction.description}
-                attractionPrice={attraction.price}
-                attractionWebAddress={attraction.web_link}
-                isAttractionSelected={currentAttractionsList.includes(attraction.id)}
-                removeAttraction={() => {
-                    if (currentTrip) {
-                        removeAttraction(currentTrip.id, attraction.id)
-                    }
-                }}
-                addAttraction={() => {
-                    if (currentTrip) {
-                        addAttraction(currentTrip.id, attraction.id)
-                    }
-                }}
-            />
+            <Col>
+                <AttractionCard
+                    key={attraction.id}
+                    cardId={attraction.id}
+                    cardTitle={attraction.attraction_name}
+                    cardImg={attraction.picture_url}
+                    cardCity={attraction.city.name}
+                    attractionText={attraction.description}
+                    attractionPrice={attraction.price}
+                    attractionWebAddress={attraction.web_link}
+                    isAttractionSelected={currentAttractionsList.includes(attraction.id)}
+                    removeAttraction={() => {
+                        if (currentTrip) {
+                            removeAttraction(currentTrip.id, attraction.id)
+                        }
+                    }}
+                    addAttraction={() => {
+                        if (currentTrip) {
+                            addAttraction(currentTrip.id, attraction.id)
+                        }
+                    }}
+                />
+            </Col>
         )
     });
 
@@ -191,38 +190,47 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                 />
             </section>
 
-            <section id={"attractions-container"}>
-                {loading ? (
-                    <div id={"loading"}>"Loading..."</div>
-                ) : (
-                    <div id={"attractions"}>
-                        <div id={isBrowser ? "attractions-list-browser" : "attractions-list-mobile"}>
-                            {attractionsList}
-                        </div>
-                        <div id={"pagination"}>
-                            <AttractionsPagination
-                                currentPage={page}
-                                setCurrentPage={setPage}
-                                ItemsPerPage={ATTRACTIONS_PER_PAGE}
-                                totalItemsNr={attractions.length}
-                            />
-                        </div>
-                        {/*provides empty space that will be covered by the TripBanner*/}
-                        <div id={"buffer-div"}/>
-                    </div>
-                )}
-                {isBrowser &&
-                <div id={"attractions-filters"}>
-                    <Cities
-                        chooseCity={(city) => filterCities(city)}
-                    />
-                    <AttractionsTypes
-                        chooseAttractionType={(attractionType) => filterAttractions(attractionType)}/>
-                    <PriceInput
-                        choosePrice={(price) => filterPrice(price)}
-                    />
-                </div>}
 
+            <Container id={"attractions-container"} fluid={true}>
+                <Row>
+                    <Col>
+                        <Row>
+                            {loading ? (
+                                <Col id={"loading"}>"Loading..."</Col>
+                            ) : (
+                                <Col id={isBrowser ? "attractions-list-wide" : "attractions-list"}>
+                                    <Row>
+                                        {attractionsList}
+                                    </Row>
+                                    <Row>
+                                        <Col id={"pagination"}>
+                                            <AttractionsPagination
+                                                currentPage={page}
+                                                setCurrentPage={setPage}
+                                                ItemsPerPage={ATTRACTIONS_PER_PAGE}
+                                                totalItemsNr={attractions.length}
+                                            />
+                                        </Col>
+                                    </Row>
+                                    {/*provides empty space that will be covered by the TripBanner*/}
+                                    <div id={"buffer-div"}/>
+                                </Col>
+                            )}
+                        </Row>
+                    </Col>
+
+                    {isBrowser &&
+                    <Col xs={"2"} id={"attractions-filters"}>
+                        <Cities
+                            chooseCity={(city) => filterCities(city)}
+                        />
+                        <AttractionsTypes
+                            chooseAttractionType={(attractionType) => filterAttractions(attractionType)}/>
+                        <PriceInput
+                            choosePrice={(price) => filterPrice(price)}
+                        />
+                    </Col>}
+                </Row>
                 {isMobile || isTablet ? (
                     <div id={showFiltersMenu ? "filters-menu-show" : "filters-menu"}>
                         <div>
@@ -246,10 +254,9 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                     </div>
                 ) : null
                 }
-            </section>
+            </Container>
             <TripBanner/>
         </div>
-
     )
 };
 
