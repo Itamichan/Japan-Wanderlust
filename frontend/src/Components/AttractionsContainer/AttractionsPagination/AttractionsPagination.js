@@ -11,7 +11,7 @@ const AttractionsPagination = ({currentPage, setCurrentPage, ItemsPerPage, total
         paginationItems.push(
             <PaginationItem
                 active={i === currentPage}>
-                <PaginationLink onClick={() => setCurrentPage(i)}>
+                <PaginationLink onClick={() => setCurrentPage(i)} >
                     {i}
                 </PaginationLink>
             </PaginationItem>
@@ -19,11 +19,9 @@ const AttractionsPagination = ({currentPage, setCurrentPage, ItemsPerPage, total
     }
 
     return (
-        <div>
-            <Pagination aria-label="Page navigation example">
-                {paginationItems}
-            </Pagination>
-        </div>
+        <Pagination aria-label="Page navigation" className="pagination justify-content-center">
+            {paginationItems}
+        </Pagination>
     );
 };
 
