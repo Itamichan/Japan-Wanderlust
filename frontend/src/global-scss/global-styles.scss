@@ -20,41 +20,6 @@ $color-secondary-1-2: #3AA1A1;
 $color-secondary-1-3: #098080;
 $color-secondary-1-4: #026565;
 
-
-//buttons
-
-@mixin button() {
-  border-radius: 8%;
-}
-
-.filter-button {
-  @include button();
-  background-color: $base-color;
-  margin-bottom: 0.5rem;
-
-  &:hover {
-    background-color: $base-color-dark;
-  }
-}
-
-.filter-tag-button {
-  @include button();
-  margin: 0 0.5rem;
-  background-color: $base-color;
-
-  &:hover {
-    background-color: $base-color-dark;
-  }
-}
-
-.action-button {
-  @include button();
-  background-color: $color-secondary-1-0;
-  &:hover {
-    background-color: $color-secondary-1-3;
-  }
-}
-
 //text
 
 @mixin text() {
@@ -92,5 +57,39 @@ $color-secondary-1-4: #026565;
   font-size: 2rem;
   @media (min-width: 415px) {
     font-size: 2.2rem;
+  }
+}
+
+//buttons
+
+@mixin button() {
+  border-radius: 8%;
+}
+
+.filter-button {
+  @include button();
+  background-color: $base-color;
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    background-color: $base-color-dark;
+  }
+}
+
+.filter-tag-button {
+  @include button();
+  margin: 0 0.5rem;
+  background-color: $base-color;
+
+  &:hover {
+    background-color: $base-color-dark;
+  }
+}
+
+.action-button {
+  @include button();
+  background-color: $color-secondary-1-0;
+  &:hover {
+    background-color: $color-secondary-1-3;
   }
 }
