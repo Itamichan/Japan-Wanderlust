@@ -1,9 +1,28 @@
 
 [back to README.md file](../README.md)
 
+1. [Version control on GitHub](#version-control-on-github)
+2. [Deployment to AWS](#deployment-to-aws)
+3. [Deployment to Heroku](#deployment-to-heroku)
+4. [How to run this project locally](#how-to-run-this-project-locally)
+
 # Deployment
 
 This web page was locally developed in WebStorm and PyCharm. It was pushed to the remote repository - GitHub. The live page is hosted on AWS and Heroku. 
+
+### Version control on GitHub
+
+In order to connect the local IDE to GitHub I used the command `git remote add origin` and added the link to the remote repository: `https://github.com/Itamichan/Japan-Wanderlust.git`
+
+My main local branch is `master` which I deployed as `origin/master` to GitHub.
+
+**Used commands during version control:**
+* `git add .` - to add the files to the staging area.
+* `git commit -m "text message here"` - to commit the files.
+* `git push origin master` - to push to origin master branch on GitHub.
+* `git status` - was extensively used in order to see the current status of the files.
+
+### Deployment to AWS
 
 This project is stored on AWS. If you would like to also deploy your project to AWS then execute the following steps:
 
