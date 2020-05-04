@@ -1,14 +1,7 @@
 import React, {useState} from 'react';
 import {
-    ButtonDropdown,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Nav,
-    Navbar,
-    NavbarBrand,
-    NavItem,
-    NavLink
+    ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar,
+    NavbarBrand, NavItem, NavLink
 } from 'reactstrap';
 import {logout, openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
@@ -27,15 +20,15 @@ const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history})
     //if user is not logged in we see "Login" button otherwise "Profile".
     if (isUserLoggedIn) {
         toggleNavItem =
-                <ButtonDropdown isOpen={isOpen} toggle={toggleButton}>
-                    <DropdownToggle nav caret>
-                        {username}
-                    </DropdownToggle>
-                    <DropdownMenu right>
-                        <DropdownItem onClick={() => history.push("/trips")}>Show my trips</DropdownItem>
-                        <DropdownItem onClick={logout}>Log Out</DropdownItem>
-                    </DropdownMenu>
-                </ButtonDropdown>
+            <ButtonDropdown isOpen={isOpen} toggle={toggleButton}>
+                <DropdownToggle nav caret className={"text-highlight"}>
+                    {username}
+                </DropdownToggle>
+                <DropdownMenu right>
+                    <DropdownItem onClick={() => history.push("/trips")}>Show my trips</DropdownItem>
+                    <DropdownItem onClick={logout}>Log Out</DropdownItem>
+                </DropdownMenu>
+            </ButtonDropdown>
     } else {
         toggleNavItem = <NavItem>
             <NavLink onClick={openLoginModal} id={"login-button"} className={"text-highlight"}>Login</NavLink>
