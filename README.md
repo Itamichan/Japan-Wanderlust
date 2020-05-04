@@ -11,10 +11,10 @@ JapanWanderlust is a web page which makes possible for the users to get the best
 The main purpose of the web page is to make possible to connect the Travel Agencies and the Potential Customers which usually prefers to plan a travel trip by themselves.
 BY having the freedom to choose specific destinations as well as their budget limit and travel preferences the users will get an travel package offer which will match their wishes the best. If the user decides that they are not interested in the offers they still can have all their attractions saved in a convenient "Trip". Which they can revisit and tailor made as many times as they wish. 
 
-### Options to use the page
-* Non registered user:
+### Actions that can be taken on the web page
+* **Non registered user**:
     * Browse through all different attractions which can be visited in Japan.
-* Registered user:
+* **Registered user**:
     * Create, Edit or Remove Trips.
     * Add or remove different Attractions to their Trip.
     * Get best matching offers from the Travel Agencies based on their choices.
@@ -82,13 +82,13 @@ The main goal of the JapanWanderlust is  to allow the potential traveler to get 
 
 #### Customer goals
 
-* Users:
+* **Users**:
     * Get a tailored made traveling plan.
     * Potentially get a travel package that will suit their needs the best.
     * They want to find a large variety of travel destinations to Japan.
     * Possibility to contact he Travel Agency if they are interested in the received offer.
     
-* Travel Agency:
+* **Travel Agency**:
     * Sell their travel packages to Japan.
     * Get information regarding users' travel preferences in order to update or create new travel packages.
 
