@@ -9,9 +9,8 @@ import {connect} from "react-redux";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import TripsList from "../Navigation/UserTrips/UserTripsOverview/UserTripsList";
 import UserDetailedTrip from "../Navigation/UserTrips/UserDetailedTrip/UserDetailedTrip";
-import "./Layout.scss";
 import Footer from "../Footer/Footer";
-
+import "./Layout.scss";
 
 const Layout = ({loginUser, logout}) => {
 

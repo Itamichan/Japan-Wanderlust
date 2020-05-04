@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import AttractionCard from "./AttractionCard/AttractionCard";
-import "./AttractionsContainer.scss";
 import AttractionsTypes from "./AttractionsTypes/AttractionsTypes";
 import Cities from "./Cities/Cities";
 import FilterTag from "./FilterTag/FilterTag";
@@ -10,15 +9,12 @@ import {openModal} from "../Login/redux/actions";
 import {connect} from "react-redux";
 import TripBanner from "../TripBanner/TripBanner";
 import {notify} from "react-notify-toast";
-import Button from "reactstrap/es/Button";
 import {isBrowser, isMobile, isTablet} from "react-device-detect";
 import {addAttractionToTrip, removeAttractionFromTrip} from "../TripBanner/reduxTrip/actions";
 import AttractionsPagination from "./AttractionsPagination/AttractionsPagination";
-import InputGroup from "reactstrap/es/InputGroup";
-import InputGroupAddon from "reactstrap/es/InputGroupAddon";
-import Input from "reactstrap/es/Input";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {Col, Container, Row} from "reactstrap";
+import {Col, Container, Row, Input, Button, InputGroup, InputGroupAddon} from "reactstrap";
+import "./AttractionsContainer.scss";
 
 const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttractionToTrip, currentAttractionsList}) => {
 
@@ -31,6 +27,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
     const [page, setPage] = useState(1);
     const [showFiltersMenu, setShowFiltersMenu] = useState(false);
 
+    // puts the limit of how many attraction appear per page
     const ATTRACTIONS_PER_PAGE = 8;
 
     const loadAttractions = async () => {
@@ -261,7 +258,6 @@ const mapDispatchToProps = (dispatch) => {
         openLoginModal: () => dispatch(openModal()),
         addAttractionToTrip: (tripId, attractionId) => dispatch(addAttractionToTrip(tripId, attractionId)),
         removeAttractionFromTrip: (tripId, attractionId) => dispatch(removeAttractionFromTrip(tripId, attractionId)),
-
     }
 };
 

@@ -3,15 +3,14 @@ import axios from 'axios';
 import {closeModal, login} from "./redux/actions";
 import {connect} from "react-redux";
 import {Button, FormGroup, FormText, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
-import "./Login.scss";
 import {notify} from 'react-notify-toast';
+import "./Login.scss";
 
 const Login = ({loginUser, isModalOpen, closeModal}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [registerUser, setRegisterUser] = useState(false);
-
     const [sendingPostRequest, setSendingPostRequest] = useState(false);
 
     const register = async () => {

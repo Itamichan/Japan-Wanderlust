@@ -1,18 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Container} from "reactstrap";
+import {Container, Col, Row, Button, ListGroupItem, Tooltip} from "reactstrap";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
 import UserTrip from "./UserTrip";
-import "./UserTripsList.scss";
-import Col from "reactstrap/es/Col";
-import Row from "reactstrap/es/Row";
-import Button from "reactstrap/es/Button";
 import TripCreate from "../../../TripBanner/TripModal/TripCreate";
 import ListGroup from "reactstrap/es/ListGroup";
-import ListGroupItem from "reactstrap/es/ListGroupItem";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import Tooltip from "reactstrap/es/Tooltip";
+import "./UserTripsList.scss";
 
 const UserTripsList = ({isUserLoggedIn, history}) => {
 

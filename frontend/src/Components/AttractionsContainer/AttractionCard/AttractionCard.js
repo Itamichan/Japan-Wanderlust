@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Card, CardBody, CardImg, CardText, CardTitle} from 'reactstrap';
+import {Card, CardBody, CardImg, CardText, CardTitle} from 'reactstrap';
 import "./AttractionCard.scss";
 import AttractionCardInfo from "./AttractionCardInfo/AttractionCardInfo";
 import {connect} from "react-redux";

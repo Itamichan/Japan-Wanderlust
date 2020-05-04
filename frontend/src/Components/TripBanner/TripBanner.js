@@ -43,7 +43,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
     };
 
     let bannerBody;
-
+    //the visualisation when no trip is selected.
     if (!currentTrip) {
         bannerBody =
             <Col id={"no-trip-container"}>
@@ -58,6 +58,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
             </Col>
     }
 
+    //the visualisation when a trip is selected.
     if (currentTrip) {
         bannerBody =
             <Col id={"with-trip-container"}>
