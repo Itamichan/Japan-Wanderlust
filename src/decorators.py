@@ -1,12 +1,12 @@
 import os
-
 import jwt
 from flask import request
-
 from database.users_database import UserDatabase
 from errors import response_401
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
+
+# Creates a decorator which we will use on all endpoints which should be accessed only if the user is logged in.
 
 
 def validate_token(f):

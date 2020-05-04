@@ -1,5 +1,4 @@
 import os
-
 import requests
 from flask import Flask
 from views import authentication
