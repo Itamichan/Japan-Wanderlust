@@ -40,21 +40,20 @@ const TripUpdate = ({
             close()
         } catch (e) {
             switch (e.response.data.error) {
-                //todo write proper notify messages
                 case "InvalidName":
-                    notify.show('InvalidName!', "error", 1700);
+                    notify.show('Invalid Name!', "error", 1700);
                     break;
                 case "InvalidDaysNumber":
-                    notify.show('InvalidDaysNumber!', "error", 1700);
+                    notify.show('Invalid Days Number!', "error", 1700);
                     break;
                 case "InvalidPriceNumber":
-                    notify.show('InvalidPriceNumber!', "error", 1700);
+                    notify.show('Invalid Price Number!', "error", 1700);
                     break;
                 case "NoParameter":
-                    notify.show('NoParameter!', "error", 1700);
+                    notify.show('No Parameter!', "error", 1700);
                     break;
                 case "NoSuchTrip":
-                    notify.show('NoSuchTrip!', "error", 1700);
+                    notify.show('No Such Trip!', "error", 1700);
                     break;
                 default:
                     break;

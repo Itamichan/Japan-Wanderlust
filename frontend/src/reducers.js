@@ -11,7 +11,6 @@ const combinedReducers = combineReducers({
     TripReducer
 });
 
-//todo search what is a rootreducer - optional
 const rootReducer = (state, action) => combinedReducers(state, action);
 
 

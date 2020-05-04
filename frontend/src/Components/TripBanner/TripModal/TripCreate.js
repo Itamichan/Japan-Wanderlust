@@ -73,50 +73,6 @@ const TripCreate = ({close, update}) => {
                 disable={sendingRequest}
                 tripTypeName={"Create a new trip"}
             />
-
-            <div>
-                <p> Hey!</p>
-                <h1>Your offer is here!</h1>
-
-                <p>Please find your tailor made trip based on your chosen attractions.</p>
-
-                <h2>Trip to Tokyo</h2>
-                <p>
-                    <b>
-                        Trip for one week!
-                    </b>
-                </p>
-                <p>
-                    <ul>
-                        <li>Tokyo Imperial Palace</li>
-                        <li>Ghibli Museum</li>
-                        <li>Todori Park</li>
-                        <li>Rikugien</li>
-                        <li>Senzoji Temple</li>
-                    </ul>
-                </p>
-                <p>
-                    <b>
-                        Price: 3000YEN
-                        Not guided.
-                        Travel alone.
-                    </b>
-                </p>
-                <p>
-                    <h3>Sounds perfect?</h3>
-                    <b>
-                       Contact DreamTravel company now!
-                    </b>
-                </p>
-                <p>
-                    Contact information:
-                    <ul>
-                        <li>Tel: +2454864786</li>
-                        <li>email: dreamtravel@gmail.com</li>
-                    </ul>
-                </p>
-            </div>
-
         </Fragment>
     )
 };

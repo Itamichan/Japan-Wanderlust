@@ -26,7 +26,6 @@ const Login = ({loginUser, isModalOpen, closeModal}) => {
             login();
         } catch (e) {
             switch (e.response.data.error) {
-                //todo write proper notify messages
                 case "InvalidUsername":
                     notify.show('Invalid Username!', "error", 1700);
                     break;
@@ -37,7 +36,7 @@ const Login = ({loginUser, isModalOpen, closeModal}) => {
                     notify.show('Unavailable Username!', "error", 1700);
                     break;
                 case "InvalidEmailFormat":
-                    notify.show('InvalidEmail Format!', "error", 1700);
+                    notify.show('Invalid Email Format!', "error", 1700);
                     break;
                 default:
                     break;

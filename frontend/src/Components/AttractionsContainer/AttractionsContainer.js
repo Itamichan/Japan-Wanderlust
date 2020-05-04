@@ -22,9 +22,7 @@ import {Col, Container, Row} from "reactstrap";
 
 const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttractionToTrip, currentAttractionsList}) => {
 
-    //todo put a spinner for loading state- everywhere
     const [loading, setLoading] = useState(true);
-    const [executingRequest, setExecutingRequest] = useState(false);
     const [attractions, setAttractions] = useState([]);
     const [chosenAttractionsType, setChosenAttractionsType] = useState(null);
     const [chosenCity, setChosenCity] = useState(null);
@@ -51,7 +49,6 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
 
     const addAttraction = async (tripId, attractionId) => {
         try {
-            setExecutingRequest(true);
             await axios.post(`/api/v1/trips/${tripId}/attractions/${attractionId}`);
             addAttractionToTrip(tripId, attractionId)
         } catch (e) {
@@ -66,13 +63,11 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                     break;
             }
         } finally {
-            setExecutingRequest(false);
         }
     };
 
     const removeAttraction = async (tripId, attractionId) => {
         try {
-            setExecutingRequest(true);
             await axios.delete(`/api/v1/trips/${tripId}/attractions/${attractionId}`);
             removeAttractionFromTrip(tripId, attractionId)
 
@@ -88,7 +83,6 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                     break;
             }
         } finally {
-            setExecutingRequest(false);
         }
     };
 

@@ -54,12 +54,11 @@ const UserDetailedTrip = ({isUserLoggedIn, history}) => {
             loadTripAttractions()
         } catch (e) {
             switch (e.response.data.error) {
-                //todo write proper notify messages
                 case "NoSuchTrip":
-                    notify.show('NoSuchTrip', "error", 1700);
+                    notify.show('No Such Trip', "error", 1700);
                     break;
                 case "NoSuchAttraction":
-                    notify.show('NoSuchAttraction', "error", 1700);
+                    notify.show('No Such Attraction', "error", 1700);
                     break;
                 default:
                     break;

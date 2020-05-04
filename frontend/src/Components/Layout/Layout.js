@@ -36,7 +36,7 @@ const Layout = ({loginUser, logout}) => {
 
 
     useEffect(() => {
-        //todo ask Robert to explain this or google it
+        //the interceptor allows to pass the token information to all axios requests.
         axios.interceptors.request.use(
             function (config) {
                 // Do something before request is sent

@@ -1,16 +1,14 @@
 import React, {useState} from 'react';
 import {connect} from "react-redux";
-import "./TripBanner.scss";
 import TripChooserModal from "./TripChooser/TripChooserModal";
-import {Col, Container, Row} from 'reactstrap';
-import Button from "reactstrap/es/Button";
+import {Col, Container, Row, Button, Tooltip} from 'reactstrap';
 import TripUpdate from "./TripModal/TripUpdate";
 import {setCurrentTrip} from "./reduxTrip/actions";
 import {BrowserView} from "react-device-detect";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import {notify} from "react-notify-toast";
-import Tooltip from "reactstrap/es/Tooltip";
+import "./TripBanner.scss";
 
 const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttractionsList}) => {
 
@@ -137,7 +135,6 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
             </Col>
     }
 
-    //todo look to use maybe the same conditional for other comp
     if
     (!isUserLoggedIn) {
         return null

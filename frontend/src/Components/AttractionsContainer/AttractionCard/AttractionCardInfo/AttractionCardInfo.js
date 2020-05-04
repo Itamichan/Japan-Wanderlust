@@ -53,7 +53,7 @@ const AttractionCardInfo = ({
                 </Container>
             </ModalBody>
             <ModalFooter className={"card-footer"}>
-                <Button onClick={close}>ok</Button>
+                <Button className={"action-button"} onClick={close}>Ok</Button>
             </ModalFooter>
         </Modal>
     )
