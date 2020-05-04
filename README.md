@@ -26,9 +26,7 @@ BY having the freedom to choose specific destinations as well as their budget li
         * [JapanWanderlust goal](#japanwanderlust-goal)
         * [Business goals](#business-goals)
         * [Customer goals](#customer-goals)
-    * [User Stories](#user-stories)
-        * [The game designer](#the-game-designer)
-      
+    * [User Stories](#user-stories)     
     * [Minimum Viable Product](#minimum-viable-product)
     * [Design](#design)
         * [Colors](#colors)
@@ -60,7 +58,6 @@ BY having the freedom to choose specific destinations as well as their budget li
 ## UX
 
 ### Goals
-
 #### JapanWanderlust goal
 
 The main goal of the JapanWanderlust is  to allow the potential traveler to get in contact with the best suited Travel Agency in order to travel to Japan.
@@ -95,7 +92,6 @@ The main goal of the JapanWanderlust is  to allow the potential traveler to get 
 Both business and customer goals are addressed through user stories.
 
 ### User Stories
-
 #### User category: _The User_
 
 * As a user, I want to see the available attractions in Japan so that I can choose which one I would like to visit.
@@ -122,7 +118,6 @@ Both business and customer goals are addressed through user stories.
 * As a business owner, I want to provide sufficient information about an attraction so that the user would have all the information that they need in order to decide if they would like to go or not.
 
 ### Minimum Viable Product
-
 Taking in consideration all the user stories, their importance and viability of their implementation at the moment certain value and complexity levels have been attributed to the user stories.
  
 * Due to limited period of time the Travel Agency related user stories are not implemented in our MVP. 
@@ -132,40 +127,37 @@ Taking in consideration all the user stories, their importance and viability of 
 [User Stories evaluation](readme-related-documents/user-stories.md)
 
 ### Design
-
 #### Colors
 
 Following colors have been used:
-* `#1db394` - medium aquamarine
-* `#17917a` - darker version of the initial aquamarine
-* `#D5A618` - dark gold
-* `#CD9E18` - darker version of the initial gold
-* `#333333` - less intense black
-* `#ffffff` - white
-* `rgba(98, 108, 105, 0.58)` - light grey, with transparency
-* `rgba(82, 92, 89, 0.59)` - dark grey, with transparency
+* ![#dc3545](https://via.placeholder.com/15/dc3545/000000?text=+) `#dc3545`
+* ![#c53242](https://via.placeholder.com/15/c53242/000000?text=+) `#c53242`
+* ![#272727](https://via.placeholder.com/15/272727/000000?text=+) `#272727`
+* ![#908C8C](https://via.placeholder.com/15/908C8C/000000?text=+) `#908C8C`
 
-The stand out color for this web page is medium aquamarine. The color was inspired from the player's character which has a aquamarine color. This choice allows to have a constant color which the player can recognise. We also avoid to use a non related color to the game which can create potential confusion.
+The main color for this project is a coral red. The reason for using this color is that red is one of characteristic color when somebody thinks about Japan. 
+Considering that many tourists associate Japan with the sakura blooming season we opted for a milder red color which will bring to the user's memory the warm color of the cherry flowers.
 
-The variations of gold and grey were used for the level buttons. This was necessary in order to denote the availability of a level or if it was already completed.
-
-The black color was used as a background on which the game is placed. It is supposed to not attract to much attention to itself since we do not care about this space and in a commercial version of the game it would be covered with adds.
+The black color and it's lighter variations was used for background coloring and creation of a contrast between the bright red and the calm black.
 
 #### Font
 
-The used Font for this project is **Eczar** with the font weight: 
-* 500 - for most of the text.
-* 600 - for headers.
+The used Fonts for this project are: 
+* [Nightshade](https://fonts.google.com/specimen/Jim+Nightshade) 
+* [Open Sans](https://fonts.google.com/specimen/Open+Sans) with the font weight: 
+    * 400 - for most of the text.
+    * 700 - for headers and text emphasis.
 
-The [Eczar](https://fonts.google.com/specimen/Eczar) font was chosen due to its slight ancient style. It fits well with the game's concept.
+* The **Nightshade** resembles with text written by brush. An activity for which Japan is also widely known. It brings an extra flavour for our web page.
+* The **Open Sans** is a simple text font which helps to have a high readability of text in comparison with the Nightshade font.
 
 ### Wireframes
 
-Blue in the Maze's wireframes are made both for mobile and desktop view. The wireframes were done in [figma](https://www.figma.com/). 
+JapanWanderlust wireframes are made both for mobile and desktop view. The wireframes were done in [figma](https://www.figma.com/). 
 
-Link to wireframes for mobile can be found [here](https://www.figma.com/file/S4Awi2Wc8RJ8zjWNNuRLQ3/game-mobile?node-id=0%3A1).
+Link to wireframes for mobile can be found [here](https://www.figma.com/file/TmivYvD8GdO46bEO9f67hH/JapanWanderlust---mobile?node-id=0%3A1).
 
-Link to wireframes for desktop can be found [here](https://www.figma.com/file/DaQhx72fCc1FgdEFQX6Dr7/game-desktop?node-id=0%3A1).
+Link to wireframes for desktop can be found [here](https://www.figma.com/file/01cdiPdgTEbWHtGcvtBILu/Japan-Wanderlust---desktop?node-id=0%3A1).
 
 In case the links to the wireframes don't work please find the pictures [here](../../WebstormProjects/blue-in-the-maze/readme-related-documents/wireframes).
 
