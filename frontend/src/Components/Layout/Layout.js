@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import AttractionsContainer from "../AttractionsContainer/AttractionsContainer";
 import Login from "../Login/Login";
 import Navigation from "../Navigation/Navigation";

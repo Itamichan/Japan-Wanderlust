@@ -39,9 +39,8 @@ const UserTripsList = ({isUserLoggedIn, history}) => {
 
     const tripsList = trips.map(trip => {
         return (
-            <ListGroupItem>
+            <ListGroupItem key={trip.id}>
                 <UserTrip
-                    key={trip.id}
                     mediaHeading={trip.name}
                     tripId={trip.id}
                     removedTrip={() => setTrips(prevState => {

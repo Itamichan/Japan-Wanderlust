@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {Button, Col, Media, Row} from 'reactstrap';
-import "./UserAttraction.scss";
+import {Col, Media, Row} from 'reactstrap';
 import AttractionCardInfo from "../../../../AttractionsContainer/AttractionCard/AttractionCardInfo/AttractionCardInfo";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import "./UserAttraction.scss";
 
 const UserAttraction = ({
                             mediaImg, mediaHeading, mediaCity, removeAttraction, disabled, attractionText,

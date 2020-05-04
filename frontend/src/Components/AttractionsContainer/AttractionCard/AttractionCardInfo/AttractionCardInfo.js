@@ -23,7 +23,7 @@ const AttractionCardInfo = ({
                             <img
                                 className={"attraction-img"}
                                 src={attractionImg}
-                                alt="attraction photo"/>
+                                alt="attraction"/>
                         </Col>
                     </Row>
                     <Row>

@@ -23,7 +23,7 @@ const TripReducer = (state, action) => {
                 tripAttractionsList = []
             }
             return {
-                //unwraps the state dict
+                //unwraps the state dictionary
                 ...state,
                 currentTrip: action.trip,
                 currentAttractionsList: tripAttractionsList

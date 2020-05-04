@@ -96,9 +96,8 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
 
     let attractionsList = attractions.map(attraction => {
         return (
-            <Col xs={"6"} md={"4"} xl={"3"} className={"attraction-card"}>
+            <Col xs={"6"} md={"4"} xl={"3"} className={"attraction-card"} key={attraction.id}>
                 <AttractionCard
-                    key={attraction.id}
                     cardId={attraction.id}
                     cardTitle={attraction.attraction_name}
                     cardImg={attraction.picture_url}

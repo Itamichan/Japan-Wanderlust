@@ -10,6 +10,7 @@ const AttractionsPagination = ({currentPage, setCurrentPage, ItemsPerPage, total
     for (let i = 1; i <= pagesNr; i++) {
         paginationItems.push(
             <PaginationItem
+                key={i}
                 active={i === currentPage}>
                 <PaginationLink onClick={() => setCurrentPage(i)} >
                     {i}

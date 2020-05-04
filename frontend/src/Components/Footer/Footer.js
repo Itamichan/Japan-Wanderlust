@@ -1,6 +1,6 @@
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {Col, Container, Row} from "reactstrap";
+import {Container} from "reactstrap";
 import './Footer.scss';
 
 
