@@ -213,7 +213,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                     </Col>
 
                     {isBrowser &&
-                    <Col xs={"2"} md={"3"} xl={"2"} id={"attractions-filters"}>
+                    <Col xs={"2"} md={"3"} xl={"2"} id={"attractions-filters"} className={"material-frame"}>
                         <Cities
                             chooseCity={(city) => filterCities(city)}
                         />

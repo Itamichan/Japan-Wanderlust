@@ -34,7 +34,7 @@ const AttractionCard = ({
     };
 
     return (
-        <div className={"attraction-container"}>
+        <div className={"attraction-container material-frame"}>
             <Card className={"card"} >
                 <CardImg
                     className={"card-img"}
