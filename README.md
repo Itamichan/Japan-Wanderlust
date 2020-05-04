@@ -277,7 +277,7 @@ Testing information can be fond [here](readme-related-documents/testing.md).
 
 ## Deployment
 
-Testing information can be fond [here](readme-related-documents/deployment.md).
+Deployment information can be fond [here](readme-related-documents/deployment.md).
 
 ## Credits
 
