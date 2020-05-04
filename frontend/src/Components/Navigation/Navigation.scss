@@ -12,4 +12,9 @@
       height: 35px;
     }
   }
+  #login-button{
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

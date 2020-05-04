@@ -38,7 +38,7 @@ const Navigation = ({isUserLoggedIn, openLoginModal, username, logout, history})
                 </ButtonDropdown>
     } else {
         toggleNavItem = <NavItem>
-            <NavLink onClick={openLoginModal}>Login</NavLink>
+            <NavLink onClick={openLoginModal} id={"login-button"} className={"text-highlight"}>Login</NavLink>
         </NavItem>
     }
 
