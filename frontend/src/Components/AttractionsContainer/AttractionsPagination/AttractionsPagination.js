@@ -1,5 +1,6 @@
 import React from 'react';
 import {Pagination, PaginationItem, PaginationLink} from 'reactstrap';
+import "./AttractionsPagination.scss";
 
 const AttractionsPagination = ({currentPage, setCurrentPage, ItemsPerPage, totalItemsNr}) => {
 
@@ -11,8 +12,9 @@ const AttractionsPagination = ({currentPage, setCurrentPage, ItemsPerPage, total
         paginationItems.push(
             <PaginationItem
                 key={i}
+                className={'pagination-item-style'}
                 active={i === currentPage}>
-                <PaginationLink onClick={() => setCurrentPage(i)} >
+                <PaginationLink className={'pagination-link-style'} onClick={() => setCurrentPage(i)} >
                     {i}
                 </PaginationLink>
             </PaginationItem>

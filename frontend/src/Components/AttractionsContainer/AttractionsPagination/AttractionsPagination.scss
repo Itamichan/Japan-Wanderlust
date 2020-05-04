@@ -1,0 +1,27 @@
+@import "../../../global-scss/global-styles";
+
+//code inspired from @narendrajadhav from stackblitz.com
+.pagination-item-style {
+  margin-left: 0.5rem;
+
+  .page-link {
+    color: #fff
+  }
+
+  &.page-item {
+    &.active {
+      button {
+        background-color: $base-color-dark2;
+        border-color: $base-color-dark2;
+      }
+    }
+  }
+}
+
+.pagination-link-style {
+  background-color: $base-color;
+
+  &:hover {
+    background-color: $base-color-dark2;
+  }
+}
