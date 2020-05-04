@@ -198,7 +198,6 @@ Link to wireframes for desktop can be found [here](https://www.figma.com/file/01
 * **Timeouts** - for a robust user experience we should ad timeouts to all axios requests to avoid long page loads.
 * **Confirmation window** - when the user decides to delete a Trip or Attraction.
 * **Heart icon on InfoCard** - currently the logged in user can not add an attraction to their trip from the InfoCard.
-* **Get a paid version of Heroku** - at the moment we are unable to have an **SSL certificate** because we are using a free version of Heroku.
 * **Improve page's loading speed** - currently the speed on the mobile is ranked at 72.
   
 ## Technologies Used
