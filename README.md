@@ -159,40 +159,48 @@ Link to wireframes for mobile can be found [here](https://www.figma.com/file/Tmi
 
 Link to wireframes for desktop can be found [here](https://www.figma.com/file/01cdiPdgTEbWHtGcvtBILu/Japan-Wanderlust---desktop?node-id=0%3A1).
 
-In case the links to the wireframes don't work please find the pictures [here](../../WebstormProjects/blue-in-the-maze/readme-related-documents/wireframes).
-
 ## Features
 
 ### Existing Features
 
-* **The Game**
-    * Represents a dynamic area of the web page which makes possible to start the game,choose a level and enjoy the game itself.
-        * Addresses issue #2, #5, #7, #10, #12, #15.
-    * Has two constant buttons: "Home" button and "Rules" button. The first one ensures that the player can go back to the initial start screen. While the second button provides the story of the game and how to play it.
-        * Addresses issue #1, #14.
-    * A timer appears when the selected level starts. The timer serves as an indicator of how much time the player needed to complete the level or triggers the losing condition (from level 3 onwards) if the player runs out of time.
-        * Addresses issue #4, #16.
-    * Control buttons are added while playing the chosen level if the device type is detected as "mobile" or "tablet."
-        * Addresses issue #10.
-    * Graduate access to the levels - at the beginning the player can play only the first level. Access to the next level is allowed only on passing the current level.
-        * Addresses issue #5, #6.
+#### Elements present on every page
+
+* **Navigation bar** - Has a `fixed` position in order to ensure that the user can access it at any time.
+    * **JapanWanderlust** logo in the left corner which serves as a link to go back to the landing page.
+    * Links that can be accessed are placed on the right side.
 
 * **Footer**
-    * Provides the links which makes possible to contact the game owner as well as to see their Github account or LinkedIn.
+    * Provides the links which makes possible to contact JapanWanderlust as well as to see their Github account or LinkedIn.
+
+#### Home page
+
+* **Attractions** - presents all available destinations in Japan. On the right side we have a "Filter menu" (which toggles on mobile) which allows to any user to filter the results based on:
+    * City
+    * Category - which includes: Shrine, Onsen, Temple, Park etc.
+    * Price - where the user can indicate a price limit as access fee to different attractions.
+    
+* **User Trip Banner** - if the user is logged in they see the banner which allows to the user to start working on their "Trip".
+    * Dynamically shows the number of existing attraction in the trip.
+    * Provides the main details regarding their Trip.
+    * Allows to edit the Trip.
+    * User can click "Get an offer now!" button and they will receive an email with Travel Package suggestion.
+    
+* **User Trips** - every signed in user can see all their existing trips in one place. They can choose to add new trips there or delete existing.
+    * On selection of a trip the user will see the detailed information of the trip which they can choose to edit.
+    * In their trip they can see all the attractions they added. The can choose to see more information about the attraction or remove it.
 
 ### Features left to implement
 
-* **Leader-board** - User Story #8, at the moment it has a low value. Will be implemented if after a reevaluation of priorities it will get a higher value.
-* **Winning points** - User Story #7, at the moment we have only the final time as a parameter which indicates how well the user performed. Use story #7 has a high complexity therefore it will be implemented at a later stage.
-* **Landscape mode** - the possibility to play the game in landscape mode will be added in a future update.
+* **Travel Agency** - all the user stories related to the Travel Agencies would need to be implemented in future sprints.
+* **Email Offers** - after implementing the Travel Agency user stories we would be able to send real best matching travel suggestions to the users.
+* **Toggle TripBanner** - considering that it takes a lot of visual space it will be a good user experience to be able to minimise it if the user doesn't need it at the moment.
 
 ### Features left to implement after testing
 
-* **New characters** - as per user review suggestion.
-* **Final scene with Blue meeting the human** - as per user review suggestion.
-* **Improve levels' difficulty** - in order to have more challenging levels.
-* **Improve game's design** - in order to have more visually attractive game.
-* **Improve web page's speed on mobile** - in order to have more visually attractive game.
+* **Timeouts** - for a better user experience we should ad timeouts to all axios requests.
+* **Confirmation window** - when the user decides to delete a Trip or Attraction.
+* **Heart icon on InfoCard** - currently the logged in user can not add an attraction to their trip from the InfoCard.
+* **Get a paid version of Heroku** - at the moment we are unable to have an SSL certificate because we are using a free version of Heroku.
   
 ## Technologies Used
 
