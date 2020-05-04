@@ -3,8 +3,6 @@ import {
     Button, FormGroup, Input, InputGroup, InputGroupAddon, Label, Modal,
     ModalBody, ModalFooter, ModalHeader, FormText, CustomInput
 } from "reactstrap";
-import {connect} from "react-redux";
-import {setCurrentTrip} from "../reduxTrip/actions";
 import "./TripInputView.scss";
 
 const TripInputView = ({
@@ -84,23 +82,7 @@ const TripInputView = ({
                 </Button>
             </ModalFooter>
         </Modal>
-
     )
 };
 
-//dispatch will move the provided action dict (result of login(token))
-// to the global state and will run the reducer with the provided action
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setCurrentTrip: (trip) => dispatch(setCurrentTrip(trip))
-    }
-};
-
-//map the global state to properties that are passed into the comp
-const mapStateToProps = (state) => {
-    return {}
-};
-
-//next line ensures that the properties from the 2 passed functions are passed to Login comp
-const DefaultApp = connect(mapStateToProps, mapDispatchToProps)(TripInputView);
-export default DefaultApp;
+export default TripInputView;

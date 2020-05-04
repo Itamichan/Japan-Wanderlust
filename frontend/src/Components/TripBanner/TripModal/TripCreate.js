@@ -29,21 +29,20 @@ const TripCreate = ({close, update}) => {
         } catch (e) {
 
             switch (e.response.data.error) {
-                //todo write proper notify messages
                 case "InvalidName":
-                    notify.show('InvalidName!', "error", 1700);
+                    notify.show('Invalid Name!', "error", 1700);
                     break;
                 case "InvalidDaysNumber":
-                    notify.show('InvalidDaysNumber!', "error", 1700);
+                    notify.show('Invalid number of days!', "error", 1700);
                     break;
                 case "InvalidPriceNumber":
-                    notify.show('InvalidPriceNumber!', "error", 1700);
+                    notify.show('Invalid Price Number!', "error", 1700);
                     break;
                 case "InvalidDataEntry":
-                    notify.show('InvalidDataEntry!', "error", 1700);
+                    notify.show('Invalid Data Entry!', "error", 1700);
                     break;
                 case "ParameterError":
-                    notify.show('ParameterError!', "error", 1700);
+                    notify.show('Parameter Error!', "error", 1700);
                     break;
                 case "Unauthorized":
                     notify.show('Invalid Token!', "error", 1700);
@@ -74,8 +73,23 @@ const TripCreate = ({close, update}) => {
                 disable={sendingRequest}
                 tripTypeName={"Create a new trip"}
             />
+            
+            <div>
+                <img src="https://japan-wanderlust.s3.eu-north-1.amazonaws.com/static/images/readme/logo-readme.png" alt="JapanWanderlust logo"/>
+                <h1>
+                    <b>Welcome to JapanWanderlust!</b>
+                </h1>
+                <p>
+                    Start creating your Dream Trip Now!
+                </p>
+                <button>
+                    <a href="https://github.com/Itamichan/Japan-Wanderlust" rel='noreferrer noopener'
+                       target="_blank">Go to the website</a>
+                </button>
+            </div>
+            
         </Fragment>
     )
 };
 
-export default TripCreate
+export default TripCreate;

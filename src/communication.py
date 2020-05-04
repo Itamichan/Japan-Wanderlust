@@ -37,7 +37,7 @@ def welcome_email(to_email):
                 Start creating your Dream Trip Now!
             </p>
             <button>
-                <a href="https://github.com/Itamichan/Japan-Wanderlust" rel='noreferrer noopener'
+                <a href="http://www.japanwanderlust.com/" rel='noreferrer noopener'
                    target="_blank">Go to the website</a>
             </button>
         </div>""")
