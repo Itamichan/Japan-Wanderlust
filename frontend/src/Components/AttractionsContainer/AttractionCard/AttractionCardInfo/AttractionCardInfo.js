@@ -13,8 +13,8 @@ const AttractionCardInfo = ({
         >
             <ModalHeader
                 toggle={close}>
-                <div>{attractionName}</div>
-                <div>{attractionCity}</div>
+                <div className={"text-header"}>{attractionName}</div>
+                <div className={"text-highlight"}>{attractionCity}</div>
             </ModalHeader>
             <ModalBody>
                 <Container>
@@ -27,14 +27,14 @@ const AttractionCardInfo = ({
                         </Col>
                     </Row>
                     <Row>
-                        <Col>
+                        <Col className={"text-default card-text"}>
                             {attractionText}
                         </Col>
                     </Row>
                     <Row>
                         <Col>
                             <div>
-                                <p><b>Attraction's price: </b></p>
+                                <p className={"text-highlight"}>Entry Fee</p>
                                 <p>
                                     {`${attractionPrice} YEN`}
                                 </p>
@@ -42,7 +42,7 @@ const AttractionCardInfo = ({
                         </Col>
                         {attractionWebAddress && <Col>
                             <div>
-                                <p><b>Web with more info:</b></p>
+                                <p className={"text-highlight"}>More Information:</p>
                                 <a href={attractionWebAddress} rel='noreferrer noopener'
                                    target="_blank">
                                     here
@@ -52,7 +52,7 @@ const AttractionCardInfo = ({
                     </Row>
                 </Container>
             </ModalBody>
-            <ModalFooter>
+            <ModalFooter className={"card-footer"}>
                 <Button onClick={close}>ok</Button>
             </ModalFooter>
         </Modal>

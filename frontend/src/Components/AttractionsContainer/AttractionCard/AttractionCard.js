@@ -35,7 +35,7 @@ const AttractionCard = ({
 
     return (
         <div className={"attraction-container"}>
-            <Card className={"card-body"} >
+            <Card className={"card"} >
                 <CardImg
                     className={"card-img"}
                     top width="100%"
@@ -62,8 +62,8 @@ const AttractionCard = ({
                         )
                 }
                 <CardBody onClick={() => setShowAttractionInfo(true)}>
-                    <CardTitle>{cardTitle}</CardTitle>
-                    <CardText>{cardCity}</CardText>
+                    <CardTitle className={"text-header"}>{cardTitle}</CardTitle>
+                    <CardText className={"text-highlight"}>{cardCity}</CardText>
                 </CardBody>
             </Card>
             {showAttractionInfo && <AttractionCardInfo
