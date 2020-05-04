@@ -33,7 +33,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
     const [page, setPage] = useState(1);
     const [showFiltersMenu, setShowFiltersMenu] = useState(false);
 
-    const ATTRACTIONS_PER_PAGE = 6;
+    const ATTRACTIONS_PER_PAGE = 8;
 
     const loadAttractions = async () => {
         setLoading(true);
@@ -203,7 +203,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                                         {attractionsList}
                                     </Row>
                                     <Row>
-                                        <Col id={"pagination"}>
+                                        <Col>
                                             <AttractionsPagination
                                                 currentPage={page}
                                                 setCurrentPage={setPage}

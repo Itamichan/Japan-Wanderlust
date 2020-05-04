@@ -3,7 +3,7 @@ import {Pagination, PaginationItem, PaginationLink} from 'reactstrap';
 
 const AttractionsPagination = ({currentPage, setCurrentPage, ItemsPerPage, totalItemsNr}) => {
 
-    let pagesNr = totalItemsNr / ItemsPerPage;
+    let pagesNr = Math.ceil(totalItemsNr / ItemsPerPage);
 
     let paginationItems = [];
 
