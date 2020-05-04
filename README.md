@@ -1,6 +1,6 @@
 # JapanWanderlust
 
-A live demo can be found [here](http://www.japanwanderlust.com)
+A live demo can be found [here](https://www.japanwanderlust.com/)
 
 ![WebsiteLogo](https://japan-wanderlust.s3.eu-north-1.amazonaws.com/static/images/readme/logo-readme.png)
 
