@@ -48,14 +48,12 @@ const AttractionCard = ({
                         (
                             <FontAwesomeIcon
                                 className={"filled-heart-icon"}
-                                size={"2x"}
                                 icon="heart"
                                 onClick={removeAttractionFromCurrentTrip}
                             />
                         ) : (
                             <FontAwesomeIcon
                                 className={"disabled-heart-icon"}
-                                size={"2x"}
                                 icon="heart"
                                 onClick={addAttractionToCurrentTrip}
                             />
