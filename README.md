@@ -129,7 +129,7 @@ Taking in consideration all the user stories, their importance and viability of 
     * As consequence the offer email that the user gets from the Travel Agency is not based on a real database or matching mechanism.
     * The offer email contains a placeholder message.
     
-[User Stories evaluation](../JapanWanderlust/readme-related-documents/user-stories.md)
+[User Stories evaluation](readme-related-documents/user-stories.md)
 
 ### Design
 
