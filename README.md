@@ -207,52 +207,74 @@ Link to wireframes for desktop can be found [here](https://www.figma.com/file/01
 ### Languages
 
 * HTML - more precisely this project uses JSX which is a JavaScript extension and allows us to write "HTML" alike code in React.
-* Java Script - served as the base language for this project.
-* CSS - used for styling the HTML code.
-* [Sass](https://sass-lang.com/) - Sass was used in order to write an easier css. It allowed to create variables, mixins and create for loops.
-* [Python](https://www.python.org/) - a small python script in order to deploy the project to AWS and Heroku.
+* Java Script
+* [Python](https://www.python.org/)
+* CSS
+* [Sass](https://sass-lang.com/) - Sass was used in order to write an easier css. It allowed to create variables and mixins.
+* SQL
+
 
 ### Libraries
 
-* [React](https://reactjs.org/) - the entire project was built in React.
-* [react-device-detect](https://www.npmjs.com/package/react-device-detect) - used for conditional rendering of content depending on which type of device the user has.
-* [reactstrap](https://reactstrap.github.io/) - used for the modal Rules window.
-* [prop-types](https://www.npmjs.com/package/prop-types) - used to ensure that the correct data type is passed to the component.
-* [react-fontawesome](https://github.com/FortAwesome/react-fontawesome) - used for social media icons.
-* [Google Fonts](https://fonts.google.com/) - used for the Eczar font.
+* Front-End
+    * [React](https://reactjs.org/) - the entire project was built in React.
+    * [react-redux](https://github.com/reduxjs/react-redux) - used for creation of global states.
+    * [react-routing](https://reacttraining.com/react-router/web/guides/quick-start) - used for creation of page routes.
+    * [axios](https://github.com/axios/axios) - used for HTTP requests to our back-end API.
+    * [react-device-detect](https://www.npmjs.com/package/react-device-detect) - used for conditional rendering of content depending on which type of device the user has.
+    * [reactstrap](https://reactstrap.github.io/) - used for the modal Rules window.
+    * [react-fontawesome](https://github.com/FortAwesome/react-fontawesome) - used for icons.
+    * [Google Fonts](https://fonts.google.com/) - used for the Nightshade and Open Sans fonts.
+    * [react-notify-toast](https://www.npmjs.com/package/react-notify-toast) - used to inform the user on success or failure of certain actions.
+
+* Back-End
+     * [flask](https://flask.palletsprojects.com/en/1.1.x/) - used for creation of the web framework
+     * [gunicorn](https://gunicorn.org/) - used for our workers for Heroku.
+     * [pyJWT](https://pyjwt.readthedocs.io/en/latest/) - used for creation of Authentication Token on Login.
+     * [dataclasses](https://docs.python.org/3/library/dataclasses.html) - python classes to store states.
+     * [requests](https://requests.readthedocs.io/en/master/) - allows us to do HTTP requests in python.
+     * [SendGrid](https://app.sendgrid.com/) - we consumed the SendGrid API in order to send welcome and offer emails to the users.
+     * [APIDOC](https://apidocjs.com/) - used to create API documentation for our back-end
+     
+* Database
+    * [psycopg2](https://pypi.org/project/psycopg2/) - python library for PostgreSQL.
 
 ### Tools
 
-* [WebStorm](https://www.jetbrains.com/webstorm/) - used as local IDE for this project.
+* [WebStorm](https://www.jetbrains.com/webstorm/) - used as local IDE for the front-end of this project.
+* [PyCharm](https://www.jetbrains.com/pycharm/) - used as local IDE for the back-end of this project.
+* [DataGrip](https://www.jetbrains.com/datagrip/) - used for local visualisation of our database.
+* [Heroku Postgres](https://elements.heroku.com/addons/heroku-postgresql) - used as our main database based on PostgreSQL.
+* [Heroku Papertrail](https://elements.heroku.com/addons/papertrail) - used for debugging.
+* [PostgreSQL](https://www.postgresql.org/) - used locally in DataGrip.
 * [Git](https://git-scm.com/) - used for version control.
 * [Figma](https://www.figma.com/) - used for creation of wireframes.
 * [favicon.io](https://favicon.io/) - used for creation of the fav icon for the web page.
 * [GIMP](https://www.gimp.org/) - used as image editor.
 * [Tinyjpg](https://tinyjpg.com/) - used for image compression.
-* [Am I Responsive](http://ami.responsivedesign.is/) - used for testing purposes as well as to create the image displaying the web page on different devices.
 * [Google Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools) - used for testing and debugging.
-* [Google Analytics](https://analytics.google.com/) - used for user testing purposes.
-* [Hotjar](https://www.hotjar.com/) - used for user testing purposes.
 * [PageSpeed insights](https://developers.google.com/speed/pagespeed/insights/) - used for testing the loading speed of the site.
 * [AWS](https://aws.amazon.com/s3/?nc=sn&loc=0) - used to store and retrieve project's data.
-* [Heroku](https://id.heroku.com/) - The live page is hosted on Heroku.
+* [Heroku](https://id.heroku.com/) - for hosting of our project.
+* [Travis](https://travis-ci.org/) - used for testing of our back-end code.
 
 ### React in detail
 
-This project was entirely built in React, which as a result has a directory structure different then the classic projects built only in HTML and JavaScript.
+This project's front-end was entirely built in React, which as a result has a directory structure different then the classic projects built only with HTML and JavaScript.
 
 **The distinctive points are:**
 * The project is divided in components.
     * As a rule each component directory will contain a JS file and a scss file which is related to it.
-    * Two main components present in the project are:
-        * Layout - which incorporates subcomponents related to the web page's look.
-        * MazeContainer - which incorporates all the components related to the game itself as well as the custom hook "useMaze" which is responsible for the most of the controller part of the data.
+    * The most important components present in the project are:
+        * AttractionsContainer - which includes the most code related to the attractions and their filters.
+        * Navigation - which includes our navbar but also all the personal pages related to the user.
+        * TripBanner - is responsible for all the interaction of the user with the chosen Trip.
 * The final index.html is placed in the public folder and has only one root div. This div renders the App.js which represents our main JavaScript file.
 * The project uses "real" HTML in an limited amount. The most HTML alike code is written with JSX. 
 
 ## Testing
 
-Testing information can be fond [here](../../WebstormProjects/blue-in-the-maze/readme-related-documents/testing/testing.md).
+Testing information can be fond [here](readme-related-documents/testing.md).
 
 ## Deployment
 
