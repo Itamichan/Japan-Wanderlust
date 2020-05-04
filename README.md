@@ -96,43 +96,40 @@ Both business and customer goals are addressed through user stories.
 
 ### User Stories
 
-#### The game designer
+#### User category: _The User_
 
-* As a game designer, I want to create a game story so that the user can immerse into it via playing.
-* As a game designer, I want to add extra items in the maze so that the game is more interesting.
+* As a user, I want to see the available attractions in Japan so that I can choose which one I would like to visit.
+* As a user, I want to be able to save the attractions which I like so that I can have a comprehensive list of my desired destinations.
+* As a user, I want to update my profile so that my personal information is correct.
+* As a user, I want to be able to search an attraction base on a specific category, so that I can easier find the information in which I am interested.
+* As a user, I want to create a profile, so that I can save the destinations I like.
+* As a user, I want to be able to contact the Travel Agency, so that I can let the know that I am interested in their offer.
 
-#### The game developer
-
-* As a game developer, I want to have a game timer so that the user is motivated to solve the maze faster.
-* As a game developer, I want to create several levels in the game so that the user can have a progressing story.
-* As a game developer, I want  to give the user the possibility to save the game so that he/she is motivated to come back and continue.
-* As a game developer, I want to introduce winning points so that the user can see how well they have played.
-* As a game developer, I want to create a leader-board so that the user can see if he/she was better than others.
-
-#### The business owner
-
-* As a website owner,  I want the page to load fast so that the game functions in optimal time.
-* As a website owner,  I want to have a well structured web page so that the user can easily orientate on it.
-* As a website owner,  I want to retain the user's attention so that I get ad revenue.
-
-#### The UX designer
-
-* As a UX designer, I want to track the user behaviour so that I can improve the user experience.
+#### User category: _The UX Designer_
+* As a UX designer, I want to track user behaviour so that I can improve the user experience.
     * As a UX designer, I want to track the user behaviour so that I can identify the possible user confusion.
-    * As a UX designer, I want to find which parts are not accessed by the user so that I can improve the website’s structure.
-
-#### The potential user
-
-* As a user, I want to know the rules of the game so that I know how to play it.
-* As a user, I want to play an interesting game so that I feel joy while doing it.
-* As a user, I want to see my end game results so that I know how well I performed.
-
+    * As a UX designer, I want to find which parts are not accessed by the user so that I can suggest a better architecture of the page.    
+    
+#### User category: _The Travel Agency_
+* As a Travel Agency, I want to integrate my database with the web page, so that the user can get suggestions about our package deals.
+* As a Travel Agency, I want to know which attractions are popular, so that I can decide if I want to change our travel packages or optimise them.
+* As a Travel Agency, I want that the user receives our offers and contact information so that they contact us.
+        
+#### User category: _The Business Owner_
+* As a business owner, I want that our web page looks attractive so that people are motivated to spend time on it.
+* As a business owner, I want to work with a lot of Travel Agencies, so that we get a high profit.
+* As a business owner, I want to have a comprehensive list of destinations, so that the user can find whatever they need.
+* As a business owner, I want to provide sufficient information about an attraction so that the user would have all the information that they need in order to decide if they would like to go or not.
 
 ### Minimum Viable Product
 
-Taking in consideration all the user stories, their importance and viability of their implementation at the moment certain value and complexity levels have been attributed to the user stories. In the issues a new category has been created as “MVP” in order to highlight which stories must be implemented in the first release.
-
-[User Stories evaluation](../../WebstormProjects/blue-in-the-maze/readme-related-documents/MVP/user-stories.md)
+Taking in consideration all the user stories, their importance and viability of their implementation at the moment certain value and complexity levels have been attributed to the user stories.
+ 
+* Due to limited period of time the Travel Agency related user stories are not implemented in our MVP. 
+    * As consequence the offer email that the user gets from the Travel Agency is not based on a real database or matching mechanism.
+    * The offer email contains a placeholder message.
+    
+[User Stories evaluation](../JapanWanderlust/readme-related-documents/user-stories.md)
 
 ### Design
 
