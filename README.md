@@ -2,7 +2,7 @@
 
 A live demo can be found [here](http://www.japanwanderlust.com)
 
-[WebsiteLogo](../../PycharmProjects/JapanWanderlust/readme-related-documents/logo-readme.png)
+[WebsiteLogo](../JapanWanderlust/readme-related-documents/logo-readme.png)
 
 ## Introduction
 
