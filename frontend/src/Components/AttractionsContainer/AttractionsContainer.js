@@ -15,6 +15,7 @@ import AttractionsPagination from "./AttractionsPagination/AttractionsPagination
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Col, Container, Row, Input, Button, InputGroup, InputGroupAddon} from "reactstrap";
 import "./AttractionsContainer.scss";
+import Spinner from "reactstrap/es/Spinner";
 
 const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttractionToTrip, currentAttractionsList}) => {
 
@@ -187,7 +188,9 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                     <Col>
                         <Row>
                             {loading ? (
-                                <Col>"Loading..."</Col>
+                                <Col>
+                                    <Spinner color="danger"/>
+                                </Col>
                             ) : (
                                 <Col>
                                     <Row>

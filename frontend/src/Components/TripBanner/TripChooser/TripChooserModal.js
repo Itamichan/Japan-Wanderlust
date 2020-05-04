@@ -7,8 +7,9 @@ import TripCreate from "../TripModal/TripCreate";
 import ListGroup from "reactstrap/es/ListGroup";
 import ListGroupItem from "reactstrap/es/ListGroupItem";
 import "./TripChooserModal.scss";
+import Spinner from "reactstrap/es/Spinner";
 
-const TripChooserModal = ({close, setCurrentTrip, tripAttractionsList}) => {
+const TripChooserModal = ({close, setCurrentTrip}) => {
 
     const [loading, setLoading] = useState(true);
     const [trips, setTrips] = useState([]);
@@ -52,7 +53,7 @@ const TripChooserModal = ({close, setCurrentTrip, tripAttractionsList}) => {
     let tripsBody;
 
     if (loading) {
-        tripsBody = "loading"
+        tripsBody =  <Spinner color="warning" />
     }
 
     if (trips.length === 0) {
@@ -113,9 +114,7 @@ const mapDispatchToProps = (dispatch) => {
 
 //map the global state to properties that are passed into the comp
 const mapStateToProps = (state) => {
-    return {
-        tripAttractionsList: state.TripReducer.currentAttractionsList
-    }
+    return {}
 };
 
 //next line ensures that the properties from the 2 passed functions are passed to Login comp

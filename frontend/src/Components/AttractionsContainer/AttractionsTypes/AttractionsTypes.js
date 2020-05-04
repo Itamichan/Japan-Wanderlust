@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Button from "reactstrap/es/Button";
+import Spinner from "reactstrap/es/Spinner";
 
 const AttractionsTypes = ({chooseAttractionType}) => {
 
@@ -36,7 +37,7 @@ const AttractionsTypes = ({chooseAttractionType}) => {
         <div>
             <h1 className={"text-header-important"}>Choose a Category</h1>
             <div style={{display:"flex", flexWrap:"wrap", justifyContent:"center"}}>
-                {loading ? <div>Loading...</div> : attractionsTypes}
+                {loading ?  <Spinner color="danger"/>: attractionsTypes}
             </div>
         </div>)
 };

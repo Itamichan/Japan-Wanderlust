@@ -11,6 +11,7 @@ import TripsList from "../Navigation/UserTrips/UserTripsOverview/UserTripsList";
 import UserDetailedTrip from "../Navigation/UserTrips/UserDetailedTrip/UserDetailedTrip";
 import Footer from "../Footer/Footer";
 import "./Layout.scss";
+import Spinner from "reactstrap/es/Spinner";
 
 const Layout = ({loginUser, logout}) => {
 
@@ -77,7 +78,9 @@ const Layout = ({loginUser, logout}) => {
         <div id={"layout-container"}>
             {
                 loading ? (
-                    <div>loading</div>
+                    <div>
+                        <Spinner color="danger"/>
+                    </div>
                 ) : (
                     <div>
                         <Notifications options={{zIndex: 10000, width: "100%"}}/>

@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Container, Col, Row, Button, ListGroupItem, Tooltip} from "reactstrap";
+import {Container, Col, Row, Button, ListGroupItem, Tooltip, ListGroup, Spinner} from "reactstrap";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
 import UserTrip from "./UserTrip";
 import TripCreate from "../../../TripBanner/TripModal/TripCreate";
-import ListGroup from "reactstrap/es/ListGroup";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "./UserTripsList.scss";
 
@@ -86,7 +85,7 @@ const UserTripsList = ({isUserLoggedIn, history}) => {
                         </Col>
                     </Row>
                     {loading ? (
-                        "loading"
+                        <Spinner color="danger"/>
                     ) : (
                         <div id={"trips-list"}>
                             <ListGroup>

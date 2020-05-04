@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Button from "reactstrap/es/Button";
 import "./Cities.scss";
+import Spinner from "reactstrap/es/Spinner";
 
 const Cities = ({chooseCity}) => {
 
@@ -35,7 +36,7 @@ const Cities = ({chooseCity}) => {
             <h1 className={"text-header-important"}>Choose a City</h1>
             <div style={{display:"flex", flexWrap:"wrap", justifyContent:"center"}}>
                 {loading ?
-                    "Loading..."
+                    <Spinner color="danger"/>
                     :
                     citiesList
                 }
