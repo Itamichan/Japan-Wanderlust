@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {closeModal, login} from "./redux/actions";
 import {connect} from "react-redux";
-import {Button, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+import {Button, FormGroup, FormText, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import "./Login.scss";
 import {notify} from 'react-notify-toast';
 
@@ -72,48 +72,69 @@ const Login = ({loginUser, isModalOpen, closeModal}) => {
 
 
     return (
-        <Modal isOpen={isModalOpen} id={"login-form"}>
+        <Modal isOpen={isModalOpen}>
             <ModalHeader>
-                {registerUser ? "Register" : "Login"}
+                <div className={"text-header"}>
+                    {registerUser ? "Register" : "Login"}
+                </div>
             </ModalHeader>
             <ModalBody>
                 <FormGroup>
-                    <Label for="username">Username</Label>
+                    <Label for="username" className={"text-highlight"}>Username</Label>
                     <Input disabled={sendingPostRequest} type="text" id={'username'} name={'username'} value={username}
                            onChange={(e) => setUsername(e.target.value)}/>
+                    <FormText>At least 2 characters.</FormText>
                 </FormGroup>
                 <FormGroup>
-                    <Label for="password">Password</Label>
+                    <Label for="password" className={"text-highlight"}>Password</Label>
                     <Input disabled={sendingPostRequest} type="password" id={'password'} name={'password'}
                            value={password}
                            onChange={(e) => setPassword(e.target.value)}/>
+                    <FormText>At least 8 characters.</FormText>
                 </FormGroup>
                 {
                     registerUser ? (
                         <FormGroup>
-                            <Label for="email">Email</Label>
+                            <Label for="email" className={"text-highlight"}>Email</Label>
                             <Input disabled={sendingPostRequest} type="email" name="email" id="email" value={email}
                                    onChange={(e) => setEmail(e.target.value)}/>
                         </FormGroup>
                     ) : (
                         <FormGroup>
-                            <h3>Not registered?</h3>
-                            <button disabled={sendingPostRequest} onClick={() => setRegisterUser(true)}>register now!
-                            </button>
+                            <h1 className={"text-highlight-important"}>Not registered?</h1>
+                            <Button disabled={sendingPostRequest} className={"action-button"}
+                                    onClick={() => setRegisterUser(true)}>Register now!
+                            </Button>
                         </FormGroup>
                     )
                 }
             </ModalBody>
-            <ModalFooter>
+            <ModalFooter id={"login-footer"}>
                 {registerUser &&
-                <Button disabled={sendingPostRequest} onClick={() => setRegisterUser(false)}>Go back to signIn</Button>}
-                <Button disabled={sendingPostRequest} onClick={() => {
-                    closeModal();
-                    setRegisterUser(false)
-                }}>Cancel
+                <Button
+                    disabled={sendingPostRequest}
+                    className={"neutral-button"}
+                    onClick={() => setRegisterUser(false)}
+                >
+                    Go back
+                </Button>}
+                <Button
+                    disabled={sendingPostRequest}
+                    className={"neutral-button"}
+                    onClick={() => {
+                        closeModal();
+                        setRegisterUser(false)
+                    }}
+                >
+                    Cancel
                 </Button>
-                <Button disabled={sendingPostRequest} className={"action-button"}
-                        onClick={registerUser ? register : login}>Submit</Button>
+                <Button
+                    disabled={sendingPostRequest}
+                    className={"action-button"}
+                    onClick={registerUser ? register : login}
+                >
+                    Submit
+                </Button>
             </ModalFooter>
         </Modal>
     )
