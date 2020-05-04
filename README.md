@@ -6,32 +6,29 @@ A live demo can be found [here](http://www.japanwanderlust.com)
 
 ## Introduction
 
-Blue in the Maze is a labyrinth game.
+JapanWanderlust is a web page which makes possible for the users to get the best travel offers to Japan based on attractions that they had selected as well as additional details (such as duration, price etc.)
 
-The main purpose of the game is to entertain people who have a interest in solving puzzle style games. Through this goal the game owner want to have a high conversion rate which will offer high adds revenue.
+The main purpose of the web page is to make possible to connect the Travel Agencies and the Potential Customers which usually prefers to plan a travel trip by themselves.
+BY having the freedom to choose specific destinations as well as their budget limit and travel preferences the users will get an travel package offer which will match their wishes the best. If the user decides that they are not interested in the offers they still can have all their attractions saved in a convenient "Trip". Which they can revisit and tailor made as many times as they wish. 
 
-The game consists of 6 levels. Where with every new level the difficulty is increased. Ultimately the potential user will have to play against the time and collect certain items in order to be able to finish the game.
-
-### Requirements to play the game
-
-* Blue in the Maze can be played on any device. 
-    * In case of mobile devices the game should be played in portrait mode.
-* A player can move to a new level only after the completion of the previous level.
-* From level 3 onwards the player needs to finish the game before the Timer runs out.
+### Options to use the page
+* Non registered user:
+    * Browse through all different attractions which can be visited in Japan.
+* Registered user:
+    * Create, Edit or Remove Trips.
+    * Add or remove different Attractions to their Trip.
+    * Get best matching offers from the Travel Agencies based on their choices.
 
 ## Table of Content
 
 1. [UX](#ux)
     * [Goals](#goals)
-        * [Blue in the Maze goal](#cgphotography-goal)
+        * [JapanWanderlust goal](#japanwanderlust-goal)
         * [Business goals](#business-goals)
         * [Customer goals](#customer-goals)
     * [User Stories](#user-stories)
         * [The game designer](#the-game-designer)
-        * [The game developer](#the-game-developer)
-        * [The business owner](#the-business-owner)
-        * [The UX designer](#the-ux-designer)
-        * [The potential user](#the-potential-user)
+      
     * [Minimum Viable Product](#minimum-viable-product)
     * [Design](#design)
         * [Colors](#colors)
@@ -64,26 +61,36 @@ The game consists of 6 levels. Where with every new level the difficulty is incr
 
 ### Goals
 
-#### Blue in the Maze goal
+#### JapanWanderlust goal
 
-The goal of this web page is to make available a cute labyrinth game which will ensure a high conversion of users.
+The main goal of the JapanWanderlust is  to allow the potential traveler to get in contact with the best suited Travel Agency in order to travel to Japan.
 
 **Target audience is:**
-* People above 13 years.
-* People interested in short, online games.
-* People interested in solving puzzles, in special mazes.
+* People 18 years old and above.
+* People interested in Japan culture and scenery. 
+* People who want to have a tailor made trip plan.
+* Travel Agencies who want to reach the market of people who tend to plan their trips by themselves.
 
 #### Business goals
 
-* Create a fun game.
-* Have a high conversion rate.
-* Have a fully working game with an attractive design.
+* Create a platform that allows the potential customer to get in contact with the best suited Travel Agency.
+* Have well structured database.
+* Have an attractive design of the web page.
+* Have user friendly experience on the page.
+* Collaborate with Travel Agencies which are willing to provide their travel packages information.
 
 
 #### Customer goals
 
-* Play a functional game and potentially win it.
-* Use a web page which has an easy navigation.
+* Users:
+    * Get a tailored made traveling plan.
+    * Potentially get a travel package that will suit their needs the best.
+    * They want to find a large variety of travel destinations to Japan.
+    * Possibility to contact he Travel Agency if they are interested in the received offer.
+    
+* Travel Agency:
+    * Sell their travel packages to Japan.
+    * Get information regarding users' travel preferences in order to update or create new travel packages.
 
 Both business and customer goals are addressed through user stories.
 
@@ -121,25 +128,11 @@ Both business and customer goals are addressed through user stories.
 * As a user, I want to see my end game results so that I know how well I performed.
 
 
-All User Stories were added as [issues](https://github.com/Itamichan/Blue-in-the-maze/issues) on GitHub in order to keep track and address them in the project's [dashboard](https://github.com/Itamichan/Blue-in-the-maze/projects). In this way I can easily track which user stories have been addressed and on which I still need to work.
-
-
 ### Minimum Viable Product
 
 Taking in consideration all the user stories, their importance and viability of their implementation at the moment certain value and complexity levels have been attributed to the user stories. In the issues a new category has been created as “MVP” in order to highlight which stories must be implemented in the first release.
 
 [User Stories evaluation](../../WebstormProjects/blue-in-the-maze/readme-related-documents/MVP/user-stories.md)
-
-![chart](../../WebstormProjects/blue-in-the-maze/readme-related-documents/MVP/maze-game-graph.jpg)
-
-**Conclusions based on the chart**
-
-* User Stories A,I,M are included in the first sprint. This is connected with their high value and importance they for creation of the MVP.
-* User Stories B,D,E,H,J,N,K,L are included in the second sprint since they have a high value for the project.
-* User Stories C,O are included in the 3rd sprint since they have a medium value and high complexity.
-* User Story F,G are also in the third sprint but they are put in the the backlog for the moment since Issue F has a medium value/high complexity and doesn't represent a priority at the moment. While issue G has a low value and high complexity and should be dropped out. However, the story is also added to the backlog category since it seems that at a later stage its complexity might change to a lower level.
-
-User Stories identified as important for MVP were attributed the respective label in the [issues](https://github.com/Itamichan/CG_photography/issues?q=is%3Aopen+is%3Aissue) section on GitHub.
 
 ### Design
 
