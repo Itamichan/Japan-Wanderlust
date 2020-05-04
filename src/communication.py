@@ -26,7 +26,21 @@ def welcome_email(to_email):
         from_email='welcome@japanwanderlust.com',
         to_emails=to_email,
         subject='Welcome to Japan Wanderlust',
-        html_content='<strong>Welcome to Japan Wanderlust</strong>')
+        html_content="""
+        <div>
+            <img src="https://japan-wanderlust.s3.eu-north-1.amazonaws.com/static/images/readme/logo-readme.png" 
+            alt="JapanWanderlust logo"/>
+            <h1>
+                <b>Welcome to JapanWanderlust!</b>
+            </h1>
+            <p>
+                Start creating your Dream Trip Now!
+            </p>
+            <button>
+                <a href="https://github.com/Itamichan/Japan-Wanderlust" rel='noreferrer noopener'
+                   target="_blank">Go to the website</a>
+            </button>
+        </div>""")
     _send_email(message)
 
 
