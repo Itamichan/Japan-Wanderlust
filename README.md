@@ -6,10 +6,10 @@ A live demo can be found [here](http://www.japanwanderlust.com)
 
 ## Introduction
 
-JapanWanderlust is a web page which makes possible for the users to get the best travel offers to Japan based on attractions that they had selected as well as additional details (such as duration, price etc.)
+JapanWanderlust is a web page which makes possible for the users to get the best travel offers to Japan, based on attractions that they had selected as well as additional details (such as duration, price etc.)
 
 The main purpose of the web page is to make possible to connect the Travel Agencies and the Potential Customers which usually prefers to plan a travel trip by themselves.
-By having the freedom to choose specific destinations as well as their budget limit and travel preferences the users will get an travel package offer which will match their wishes the best. If the user decides that they are not interested in the offers they still can have all their attractions saved in a convenient "Trip". Which they can revisit and tailor made as many times as they wish. 
+By having the freedom to choose specific destinations as well as their budget limit and travel preferences the users will get a travel package offer which will match their wishes best. If the user decides that they are not interested in the offers they still can have all their attractions saved in a convenient "Trip". Which they can revisit and change as many times as they wish. 
 
 JapanWanderlust's back-end is consumed as an API by the front-end. The API is documented with apidoc. Link to the documentation:
 [JapanWanderlust API](https://japan-wanderlust-api-doc.s3.eu-north-1.amazonaws.com/index.html)
@@ -58,12 +58,12 @@ JapanWanderlust's back-end is consumed as an API by the front-end. The API is do
 ### Goals
 #### JapanWanderlust goal
 
-The main goal of the JapanWanderlust is  to allow the potential traveler to get in contact with the best suited Travel Agency in order to travel to Japan.
+The main goal of the JapanWanderlust is to allow the potential traveler to get in contact with the best suited Travel Agency in order to travel through Japan.
 
 **Target audience is:**
 * People 18 years old and above.
 * People interested in Japan culture and scenery. 
-* People who want to have a tailor made trip plan.
+* People who want to have a tailor made trip.
 * Travel Agencies who want to reach the market of people who tend to plan their trips by themselves.
 
 #### Business goals
@@ -81,10 +81,10 @@ The main goal of the JapanWanderlust is  to allow the potential traveler to get 
     * Get a tailored made traveling plan.
     * Potentially get a travel package that will suit their needs the best.
     * They want to find a large variety of travel destinations to Japan.
-    * Possibility to contact he Travel Agency if they are interested in the received offer.
+    * Possibility to contact the Travel Agency if they are interested in the received offer.
     
 * **Travel Agency**:
-    * Sell their travel packages to Japan.
+    * Sell their Japan travel packages.
     * Get information regarding users' travel preferences in order to update or create new travel packages.
 
 Both business and customer goals are addressed through user stories.
@@ -195,7 +195,7 @@ Link to wireframes for desktop can be found [here](https://www.figma.com/file/01
 
 ### Features left to implement after testing
 
-* **Timeouts** - for a better user experience we should ad timeouts to all axios requests.
+* **Timeouts** - for a robust user experience we should ad timeouts to all axios requests to avoid long page loads.
 * **Confirmation window** - when the user decides to delete a Trip or Attraction.
 * **Heart icon on InfoCard** - currently the logged in user can not add an attraction to their trip from the InfoCard.
 * **Get a paid version of Heroku** - at the moment we are unable to have an **SSL certificate** because we are using a free version of Heroku.
@@ -221,7 +221,7 @@ Link to wireframes for desktop can be found [here](https://www.figma.com/file/01
     * [react-routing](https://reacttraining.com/react-router/web/guides/quick-start) - used for creation of page routes.
     * [axios](https://github.com/axios/axios) - used for HTTP requests to our back-end API.
     * [react-device-detect](https://www.npmjs.com/package/react-device-detect) - used for conditional rendering of content depending on which type of device the user has.
-    * [reactstrap](https://reactstrap.github.io/) - used for the modal Rules window.
+    * [reactstrap](https://reactstrap.github.io/) - used for layout and styling of different elements.
     * [react-fontawesome](https://github.com/FortAwesome/react-fontawesome) - used for icons.
     * [Google Fonts](https://fonts.google.com/) - used for the Nightshade and Open Sans fonts.
     * [react-notify-toast](https://www.npmjs.com/package/react-notify-toast) - used to inform the user on success or failure of certain actions.
@@ -244,8 +244,7 @@ Link to wireframes for desktop can be found [here](https://www.figma.com/file/01
 * [PyCharm](https://www.jetbrains.com/pycharm/) - used as local IDE for the back-end of this project.
 * [DataGrip](https://www.jetbrains.com/datagrip/) - used for local visualisation of our database.
 * [Heroku Postgres](https://elements.heroku.com/addons/heroku-postgresql) - used as our main database based on PostgreSQL.
-* [Heroku Papertrail](https://elements.heroku.com/addons/papertrail) - used for debugging.
-* [PostgreSQL](https://www.postgresql.org/) - used locally in DataGrip.
+* [Heroku Papertrail](https://elements.heroku.com/addons/papertrail) - used for debugging and logging.
 * [Git](https://git-scm.com/) - used for version control.
 * [Figma](https://www.figma.com/) - used for creation of wireframes.
 * [favicon.io](https://favicon.io/) - used for creation of the fav icon for the web page.
