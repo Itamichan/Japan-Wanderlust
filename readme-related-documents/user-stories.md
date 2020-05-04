@@ -2,7 +2,7 @@
 
 ### User category: _The User_
 
-* A. As a user, I want to see the available attractions in Japan so that I can choose which one I would like to visit.
+* A. As a user, I want to see the available attractions in Japan so that I can choose which one I would like to save in my Trip.
     * Complexity - 5
     * Value - 5
 * B. As a user, I want to be able to save the attractions which I like so that I can have a comprehensive list of my desired destinations.

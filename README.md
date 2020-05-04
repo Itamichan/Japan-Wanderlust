@@ -94,7 +94,7 @@ Both business and customer goals are addressed through user stories.
 ### User Stories
 #### User category: _The User_
 
-* As a user, I want to see the available attractions in Japan so that I can choose which one I would like to visit.
+* As a user, I want to see the available attractions in Japan so that I can choose which one I would like to save in my Trip.
 * As a user, I want to be able to save the attractions which I like so that I can have a comprehensive list of my desired destinations.
 * As a user, I want to update my profile so that my personal information is correct.
 * As a user, I want to be able to search an attraction base on a specific category, so that I can easier find the information in which I am interested.
@@ -201,6 +201,7 @@ Link to wireframes for desktop can be found [here](https://www.figma.com/file/01
 * **Confirmation window** - when the user decides to delete a Trip or Attraction.
 * **Heart icon on InfoCard** - currently the logged in user can not add an attraction to their trip from the InfoCard.
 * **Get a paid version of Heroku** - at the moment we are unable to have an SSL certificate because we are using a free version of Heroku.
+* **Improve page's loading speed** - currently the speed on the mobile is ranked at 72.
   
 ## Technologies Used
 
@@ -216,7 +217,7 @@ Link to wireframes for desktop can be found [here](https://www.figma.com/file/01
 
 ### Libraries
 
-* Front-End
+* **Front-End**
     * [React](https://reactjs.org/) - the entire project was built in React.
     * [react-redux](https://github.com/reduxjs/react-redux) - used for creation of global states.
     * [react-routing](https://reacttraining.com/react-router/web/guides/quick-start) - used for creation of page routes.
@@ -227,7 +228,7 @@ Link to wireframes for desktop can be found [here](https://www.figma.com/file/01
     * [Google Fonts](https://fonts.google.com/) - used for the Nightshade and Open Sans fonts.
     * [react-notify-toast](https://www.npmjs.com/package/react-notify-toast) - used to inform the user on success or failure of certain actions.
 
-* Back-End
+* **Back-End**
      * [flask](https://flask.palletsprojects.com/en/1.1.x/) - used for creation of the web framework
      * [gunicorn](https://gunicorn.org/) - used for our workers for Heroku.
      * [pyJWT](https://pyjwt.readthedocs.io/en/latest/) - used for creation of Authentication Token on Login.
@@ -236,7 +237,7 @@ Link to wireframes for desktop can be found [here](https://www.figma.com/file/01
      * [SendGrid](https://app.sendgrid.com/) - we consumed the SendGrid API in order to send welcome and offer emails to the users.
      * [APIDOC](https://apidocjs.com/) - used to create API documentation for our back-end
      
-* Database
+* **Database**
     * [psycopg2](https://pypi.org/project/psycopg2/) - python library for PostgreSQL.
 
 ### Tools

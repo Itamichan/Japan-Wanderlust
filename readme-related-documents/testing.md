@@ -6,14 +6,9 @@
 
 1. [DevTools](#devtools)
 2. [Manual Testing](#manual-testing)
-3. [User testing](#user-testing)
-    * [Peer-code-review](#peer-code-review)
-    * [User review](#user-review)
-4. [Google Analytics](#google-analytics)
-5. [Hotjar](#hotjar)
-    * [Heatmaps](#heatmaps)
-    * [Recordings](#recordings)
-6. [PageSpeed Insights](#pagespeed-insights)
+3. [User Stories](#user-stories)
+4. [PageSpeed Insights](#pagespeed-insights)
+5. [Travis](#travis)
 
 
 ## DevTools
@@ -21,10 +16,9 @@
 Was used for:
 * Testing the responsiveness of the web page.
     * As an outcome I adjusted the media queries on different occasions in order to ensure the proper placement on different screen sizes.
-    * The game  is adjusting its size until the screen size is 600px after which it remains constant.
 * Debugging - which allowed to identify wrongly applied scss as well as to see if the react components are working as expected. 
 
-As a result the web page is responsive on different screen sizes and existing buggs are identified and addressed accordingly.
+As a result the web page is responsive on different screen sizes and existing bugs are identified and addressed accordingly.
 
 ## Manual Testing
 
@@ -33,100 +27,43 @@ Was used:
 * To assess the flow and intuitiveness of the content placement.
 * To see web page's performance in different browsers, such as Chrome, Firefox and Safari.
 
-## User testing
+Identified bugs:
+* The pagination component was returning the nr of pages rounded down which as a result made several attraction cards to not be shown - fixed.
+* The "Filter Menu" was moving to the right is the Attractions were "loading" - fixed.
+* No timeouts are set during axios requests which makes impossible for the user to reach the point where they are informed that something went wrong - to be fixed in the next sprint.
 
-At the point when the web page was 95% done I put the link of the live web page on #peer-code-review channel on Slack. In the same time I sent it to several friends and acquaintances.
+## User Stories
 
-### Peer-code-review
+As a test case we choose the user story which requires one of the most steps in order to be fulfilled.
 
-I got only one comment which referred to the structural side of the project.
-
-#### Suggested improvements:
-
-* Avoid the use of underscore/ spaces for file or directory name - implemented.
-* Remove the default provided files by React which are not used (ex: react logo) - implemented.
-
-### User review
-
-The general feedback was positive. Several people started a competition between them in order to see who can have the best time on different levels. This denoted that they were enjoying the game.
-
-#### Suggested improvements:
-
-* Control buttons were covered by the footer on screens with height bellow 320px. Therefore it was impossible to play - extra media query was added for these kind of screens. Now the buttons are available.
-* Create new, different characters - added to future features to be implemented.
-* Allow to move several spaces by continuously holding the arrow buttons - the need to press the button for every new move is an intentional requirement. Therefore, the suggested change will not be implemented.
-* A player wanted to see how the main character actually meets a human (since this is Blue's initial goal) - added to future features to be implemented.
-* The levels should be more complicated - the suggestion is partially addressed. A higher complexity can be added at a later stage. Suggestion is added to feature features to be implemented.
-* Add a high score table so players can see how well they performed in comparison with other players - this feature already exists in the backlog and is suggested to be implemented in the future.
-    
-## Google Analytics
-
-In order to address issue #13, Google Analytics plugin was added to the project before the live link was shared with #peer-code-review and other users.
-
-Google Analytics serves as a good tool to receive more information about what devices/ browsers users are using.
-
-This information can be used for future prioritization of features' implementation.
-
-### Obtained data
-
-* Top used device: Desktop (66.67%).
-* Top used desktop browser: Chrome (71.43%).
-* Top operating system for mobile: Android (69.23%).
-
-Access the [link](images/google-analytics) to see the screenshots of the obtained data.
-
-### Conclusion
-
-From the gathered data we can conclude that for future releases we need to keep in mind  that our users primarily use such browsers as Chrome. As well, as that they prefer desktop devices to mobile.
-
-The conclusion should be perceived with skepticism considering that at the moment only 34 new users visited the web page.
-
-## Hotjar
-
-As well as Google Analytics, Hotjar was added in order to track user behaviour.
-
-Hotjar provides heatmaps and recordings of user behaviour. Such information is very useful to identify and resolve user confusions.
-
-### Obtained data
-
-#### Heatmaps
-
-* Desktop - accessed 48 times
-    * 30.07% of users clicked the start button.
-    * 24.18% of users accessed the "Home" button.
-    * 10.46% of users clicked the "Rules" button
-* Mobile - accessed 199 times
-    * 25.42% of users taped the start button.
-    * 5.08% of users accessed the "Home" button.
-    * 6.78% of users taped the "Rules" button
-    
-#### Recordings
-
-* Users don't seem to have problems to use the game.
-* The retention rate is not high. Most users play only until level 3.
-* Some players try to play higher levels without clearing the previous levels.
-
-Access the [link](images/hotjar) to see the screenshots of the obtained data.
-
-#### Conclusion
-
-* Heatmaps
-    * The conversion rate from the start seems to be low - should consider to improve the game's graphics and style in order to be more appealing.
-    * The game seems to be intuitive and the users don't really need the rules.
-* Recordings
-    * Only a small percentage of users go through all the levels - should consider to make the levels more challenging/ interesting.
-    
-The conclusion should be perceived with skepticism considering that it is based only on a small number of recordings.
+* As a user, I want to see the available attractions in Japan so that I can choose which one I would like to save in my Trip.
+* Taken steps:
+    * On the home page we can see all the available attractions.
+    * I try to save an attraction.
+    * Modal window says that I need to login or register.
+    * I create an account.
+    * I receive an welcome email.
+    * I am introducing my login credentials in the login form.
+    * I try to save an attraction.
+    * I am suggested to create a Trip since I do not have any.
+    * I create a Trip.
+    * I choose the Trip name from the suggested options.
+    * I see on the bottom of the page my current chose Trip.
+    * I try to save an attraction.
+    * I succeed!
 
 ## PageSpeed Insights
 
-**Initial loading speed of the web page:**
+** Identified Loading speed of the web page:**
 * On mobile - 72
-* On desktop - 98
+* On desktop - 92
 
 **Opportunities for improvement:**
-* Eliminate render-blocking resources- which will save 0.3s loading time
+* Properly size images - considering that we will never need the images in big resolution we could reduce their size significantly - would save 11.19s.
+    * To be fixed in the next sprint.
+    
+## Travis
 
-#### Conclusion
-
-* Considering that the most users are on desktop no changes will be done at the moment - the performance should be improved during feature releases
+In our back-end we use travis to test our functions that run database queries. 
+These tests ensure that the code which doesn't pass the tests will not be pushed to GitHUb and as a result it will not deployed to Heroku.
+This kind of testing protects the live web page from potential bugs.
