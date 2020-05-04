@@ -11,6 +11,9 @@ JapanWanderlust is a web page which makes possible for the users to get the best
 The main purpose of the web page is to make possible to connect the Travel Agencies and the Potential Customers which usually prefers to plan a travel trip by themselves.
 BY having the freedom to choose specific destinations as well as their budget limit and travel preferences the users will get an travel package offer which will match their wishes the best. If the user decides that they are not interested in the offers they still can have all their attractions saved in a convenient "Trip". Which they can revisit and tailor made as many times as they wish. 
 
+JapanWanderlust's back-end is consumed as an API by the front-end. The API is documented with apidoc. Link to the documentation:
+[JapanWanderlust API](https://s3.console.aws.amazon.com/s3/buckets/japan-wanderlust-api-doc/?region=eu-north-1)
+
 ### Actions that can be taken on the web page
 * **Non registered user**:
     * Browse through all different attractions which can be visited in Japan.
