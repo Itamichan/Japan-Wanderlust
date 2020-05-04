@@ -8,7 +8,7 @@
 2. [Manual Testing](#manual-testing)
 3. [User Stories](#user-stories)
 4. [PageSpeed Insights](#pagespeed-insights)
-5. [Travis](#travis)
+5. [Travis testing](#travis-testing)
 
 
 ## DevTools
@@ -54,7 +54,7 @@ As a test case we choose the user story which requires one of the most steps in 
 
 ## PageSpeed Insights
 
-** Identified Loading speed of the web page:**
+**Identified Loading speed of the web page:**
 * On mobile - 72
 * On desktop - 92
 
@@ -62,7 +62,7 @@ As a test case we choose the user story which requires one of the most steps in 
 * Properly size images - considering that we will never need the images in big resolution we could reduce their size significantly - would save 11.19s.
     * To be fixed in the next sprint.
     
-## Travis
+## Travis Testing
 
 In our back-end we use travis to test our functions that run database queries. 
 These tests ensure that the code which doesn't pass the tests will not be pushed to GitHUb and as a result it will not deployed to Heroku.
