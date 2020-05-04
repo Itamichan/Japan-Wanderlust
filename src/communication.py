@@ -91,8 +91,7 @@ def offer_email(to_email):
                         <li>email: dreamtravel@gmail.com</li>
                     </ul>
                 </p>
-            </div>
-        """)
+            </div>""")
     _send_email(message)
 
 
