@@ -1,8 +1,8 @@
-# Blue in the Maze
+# JapanWanderlust
 
-A live demo can be found [here](https://cristina-maze-game.herokuapp.com/)
+A live demo can be found [here](http://www.japanwanderlust.com)
 
-![Desktop Demo](../../WebstormProjects/blue-in-the-maze/readme-related-documents/webpage-response/webpage-responsivnes.jpg)
+![Website_Logo](../../WebstormProjects/blue-in-the-maze/readme-related-documents/logo-readme.png)
 
 ## Introduction
 
