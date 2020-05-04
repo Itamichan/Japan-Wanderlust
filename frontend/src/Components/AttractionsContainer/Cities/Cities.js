@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Button from "reactstrap/es/Button";
+import "./Cities.scss";
 
 const Cities = ({chooseCity}) => {
 
@@ -20,7 +21,7 @@ const Cities = ({chooseCity}) => {
 
     const citiesList = cities.map(city => {
             return (
-                <div key={city.city_id} style={{width:"35%", padding: 4}}>
+                <div key={city.city_id}  className={"city-container"}>
                     <Button block={true} className={"filter-button text-highlight"} onClick={() => chooseCity(city)}>
                         {city.city_name}
                     </Button>

@@ -104,7 +104,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
 
     let attractionsList = attractions.map(attraction => {
         return (
-            <Col xs={"6"} lg={"3"} className={"attraction-card"}>
+            <Col xs={"6"} md={"4"} xl={"3"} className={"attraction-card"}>
                 <AttractionCard
                     key={attraction.id}
                     cardId={attraction.id}
@@ -220,7 +220,7 @@ const AttractionsContainer = ({currentTrip, removeAttractionFromTrip, addAttract
                     </Col>
 
                     {isBrowser &&
-                    <Col xs={"2"} id={"attractions-filters"}>
+                    <Col xs={"2"} md={"3"} xl={"2"} id={"attractions-filters"}>
                         <Cities
                             chooseCity={(city) => filterCities(city)}
                         />
