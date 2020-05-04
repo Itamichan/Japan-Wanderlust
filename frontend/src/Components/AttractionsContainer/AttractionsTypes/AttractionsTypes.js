@@ -22,7 +22,7 @@ const AttractionsTypes = ({chooseAttractionType}) => {
             return (
                 <div key={attractionType.type_id} style={{padding: 4}}>
                     <Button
-                        className={"filter-button text-highlight"}
+                        className={"action-button"}
                         onClick={() => chooseAttractionType(attractionType)}
                     >
                         {attractionType.type_name}

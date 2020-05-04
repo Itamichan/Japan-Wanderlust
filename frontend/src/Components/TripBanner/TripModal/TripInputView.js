@@ -76,7 +76,7 @@ const TripInputView = ({
             </ModalBody>
             <ModalFooter id={"trip-input-footer"}>
                 <Button
-                    color="primary"
+                    className={"action-button"}
                     onClick={submit}
                     disabled={disabled}
                 >

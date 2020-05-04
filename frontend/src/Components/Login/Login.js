@@ -112,7 +112,7 @@ const Login = ({loginUser, isModalOpen, closeModal}) => {
                     setRegisterUser(false)
                 }}>Cancel
                 </Button>
-                <Button disabled={sendingPostRequest} color="primary"
+                <Button disabled={sendingPostRequest} className={"action-button"}
                         onClick={registerUser ? register : login}>Submit</Button>
             </ModalFooter>
         </Modal>

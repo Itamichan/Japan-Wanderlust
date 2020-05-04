@@ -10,15 +10,7 @@ $bg-color-4: #010000;
 
 
 $base-color: #dc3545; // Primary color */
-$color-primary-1: #FF8585;
-$color-primary-2: #FF5C5C;
 $base-color-dark: #c53242;
-
-$color-secondary-1-0: #209292; // Secondary color (1) */
-$color-secondary-1-1: #64C0C0;
-$color-secondary-1-2: #3AA1A1;
-$color-secondary-1-3: #098080;
-$color-secondary-1-4: #026565;
 
 //text
 
@@ -65,10 +57,14 @@ $color-secondary-1-4: #026565;
 
 @mixin button() {
   border-radius: 8%;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-.filter-button {
+.action-button {
   @include button();
+  @include text-emphasis();
   background-color: $base-color;
   margin-bottom: 0.5rem;
 
@@ -87,10 +83,4 @@ $color-secondary-1-4: #026565;
   }
 }
 
-.action-button {
-  @include button();
-  background-color: $color-secondary-1-0;
-  &:hover {
-    background-color: $color-secondary-1-3;
-  }
-}
+

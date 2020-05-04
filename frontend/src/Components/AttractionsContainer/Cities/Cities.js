@@ -22,7 +22,7 @@ const Cities = ({chooseCity}) => {
     const citiesList = cities.map(city => {
             return (
                 <div key={city.city_id}  className={"city-container"}>
-                    <Button block={true} className={"filter-button text-highlight"} onClick={() => chooseCity(city)}>
+                    <Button block={true} className={"action-button"} onClick={() => chooseCity(city)}>
                         {city.city_name}
                     </Button>
                 </div>
