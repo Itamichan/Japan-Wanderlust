@@ -12,7 +12,7 @@ The main purpose of the web page is to make possible to connect the Travel Agenc
 BY having the freedom to choose specific destinations as well as their budget limit and travel preferences the users will get an travel package offer which will match their wishes the best. If the user decides that they are not interested in the offers they still can have all their attractions saved in a convenient "Trip". Which they can revisit and tailor made as many times as they wish. 
 
 JapanWanderlust's back-end is consumed as an API by the front-end. The API is documented with apidoc. Link to the documentation:
-[JapanWanderlust API](https://s3.console.aws.amazon.com/s3/buckets/japan-wanderlust-api-doc/?region=eu-north-1)
+[JapanWanderlust API](https://japan-wanderlust-api-doc.s3.eu-north-1.amazonaws.com/index.html)
 
 ### Actions that can be taken on the web page
 * **Non registered user**:
@@ -202,7 +202,7 @@ Link to wireframes for desktop can be found [here](https://www.figma.com/file/01
 * **Timeouts** - for a better user experience we should ad timeouts to all axios requests.
 * **Confirmation window** - when the user decides to delete a Trip or Attraction.
 * **Heart icon on InfoCard** - currently the logged in user can not add an attraction to their trip from the InfoCard.
-* **Get a paid version of Heroku** - at the moment we are unable to have an SSL certificate because we are using a free version of Heroku.
+* **Get a paid version of Heroku** - at the moment we are unable to have an **SSL certificate** because we are using a free version of Heroku.
 * **Improve page's loading speed** - currently the speed on the mobile is ranked at 72.
   
 ## Technologies Used
