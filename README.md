@@ -48,11 +48,10 @@ BY having the freedom to choose specific destinations as well as their budget li
     * [Deployment to Heroku](#deployment-to-heroku)
     * [How to run this project locally](#how-to-run-this-project-locally)
 6. [Credits](#credits)
-    * [Media](#media)
+    * [Content](#content)
     * [Acknowledgements](#acknowledgements)
         * [Deployment scripts](#deployment-scripts)
         * [Pages used for Inspiration](#pages-used-for-inspiration)
-        * [Pages used for information](#pages-used-for-information)
 7. [Disclaimer](#disclaimer)
 
 ## UX
@@ -325,7 +324,6 @@ To deploy JapanWanderlust to Heroku, take the following steps:
 7. Select "Settings" > "Reveal Config Vars".
 8. Set the following config vars:
 
-
 |  **Key** | **Value**  |
 |---|---|
 | AWS_INDEX_URL | here you put the link to your index.html file from AWS  | 
@@ -339,7 +337,7 @@ To deploy JapanWanderlust to Heroku, take the following steps:
 | SENDGRID_API_KEY | provided by SendGrid once on creation of your API Key |
         
 * The link to your index-html page you can find on opening the index.html file in your bucket (japan-wanderlust).
-* All the values for the dabase you can find under your Heroku Account > Resources > Heroku Postgres > Settings > Database Credentials
+* All the values for the dabase are found under Heroku Account > Resources > Heroku Postgres > Settings > Database Credentials.
 
 9. Enable the web worker on Heroku.
     * Go to "Resources" > under Free Dynos choose to edit your dyno - turn it on and confirm it.
@@ -385,32 +383,21 @@ Optionally:
 
 ### Content
 
-All content on the web page was written by me.
-
-### Media
-
-
+The attractions' information and most of the images were taken from [japan-guide](https://www.japan-guide.com/).
 
 ### Acknowledgements
 
 #### Deployment scripts
 
-All scripts which made possible to store the project to AWS and deploy it to Heroku was written by [sheepsy90](https://github.com/sheepsy90).
+All the scripts which made possible to store the project to AWS automatically was written by [sheepsy90](https://github.com/sheepsy90).
 
 #### Pages used for Inspiration
 
-* [JavaScript: Amazing Maze Game](https://www.the-art-of-web.com/javascript/maze-game-large/)
-* [Maze game by Henry Morgan](https://codepen.io/rayrayxvv/pen/gaVjRN)
-* [HTML5 and JS Maze Game by Thomas Daniels](https://www.codeproject.com/Articles/577080/Create-an-HTML-and-JavaScript-Maze-Game-with-a-ti)
+* [japan-guide](https://www.japan-guide.com/)
+* [japan-travel](https://www.japan.travel/en/)
+
 * Inspiration resources for writing this README file:
     * [AJGreaves](https://github.com/AJGreaves/familyhub)
- 
-#### Pages used for information
-
-* [W3schools](https://www.w3schools.com/)
-* [W3C](https://www.w3.org/)
-* [CSS-Tricks](https://css-tricks.com/)
-* [MDN web docs](https://developer.mozilla.org/)
 
 ## Disclaimer
 
