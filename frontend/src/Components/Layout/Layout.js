@@ -10,6 +10,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import TripsList from "../Navigation/UserTrips/UserTripsOverview/UserTripsList";
 import UserDetailedTrip from "../Navigation/UserTrips/UserDetailedTrip/UserDetailedTrip";
 import "./Layout.scss";
+import Footer from "../Footer/Footer";
 
 
 const Layout = ({loginUser, logout}) => {
@@ -93,6 +94,7 @@ const Layout = ({loginUser, logout}) => {
                                     <AttractionsContainer/>
                                 </Route>
                             </Switch>
+                            <Footer/>
                         </Router>
                     </div>
                 )
