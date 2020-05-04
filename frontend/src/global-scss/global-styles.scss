@@ -34,10 +34,10 @@ $base-color-dark: #c53242;
 
 .text-header {
   @include text-emphasis();
-  padding: 1rem 0 0.5rem;
+  padding: 0.8rem 0 0.5rem;
   font-size: 1.2rem;
   @media (max-width: 415px) {
-    padding: 0.5rem 0 0.5rem;
+    padding: 0
   }
 }
 
@@ -45,12 +45,11 @@ $base-color-dark: #c53242;
   @include text();
   font-family: 'Jim Nightshade', sans-serif;
   padding: 0.8rem 0 0;
-  font-size: 2rem;
+  font-size: 1.8rem;
   @media (min-width: 415px) {
     font-size: 2.2rem;
   }
 }
-
 
 //buttons
 

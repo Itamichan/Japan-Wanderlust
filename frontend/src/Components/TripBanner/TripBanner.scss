@@ -10,7 +10,7 @@
   z-index: 100;
 
   #no-trip-container {
-    padding-top: 1.3rem;
+    padding-top: 2.5rem;
     @media (min-width: 415px) {
       padding-top: 5rem;
     }
@@ -26,7 +26,6 @@
   }
 
   #with-trip-container {
-    padding-top: 0.8rem;
     @media (min-width: 415px) {
       padding-top: 5rem;
     }
@@ -56,8 +55,9 @@
       flex-flow: row wrap;
       text-align: center;
       justify-content: space-evenly;
-      @media (min-width: 415px) {
-        padding-top: 2rem;
+      padding-top: 0.4rem;
+      @media (min-width: 340px) {
+        padding-top: 1rem;
       }
     }
     #money-icon, #guide-icon, #time-icon, #group-icon {

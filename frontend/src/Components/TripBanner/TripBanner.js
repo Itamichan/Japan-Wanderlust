@@ -25,7 +25,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
     const toggleMoneyIcon = () => setMoneyIconOpen(!moneyIconOpen);
     const toggleTimeIcon = () => setTimeIconOpen(!timeIconOpen);
     const toggleGuideIcon = () => setGuideIconOpen(!guideIconOpen);
-    const toggleGroupIcon= () => setGroupIconOpen(!groupIconOpen);
+    const toggleGroupIcon = () => setGroupIconOpen(!groupIconOpen);
 
 
     let getOfferEmail = async () => {
@@ -76,7 +76,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                 <Row>
                     <Col>
                         <div className={"text-header"}>
-                            <FontAwesomeIcon icon="yen-sign" id={"money-icon"} size={"2x"}/>
+                            <FontAwesomeIcon icon="yen-sign" id={"money-icon"} size={"1x"}/>
                             {` ${currentTrip.max_price} YEN`}
                             <Tooltip placement="left" isOpen={moneyIconOpen} target="money-icon"
                                      toggle={toggleMoneyIcon}>
@@ -86,7 +86,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                         {/*appears only in browser view*/}
                         <BrowserView>
                             <div className={"text-header"}>
-                                <FontAwesomeIcon icon="street-view" id={"guide-icon"} size={"2x"}/>
+                                <FontAwesomeIcon icon="street-view" id={"guide-icon"} size={"1x"}/>
                                 {currentTrip.is_guided ? " Yes" : " No"}
                                 <Tooltip placement="left" isOpen={guideIconOpen} target="guide-icon"
                                          toggle={toggleGuideIcon}>
@@ -95,13 +95,17 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                             </div>
                         </BrowserView>
                     </Col>
-                    <Col className={"text-header-important"}>
-                        <b>{currentAttractionsList.length}</b>
+                    <Col>
+                        <div className={"text-header-important"}>
+                            <b>
+                                {currentAttractionsList.length}
+                            </b>
+                        </div>
                         <div className={"text-header"}>Attractions</div>
                     </Col>
                     <Col>
                         <div className={"text-header"}>
-                            <FontAwesomeIcon icon={['far', 'calendar-alt']} id={"time-icon"} size={"2x"}/>
+                            <FontAwesomeIcon icon={['far', 'calendar-alt']} id={"time-icon"} size={"1x"}/>
                             {` ${currentTrip.max_trip_days} days`}
                             <Tooltip placement="left" isOpen={timeIconOpen} target="time-icon"
                                      toggle={toggleTimeIcon}>
@@ -111,7 +115,7 @@ const TripBanner = ({isUserLoggedIn, currentTrip, setCurrentTrip, currentAttract
                         {/*appears only in browser view*/}
                         <BrowserView>
                             <div className={"text-header"}>
-                                <FontAwesomeIcon icon="users" id={"group-icon"} size={"2x"}/>
+                                <FontAwesomeIcon icon="users" id={"group-icon"} size={"1x"}/>
                                 {currentTrip.in_group ? " Yes" : " No"}
                                 <Tooltip placement="left" isOpen={groupIconOpen} target="group-icon"
                                          toggle={toggleGroupIcon}>
