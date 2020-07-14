@@ -83,7 +83,7 @@ const Layout = ({loginUser, logout}) => {
                     </div>
                 ) : (
                     <div>
-                        <Notifications options={{zIndex: 10000, width: "100%"}}/>
+                        <Notifications options={{zIndex: 1000, width: "100%"}}/>
                         <Router>
                             <Navigation/>
                             <Login/>
